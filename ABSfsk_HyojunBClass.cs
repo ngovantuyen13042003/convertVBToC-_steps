@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        送付先_標準マスタＤＡ(ABSfsk_HyojunBClass)
@@ -15,7 +15,9 @@
 using System;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualBasic;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名システム
 // * 
 // * クラス名        宛名印鑑マスタ更新(ABAtenaInkanupBClass)
@@ -15,6 +15,10 @@
 // ************************************************************************************************
 using System;
 using System.Linq;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
 namespace Densan.Reams.AB.AB000BB
 {

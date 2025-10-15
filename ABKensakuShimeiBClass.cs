@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        検索氏名編集(ABKensakuShimeiBClass)
@@ -24,8 +24,10 @@ using System;
 using System.Linq;
 using System.Security;
 using System.Text;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
 namespace Densan.Reams.AB.AB000BB
 {

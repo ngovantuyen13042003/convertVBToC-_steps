@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名システム
 // * 
 // * クラス名        編集検索氏名(ABHenshuSearchShimeiBClass)
@@ -14,6 +14,10 @@
 // * 2023/08/14 000002    【AB-0820-1】住登外管理項目追加(早崎)
 // ************************************************************************************************
 using System;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
 namespace Densan.Reams.AB.AB000BB
 {

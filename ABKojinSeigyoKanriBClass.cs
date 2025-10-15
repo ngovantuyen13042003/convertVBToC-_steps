@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名　　　　   宛名管理システム
 // * 
 // * クラス名　　　   ABKojinSeigyoKanriBClass：宛名個人情報管理Bクラス
@@ -16,6 +16,10 @@
 // ************************************************************************************************
 using System;
 using System.Text;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 
 #region 参照名前空間
 

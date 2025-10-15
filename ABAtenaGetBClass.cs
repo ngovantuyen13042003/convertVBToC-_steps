@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ宛名取得(ABAtenaGetClass)
@@ -71,8 +71,9 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Security;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
 namespace Densan.Reams.AB.AB000BB
 {

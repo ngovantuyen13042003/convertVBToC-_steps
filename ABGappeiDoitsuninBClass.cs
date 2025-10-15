@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        合併同一人ＤＡ(ABGappeiDoitsuninBClass)
@@ -22,6 +22,9 @@
 // ************************************************************************************************
 using System;
 using System.Collections;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 // *履歴番号 000009 2018/05/01 追加開始
 using System.Collections.Generic;
 using System.Linq;

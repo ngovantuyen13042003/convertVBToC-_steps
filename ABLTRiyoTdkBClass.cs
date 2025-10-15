@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名           宛名管理システム
 // * 
 // * クラス名         ＡＢｅＬＴＡＸ利用届マスタＤＡ(ABLTRiyoTdkBClass)
@@ -24,6 +24,9 @@
 // * 2024/01/09   000010     【AB-0770-1】利用届出データ管理対応（原野）
 // ************************************************************************************************
 using System;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 // *履歴番号 000009 2020/11/06 追加開始
 using System.Collections.Generic;
 using System.Linq;

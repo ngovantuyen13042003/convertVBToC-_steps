@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ宛名編集クラス(ABAtenaHenshuBClass)
@@ -70,6 +70,10 @@
 // * 2024/06/17 000021     【AB-9903-1】不具合対応
 // ************************************************************************************************
 using System;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 // *履歴番号 000006  2003/03/07 削除開始
 // Imports Densan.Reams.AB.AB001BX
 // *履歴番号 000006  2003/03/07 削除終了
@@ -77,7 +81,6 @@ using System.Data;
 using System.Linq;
 using System.Security;
 using System.Text;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace Densan.Reams.AB.AB000BB
 {

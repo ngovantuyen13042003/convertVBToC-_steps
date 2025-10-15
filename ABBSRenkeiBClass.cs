@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名　　　　   宛名管理システム
 // * 
 // * クラス名　　     中間サーバーＢＳ連携ビジネスクラス
@@ -31,9 +31,13 @@ using System.Collections;
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 // * 履歴番号 000008 2015/09/29 追加開始
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace Densan.Reams.AB.AB000BB
 {

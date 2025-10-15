@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ共通番号累積_標準マスタＤＡ(ABMyNumberRuisekiHyojunBClass)
@@ -18,6 +18,8 @@ using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Text;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

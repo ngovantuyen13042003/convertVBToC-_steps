@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名システム
 // * 
 // * クラス名        共有更新Ｂ(ABKyoyuKoshinBClass)
@@ -25,7 +25,10 @@
 // ************************************************************************************************
 using System;
 using System.Linq;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
 namespace Densan.Reams.AB.AB000BB
 {

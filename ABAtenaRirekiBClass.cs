@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ宛名履歴マスタＤＡ
@@ -59,7 +59,8 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualBasic.CompilerServices;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

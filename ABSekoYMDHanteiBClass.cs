@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名システム
 // * 
 // * クラス名        施行日判定Ｂ(ABSekoYMDHanteiBClass)
@@ -14,6 +14,9 @@
 
 using System;
 using System.Linq;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

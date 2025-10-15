@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ共通キャッシュビジネスクラス(ABCommonCacheBClass)
@@ -16,6 +16,12 @@
 
 using System;
 using System.Security;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.reams.ur.publicmodule.library.businesscommon.ur010x;
+using ndensan.reams.ur.publicmodule.library.business.ur010b;
 
 namespace Densan.Reams.AB.AB000BB
 {

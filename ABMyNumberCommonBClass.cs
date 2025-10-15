@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        共通番号マスタ共通処理ビジネスクラス(ABMyNumberCommonBClass)
@@ -14,6 +14,9 @@
 // ************************************************************************************************
 
 using System;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 // *履歴番号 000001 2016/01/21 追加開始
 using System.Collections.Generic;
 using System.Data;

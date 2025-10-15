@@ -1,4 +1,8 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 // * 業務名           宛名管理システム
 // * 
 // * クラス名         ＡＢ宛名住基バッチ更新(ABBatchJukiKoshinBClass)

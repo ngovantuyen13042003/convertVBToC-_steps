@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名　　　　   宛名管理システム
 // * 
 // * クラス名　　　   ABKojinSeigyoBClass：宛名個人情報制御Bクラス
@@ -23,6 +23,10 @@
 // * 2024/01/10  000008      【AB-0120-1】 住民データ異動中の排他制御
 // ************************************************************************************************
 using System;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 // *履歴番号 000003 2012/06/21 追加開始
 using System.Collections.Generic;
 using System.Linq;

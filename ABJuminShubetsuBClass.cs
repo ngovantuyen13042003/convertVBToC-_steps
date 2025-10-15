@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        住民種別(ABJuminShubetsuBClass)
@@ -13,6 +13,9 @@
 // * 2011/03/31   000001     住民種別取得２メソッド(GetJuminshubetsu2)の追加（比嘉）
 // ************************************************************************************************
 using System;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

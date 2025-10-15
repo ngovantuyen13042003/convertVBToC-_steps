@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名　　　　   宛名管理システム
 // * 
 // * クラス名　　　   仮登録Bクラス
@@ -17,6 +17,9 @@
 // ************************************************************************************************
 using System;
 using System.Linq;
+using System.Data;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 
 #region 参照名前空間
 

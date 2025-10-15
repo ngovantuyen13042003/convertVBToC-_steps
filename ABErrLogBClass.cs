@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名システム
 // * 
 // * クラス名        宛名更新エラーログＤＢ管理(ABErrLogBClass)
@@ -15,8 +15,10 @@
 using System;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Data;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

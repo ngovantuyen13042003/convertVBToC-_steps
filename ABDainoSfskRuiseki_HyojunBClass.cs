@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名           宛名管理システム
 // * 
 // * クラス名         ＡＢ代納送付先異動累積_標準マスタＤＡ
@@ -18,6 +18,9 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Text;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

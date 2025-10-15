@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名           宛名管理システム
 // * 
 // * クラス名         標準化　宛名管理　不現住管理機能
@@ -18,7 +18,10 @@
 using System;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualBasic;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
 namespace Densan.Reams.AB.AB000BB
 {

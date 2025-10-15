@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名システム
 // * 
 // * クラス名        レプリカＤＢデータセット作成(ABAtenaCnvBClass)
@@ -23,6 +23,11 @@
 // ************************************************************************************************
 using System;
 using System.Collections;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.framework.us.publicmodule.library.businesscommon.uwfkokai;
 
 namespace Densan.Reams.AB.AB000BB
 {

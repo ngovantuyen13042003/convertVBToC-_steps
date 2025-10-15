@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ支援措置対象者マスタＤＡ(ABShienSochiTaishoBClass)
@@ -17,7 +17,9 @@
 using System;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

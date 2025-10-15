@@ -1,4 +1,8 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ更新系バッチ排他クラス(ABBatchHourClass)

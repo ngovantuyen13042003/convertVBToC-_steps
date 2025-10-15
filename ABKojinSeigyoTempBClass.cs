@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名　　　　   宛名管理システム
 // * 
 // * クラス名　　　   ABKojinSeigyoTempBClass：宛名個人情報TempBクラス
@@ -17,6 +17,10 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 
 #region 参照名前空間
 

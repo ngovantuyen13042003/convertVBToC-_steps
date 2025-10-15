@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名           宛名管理システム
 // * 
 // * クラス名         番地コード編集Ｂクラス(ABBanchiCDHenshuBClass)
@@ -14,6 +14,9 @@
 // ************************************************************************************************
 using System;
 using System.Security;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {

@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        ＡＢ宛名住基更新(ABJukiKoshinBClass)
@@ -88,9 +88,13 @@
 using System;
 using System.Data;
 using System.Linq;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
+using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
+using ndensan.framework.us.publicmodule.library.businesscommon.uwfkokai;
+using ndensan.reams.ur.publicmodule.library.business.ur010b;
 // * 履歴番号 000058 2015/10/14 追加終了
 using System.Security;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace Densan.Reams.AB.AB000BB
 {

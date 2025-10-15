@@ -1,4 +1,4 @@
-﻿// ************************************************************************************************
+// ************************************************************************************************
 // * 業務名          宛名管理システム
 // * 
 // * クラス名        宛名管理情報キャッシュＤＡ(ABKANRIJOHOCacheBClass)
@@ -17,6 +17,9 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Data;
+using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
+using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
 namespace Densan.Reams.AB.AB000BB
 {
