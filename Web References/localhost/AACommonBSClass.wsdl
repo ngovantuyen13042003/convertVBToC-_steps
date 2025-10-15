@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://Reams.ndensan.co.jp" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://Reams.ndensan.co.jp" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Reams.ndensan.co.jp">
+      <s:element name="JukiRendoInterface">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cAAJUKIRENDOParam" type="s0:AAJUKIRENDOParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AAJUKIRENDOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strShoriNichiji" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strShoriJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJuminCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMaeAtoSetPattern" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_LinkNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_RrkNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_StaiCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuminHyoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SeiriNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShichosonCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KyushichosonCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuminSHU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanjiShimei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanjiKyusei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanaShimei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_UmareYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_UmareWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_AimaiUmareBi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SeibetsuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Seibetsu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SeikiNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_HyojiJun" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ZokugaraCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Zokugara" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_HyojiJun2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ZokugaraCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Zokugara2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_StaiNusJuminCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanjiStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanaStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_StaiNusJuminCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanjiStaiNusmei2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanaStaiNusmei2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_YubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_BanchiCD1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_BanchiCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_BanchiCD3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KatagakiFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KatagakiCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Katagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Renrakusaki1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Renrakusaki2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KjnRenrakusaki1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KjnRenrakusaki2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KjnRenrakusaki3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Hon_ZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Hon_NJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Hon_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Hon_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Hittosha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_CkinIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_CkinJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_CkinJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_CkinTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_CkinTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuIdoWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuTdkdWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TorokuTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiIdoWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiTdkdWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuteiTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShojoIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_AimaiShojoIdoBi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShojoJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShojoJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShojoTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShojoTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiTuciYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkTuciYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsunyuRiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsunyuRiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_YubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_ZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_Katagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_StaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenumaeJ_MiTdkFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_YubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_ZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_NJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_Katagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_SaishuJ_StaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiYubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiJusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiBanchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiKatagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuYoteiStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiYubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiJusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiBanchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiKatagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkYubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkJusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkBanchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkKatagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TestsuMiTdkStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TenshutsuKktiMiTdkFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_BikoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Biko" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_BikoFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_BikoTenshutsuKktiJushoFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_UtsushiKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KaiseiatoFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KaiseimaeFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_JuminhyoShichosonCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_GyoseikuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Gyoseikumei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ChikuCD1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Chikumei1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ChikuCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Chikumei2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ChikuCD3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Chikumei3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_TohyokuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShogakkokuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ChugakkokuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_HogoshaJuminCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanjiHogoshamei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanaHogoshamei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KikaYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KariIdoKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShoriTeishiKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShoriTeishiRiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShoriYokushiKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ShoriYokushiRiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_HanyoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_FRNmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanaFRNmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Tsushomei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KanaTsushomei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_KokusekiCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Kokuseki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ZairyuSkakCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ZairyuSkak" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_ZairyuKikan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Zairyu_ST_YMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strMae_Zairyu_ED_YMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_LinkNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_RrkNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_StaiCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuminHyoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SeiriNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShichosonCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KyushichosonCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuminSHU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanjiShimei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanjiKyusei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanaShimei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_UmareYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_UmareWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_AimaiUmareBi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SeibetsuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Seibetsu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SeikiNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_HyojiJun" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ZokugaraCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Zokugara" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_HyojiJun2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ZokugaraCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Zokugara2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_StaiNusJuminCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanjiStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanaStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_StaiNusJuminCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanjiStaiNusmei2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanaStaiNusmei2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_YubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_BanchiCD1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_BanchiCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_BanchiCD3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KatagakiFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KatagakiCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Katagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Renrakusaki1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Renrakusaki2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KjnRenrakusaki1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KjnRenrakusaki2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KjnRenrakusaki3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Hon_ZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Hon_NJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Hon_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Hon_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Hittosha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_CkinIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_CkinJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_CkinJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_CkinTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_CkinTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuIdoWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuTdkdWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TorokuTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiIdoWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiTdkdWMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuteiTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShojoIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_AimaiShojoIdoBi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShojoJiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShojoJiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShojoTdkdYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShojoTdkdTuciKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiTuciYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkIdoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkTuciYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsunyuRiyuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsunyuRiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_YubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_ZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_Katagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_StaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenumaeJ_MiTdkFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_YubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_ZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_NJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_Jusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_Banchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_Katagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_SaishuJ_StaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiYubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiJusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiBanchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiKatagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuYoteiStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiYubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiJusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiBanchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiKatagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkYubinNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkZJushoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkJusho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkBanchi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkKatagaki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TestsuMiTdkStaiNusmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TenshutsuKktiMiTdkFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_BikoYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Biko" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_BikoFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_BikoTenshutsuKktiJushoFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_UtsushiKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KaiseiatoFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KaiseimaeFG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_JuminhyoShichosonCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_GyoseikuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Gyoseikumei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ChikuCD1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Chikumei1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ChikuCD2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Chikumei2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ChikuCD3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Chikumei3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_TohyokuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShogakkokuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ChugakkokuCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_HogoshaJuminCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanjiHogoshamei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanaHogoshamei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KikaYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KariIdoKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShoriTeishiKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShoriTeishiRiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShoriYokushiKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ShoriYokushiRiyu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_HanyoCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_FRNmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanaFRNmei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Tsushomei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KanaTsushomei" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_KokusekiCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Kokuseki" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ZairyuSkakCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ZairyuSkak" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_ZairyuKikan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Zairyu_ST_YMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strAto_Zairyu_ED_YMD" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="JukiRendoInterfaceResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateKBINKAN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strControl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cAAKOBETSUINKANParam" type="s0:ArrayOfAAKOBETSUINKANParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAAKOBETSUINKANParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AAKOBETSUINKANParamClass" nillable="true" type="s0:AAKOBETSUINKANParamClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AAKOBETSUINKANParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUMINCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strINKANNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strINKANTOROKUKB" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKBINKANResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateKBINKANResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKBJITE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strControl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cKOBETSUJITEParam" type="s0:ArrayOfAAKOBETSUJITEParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAAKOBETSUJITEParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AAKOBETSUJITEParamClass" nillable="true" type="s0:AAKOBETSUJITEParamClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AAKOBETSUJITEParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUMINCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strHIYOKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJIDOTEATESTYM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJIDOTEATEEDYM" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKBJITEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateKBJITEResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKBKAIGO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strControl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cAAKOBETSUKAIGOParam" type="s0:ArrayOfAAKOBETSUKAIGOParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAAKOBETSUKAIGOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AAKOBETSUKAIGOParamClass" nillable="true" type="s0:AAKOBETSUKAIGOParamClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AAKOBETSUKAIGOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUMINCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strHIHKNSHANO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSHUTKYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSSHTSYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKHIHOKENSHAKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUSHOCHITKRIKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUKYUSHAKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strYOKAIGJOTAIKBCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKAIGSKAKKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strNINTEIKAISHIYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strNINTEISHURYOYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUKYUNINTEIYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUKYUNINTEITORIKESHIYMD" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKBKAIGOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateKBKAIGOResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKBKOKUHO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strControl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cAAKOBETSUKOKUHOParam" type="s0:ArrayOfAAKOBETSUKOKUHOParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAAKOBETSUKOKUHOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AAKOBETSUKOKUHOParamClass" nillable="true" type="s0:AAKOBETSUKOKUHOParamClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AAKOBETSUKOKUHOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUMINCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHONO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOSHIKAKUKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOSHIKAKUKBMEISHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOSHIKAKUKBRYAKUSHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOGAKUENKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOGAKUENKBMEISHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOGAKUENKBRYAKUSHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOSHUTOKUYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOSOSHITSUYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKKBMEISHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKKBRYAKUSHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKHONHIKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKHONHIKBMEISHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKHONHIKBRYAKUSHO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKGAITOYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOTISHKHIGAITOYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOHOKENSHOKIGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKOKUHOHOKENSHONO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKBKOKUHOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateKBKOKUHOResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKBNENKIN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strControl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cAAKOBETSUNENKINParam" type="s0:ArrayOfAAKOBETSUNENKINParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAAKOBETSUNENKINParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AAKOBETSUNENKINParamClass" nillable="true" type="s0:AAKOBETSUNENKINParamClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AAKOBETSUNENKINParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJUMINCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strKSNENKNNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSHUTKYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSHUTKSHU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSHUTKRIYUCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSSHTSYMD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSKAKSSHTSRIYUCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNKIGO1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNNO1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNSHU1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNEDABAN1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNKB1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNKIGO2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNNO2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNSHU2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNEDABAN2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNKB2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNKIGO3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNNO3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNSHU3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNEDABAN3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJKYNENKNKB3" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKBNENKINResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateKBNENKINResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKBSENKYO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strControl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cAAKOBETSUSENKYOParam" type="s0:ArrayOfAAKOBETSUSENKYOParamClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAAKOBETSUSENKYOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AAKOBETSUSENKYOParamClass" nillable="true" type="s0:AAKOBETSUSENKYOParamClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AAKOBETSUSENKYOParamClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="m_strJuminCD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strSenkyoShikakuKB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="m_strTohyokuCD" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKBSENKYOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateKBSENKYOResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="JukiRendoInterfaceSoapIn">
+    <part name="parameters" element="s0:JukiRendoInterface" />
+  </message>
+  <message name="JukiRendoInterfaceSoapOut">
+    <part name="parameters" element="s0:JukiRendoInterfaceResponse" />
+  </message>
+  <message name="UpdateKBINKANSoapIn">
+    <part name="parameters" element="s0:UpdateKBINKAN" />
+  </message>
+  <message name="UpdateKBINKANSoapOut">
+    <part name="parameters" element="s0:UpdateKBINKANResponse" />
+  </message>
+  <message name="UpdateKBJITESoapIn">
+    <part name="parameters" element="s0:UpdateKBJITE" />
+  </message>
+  <message name="UpdateKBJITESoapOut">
+    <part name="parameters" element="s0:UpdateKBJITEResponse" />
+  </message>
+  <message name="UpdateKBKAIGOSoapIn">
+    <part name="parameters" element="s0:UpdateKBKAIGO" />
+  </message>
+  <message name="UpdateKBKAIGOSoapOut">
+    <part name="parameters" element="s0:UpdateKBKAIGOResponse" />
+  </message>
+  <message name="UpdateKBKOKUHOSoapIn">
+    <part name="parameters" element="s0:UpdateKBKOKUHO" />
+  </message>
+  <message name="UpdateKBKOKUHOSoapOut">
+    <part name="parameters" element="s0:UpdateKBKOKUHOResponse" />
+  </message>
+  <message name="UpdateKBNENKINSoapIn">
+    <part name="parameters" element="s0:UpdateKBNENKIN" />
+  </message>
+  <message name="UpdateKBNENKINSoapOut">
+    <part name="parameters" element="s0:UpdateKBNENKINResponse" />
+  </message>
+  <message name="UpdateKBSENKYOSoapIn">
+    <part name="parameters" element="s0:UpdateKBSENKYO" />
+  </message>
+  <message name="UpdateKBSENKYOSoapOut">
+    <part name="parameters" element="s0:UpdateKBSENKYOResponse" />
+  </message>
+  <portType name="AACommonBSClassSoap">
+    <operation name="JukiRendoInterface">
+      <input message="s0:JukiRendoInterfaceSoapIn" />
+      <output message="s0:JukiRendoInterfaceSoapOut" />
+    </operation>
+    <operation name="UpdateKBINKAN">
+      <input message="s0:UpdateKBINKANSoapIn" />
+      <output message="s0:UpdateKBINKANSoapOut" />
+    </operation>
+    <operation name="UpdateKBJITE">
+      <input message="s0:UpdateKBJITESoapIn" />
+      <output message="s0:UpdateKBJITESoapOut" />
+    </operation>
+    <operation name="UpdateKBKAIGO">
+      <input message="s0:UpdateKBKAIGOSoapIn" />
+      <output message="s0:UpdateKBKAIGOSoapOut" />
+    </operation>
+    <operation name="UpdateKBKOKUHO">
+      <input message="s0:UpdateKBKOKUHOSoapIn" />
+      <output message="s0:UpdateKBKOKUHOSoapOut" />
+    </operation>
+    <operation name="UpdateKBNENKIN">
+      <input message="s0:UpdateKBNENKINSoapIn" />
+      <output message="s0:UpdateKBNENKINSoapOut" />
+    </operation>
+    <operation name="UpdateKBSENKYO">
+      <input message="s0:UpdateKBSENKYOSoapIn" />
+      <output message="s0:UpdateKBSENKYOSoapOut" />
+    </operation>
+  </portType>
+  <binding name="AACommonBSClassSoap" type="s0:AACommonBSClassSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="JukiRendoInterface">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/JukiRendoInterface" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateKBINKAN">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/UpdateKBINKAN" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateKBJITE">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/UpdateKBJITE" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateKBKAIGO">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/UpdateKBKAIGO" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateKBKOKUHO">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/UpdateKBKOKUHO" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateKBNENKIN">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/UpdateKBNENKIN" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateKBSENKYO">
+      <soap:operation soapAction="http://Reams.ndensan.co.jp/UpdateKBSENKYO" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AACommonBSClass">
+    <port name="AACommonBSClassSoap" binding="s0:AACommonBSClassSoap">
+      <soap:address location="http://localhost/Densan/Reams/AA/AA001BS/AACommonBSClass.asmx" />
+    </port>
+  </service>
+</definitions>

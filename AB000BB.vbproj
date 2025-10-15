@@ -1,0 +1,441 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{830EDBAE-EEAB-47F4-8BFA-61546ABF55E3}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Densan.Reams.AB.AB000BB</AssemblyName>
+    <AssemblyOriginatorKeyFile>AB000.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>Densan.Reams.AB.AB000BB</RootNamespace>
+    <StartupObject>Densan.Reams.AB.AB000BB.%28なし%29</StartupObject>
+    <WebReference_EnableProperties>true</WebReference_EnableProperties>
+    <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
+    <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Densan.Reams.AB.AB000BB/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Densan.Reams.AB.AB000BB.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42025,42030,42032,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Densan.Reams.AB.AB000BB.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42025,42030,42032,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Densan.Common.USCommon">
+      <Name>Densan.Common.USCommon</Name>
+      <HintPath>..\..\..\Common\Bin\Densan.Common.USCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.Common.USLAccessLogKojinBango, Version=6.0.0.0, Culture=neutral, PublicKeyToken=20fda5ad3053e0d3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\Bin\Densan.Common.USLAccessLogKojinBango.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.Common.USLCommon, Version=6.0.0.0, Culture=neutral, PublicKeyToken=20fda5ad3053e0d3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\Bin\Densan.Common.USLCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.Framework.UFCommon">
+      <Name>Densan.Framework.UFCommon</Name>
+      <HintPath>..\..\..\FrameWork\Bin\Densan.Framework.UFCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.FrameWork.UFTools">
+      <Name>Densan.FrameWork.UFTools</Name>
+      <HintPath>..\..\..\FrameWork\Bin\Densan.FrameWork.UFTools.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.Reams.BA.BAOPNBB">
+      <Name>Densan.Reams.BA.BAOPNBB</Name>
+      <HintPath>..\..\BA\BAOPNBB\bin\Densan.Reams.BA.BAOPNBB.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Densan.Reams.UR.UR001BB">
+      <Name>Densan.Reams.UR.UR001BB</Name>
+      <HintPath>..\..\UR\UR001BB\bin\Densan.Reams.UR.UR001BB.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.Reams.UR.UR001BX">
+      <Name>Densan.Reams.UR.UR001BX</Name>
+      <HintPath>..\..\UR\UR001BX\bin\Densan.Reams.UR.UR001BX.dll</HintPath>
+    </Reference>
+    <Reference Include="Densan.Reams.UR.UR002BB, Version=6.0.0.0, Culture=neutral, PublicKeyToken=642157ef58849fb6, processorArchitecture=MSIL" />
+    <Reference Include="Densan.Reams.UR.UR002BX, Version=6.0.0.0, Culture=neutral, PublicKeyToken=642157ef58849fb6, processorArchitecture=MSIL" />
+    <Reference Include="Densan.Reams.UR.UR010BB, Version=6.0.0.0, Culture=neutral, PublicKeyToken=df951d900390363e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Densan.Reams.UR.UR010BB\v4.0_6.0.0.0__df951d900390363e\Densan.Reams.UR.UR010BB.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Densan.Reams.UR.UR010BX, Version=6.0.0.0, Culture=neutral, PublicKeyToken=df951d900390363e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Densan.Reams.UR.UR010BX\v4.0_6.0.0.0__df951d900390363e\Densan.Reams.UR.UR010BX.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Densan.WorkFlow.UWCommon">
+      <Name>Densan.WorkFlow.UWCommon</Name>
+      <HintPath>..\..\..\Common\Bin\Densan.WorkFlow.UWCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\AB001BX\AB001BX.vbproj">
+      <Name>AB001BX</Name>
+      <Project>{5DEF4122-A5B0-4B8A-8B6F-43EE50506800}</Project>
+      <Package>{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</Package>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Densan.Reams.AB.AB001BX" />
+    <Import Include="Densan.Reams.BA.BAOPNBB" />
+    <Import Include="Densan.Reams.UR.UR001BB" />
+    <Import Include="Densan.Reams.UR.UR001BX" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABAkibanShutokuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaCnvBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaFZY_HyojunBClass.vb" />
+    <Compile Include="ABAtenaGetBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaHenshuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaInkanBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaInkanupBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaJiteBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaJiteupBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaKaigoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaKaigoupBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaKanriJohoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaKokiKoreiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaKokuhoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaKokuhoupBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaNenkinBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaNenkinupBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaRirekiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaRirekiFZY_HyojunBClass.vb" />
+    <Compile Include="ABAtenaRireki_HyojunBClass.vb" />
+    <Compile Include="ABAtenaRuisekiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaRuisekiFZY_HyojunBClass.vb" />
+    <Compile Include="ABAtenaRuiseki_HyojunBClass.vb" />
+    <Compile Include="ABAtenaSenkyoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtenaSenkyoupBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABAtena_HyojunBClass.vb" />
+    <Compile Include="ABBanchiEdabanSuchiBClass.vb" />
+    <Compile Include="ABBanchiCDHenshuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABBatchAtenaGetBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABBatchAtenaHenshuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABBatchHourClass.vb" />
+    <Compile Include="ABBatchJukiKoshinBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABBSRenkeiBClass.vb" />
+    <Compile Include="ABCodeMSTBClass.vb" />
+    <Compile Include="ABCodeUmuCheckBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABCommonBClass.vb" />
+    <Compile Include="ABCommonCacheBClass.vb" />
+    <Compile Include="ABDainoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABDainoKankeiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABDainoSfskRuisekiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABDainoSfskRuiseki_HyojunBClass.vb" />
+    <Compile Include="ABDoitsuninShokaiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABErrLogBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABFugenjuJohoBClass.vb" />
+    <Compile Include="ABGappeiDoitsuninBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABGyomuTableBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABHenshuSearchShimeiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABHojinMeishoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABHyojunkaCdHenshuBClass.vb" />
+    <Compile Include="ABIdoJiyuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABJukiKoshinBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABJuminShubetsuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABJutogaiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABKannaiKangaiKBBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABKariTorokuBClass.vb" />
+    <Compile Include="ABKensakuShimeiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABKjnhjnKBBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABKojinSeigyoBClass.vb" />
+    <Compile Include="ABKojinSeigyoKanriBClass.vb" />
+    <Compile Include="ABKojinseigyoRirekiBClass.vb" />
+    <Compile Include="ABKojinSeigyoTempBClass.vb" />
+    <Compile Include="ABKyoyuKoshinBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABLTRiyoTdkBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABLTTaxKBBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABLTXmlDatBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABMadoakiAtenaEditBClass.vb" />
+    <Compile Include="ABMeishoBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABMeishoSeigyoBClass.vb" />
+    <Compile Include="ABMojiretsuHenshuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABMyNumberBClass.vb" />
+    <Compile Include="ABMyNumberCommonBClass.vb" />
+    <Compile Include="ABMyNumberHyojunBClass.vb" />
+    <Compile Include="ABMyNumberRuisekiBClass.vb" />
+    <Compile Include="ABMyNumberRuisekiHyojunBClass.vb" />
+    <Compile Include="ABRenrakusaki2BClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABRenrakusakiBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABRenrakusakiFZYHyojunBClass.vb" />
+    <Compile Include="ABRenrakusakiKBGetBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABSekoYMDHanteiBClass.vb" />
+    <Compile Include="ABSfskBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ABSfsk_HyojunBClass.vb" />
+    <Compile Include="ABShienSochiBClass.vb" />
+    <Compile Include="ABShienSochiKagaishaBClass.vb" />
+    <Compile Include="ABShienSochiTaichoBClass.vb" />
+    <Compile Include="ABUmareHenshuBClass.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web References\localhost\Reference.vb">
+      <DependentUpon>Reference.map</DependentUpon>
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="ABAtenaFZYBClass.vb" />
+    <Compile Include="ABAtenaRirekiFZYBClass.vb" />
+    <Compile Include="ABAtenaRuisekiFZYBClass.vb" />
+    <Compile Include="ABKANRIJOHOCacheBClass.vb" />
+    <Compile Include="ABBikoBClass.vb" />
+    <Compile Include="ABRenrakusakiFZYBClass.vb" />
+    <Compile Include="ABRenrakusaki3BClass.vb" />
+    <None Include="AB000.snk" />
+    <None Include="Web References\localhost\AACommonBSClass.wsdl" />
+    <None Include="Web References\localhost\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <WebReferenceUrl Include="http://localhost/Densan/Reams/AA/AA001BS/AACommonBSClass.asmx%3fwsdl">
+      <RelPath>Web References\localhost\</RelPath>
+      <UrlBehavior>Static</UrlBehavior>
+    </WebReferenceUrl>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
