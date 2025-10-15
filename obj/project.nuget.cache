@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "1d1ezLhbnhE=",
+  "success": false,
+  "projectFilePath": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.vbproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.systemwebadapters\\2.0.0\\microsoft.aspnetcore.systemwebadapters.2.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.systemwebadapters.abstractions\\2.0.0\\microsoft.aspnetcore.systemwebadapters.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.systemwebadapters.coreservices\\2.0.0\\microsoft.aspnetcore.systemwebadapters.coreservices.2.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.runtime.caching\\8.0.0\\system.runtime.caching.8.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'D:\\convert\\AB001BX\\AB001BX.vbproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "D:\\convert\\AB001BX\\AB001BX.vbproj",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}

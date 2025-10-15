@@ -1,16 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
+    <SccProjectName></SccProjectName>
+    <SccLocalPath></SccLocalPath>
+    <SccAuxPath></SccAuxPath>
+    <SccProvider></SccProvider>
+    <AssemblyKeyContainerName></AssemblyKeyContainerName>
     <AssemblyName>Densan.Reams.AB.AB000BB</AssemblyName>
     <AssemblyOriginatorKeyFile>AB000.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
@@ -42,15 +37,15 @@
     <SignAssembly>true</SignAssembly>
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Densan.Reams.AB.AB000BB.xml</DocumentationFile>
+    <DocumentationFile>bin\Densan.Reams.AB.AB000BB.xml</DocumentationFile>
     <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>
-    </DefineConstants>
+    <ConfigurationOverrideFile></ConfigurationOverrideFile>
+    <DefineConstants></DefineConstants>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <NoWarn>42016,42017,42018,42019,42025,42030,42032,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
@@ -60,13 +55,10 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>Densan.Reams.AB.AB000BB.xml</DocumentationFile>
+    <DocumentationFile>bin\Densan.Reams.AB.AB000BB.xml</DocumentationFile>
     <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>
-    </DefineConstants>
-    <DefineDebug>false</DefineDebug>
+    <ConfigurationOverrideFile></ConfigurationOverrideFile>
+    <DefineConstants></DefineConstants>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <NoWarn>42016,42017,42018,42019,42025,42030,42032,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
@@ -74,6 +66,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Densan.Common.USCommon">
       <Name>Densan.Common.USCommon</Name>
       <HintPath>..\..\..\Common\Bin\Densan.Common.USCommon.dll</HintPath>
@@ -147,7 +140,7 @@
   <ItemGroup>
     <None Include="Web References\localhost\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <WebReferenceUrl Include="http://localhost/Densan/Reams/AA/AA001BS/AACommonBSClass.asmx%3fwsdl">
       <RelPath>Web References\localhost\</RelPath>
