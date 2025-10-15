@@ -21,7 +21,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABKANRIJOHOCacheBClass : ABAtenaKanriJohoBClass
@@ -177,13 +177,13 @@ namespace Densan.Reams.AB.AB000BB
             {
                 csSB.Append(ABAtenaKanriJohoEntity.SHIKIBETSUKEY).Append(" = '").Append(strShikibetsuKEY).Append("'");
             }
-            if (csSB.RLength > 0)
+            if (csSB.RLength() > 0)
             {
-                csDRs = csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Select(csSB.ToString());
+                csDRs = csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Select(csSB.ToString());
             }
 
-            csRetDS = csDS.Clone;
-            csRetDT = csRetDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME);
+            csRetDS = csDS.Clone();
+            csRetDT = csRetDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME];
             var loopTo = csDRs.Length - 1;
             for (intI = 0; intI <= loopTo; intI++)
                 csRetDT.ImportRow(csDRs[intI]);

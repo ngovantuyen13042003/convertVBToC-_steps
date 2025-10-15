@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     // *履歴番号 000001 2016/01/21 追加終了
 
@@ -110,10 +110,10 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = m_cABMyNumberB.SelectByJuminCd(strJuminCd);
 
                 // 返信オブジェクトの整備
-                if (csDataSet is not null && csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows.Count > 0 && csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows(0)(ABMyNumberEntity.MYNUMBER).ToString.Trim.RLength > 0)
+                if (csDataSet is not null && csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows.Count > 0 && csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows[0](ABMyNumberEntity.MYNUMBER).ToString().Trim().RLength() > 0)
 
                 {
-                    strMyNumber = csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows(0)(ABMyNumberEntity.MYNUMBER).ToString.Trim;
+                    strMyNumber = csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows[0](ABMyNumberEntity.MYNUMBER).ToString().Trim();
                 }
                 else
                 {
@@ -209,13 +209,13 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 返信オブジェクトの整備
-                if (csDataSet is not null && csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet is not null && csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows.Count > 0)
                 {
-                    a_strJuminCd = new string[csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows.Count];
+                    a_strJuminCd = new string[csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows.Count];
                     intIndex = 0;
-                    foreach (DataRow csDataRow in csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows)
+                    foreach (DataRow csDataRow in csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows)
                     {
-                        a_strJuminCd[intIndex] = csDataRow.Item(ABMyNumberEntity.JUMINCD).ToString;
+                        a_strJuminCd[intIndex] = csDataRow[ABMyNumberEntity.JUMINCD].ToString();
                         intIndex += 1;
                     }
                 }
@@ -290,7 +290,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 公表の同意リスト取得メソッドを呼出
                 dicReturn = GetConsent(strJuminCdLst);
 
-                if (dicReturn is not null && dicReturn.Count > 0)
+                if (dicReturn is not null && dicReturn.Count() > 0)
                 {
                     strKohyounoDoui = dicReturn[strJuminCd];
                 }
@@ -381,9 +381,9 @@ namespace Densan.Reams.AB.AB000BB
                     csDataSet = m_cABMyNumberB.SelectConsentByJuminCd(strJuminCD, false);
 
                     // 返信オブジェクトの整備
-                    if (csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows.Count > 0 && csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows(0)(ABMyNumberEntity.MYNUMBER).ToString.Trim.RLength == 13)
+                    if (csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows.Count > 0 && csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows[0](ABMyNumberEntity.MYNUMBER).ToString().Trim().RLength() == 13)
                     {
-                        strR = csDataSet.Tables(ABMyNumberEntity.TABLE_NAME).Rows(0)(ABMyNumberEntity.RESERVE).ToString.Trim;
+                        strR = csDataSet.Tables[ABMyNumberEntity.TABLE_NAME].Rows[0](ABMyNumberEntity.RESERVE).ToString().Trim();
 
                         switch (strR ?? "")
                         {

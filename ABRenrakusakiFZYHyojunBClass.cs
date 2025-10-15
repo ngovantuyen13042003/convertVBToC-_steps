@@ -22,7 +22,7 @@ using System.Text;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     /// <summary>
@@ -104,11 +104,11 @@ namespace Densan.Reams.AB.AB000BB
             m_strUpdateSQL = string.Empty;
             m_strDeleteSQL = string.Empty;
             m_strLogicalDeleteRecoverSQL = string.Empty;
-            m_cfSelectParamCollection = (object)null;
-            m_cfInsertParamCollection = (object)null;
-            m_cfUpdateParamCollection = (object)null;
-            m_cfDeleteParamCollection = (object)null;
-            m_cfLogicalDeleteRecoverParamCollection = (object)null;
+            m_cfSelectParamCollection = null;
+            m_cfInsertParamCollection = null;
+            m_cfUpdateParamCollection = null;
+            m_cfDeleteParamCollection = null;
+            m_cfLogicalDeleteRecoverParamCollection = null;
 
             // SQL作成済みフラグの初期化
             m_blnIsCreateSelectSQL = false;
@@ -234,7 +234,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // WHERE区の作成
-                if (strWhere.Trim().RLength > 0)
+                if (strWhere.Trim().RLength() > 0)
                 {
                     strSQL = string.Format(m_strSelectSQL, string.Concat(" WHERE ", strWhere));
                 }
@@ -577,17 +577,17 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDatetime = m_cfRdbClass.GetSystemDate().ToString(FORMAT_UPDATETIME);
 
                 // 共通項目の編集を行う
-                csDataRow(ABRenrakusakiFZYHyojunEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUJOFG) = GetValue(csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUJOFG), SAKUJOFG_OFF);                   // 削除フラグ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER) = KOSHINCOUNTER_DEF;                                                                     // 更新カウンター
-                csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI) = GetValue(csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI), strUpdateDatetime);  // 作成日時
-                csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;                                                             // 作成ユーザー
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = GetValue(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI), strUpdateDatetime);    // 更新日時
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
+                csDataRow[ABRenrakusakiFZYHyojunEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG] = GetValue(csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG], SAKUJOFG_OFF);                   // 削除フラグ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER] = KOSHINCOUNTER_DEF;                                                                     // 更新カウンター
+                csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI] = GetValue(csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI], strUpdateDatetime);  // 作成日時
+                csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;                                                             // 作成ユーザー
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = GetValue(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI], strUpdateDatetime);    // 更新日時
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertParamCollection)
-                    cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // ＲＤＢアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + THIS_CLASS_NAME + "】" + "【メソッド名:" + THIS_METHOD_NAME + "】" + "【実行メソッド名:ExecuteSQL】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(m_strInsertSQL, m_cfInsertParamCollection) + "】");
@@ -726,10 +726,10 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDatetime = m_cfRdbClass.GetSystemDate().ToString(FORMAT_UPDATETIME);
 
                 // 共通項目の編集を行う
-                csDataRow(ABRenrakusakiFZYHyojunEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER) = Conversions.ToDecimal(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER)) + 1m;             // 更新カウンタ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = GetValue(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI), strUpdateDatetime);    // 更新日時
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
+                csDataRow[ABRenrakusakiFZYHyojunEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER] = UFVBAPI.ToDecimal(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER]) + 1m;             // 更新カウンタ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = GetValue(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI], strUpdateDatetime);    // 更新日時
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfUpdateParamCollection)
@@ -739,14 +739,14 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // キー項目は更新前の値で設定
-                        cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
 
                     else
                     {
 
                         // キー項目以外は更新後の値で設定
-                        cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
 
                     }
 
@@ -917,7 +917,7 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfDeleteParamCollection)
                     // キー項目は更新前の値で設定
-                    cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                    cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
 
                 // ＲＤＢアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + THIS_CLASS_NAME + "】" + "【メソッド名:" + THIS_METHOD_NAME + "】" + "【実行メソッド名:ExecuteSQL】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(m_strDeleteSQL, m_cfDeleteParamCollection) + "】");
@@ -1067,11 +1067,11 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDatetime = m_cfRdbClass.GetSystemDate().ToString(FORMAT_UPDATETIME);
 
                 // 共通項目の編集を行う
-                csDataRow(ABRenrakusakiFZYHyojunEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUJOFG) = SAKUJOFG_ON;                                                                                // 削除フラグ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER) = Conversions.ToDecimal(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER)) + 1m;             // 更新カウンタ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = GetValue(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI), strUpdateDatetime);    // 更新日時
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
+                csDataRow[ABRenrakusakiFZYHyojunEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG] = SAKUJOFG_ON;                                                                                // 削除フラグ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER] = UFVBAPI.ToDecimal(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER]) + 1m;             // 更新カウンタ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = GetValue(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI], strUpdateDatetime);    // 更新日時
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfLogicalDeleteRecoverParamCollection)
@@ -1081,14 +1081,14 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // キー項目は更新前の値で設定
-                        cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
 
                     else
                     {
 
                         // キー項目以外は更新後の値で設定
-                        cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
 
                     }
 
@@ -1180,11 +1180,11 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDatetime = m_cfRdbClass.GetSystemDate().ToString(FORMAT_UPDATETIME);
 
                 // 共通項目の編集を行う
-                csDataRow(ABRenrakusakiFZYHyojunEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.SAKUJOFG) = SAKUJOFG_OFF;                                                                               // 削除フラグ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER) = Conversions.ToDecimal(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER)) + 1m;             // 更新カウンタ
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = GetValue(csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI), strUpdateDatetime);    // 更新日時
-                csDataRow(ABRenrakusakiFZYHyojunEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
+                csDataRow[ABRenrakusakiFZYHyojunEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                                            // 端末ＩＤ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG] = SAKUJOFG_OFF;                                                                               // 削除フラグ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER] = UFVBAPI.ToDecimal(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER]) + 1m;             // 更新カウンタ
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = GetValue(csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI], strUpdateDatetime);    // 更新日時
+                csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                                              // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfLogicalDeleteRecoverParamCollection)
@@ -1194,14 +1194,14 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // キー項目は更新前の値で設定
-                        cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
 
                     else
                     {
 
                         // キー項目以外は更新後の値で設定
-                        cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABRenrakusakiFZYHyojunEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
 
                     }
 
@@ -1363,7 +1363,7 @@ namespace Densan.Reams.AB.AB000BB
             try
             {
 
-                if (objValue is DBNull || objValue is null || objValue.ToString().Trim().RLength == 0)
+                if (objValue is DBNull || objValue is null || objValue.ToString().Trim().RLength() == 0)
 
                 {
                     objResult = strValue;

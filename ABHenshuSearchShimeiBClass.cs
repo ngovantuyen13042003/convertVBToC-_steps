@@ -19,7 +19,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABHenshuSearchShimeiBClass
@@ -131,7 +131,7 @@ namespace Densan.Reams.AB.AB000BB
                         strSearchKana[3] = strKanaMeisho.RSubstring(0, intIndex);
 
                         // 先頭からの空白位置が文字列長と以上場合
-                        if (intIndex + 1 >= strKanaMeisho.RLength)
+                        if (intIndex + 1 >= strKanaMeisho.RLength())
                         {
                             strSearchKana[2] = string.Empty;
                             strSearchKana[4] = string.Empty;
@@ -171,7 +171,7 @@ namespace Densan.Reams.AB.AB000BB
                         strSearchKana[3] = strKanaMeisho.RSubstring(0, intIndex);
 
                         // 先頭からの空白位置が文字列長以上の場合
-                        if (intIndex + 1 >= strKanaMeisho.RLength)
+                        if (intIndex + 1 >= strKanaMeisho.RLength())
                         {
                             strSearchKana[2] = string.Empty;
                             strSearchKana[4] = string.Empty;
@@ -185,7 +185,7 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 本名カナ姓名
-                    if (strKanaMeisho2.RLength > 0)
+                    if (strKanaMeisho2.RLength() > 0)
                     {
                         strSearchKana[1] = cuString.ToKanaKey(strKanaMeisho2.Replace(" ", string.Empty)).ToUpper();
                     }
@@ -198,10 +198,10 @@ namespace Densan.Reams.AB.AB000BB
 
                 // *履歴番号 000002 2023/08/14 修正開始
                 // '検索カナ姓名の桁チェック
-                // If strSearchKana(0).RLength > 40 Then
+                // If strSearchKana(0).RLength() > 40 Then
                 // strSearchKana(0) = strSearchKana(0).RSubstring(0, 40)
                 // End If
-                if (strSearchKana[0].RLength > KANA_SEIMEI)
+                if (strSearchKana[0].RLength() > KANA_SEIMEI)
                 {
                     strSearchKana[0] = strSearchKana[0].RSubstring(0, KANA_SEIMEI);
                 }
@@ -209,10 +209,10 @@ namespace Densan.Reams.AB.AB000BB
 
                 // *履歴番号 000002 2023/08/14 修正開始
                 // '検索カナ姓の桁チェック
-                // If strSearchKana(1).RLength > 24 Then
+                // If strSearchKana(1).RLength() > 24 Then
                 // strSearchKana(1) = strSearchKana(1).RSubstring(0, 24)
                 // End If
-                if (strSearchKana[1].RLength > KANA_SEI)
+                if (strSearchKana[1].RLength() > KANA_SEI)
                 {
                     strSearchKana[1] = strSearchKana[1].RSubstring(0, KANA_SEI);
                 }
@@ -220,10 +220,10 @@ namespace Densan.Reams.AB.AB000BB
 
                 // *履歴番号 000002 2023/08/14 修正開始
                 // '検索カナ名の桁チェック
-                // If strSearchKana(2).RLength > 16 Then
+                // If strSearchKana(2).RLength() > 16 Then
                 // strSearchKana(2) = strSearchKana(2).RSubstring(0, 16)
                 // End If
-                if (strSearchKana[2].RLength > KANA_MEI)
+                if (strSearchKana[2].RLength() > KANA_MEI)
                 {
                     strSearchKana[2] = strSearchKana[2].RSubstring(0, KANA_MEI);
                 }

@@ -17,7 +17,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABHyojunkaCdHenshuBClass
@@ -235,12 +235,12 @@ namespace Densan.Reams.AB.AB000BB
                     case var @case when @case == ABConstClass.ATENADATAKB_JUTONAI_KOJIN:
                     case var case1 when case1 == ABConstClass.ATENADATAKB_JUTOGAI_KOJIN:
                         {
-                            if (strAtenaDataSHU.Trim().RLength > 0 && strAtenaDataSHU.Trim().RSubstring(0, 1) == "1")
+                            if (strAtenaDataSHU.Trim().RLength() > 0 && strAtenaDataSHU.Trim().RSubstring(0, 1) == "1")
                             {
                                 // 日本人
                                 strRet = "1";
                             }
-                            else if (strAtenaDataSHU.Trim().RLength > 0 && strAtenaDataSHU.Trim().RSubstring(0, 1) == "2")
+                            else if (strAtenaDataSHU.Trim().RLength() > 0 && strAtenaDataSHU.Trim().RSubstring(0, 1) == "2")
                             {
                                 // 外国人
                                 strRet = "2";

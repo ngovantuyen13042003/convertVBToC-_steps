@@ -21,7 +21,7 @@ using System.Text;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     /// <summary>
@@ -89,8 +89,8 @@ namespace Densan.Reams.AB.AB000BB
             // パラメーター変数の初期化
             m_strSelectSQL = string.Empty;
             m_strInsertSQL = string.Empty;
-            m_cfSelectParamCollection = (object)null;
-            m_cfInsertParamCollection = (object)null;
+            m_cfSelectParamCollection = null;
+            m_cfInsertParamCollection = null;
 
             // SQL作成済みフラグの初期化
             m_blnIsCreateSelectSQL = false;
@@ -171,7 +171,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // WHERE区の作成
-                if (strWhere.Trim().RLength > 0)
+                if (strWhere.Trim().RLength() > 0)
                 {
                     strSQL = string.Format(m_strSelectSQL, string.Concat(" WHERE ", strWhere));
                 }
@@ -475,17 +475,17 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDatetime = m_cfRdbClass.GetSystemDate().ToString(FORMAT_UPDATETIME);
 
                 // 共通項目の編集を行う
-                csDataRow(ABMyNumberRuisekiHyojunEntity.TANMATSUID) = m_cfControlData.m_strClientId;     // 端末ＩＤ
-                csDataRow(ABMyNumberRuisekiHyojunEntity.SAKUJOFG) = SAKUJOFG_OFF;                        // 削除フラグ
-                csDataRow(ABMyNumberRuisekiHyojunEntity.KOSHINCOUNTER) = KOSHINCOUNTER_DEF;              // 更新カウンター
-                csDataRow(ABMyNumberRuisekiHyojunEntity.SAKUSEINICHIJI) = strUpdateDatetime;             // 作成日時
-                csDataRow(ABMyNumberRuisekiHyojunEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;      // 作成ユーザー
-                csDataRow(ABMyNumberRuisekiHyojunEntity.KOSHINNICHIJI) = strUpdateDatetime;              // 更新日時
-                csDataRow(ABMyNumberRuisekiHyojunEntity.KOSHINUSER) = m_cfControlData.m_strUserId;       // 更新ユーザー
+                csDataRow[ABMyNumberRuisekiHyojunEntity.TANMATSUID] = m_cfControlData.m_strClientId;     // 端末ＩＤ
+                csDataRow[ABMyNumberRuisekiHyojunEntity.SAKUJOFG] = SAKUJOFG_OFF;                        // 削除フラグ
+                csDataRow[ABMyNumberRuisekiHyojunEntity.KOSHINCOUNTER] = KOSHINCOUNTER_DEF;              // 更新カウンター
+                csDataRow[ABMyNumberRuisekiHyojunEntity.SAKUSEINICHIJI] = strUpdateDatetime;             // 作成日時
+                csDataRow[ABMyNumberRuisekiHyojunEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;      // 作成ユーザー
+                csDataRow[ABMyNumberRuisekiHyojunEntity.KOSHINNICHIJI] = strUpdateDatetime;              // 更新日時
+                csDataRow[ABMyNumberRuisekiHyojunEntity.KOSHINUSER] = m_cfControlData.m_strUserId;       // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertParamCollection)
-                    cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABMyNumberRuisekiHyojunEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABMyNumberRuisekiHyojunEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // ＲＤＢアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + THIS_CLASS_NAME + "】" + "【メソッド名:" + THIS_METHOD_NAME + "】" + "【実行メソッド名:ExecuteSQL】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(m_strInsertSQL, m_cfInsertParamCollection) + "】");

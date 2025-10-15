@@ -18,7 +18,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABBanchiEdabanSuchiBClass
@@ -137,12 +137,12 @@ namespace Densan.Reams.AB.AB000BB
             if (!ReferenceEquals(strBanchiCD.Trim(), string.Empty))
             {
                 // 番地コードに数値以外が含まれる場合
-                if (!Information.IsNumeric(strBanchiCD))
+                if (!UFVBAPI.IsNumeric(strBanchiCD))
                 {
                     // 一文字づつチェックを行い、数値以外が存在する場合、以降0埋めする(5桁)
                     foreach (string strBanchiData in strBanchiCD)
                     {
-                        if (Information.IsNumeric(strBanchiData))
+                        if (UFVBAPI.IsNumeric(strBanchiData))
                         {
                             strBanchiCDAfter = strBanchiCDAfter + strBanchiData;
                         }

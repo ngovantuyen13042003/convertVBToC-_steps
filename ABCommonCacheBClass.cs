@@ -23,7 +23,7 @@ using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.reams.ur.publicmodule.library.businesscommon.ur010x;
 using ndensan.reams.ur.publicmodule.library.business.ur010b;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     /// <summary>

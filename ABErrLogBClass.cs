@@ -20,7 +20,7 @@ using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABErrLogBClass
@@ -75,7 +75,7 @@ namespace Densan.Reams.AB.AB000BB
 
             // メンバ変数の初期化
             m_strInsertSQL = string.Empty;
-            m_cfInsParamCollection = (object)null;
+            m_cfInsParamCollection = null;
 
         }
 
@@ -167,21 +167,21 @@ namespace Densan.Reams.AB.AB000BB
                 csABErrLogEntity = cfRdb.GetDataSet(strSQL.ToString(), ABErrLogEntity.TABLE_NAME, cfUFParameterCollectionClass);
 
                 // 戻り値編集用配列初期化
-                var strRet = new string[csABErrLogEntity.Tables(ABErrLogEntity.TABLE_NAME).Rows.Count];
+                var strRet = new string[csABErrLogEntity.Tables[ABErrLogEntity.TABLE_NAME].Rows.Count];
 
                 // 戻り値編集
-                // For intCnt = 0 To csABErrLogEntity.Tables(ABErrLogEntity.TABLE_NAME).Rows.Count - 1
-                // csDataRow = csABErrLogEntity.Tables(ABErrLogEntity.TABLE_NAME).Rows(intCnt)
-                // strGyomuMei = CType(csDataRow(ABErrLogEntity.MSG5), String).Trim
-                // strErrMSG = CType(csDataRow(ABErrLogEntity.MSG7), String).Trim
+                // For intCnt = 0 To csABErrLogEntity.Tables[ABErrLogEntity.TABLE_NAME].Rows.Count - 1
+                // csDataRow = csABErrLogEntity.Tables[ABErrLogEntity.TABLE_NAME].Rows[intCnt]
+                // strGyomuMei = CType(csDataRow[ABErrLogEntity.MSG5], String).Trim
+                // strErrMSG = CType(csDataRow[ABErrLogEntity.MSG7], String).Trim
                 // strRet(intCnt) = strGyomuMei + "," + strErrMSG
                 // Next intCnt
 
                 intCnt = 0;
-                foreach (DataRow csDataRow in csABErrLogEntity.Tables(ABErrLogEntity.TABLE_NAME).Rows)
+                foreach (DataRow csDataRow in csABErrLogEntity.Tables[ABErrLogEntity.TABLE_NAME].Rows)
                 {
-                    strGyomuMei = ((string)csDataRow(ABErrLogEntity.MSG5)).Trim;          // エラー発生場所
-                    strErrMSG = ((string)csDataRow(ABErrLogEntity.MSG7)).Trim;            // エラーメッセージ
+                    strGyomuMei = (Convert.ToString(csDataRow[ABErrLogEntity.MSG5])).Trim();          // エラー発生場所
+                    strErrMSG = (Convert.ToString(csDataRow[ABErrLogEntity.MSG7])).Trim();            // エラーメッセージ
                     strRet[intCnt] = strGyomuMei + "," + strErrMSG;
                     intCnt += 1;
                 }
@@ -327,123 +327,123 @@ namespace Densan.Reams.AB.AB000BB
 
                 // 引数チェック
                 // 空白チェック
-                if (cABErrLogXClass.p_strShichosonCD.Trim == string.Empty)          // 市町村コード
+                if (cABErrLogXClass.p_strShichosonCD.Trim() == string.Empty)          // 市町村コード
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001002);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "市町村コード】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "市町村コード】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 文字数チェック
-                if (cABErrLogXClass.p_strShichosonCD.RLength > 6)                   // 市町村コード
+                if (cABErrLogXClass.p_strShichosonCD.RLength() > 6)                   // 市町村コード
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001030);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "市町村コード】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "市町村コード】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 数値チェック
                 var loopTo = Len(cABErrLogXClass.p_strShichosonCD);
                 for (intCheckCnt = 1; intCheckCnt <= loopTo; intCheckCnt++)            // 市町村コード
                 {
-                    if (!LikeOperator.LikeString(Strings.Mid(cABErrLogXClass.p_strShichosonCD, intCheckCnt, 1), "[0-9]", CompareMethod.Binary))
+                    if (!LikeOperator.LikeString(UFVBAPI.Mid(cABErrLogXClass.p_strShichosonCD, intCheckCnt, 1), "[0-9]", CompareMethod.Binary))
                     {
                         cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                         cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001014);
                         // 例外を生成
-                        throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "市町村コード】", cfErrorStruct.m_strErrorCode);
+                        throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "市町村コード】", cfErrorStruct.m_strErrorCode);
                     }
                 }
 
                 // 空白チェック
-                if (cABErrLogXClass.p_strShoriID.Trim == string.Empty)              // 処理ＩＤ
+                if (cABErrLogXClass.p_strShoriID.Trim() == string.Empty)              // 処理ＩＤ
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001002);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理ＩＤ】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理ＩＤ】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 文字数チェック
-                if (cABErrLogXClass.p_strShoriID.RLength > 5)                       // 処理ＩＤ
+                if (cABErrLogXClass.p_strShoriID.RLength() > 5)                       // 処理ＩＤ
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001030);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理ＩＤ】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理ＩＤ】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 半角チェック
                 var loopTo1 = Len(cABErrLogXClass.p_strShoriID);
                 for (intCheckCnt = 1; intCheckCnt <= loopTo1; intCheckCnt++)                // 処理ＩＤ
                 {
-                    if (!LikeOperator.LikeString(Strings.Mid(cABErrLogXClass.p_strShoriID, intCheckCnt, 1), "[0-9a-zA-Z]", CompareMethod.Binary))
+                    if (!LikeOperator.LikeString(UFVBAPI.Mid(cABErrLogXClass.p_strShoriID, intCheckCnt, 1), "[0-9a-zA-Z]", CompareMethod.Binary))
                     {
                         cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                         cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001080);
                         // 例外を生成
-                        throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理ＩＤ】", cfErrorStruct.m_strErrorCode);
+                        throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理ＩＤ】", cfErrorStruct.m_strErrorCode);
                     }
                 }
 
                 // 空白チェック
-                if (cABErrLogXClass.p_strShoriShu.Trim == string.Empty)             // 処理種別
+                if (cABErrLogXClass.p_strShoriShu.Trim() == string.Empty)             // 処理種別
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001002);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理種別】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理種別】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 文字数チェック
-                if (cABErrLogXClass.p_strShoriShu.RLength > 4)                      // 処理種別
+                if (cABErrLogXClass.p_strShoriShu.RLength() > 4)                      // 処理種別
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001030);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理種別】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理種別】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 半角チェック
                 var loopTo2 = Len(cABErrLogXClass.p_strShoriShu);
                 for (intCheckCnt = 1; intCheckCnt <= loopTo2; intCheckCnt++)               // 処理種別
                 {
-                    if (!LikeOperator.LikeString(Strings.Mid(cABErrLogXClass.p_strShoriShu, intCheckCnt, 1), "[0-9a-zA-Z]", CompareMethod.Binary))
+                    if (!LikeOperator.LikeString(UFVBAPI.Mid(cABErrLogXClass.p_strShoriShu, intCheckCnt, 1), "[0-9a-zA-Z]", CompareMethod.Binary))
                     {
                         cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                         cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001080);
                         // 例外を生成
-                        throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理種別】", cfErrorStruct.m_strErrorCode);
+                        throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "処理種別】", cfErrorStruct.m_strErrorCode);
                     }
                 }
 
                 // 空白チェック
-                if (cABErrLogXClass.p_strMsg5.Trim == string.Empty)                 // メッセージ５（エラー発生場所）
+                if (cABErrLogXClass.p_strMsg5.Trim() == string.Empty)                 // メッセージ５（エラー発生場所）
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001002);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "エラー発生場所】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "エラー発生場所】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 空白チェック
-                if (cABErrLogXClass.p_strMsg6.Trim == string.Empty)                 // メッセージ６（住民コード）
+                if (cABErrLogXClass.p_strMsg6.Trim() == string.Empty)                 // メッセージ６（住民コード）
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001002);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "住民コード】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "住民コード】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // 空白チェック
-                if (cABErrLogXClass.p_strMsg7.Trim == string.Empty)                 // メッセージ７（エラーメッセージ）
+                if (cABErrLogXClass.p_strMsg7.Trim() == string.Empty)                 // メッセージ７（エラーメッセージ）
                 {
                     cfErrorClass = new UFErrorClass(URCommonXClass.GYOMUCD_REAMS);
                     cfErrorStruct = cfErrorClass.GetErrorStruct(URErrorClass.URE001002);
                     // 例外を生成
-                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim + @"\n【" + cfErrorStruct.m_strErrorMessage + "エラーメッセージ】", cfErrorStruct.m_strErrorCode);
+                    throw new UFAppException(cABErrLogXClass.p_strMsg7.Trim() + @"\n【" + cfErrorStruct.m_strErrorMessage + "エラーメッセージ】", cfErrorStruct.m_strErrorCode);
                 }
 
                 // InsertSQL文の雛形を作成
@@ -458,8 +458,8 @@ namespace Densan.Reams.AB.AB000BB
 
                 // ＤＢ日時の取得
                 strSystemDateTime = cfRdb.GetSystemDate().ToString("yyyyMMddHHmmssfff");          // ＤＢ日時
-                strSystemDate = cfRdb.GetSystemDate.ToString("yyyyMMdd");                         // ＤＢ日付
-                strSystemTime = cfRdb.GetSystemDate.ToString("HHmmss");                           // ＤＢ時間
+                strSystemDate = cfRdb.GetSystemDate().ToString("yyyyMMdd");                         // ＤＢ日付
+                strSystemTime = cfRdb.GetSystemDate().ToString("HHmmss");                           // ＤＢ時間
 
                 // パラメータコレクションオブジェクトを作成
                 m_cfInsParamCollection = new UFParameterCollectionClass();
@@ -489,14 +489,14 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_SHORIID;                 // 処理ＩＤ
-                cfUFParameterClass.Value = cABErrLogXClass.p_strShoriID.Trim;
+                cfUFParameterClass.Value = cABErrLogXClass.p_strShoriID.Trim();
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
 
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_SHORISHU;                // 処理種別
-                cfUFParameterClass.Value = cABErrLogXClass.p_strShoriShu.Trim;
+                cfUFParameterClass.Value = cABErrLogXClass.p_strShoriShu.Trim();
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
 
@@ -553,13 +553,13 @@ namespace Densan.Reams.AB.AB000BB
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG1;                    // メッセージ１
                                                                                                // 文字数チェック
-                if (cABErrLogXClass.p_strMsg1.RLength > 8)
+                if (cABErrLogXClass.p_strMsg1.RLength() > 8)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg1.RSubstring(0, 8).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg1.RSubstring(0, 8).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg1.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg1.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -567,13 +567,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG2;                    // メッセージ２
-                if (cABErrLogXClass.p_strMsg2.RLength > 8)
+                if (cABErrLogXClass.p_strMsg2.RLength() > 8)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg2.RSubstring(0, 8).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg2.RSubstring(0, 8).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg2.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg2.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -581,13 +581,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG3;                    // メッセージ３
-                if (cABErrLogXClass.p_strMsg3.RLength > 8)
+                if (cABErrLogXClass.p_strMsg3.RLength() > 8)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg3.RSubstring(0, 8).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg3.RSubstring(0, 8).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg3.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg3.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -595,13 +595,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG4;                    // メッセージ４
-                if (cABErrLogXClass.p_strMsg4.RLength > 8)
+                if (cABErrLogXClass.p_strMsg4.RLength() > 8)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg4.RSubstring(0, 8).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg4.RSubstring(0, 8).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg4.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg4.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -609,13 +609,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG5;                    // メッセージ５
-                if (cABErrLogXClass.p_strMsg5.RLength > 15)
+                if (cABErrLogXClass.p_strMsg5.RLength() > 15)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg5.RSubstring(0, 15).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg5.RSubstring(0, 15).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg5.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg5.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -623,13 +623,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG6;                    // メッセージ６
-                if (cABErrLogXClass.p_strMsg6.RLength > 40)
+                if (cABErrLogXClass.p_strMsg6.RLength() > 40)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg6.RSubstring(0, 40).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg6.RSubstring(0, 40).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg6.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg6.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -637,13 +637,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG7;                    // メッセージ７
-                if (cABErrLogXClass.p_strMsg7.RLength > 100)
+                if (cABErrLogXClass.p_strMsg7.RLength() > 100)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg7.RSubstring(0, 100).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg7.RSubstring(0, 100).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg7.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg7.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -651,13 +651,13 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_MSG8;                    // メッセージ８
-                if (cABErrLogXClass.p_strMsg8.RLength > 120)
+                if (cABErrLogXClass.p_strMsg8.RLength() > 120)
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg8.RSubstring(0, 120).Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg8.RSubstring(0, 120).Trim();
                 }
                 else
                 {
-                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg8.Trim;
+                    cfUFParameterClass.Value = cABErrLogXClass.p_strMsg8.Trim();
                 }
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
@@ -672,14 +672,14 @@ namespace Densan.Reams.AB.AB000BB
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_SHICHOSONCD;             // 市町村コード
-                cfUFParameterClass.Value = cABErrLogXClass.p_strShichosonCD.Trim;
+                cfUFParameterClass.Value = cABErrLogXClass.p_strShichosonCD.Trim();
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
 
                 // パラメータを作成
                 cfUFParameterClass = new UFParameterClass();
                 cfUFParameterClass.ParameterName = ABErrLogEntity.KEY_KYUSHICHOSONCD;          // 旧市町村コード
-                cfUFParameterClass.Value = cABErrLogXClass.p_strShichosonCD.Trim;
+                cfUFParameterClass.Value = cABErrLogXClass.p_strShichosonCD.Trim();
                 // パラメータコレクションオブジェクトにパラメータオブジェクトの追加
                 m_cfInsParamCollection.Add(cfUFParameterClass);
 

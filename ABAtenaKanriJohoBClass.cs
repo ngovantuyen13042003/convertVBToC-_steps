@@ -39,7 +39,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABAtenaKanriJohoBClass
@@ -133,9 +133,9 @@ namespace Densan.Reams.AB.AB000BB
             m_strInsertSQL = string.Empty;
             m_strUpdateSQL = string.Empty;
             m_strDeleteSQL = string.Empty;
-            m_cfInsertUFParameterCollectionClass = (object)null;
-            m_cfUpdateUFParameterCollectionClass = (object)null;
-            m_cfDeleteUFParameterCollectionClass = (object)null;
+            m_cfInsertUFParameterCollectionClass = null;
+            m_cfUpdateUFParameterCollectionClass = null;
+            m_cfDeleteUFParameterCollectionClass = null;
         }
         #endregion
 
@@ -204,7 +204,7 @@ namespace Densan.Reams.AB.AB000BB
                 // "【クラス名:" + THIS_CLASS_NAME + "】" + _
                 // "【メソッド名:" + THIS_METHOD_NAME + "】" + _
                 // "【実行メソッド名:GetDataSet】" + _
-                // "【SQL内容:" + strSQL.ToString + "】")
+                // "【SQL内容:" + strSQL.ToString() + "】")
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + GetType().Name + "】" + "【メソッド名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "】" + "【実行メソッド名:GetDataSet】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(strSQL.ToString(), cfUFParameterCollectionClass) + "】");
@@ -332,7 +332,7 @@ namespace Densan.Reams.AB.AB000BB
                 // "【クラス名:" + THIS_CLASS_NAME + "】" + _
                 // "【メソッド名:" + THIS_METHOD_NAME + "】" + _
                 // "【実行メソッド名:GetDataSet】" + _
-                // "【SQL内容:" + strSQL.ToString + "】")
+                // "【SQL内容:" + strSQL.ToString() + "】")
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + GetType().Name + "】" + "【メソッド名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "】" + "【実行メソッド名:GetDataSet】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(strSQL.ToString(), cfUFParameterCollectionClass) + "】");
@@ -448,7 +448,7 @@ namespace Densan.Reams.AB.AB000BB
                 // "【クラス名:" + THIS_CLASS_NAME + "】" + _
                 // "【メソッド名:" + THIS_METHOD_NAME + "】" + _
                 // "【実行メソッド名:GetDataSet】" + _
-                // "【SQL内容:" + strSQL.ToString + "】")
+                // "【SQL内容:" + strSQL.ToString() + "】")
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + GetType().Name + "】" + "【メソッド名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "】" + "【実行メソッド名:GetDataSet】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(strSQL.ToString(), cfUFParameterCollectionClass) + "】");
@@ -523,22 +523,22 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");          // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABAtenaKanriJohoEntity.TANMATSUID) = m_cfControlData.m_strClientId;            // 端末ＩＤ
-                csDataRow(ABAtenaKanriJohoEntity.SAKUJOFG) = "0";                                        // 削除フラグ
-                csDataRow(ABAtenaKanriJohoEntity.KOSHINCOUNTER) = decimal.Zero;                          // 更新カウンタ
-                csDataRow(ABAtenaKanriJohoEntity.SAKUSEINICHIJI) = strUpdateDateTime;                    // 作成日時
-                csDataRow(ABAtenaKanriJohoEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;             // 作成ユーザー
-                csDataRow(ABAtenaKanriJohoEntity.KOSHINNICHIJI) = strUpdateDateTime;                     // 更新日時
-                csDataRow(ABAtenaKanriJohoEntity.KOSHINUSER) = m_cfControlData.m_strUserId;              // 更新ユーザー
+                csDataRow[ABAtenaKanriJohoEntity.TANMATSUID] = m_cfControlData.m_strClientId;            // 端末ＩＤ
+                csDataRow[ABAtenaKanriJohoEntity.SAKUJOFG] = "0";                                        // 削除フラグ
+                csDataRow[ABAtenaKanriJohoEntity.KOSHINCOUNTER] = decimal.Zero;                          // 更新カウンタ
+                csDataRow[ABAtenaKanriJohoEntity.SAKUSEINICHIJI] = strUpdateDateTime;                    // 作成日時
+                csDataRow[ABAtenaKanriJohoEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;             // 作成ユーザー
+                csDataRow[ABAtenaKanriJohoEntity.KOSHINNICHIJI] = strUpdateDateTime;                     // 更新日時
+                csDataRow[ABAtenaKanriJohoEntity.KOSHINUSER] = m_cfControlData.m_strUserId;              // 更新ユーザー
 
                 // 当クラスのデータ整合性チェックを行う
                 foreach (DataColumn csDataColumn in csDataRow.Table.Columns)
                     // データ整合性チェック
-                    CheckColumnValue(csDataColumn.ColumnName, csDataRow(csDataColumn.ColumnName).ToString.Trim);
+                    CheckColumnValue(csDataColumn.ColumnName, csDataRow[csDataColumn.ColumnName].ToString().Trim());
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
-                    this.m_cfInsertUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    this.m_cfInsertUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // *履歴番号 000004 2003/08/28 修正開始
                 // ' RDBアクセスログ出力
@@ -620,25 +620,25 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABAtenaKanriJohoEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                    // 端末ＩＤ
-                csDataRow(ABAtenaKanriJohoEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABAtenaKanriJohoEntity.KOSHINCOUNTER) + 1m;     // 更新カウンタ
-                csDataRow(ABAtenaKanriJohoEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
-                csDataRow(ABAtenaKanriJohoEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                      // 更新ユーザー
+                csDataRow[ABAtenaKanriJohoEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                    // 端末ＩＤ
+                csDataRow[ABAtenaKanriJohoEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABAtenaKanriJohoEntity.KOSHINCOUNTER] + 1m;     // 更新カウンタ
+                csDataRow[ABAtenaKanriJohoEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
+                csDataRow[ABAtenaKanriJohoEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                      // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABAtenaKanriJohoEntity.PREFIX_KEY.RLength) == ABAtenaKanriJohoEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABAtenaKanriJohoEntity.PREFIX_KEY.RLength()) == ABAtenaKanriJohoEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // データ整合性チェック
-                        CheckColumnValue(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength), csDataRow(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString.Trim);
+                        CheckColumnValue(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength()), csDataRow[cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString().Trim());
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -726,14 +726,14 @@ namespace Densan.Reams.AB.AB000BB
                 foreach (UFParameterClass cfParam in m_cfDeleteUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABAtenaKanriJohoEntity.PREFIX_KEY.RLength) == ABAtenaKanriJohoEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABAtenaKanriJohoEntity.PREFIX_KEY.RLength()) == ABAtenaKanriJohoEntity.PREFIX_KEY)
                     {
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PREFIX_KEY.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaKanriJohoEntity.PREFIX_KEY.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -1246,12 +1246,12 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strDoitsuHantei_Param[0], m_strDoitsuHantei_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、本人情報の取得とする
                     strRet = ABConstClass.PRM_HONNIN;
                 }
-                else if ((string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == ABConstClass.PRM_DAIHYO)
+                else if ((string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == ABConstClass.PRM_DAIHYO)
                 {
                     // パラメータが同一人代表者取得の場合は、同一人代表者の取得とする
                     strRet = ABConstClass.PRM_DAIHYO;
@@ -1318,7 +1318,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strShimeiKakkoKB_Param[0], m_strShimeiKakkoKB_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、標準とする
                     strRet = "0";
@@ -1326,7 +1326,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -1385,7 +1385,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strHonsekiKB_Param[0], m_strHonsekiKB_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = "0";
@@ -1393,7 +1393,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -1450,7 +1450,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strShoriTeishiKB_Param[0], m_strShoriTeishiKB_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = "0";
@@ -1458,7 +1458,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -1518,7 +1518,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strHonmyoTsushomeiYusenKB_Param[0], m_strHonmyoTsushomeiYusenKB_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = "0";
@@ -1526,7 +1526,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -1584,17 +1584,17 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strMyNumberChokkinSearchKB_Param[0], m_strMyNumberChokkinSearchKB_Param[1]);
 
                 // 取得データのチェック
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    strResult = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strResult = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
 
                     switch (strResult ?? "")
                     {
 
-                        case var @case when @case == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode.ToString:
+                        case var @case when @case == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode().ToString:
                         // noop
-                        case var case1 when case1 == ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode.ToString:
+                        case var case1 when case1 == ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode().ToString:
                             {
                                 break;
                             }
@@ -1603,7 +1603,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
 
                                 // 規定値以外（値なしを含む）の場合は、"2"（履歴を含めて検索）を設定する。
-                                strResult = ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode.ToString;
+                                strResult = ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode().ToString();
                                 break;
                             }
 
@@ -1614,7 +1614,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
 
                     // レコードが存在しない場合は、"2"（履歴を含めて検索）を設定する。
-                    strResult = ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode.ToString;
+                    strResult = ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode().ToString();
 
                 }
 
@@ -1681,9 +1681,9 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strHojinBangoRiyoKaishiYMD_Param[0], m_strHojinBangoRiyoKaishiYMD_Param[1]);
 
                 // パラメーター値の取り出し
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
-                    strResult = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strResult = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
                 }
                 else
                 {
@@ -1693,7 +1693,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 取得データのチェック
                 cfDate = new UFDateClass(m_cfConfigDataClass, UFDateSeparator.None, UFDateFillType.Zero, UFEraType.Number, false, false);
                 cfDate.p_strDateValue = strResult;
-                if (cfDate.CheckDate == true)
+                if (cfDate.CheckDate() == true)
                 {
                     strResult = cfDate.p_strSeirekiYMD;
                 }
@@ -1775,10 +1775,10 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strJutogaiBikoUmu_Param[0], m_strJutogaiBikoUmu_Param[1]);
 
                 // 取得データのチェック
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
 
                     if (strParameter.Trim() == "1")
                     {
@@ -1856,10 +1856,10 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strRenrakusakiKakuchoUmu_Param[0], m_strRenrakusakiKakuchoUmu_Param[1]);
 
                 // 取得データのチェック
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
 
                     if (strParameter.Trim() == "1")
                     {
@@ -1937,10 +1937,10 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strDainoSfskBikoUmu_Param[0], m_strDainoSfskBikoUmu_Param[1]);
 
                 // 取得データのチェック
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
 
                     if (strParameter.Trim() == "1")
                     {
@@ -2026,11 +2026,11 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strZeimokuCDConvertTable_Param[0], m_strZeimokuCDConvertTable_Param[1]);
 
                 // 取得データのチェック
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
                     // パラメーターを取得
-                    strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
 
                     // スラッシュで区切る
                     a_strParameter = strParameter.Split(SEPARATOR_SLASH);
@@ -2134,11 +2134,11 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = GetKanriJohoHoshu(m_strDainoSfskMainteShiyoUmu_Param[0], m_strDainoSfskMainteShiyoUmu_Param[1]);
 
                 // 取得データのチェック
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
                     // パラメーターを取得
-                    strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
 
                     // 取得結果を判定
                     if (strParameter.Trim() == "1")
@@ -2218,7 +2218,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strHenkyakuFuyoGyomuCD_Param[0], m_strHenkyakuFuyoGyomuCD_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = "";
@@ -2226,7 +2226,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -2284,7 +2284,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strUmareYMDHenkan_Param[0], m_strUmareYMDHenkan_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = string.Empty;
@@ -2292,7 +2292,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -2344,7 +2344,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strShojoIdobiHenkan_Param[0], m_strShojoIdobiHenkan_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = string.Empty;
@@ -2352,7 +2352,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力
@@ -2404,7 +2404,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDS = GetKanriJohoHoshu(m_strCknIdobiHenkan_Param[0], m_strCknIdobiHenkan_Param[1]);
 
                 // 取得データのチェック
-                if (csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // レコードが存在しない場合は、空白とする
                     strRet = string.Empty;
@@ -2412,7 +2412,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // レコードが存在する場合は、管理情報をセットする
-                    strRet = (string)csDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                    strRet = (string)csDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                 }
 
                 // デバッグログ出力

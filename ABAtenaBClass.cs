@@ -61,7 +61,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     // *履歴番号 000034 2023/08/14 追加終了
 
@@ -253,11 +253,11 @@ namespace Densan.Reams.AB.AB000BB
             m_strUpdateSQL = string.Empty;
             m_strDelRonriSQL = string.Empty;
             m_strDelButuriSQL = string.Empty;
-            m_cfSelectUFParameterCollectionClass = (object)null;
-            m_cfInsertUFParameterCollectionClass = (object)null;
-            m_cfUpdateUFParameterCollectionClass = (object)null;
-            m_cfDelRonriUFParameterCollectionClass = (object)null;
-            m_cfDelButuriUFParameterCollectionClass = (object)null;
+            m_cfSelectUFParameterCollectionClass = null;
+            m_cfInsertUFParameterCollectionClass = null;
+            m_cfUpdateUFParameterCollectionClass = null;
+            m_cfDelRonriUFParameterCollectionClass = null;
+            m_cfDelButuriUFParameterCollectionClass = null;
 
             // *履歴番号 000029 2011/10/24 追加開始
             // 住基法改正区分初期化
@@ -320,11 +320,11 @@ namespace Densan.Reams.AB.AB000BB
             m_strUpdateSQL = string.Empty;
             m_strDelRonriSQL = string.Empty;
             m_strDelButuriSQL = string.Empty;
-            m_cfSelectUFParameterCollectionClass = (object)null;
-            m_cfInsertUFParameterCollectionClass = (object)null;
-            m_cfUpdateUFParameterCollectionClass = (object)null;
-            m_cfDelRonriUFParameterCollectionClass = (object)null;
-            m_cfDelButuriUFParameterCollectionClass = (object)null;
+            m_cfSelectUFParameterCollectionClass = null;
+            m_cfInsertUFParameterCollectionClass = null;
+            m_cfUpdateUFParameterCollectionClass = null;
+            m_cfDelRonriUFParameterCollectionClass = null;
+            m_cfDelButuriUFParameterCollectionClass = null;
 
             m_blnSelectAll = blnSelectAll;
             m_blnSelectCount = blnSelectCount;
@@ -439,7 +439,7 @@ namespace Densan.Reams.AB.AB000BB
                 // If intGetCount = 0 Then
                 // strSQL = "SELECT TOP 100 * FROM " + ABAtenaEntity.TABLE_NAME
                 // Else
-                // strSQL = "SELECT TOP " + intGetCount.ToString + " * FROM " + ABAtenaEntity.TABLE_NAME
+                // strSQL = "SELECT TOP " + intGetCount.ToString() + " * FROM " + ABAtenaEntity.TABLE_NAME
                 // End If
 
                 // p_intMaxRowsを退避する
@@ -458,7 +458,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     case var @case when @case == ABEnumDefine.AtenaGetKB.KaniAll:
                         {
-                            if (m_strAtenaSQLsbKaniAll.RLength == 0)
+                            if (m_strAtenaSQLsbKaniAll.RLength() == 0)
                             {
                                 m_strAtenaSQLsbKaniAll.Append("SELECT ");
                                 SetAtenaEntity(ref m_strAtenaSQLsbKaniAll);
@@ -529,7 +529,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strAtenaSQLsbKaniAll);
                                 }
@@ -545,7 +545,7 @@ namespace Densan.Reams.AB.AB000BB
                                     SetFZYHyojunJoin(ref m_strAtenaSQLsbKaniAll);
                                     SetFugenjuJoin(ref m_strAtenaSQLsbKaniAll);
                                     SetDenshiShomeishoMSTJoin(ref m_strAtenaSQLsbKaniAll);
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strAtenaSQLsbKaniAll);
                                     }
@@ -569,7 +569,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
                     case var case1 when case1 == ABEnumDefine.AtenaGetKB.KaniOnly:
                         {
-                            if (m_strAtenaSQLsbKaniOnly.RLength == 0)
+                            if (m_strAtenaSQLsbKaniOnly.RLength() == 0)
                             {
                                 m_strAtenaSQLsbKaniOnly.Append("SELECT ");
                                 SetAtenaEntity(ref m_strAtenaSQLsbKaniOnly);
@@ -640,7 +640,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strAtenaSQLsbKaniOnly);
                                 }
@@ -656,7 +656,7 @@ namespace Densan.Reams.AB.AB000BB
                                     SetFZYHyojunJoin(ref m_strAtenaSQLsbKaniOnly);
                                     SetFugenjuJoin(ref m_strAtenaSQLsbKaniOnly);
                                     SetDenshiShomeishoMSTJoin(ref m_strAtenaSQLsbKaniOnly);
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strAtenaSQLsbKaniOnly);
                                     }
@@ -680,7 +680,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
                     case var case2 when case2 == ABEnumDefine.AtenaGetKB.NenkinAll:
                         {
-                            if (m_strAtenaSQLsbNenkinAll.RLength == 0)
+                            if (m_strAtenaSQLsbNenkinAll.RLength() == 0)
                             {
                                 m_strAtenaSQLsbNenkinAll.Append("SELECT ");
                                 SetAtenaEntity(ref m_strAtenaSQLsbNenkinAll);
@@ -751,7 +751,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strAtenaSQLsbNenkinAll);
                                 }
@@ -767,7 +767,7 @@ namespace Densan.Reams.AB.AB000BB
                                     SetFZYHyojunJoin(ref m_strAtenaSQLsbNenkinAll);
                                     SetFugenjuJoin(ref m_strAtenaSQLsbNenkinAll);
                                     SetDenshiShomeishoMSTJoin(ref m_strAtenaSQLsbNenkinAll);
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strAtenaSQLsbNenkinAll);
                                     }
@@ -792,7 +792,7 @@ namespace Densan.Reams.AB.AB000BB
 
                     default:
                         {
-                            if (m_strAtenaSQLsbAll.RLength == 0)
+                            if (m_strAtenaSQLsbAll.RLength() == 0)
                             {
                                 m_strAtenaSQLsbAll.Append("SELECT ");
                                 // 現行
@@ -870,7 +870,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strAtenaSQLsbAll);
                                 }
@@ -892,7 +892,7 @@ namespace Densan.Reams.AB.AB000BB
                                     else
                                     {
                                     }
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strAtenaSQLsbAll);
                                     }
@@ -968,10 +968,10 @@ namespace Densan.Reams.AB.AB000BB
 
                 // 住民優先区分が”1”でかつ世帯コードが指定済の場合：住民票表示順
                 // * 履歴番号 000017 2005/01/25 更新開始（宮沢）
-                // If ((cSearchKey.p_strJuminYuseniKB = "1") And (cSearchKey.p_strStaiCD.Trim <> String.Empty)) Then
+                // If ((cSearchKey.p_strJuminYuseniKB = "1") And (cSearchKey.p_strStaiCD.Trim() <> String.Empty)) Then
                 // strORDER = " ORDER BY " + ABAtenaEntity.TABLE_NAME + "." + ABAtenaEntity.JUMINHYOHYOJIJUN + " ASC,"
                 // strORDER += ABAtenaEntity.JUMINCD + " ASC;"
-                // ElseIf Not (cSearchKey.p_strUmareYMD.Trim = String.Empty) Then
+                // ElseIf Not (cSearchKey.p_strUmareYMD.Trim() = String.Empty) Then
                 // strORDER = " ORDER BY " + ABAtenaEntity.TABLE_NAME + "." + ABAtenaEntity.UMAREYMD + " ASC,"
                 // strORDER += ABAtenaEntity.TABLE_NAME + "." + ABAtenaEntity.JUMINCD + " ASC;"
                 // Else
@@ -981,14 +981,14 @@ namespace Densan.Reams.AB.AB000BB
                 // If strWHERE.Length = 0 Then
                 // strSQL += strORDER
                 // Else
-                // strSQL += " WHERE " + strWHERE.ToString + strORDER
+                // strSQL += " WHERE " + strWHERE.ToString() + strORDER
                 // End If
-                if (cSearchKey.p_strJuminYuseniKB == "1" & cSearchKey.p_strStaiCD.Trim != string.Empty)
+                if (cSearchKey.p_strJuminYuseniKB == "1" & cSearchKey.p_strStaiCD.Trim() != string.Empty)
                 {
                     strORDER.Append(" ORDER BY ").Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINHYOHYOJIJUN).Append(" ASC,");
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINCD).Append(" ASC;");
                 }
-                else if (!(cSearchKey.p_strUmareYMD.Trim == string.Empty))
+                else if (!(cSearchKey.p_strUmareYMD.Trim() == string.Empty))
                 {
                     strORDER.Append(" ORDER BY ").Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.UMAREYMD).Append(" ASC,");
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINCD).Append(" ASC;");
@@ -999,7 +999,7 @@ namespace Densan.Reams.AB.AB000BB
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINCD).Append(" ASC;");
                 }
 
-                if (strWHERE.RLength == 0)
+                if (strWHERE.RLength() == 0)
                 {
                     strSQL.Append(strORDER);
                 }
@@ -1331,7 +1331,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     case var @case when @case == ABEnumDefine.AtenaGetKB.KaniAll:
                         {
-                            if (m_strKobetuSQLsbKaniAll.RLength == 0)
+                            if (m_strKobetuSQLsbKaniAll.RLength() == 0)
                             {
                                 m_strKobetuSQLsbKaniAll.Append("SELECT ");
                                 SetAtenaEntity(ref m_strKobetuSQLsbKaniAll);
@@ -1404,7 +1404,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strKobetuSQLsbKaniAll);
                                 }
@@ -1420,7 +1420,7 @@ namespace Densan.Reams.AB.AB000BB
                                     SetFZYHyojunJoin(ref m_strKobetuSQLsbKaniAll);
                                     SetFugenjuJoin(ref m_strKobetuSQLsbKaniAll);
                                     SetDenshiShomeishoMSTJoin(ref m_strKobetuSQLsbKaniAll);
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strKobetuSQLsbKaniAll);
                                     }
@@ -1444,7 +1444,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
                     case var case1 when case1 == ABEnumDefine.AtenaGetKB.KaniOnly:
                         {
-                            if (m_strKobetuSQLsbKaniOnly.RLength == 0)
+                            if (m_strKobetuSQLsbKaniOnly.RLength() == 0)
                             {
                                 m_strKobetuSQLsbKaniOnly.Append("SELECT ");
                                 SetAtenaEntity(ref m_strKobetuSQLsbKaniOnly);
@@ -1517,7 +1517,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strKobetuSQLsbKaniOnly);
                                 }
@@ -1533,7 +1533,7 @@ namespace Densan.Reams.AB.AB000BB
                                     SetFZYHyojunJoin(ref m_strKobetuSQLsbKaniOnly);
                                     SetFugenjuJoin(ref m_strKobetuSQLsbKaniOnly);
                                     SetDenshiShomeishoMSTJoin(ref m_strKobetuSQLsbKaniOnly);
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strKobetuSQLsbKaniOnly);
                                     }
@@ -1557,7 +1557,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
                     case var case2 when case2 == ABEnumDefine.AtenaGetKB.NenkinAll:
                         {
-                            if (m_strKobetuSQLsbNenkinAll.RLength == 0)
+                            if (m_strKobetuSQLsbNenkinAll.RLength() == 0)
                             {
                                 m_strKobetuSQLsbNenkinAll.Append("SELECT ");
                                 SetAtenaEntity(ref m_strKobetuSQLsbNenkinAll);
@@ -1630,7 +1630,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strKobetuSQLsbNenkinAll);
                                 }
@@ -1646,7 +1646,7 @@ namespace Densan.Reams.AB.AB000BB
                                     SetFZYHyojunJoin(ref m_strKobetuSQLsbNenkinAll);
                                     SetFugenjuJoin(ref m_strKobetuSQLsbNenkinAll);
                                     SetDenshiShomeishoMSTJoin(ref m_strKobetuSQLsbNenkinAll);
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strKobetuSQLsbNenkinAll);
                                     }
@@ -1671,7 +1671,7 @@ namespace Densan.Reams.AB.AB000BB
 
                     default:
                         {
-                            if (m_strKobetuSQLsbAll.RLength == 0)
+                            if (m_strKobetuSQLsbAll.RLength() == 0)
                             {
                                 m_strKobetuSQLsbAll.Append("SELECT ");
                                 // 現行
@@ -1751,7 +1751,7 @@ namespace Densan.Reams.AB.AB000BB
 
                                 // *履歴番号 000030 2014/04/28 追加開始
                                 // 共通番号取得区分が"1"（取得する）、または共通番号が指定されている場合、共通番号マスタを付加
-                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                 {
                                     SetMyNumberJoin(ref m_strKobetuSQLsbAll);
                                 }
@@ -1773,7 +1773,7 @@ namespace Densan.Reams.AB.AB000BB
                                     else
                                     {
                                     }
-                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                                    if (m_strMyNumberKB_Param == ABConstClass.MYNUMBER.MYNUMBERKB.ON || cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                                     {
                                         SetMyNumberHyojunJoin(ref m_strKobetuSQLsbAll);
                                     }
@@ -1831,7 +1831,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // '* 履歴番号 000014 2004/08/27 追加開始（宮沢）
                 // If (m_csDataSchmaKobetu Is Nothing) Then
-                // m_csDataSchmaKobetu = m_cfRdbClass.GetTableSchemaNoRestriction(strSQL.ToString, ABAtenaEntity.TABLE_NAME, False)
+                // m_csDataSchmaKobetu = m_cfRdbClass.GetTableSchemaNoRestriction(strSQL.ToString(), ABAtenaEntity.TABLE_NAME, False)
                 // End If
                 // '* 履歴番号 000014 2004/08/27 追加終了
 
@@ -1853,13 +1853,13 @@ namespace Densan.Reams.AB.AB000BB
                 // ORDER句を結合
 
                 // 住民優先区分が”1”でかつ世帯コードが指定済の場合：住民票表示順
-                if (cSearchKey.p_strJuminYuseniKB == "1" & cSearchKey.p_strStaiCD.Trim != string.Empty)
+                if (cSearchKey.p_strJuminYuseniKB == "1" & cSearchKey.p_strStaiCD.Trim() != string.Empty)
                 {
                     strORDER.Append(" ORDER BY ");
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINHYOHYOJIJUN).Append(" ASC,");
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINCD).Append(" ASC;");
                 }
-                else if (!(cSearchKey.p_strUmareYMD.Trim == string.Empty))
+                else if (!(cSearchKey.p_strUmareYMD.Trim() == string.Empty))
                 {
                     strORDER.Append(" ORDER BY ");
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.UMAREYMD).Append(" ASC,");
@@ -1872,7 +1872,7 @@ namespace Densan.Reams.AB.AB000BB
                     strORDER.Append(ABAtenaEntity.TABLE_NAME).Append(".").Append(ABAtenaEntity.JUMINCD).Append(" ASC;");
                 }
 
-                if (strWHERE.RLength == 0)
+                if (strWHERE.RLength() == 0)
                 {
                     strSQL.Append(strORDER);
                 }
@@ -1898,7 +1898,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // * 履歴番号 000014 2004/08/27 変更開始（宮沢）
                 // SQLの実行 DataSetの取得
-                // csAtenaEntity = m_cfRdbClass.GetDataSet(strSQL.ToString, ABAtenaEntity.TABLE_NAME, m_cfSelectUFParameterCollectionClass)
+                // csAtenaEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), ABAtenaEntity.TABLE_NAME, m_cfSelectUFParameterCollectionClass)
                 csAtenaEntity = m_csDataSchmaKobetu.Clone();
                 csAtenaEntity = m_cfRdbClass.GetDataSet(strSQLExec, csAtenaEntity, ABAtenaEntity.TABLE_NAME, m_cfSelectUFParameterCollectionClass, false);
                 // * 履歴番号 000014 2004/08/27 変更終了
@@ -1973,9 +1973,9 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000034 2023/08/14 追加開始
                 // 検索用漢字名称に類字をセットする
                 // *履歴番号 000035 2023/10/19 修正開始
-                // csDataRow(ABAtenaEntity.SEARCHKANJIMEISHO) =
-                // m_cRuijiClass.GetRuijiMojiList(csDataRow(ABAtenaEntity.SEARCHKANJIMEISHO).ToString)
-                csDataRow(ABAtenaEntity.SEARCHKANJIMEISHO) = m_cRuijiClass.GetRuijiMojiList(Conversions.ToString(csDataRow(ABAtenaEntity.SEARCHKANJIMEISHO)).Replace("　", string.Empty)).ToUpper;
+                // csDataRow[ABAtenaEntity.SEARCHKANJIMEISHO] =
+                // m_cRuijiClass.GetRuijiMojiList(csDataRow[ABAtenaEntity.SEARCHKANJIMEISHO].ToString())
+                csDataRow[ABAtenaEntity.SEARCHKANJIMEISHO] = m_cRuijiClass.GetRuijiMojiList(UFVBAPI.ToString(csDataRow[ABAtenaEntity.SEARCHKANJIMEISHO]).Replace("　", string.Empty)).ToUpper();
                 // *履歴番号 000035 2023/10/19 修正終了
                 // *履歴番号 000034 2023/08/14 追加終了
 
@@ -1983,25 +1983,25 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");  // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABAtenaEntity.TANMATSUID) = m_cfControlData.m_strClientId; // 端末ＩＤ
-                csDataRow(ABAtenaEntity.SAKUJOFG) = "0";                               // 削除フラグ
-                csDataRow(ABAtenaEntity.KOSHINCOUNTER) = decimal.Zero;                 // 更新カウンタ
-                csDataRow(ABAtenaEntity.SAKUSEINICHIJI) = strUpdateDateTime;           // 作成日時
-                csDataRow(ABAtenaEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;  // 作成ユーザー
-                csDataRow(ABAtenaEntity.KOSHINNICHIJI) = strUpdateDateTime;            // 更新日時
-                csDataRow(ABAtenaEntity.KOSHINUSER) = m_cfControlData.m_strUserId;   // 更新ユーザー
+                csDataRow[ABAtenaEntity.TANMATSUID] = m_cfControlData.m_strClientId; // 端末ＩＤ
+                csDataRow[ABAtenaEntity.SAKUJOFG] = "0";                               // 削除フラグ
+                csDataRow[ABAtenaEntity.KOSHINCOUNTER] = decimal.Zero;                 // 更新カウンタ
+                csDataRow[ABAtenaEntity.SAKUSEINICHIJI] = strUpdateDateTime;           // 作成日時
+                csDataRow[ABAtenaEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;  // 作成ユーザー
+                csDataRow[ABAtenaEntity.KOSHINNICHIJI] = strUpdateDateTime;            // 更新日時
+                csDataRow[ABAtenaEntity.KOSHINUSER] = m_cfControlData.m_strUserId;   // 更新ユーザー
 
 
                 // '当クラスのデータ整合性チェックを行う
                 // For Each csDataColumn In csDataRow.Table.Columns
                 // 'データ整合性チェック
-                // CheckColumnValue(csDataColumn.ColumnName, csDataRow(csDataColumn.ColumnName).ToString().Trim)
+                // CheckColumnValue(csDataColumn.ColumnName, csDataRow[csDataColumn.ColumnName].ToString().Trim())
                 // Next csDataColumn
 
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
-                    cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
 
                 // *履歴番号 000009 2003/08/28 修正開始
@@ -2089,8 +2089,8 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 作成日時、更新日時の同期
-                    csAtenaFZYDr(ABAtenaFZYEntity.SAKUSEINICHIJI) = csAtenaDr(ABAtenaEntity.SAKUSEINICHIJI);
-                    csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                    csAtenaFZYDr[ABAtenaFZYEntity.SAKUSEINICHIJI] = csAtenaDr[ABAtenaEntity.SAKUSEINICHIJI];
+                    csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                     // 宛名付随マスタ追加を実行
                     intInsCnt2 = m_csAtenaFZYB.InsertAtenaFZYB(csAtenaFZYDr);
@@ -2173,8 +2173,8 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 作成日時、更新日時の同期
-                    csAtenaHyojunDr(ABAtenaFZYEntity.SAKUSEINICHIJI) = csAtenaDr(ABAtenaEntity.SAKUSEINICHIJI);
-                    csAtenaHyojunDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                    csAtenaHyojunDr[ABAtenaFZYEntity.SAKUSEINICHIJI] = csAtenaDr[ABAtenaEntity.SAKUSEINICHIJI];
+                    csAtenaHyojunDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                     // 宛名_標準マスタ追加を実行
                     intInsCnt2 = m_csAtenaHyojunB.InsertAtenaHyojunB(csAtenaHyojunDr);
@@ -2200,8 +2200,8 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 作成日時、更新日時の同期
-                        csAtenaFZYDr(ABAtenaFZYEntity.SAKUSEINICHIJI) = csAtenaDr(ABAtenaEntity.SAKUSEINICHIJI);
-                        csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYDr[ABAtenaFZYEntity.SAKUSEINICHIJI] = csAtenaDr[ABAtenaEntity.SAKUSEINICHIJI];
+                        csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随マスタ追加を実行
                         intInsCnt3 = m_csAtenaFZYB.InsertAtenaFZYB(csAtenaFZYDr);
@@ -2223,8 +2223,8 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 作成日時、更新日時の同期
-                        csAtenaFZYHyojunDr(ABAtenaFZYHyojunEntity.SAKUSEINICHIJI) = csAtenaDr(ABAtenaEntity.SAKUSEINICHIJI);
-                        csAtenaFZYHyojunDr(ABAtenaFZYHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYHyojunDr[ABAtenaFZYHyojunEntity.SAKUSEINICHIJI] = csAtenaDr[ABAtenaEntity.SAKUSEINICHIJI];
+                        csAtenaFZYHyojunDr[ABAtenaFZYHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随_標準マスタ追加を実行
                         intInsCnt4 = m_csAtenaFZYHyojunB.InsertAtenaFZYHyojunB(csAtenaFZYHyojunDr);
@@ -2298,27 +2298,27 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABAtenaEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
-                csDataRow(ABAtenaEntity.KOSHINCOUNTER) = Conversions.ToDecimal(csDataRow(ABAtenaEntity.KOSHINCOUNTER)) + 1m;               // 更新カウンタ
-                csDataRow(ABAtenaEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
-                csDataRow(ABAtenaEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                     // 更新ユーザー
+                csDataRow[ABAtenaEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
+                csDataRow[ABAtenaEntity.KOSHINCOUNTER] = UFVBAPI.ToDecimal(csDataRow[ABAtenaEntity.KOSHINCOUNTER]) + 1m;               // 更新カウンタ
+                csDataRow[ABAtenaEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
+                csDataRow[ABAtenaEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                     // 更新ユーザー
 
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABAtenaEntity.PREFIX_KEY.RLength) == ABAtenaEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABAtenaEntity.PREFIX_KEY.RLength()) == ABAtenaEntity.PREFIX_KEY)
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // データ整合性チェック
                         // *履歴番号 000008 2004/11/12 修正開始
-                        // CheckColumnValue(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), csDataRow(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), DataRowVersion.Current).ToString().Trim)
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        // CheckColumnValue(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), csDataRow[cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), DataRowVersion.Current].ToString().Trim())
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                         // *履歴番号 000008 2004/11/12 修正終了
                     }
                 }
@@ -2408,7 +2408,7 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 更新日時の同期
-                    csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                    csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                     // 宛名付随マスタ更新を実行
                     intCnt2 = m_csAtenaFZYB.UpdateAtenaFZYB(csAtenaFZYDr);
@@ -2491,12 +2491,12 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 更新日時の同期
-                    csAtenaHyojunDr(ABAtenaHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                    csAtenaHyojunDr[ABAtenaHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                     // 宛名_標準マスタ更新を実行
                     if (blnJutogai)
                     {
-                        intCnt2 = m_csAtenaHyojunB.UpdateAtenaHyojunB(csAtenaHyojunDr, csAtenaDr(ABAtenaEntity.ATENADATAKB).ToString);
+                        intCnt2 = m_csAtenaHyojunB.UpdateAtenaHyojunB(csAtenaHyojunDr, csAtenaDr[ABAtenaEntity.ATENADATAKB].ToString());
                     }
                     else
                     {
@@ -2522,7 +2522,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随マスタ更新を実行
                         intCnt3 = m_csAtenaFZYB.UpdateAtenaFZYB(csAtenaFZYDr);
@@ -2542,7 +2542,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaFZYHyojunDr(ABAtenaFZYHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYHyojunDr[ABAtenaFZYHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随マスタ更新を実行
                         intCnt4 = m_csAtenaFZYHyojunB.UpdateAtenaFZYHyojunB(csAtenaFZYHyojunDr);
@@ -2614,11 +2614,11 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABAtenaEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
-                csDataRow(ABAtenaEntity.SAKUJOFG) = "1";                                                                 // 削除フラグ
-                csDataRow(ABAtenaEntity.KOSHINCOUNTER) = Conversions.ToDecimal(csDataRow(ABAtenaEntity.KOSHINCOUNTER)) + 1m;               // 更新カウンタ
-                csDataRow(ABAtenaEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
-                csDataRow(ABAtenaEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                     // 更新ユーザー
+                csDataRow[ABAtenaEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
+                csDataRow[ABAtenaEntity.SAKUJOFG] = "1";                                                                 // 削除フラグ
+                csDataRow[ABAtenaEntity.KOSHINCOUNTER] = UFVBAPI.ToDecimal(csDataRow[ABAtenaEntity.KOSHINCOUNTER]) + 1m;               // 更新カウンタ
+                csDataRow[ABAtenaEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
+                csDataRow[ABAtenaEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                     // 更新ユーザー
 
                 // * 履歴番号 000018 2005/05/23 修正開始
                 // 作成済みのパラメータへ更新行から値を設定する。
@@ -2626,21 +2626,21 @@ namespace Densan.Reams.AB.AB000BB
                 foreach (UFParameterClass cfParam in m_cfDelRonriUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABAtenaEntity.PREFIX_KEY.RLength) == ABAtenaEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABAtenaEntity.PREFIX_KEY.RLength()) == ABAtenaEntity.PREFIX_KEY)
                     {
-                        // m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = _
+                        // m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = _
                         // csDataRow(cfParam.ParameterName.Substring(ABAtenaEntity.PREFIX_KEY.Length), _
                         // DataRowVersion.Original).ToString()
-                        this.m_cfDelRonriUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfDelRonriUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // *履歴番号 000008 2004/11/12 修正開始
                         // データ整合性チェック
-                        // CheckColumnValue(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), csDataRow(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), DataRowVersion.Current).ToString().Trim)
+                        // CheckColumnValue(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), csDataRow[cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), DataRowVersion.Current].ToString().Trim())
                         // *履歴番号 000008 2004/11/12 修正終了
-                        // m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), DataRowVersion.Current).ToString()
-                        this.m_cfDelRonriUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        // m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.Substring(ABAtenaEntity.PARAM_PLACEHOLDER.Length), DataRowVersion.Current].ToString()
+                        this.m_cfDelRonriUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
                 // * 履歴番号 000018 2005/05/23 修正終了
@@ -2731,7 +2731,7 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 更新日時の同期
-                    csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                    csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                     // 宛名付随マスタ更新を実行
                     intCnt2 = m_csAtenaFZYB.DeleteAtenaFZYB(csAtenaFZYDr);
@@ -2825,7 +2825,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaHyojunDr(ABAtenaHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaHyojunDr[ABAtenaHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名_標準マスタ更新を実行
                         intCnt2 = m_csAtenaHyojunB.DeleteAtenaHyojunB(csAtenaHyojunDr);
@@ -2847,7 +2847,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随マスタ更新を実行
                         intCnt3 = m_csAtenaFZYB.DeleteAtenaFZYB(csAtenaFZYDr);
@@ -2869,7 +2869,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaFZYHyojunDr(ABAtenaFZYHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYHyojunDr[ABAtenaFZYHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随_標準マスタ更新を実行
                         intCnt4 = m_csAtenaFZYHyojunB.DeleteAtenaFZYHyojun(csAtenaFZYHyojunDr);
@@ -2959,9 +2959,9 @@ namespace Densan.Reams.AB.AB000BB
                 {
 
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABAtenaEntity.PREFIX_KEY.RLength) == ABAtenaEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABAtenaEntity.PREFIX_KEY.RLength()) == ABAtenaEntity.PREFIX_KEY)
                     {
-                        this.m_cfDelButuriUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABAtenaEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfDelButuriUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABAtenaEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                 }
 
@@ -3141,7 +3141,7 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 更新日時の同期
-                    csAtenaHyojunDr(ABAtenaHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                    csAtenaHyojunDr[ABAtenaHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                     // 宛名_標準マスタ更新を実行
                     intCnt2 = m_csAtenaHyojunB.DeleteAtenaHyojunB(csAtenaHyojunDr, strSakujoKB);
@@ -3167,7 +3167,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaFZYDr(ABAtenaFZYEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYDr[ABAtenaFZYEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随マスタ更新を実行
                         intCnt3 = m_csAtenaFZYB.DeleteAtenaFZYB(csAtenaFZYDr, strSakujoKB);
@@ -3189,7 +3189,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
 
                         // 更新日時の同期
-                        csAtenaFZYHyojunDr(ABAtenaFZYHyojunEntity.KOSHINNICHIJI) = csAtenaDr(ABAtenaEntity.KOSHINNICHIJI);
+                        csAtenaFZYHyojunDr[ABAtenaFZYHyojunEntity.KOSHINNICHIJI] = csAtenaDr[ABAtenaEntity.KOSHINNICHIJI];
 
                         // 宛名付随_標準マスタ更新を実行
                         intCnt4 = m_csAtenaFZYHyojunB.DeleteAtenaFZYHyojunB(csAtenaFZYHyojunDr, strSakujoKB);
@@ -3356,12 +3356,12 @@ namespace Densan.Reams.AB.AB000BB
         // Next csDataColumn
 
         // '最後のカンマを取り除いてINSERT文を作成
-        // m_strInsertSQL += "(" + csInsertColumn.ToString.TrimEnd(" ".ToCharArray()).TrimEnd(",".ToCharArray()) + ")" _
-        // + " VALUES (" + csInsertParam.ToString.TrimEnd(" ".ToCharArray()).TrimEnd(",".ToCharArray()) + ")"
+        // m_strInsertSQL += "(" + csInsertColumn.ToString().TrimEnd(" ".ToCharArray()).TrimEnd(",".ToCharArray()) + ")" _
+        // + " VALUES (" + csInsertParam.ToString().TrimEnd(" ".ToCharArray()).TrimEnd(",".ToCharArray()) + ")"
 
 
         // ' UPDATE SQL文のトリミング
-        // m_strUpdateSQL += csUpdateParam.ToString.TrimEnd(" ".ToCharArray()).TrimEnd(",".ToCharArray())
+        // m_strUpdateSQL += csUpdateParam.ToString().TrimEnd(" ".ToCharArray()).TrimEnd(",".ToCharArray())
 
         // ' UPDATE SQL文にWHERE句の追加
         // m_strUpdateSQL += csWhere.ToString
@@ -3877,9 +3877,9 @@ namespace Densan.Reams.AB.AB000BB
                 // * 履歴番号 000017 2005/01/25 更新終了
 
                 // 住民コード
-                if (!(cSearchKey.p_strJuminCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJuminCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -3900,9 +3900,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住民優先区分
-                if (!(cSearchKey.p_strJuminYuseniKB.Trim == string.Empty))
+                if (!(cSearchKey.p_strJuminYuseniKB.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -3920,9 +3920,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住登外優先区分
-                if (!(cSearchKey.p_strJutogaiYusenKB.Trim == string.Empty))
+                if (!(cSearchKey.p_strJutogaiYusenKB.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -3940,9 +3940,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 世帯コード
-                if (!(cSearchKey.p_strStaiCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strStaiCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -3961,7 +3961,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // *履歴番号 000032 2020/01/10 修正開始
                 // ' 検索用カナ姓名
-                // If Not (cSearchKey.p_strSearchKanaSeiMei.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanaSeiMei.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -3990,7 +3990,7 @@ namespace Densan.Reams.AB.AB000BB
                 // End If
 
                 // ' 検索用カナ姓
-                // If Not (cSearchKey.p_strSearchKanaSei.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanaSei.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -4063,7 +4063,7 @@ namespace Densan.Reams.AB.AB000BB
                 // '* 履歴番号 000024 2007/10/10 追加終了
 
                 // ' 検索用カナ名
-                // If Not (cSearchKey.p_strSearchKanaMei.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanaMei.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -4095,7 +4095,7 @@ namespace Densan.Reams.AB.AB000BB
                 // End If
 
                 // ' 検索用漢字名称
-                // If Not (cSearchKey.p_strSearchKanjiMeisho.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanjiMeisho.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -4129,7 +4129,7 @@ namespace Densan.Reams.AB.AB000BB
                 // '* 履歴番号 000023 2007/09/03 追加開始
                 // ' 本名漢字姓名 本名検索="2(Tsusho_Seishiki)"のときのみ漢字氏名２は検索項目となる
                 // If (cSearchKey.p_enGaikokuHommyoKensaku = FrnHommyoKensakuType.Tsusho_Seishiki) Then
-                // If Not (cSearchKey.p_strKanjiMeisho2.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strKanjiMeisho2.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -4167,9 +4167,9 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000032 2020/01/10 修正終了
 
                 // 生年月日
-                if (!(cSearchKey.p_strUmareYMD.Trim == string.Empty))
+                if (!(cSearchKey.p_strUmareYMD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4196,7 +4196,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 検索条件のパラメータを作成
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABAtenaEntity.KEY_UMAREYMD;
-                        cfUFParameterClass.Value = cSearchKey.p_strUmareYMD.TrimEnd;
+                        cfUFParameterClass.Value = cSearchKey.p_strUmareYMD.TrimEnd();
 
                         // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                         m_cfSelectUFParameterCollectionClass.Add(cfUFParameterClass);
@@ -4205,9 +4205,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 性別
-                if (!(cSearchKey.p_strSeibetsuCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strSeibetsuCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4225,9 +4225,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住所コード
-                if (!(cSearchKey.p_strJushoCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJushoCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4243,7 +4243,7 @@ namespace Densan.Reams.AB.AB000BB
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABAtenaEntity.KEY_JUSHOCD;
 
-                    if (cSearchKey.p_strJushoCD.Trim.RLength == 11 && cSearchKey.p_strJushoCD.RRemove(0, 2) == "000000000")
+                    if (cSearchKey.p_strJushoCD.Trim().RLength() == 11 && cSearchKey.p_strJushoCD.RRemove(0, 2) == "000000000")
                     {
                         // 11桁で 且つ 下9桁が"0"のとき、上2桁であいまい検索
                         csWHERE.Append(" LIKE ");
@@ -4252,7 +4252,7 @@ namespace Densan.Reams.AB.AB000BB
                         m_cfSelectUFParameterCollectionClass.Add(cfUFParameterClass);
                     }
 
-                    else if (cSearchKey.p_strJushoCD.Trim.RLength == 11 && cSearchKey.p_strJushoCD.RRemove(0, 5) == "000000")
+                    else if (cSearchKey.p_strJushoCD.Trim().RLength() == 11 && cSearchKey.p_strJushoCD.RRemove(0, 5) == "000000")
                     {
                         // 11桁で 且つ 下6桁が"0"のとき、上5桁であいまい検索
                         csWHERE.Append(" LIKE ");
@@ -4260,7 +4260,7 @@ namespace Densan.Reams.AB.AB000BB
                         cfUFParameterClass.Value = cSearchKey.p_strJushoCD.RSubstring(0, 5) + "%";
                         m_cfSelectUFParameterCollectionClass.Add(cfUFParameterClass);
                     }
-                    else if (cSearchKey.p_strJushoCD.Trim.RLength == 11 && cSearchKey.p_strJushoCD.RRemove(0, 8) == "000")
+                    else if (cSearchKey.p_strJushoCD.Trim().RLength() == 11 && cSearchKey.p_strJushoCD.RRemove(0, 8) == "000")
                     {
                         // 11桁で 且つ 下3桁が"0"のとき、上8桁であいまい検索
                         csWHERE.Append(" LIKE ");
@@ -4273,7 +4273,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 13桁で検索
                         csWHERE.Append(" = ");
                         csWHERE.Append(ABAtenaEntity.KEY_JUSHOCD);
-                        if (cSearchKey.p_strJushoCD.Trim.RLength == 11)
+                        if (cSearchKey.p_strJushoCD.Trim().RLength() == 11)
                         {
                             cfUFParameterClass.Value = cSearchKey.p_strJushoCD.RPadRight(13);
                         }
@@ -4294,9 +4294,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 行政区コード
-                if (!(cSearchKey.p_strGyoseikuCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strGyoseikuCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4314,9 +4314,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 地区コード１
-                if (!(cSearchKey.p_strChikuCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strChikuCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4334,9 +4334,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 地区コード２
-                if (!(cSearchKey.p_strChikuCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strChikuCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4354,9 +4354,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 地区コード３
-                if (!(cSearchKey.p_strChikuCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strChikuCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4374,9 +4374,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地コード１
-                if (!(cSearchKey.p_strBanchiCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strBanchiCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4394,9 +4394,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地コード２
-                if (!(cSearchKey.p_strBanchiCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strBanchiCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4414,9 +4414,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地コード３
-                if (!(cSearchKey.p_strBanchiCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strBanchiCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4434,9 +4434,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基住所コード
-                if (!(cSearchKey.p_strJukiJushoCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiJushoCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4454,9 +4454,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基行政区コード
-                if (!(cSearchKey.p_strJukiGyoseikuCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiGyoseikuCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4474,9 +4474,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基地区コード１
-                if (!(cSearchKey.p_strJukiChikuCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiChikuCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4494,9 +4494,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基地区コード２
-                if (!(cSearchKey.p_strJukiChikuCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiChikuCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4514,9 +4514,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基地区コード３
-                if (!(cSearchKey.p_strJukiChikuCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiChikuCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4534,9 +4534,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基番地コード１
-                if (!(cSearchKey.p_strJukiBanchiCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiBanchiCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4554,9 +4554,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基番地コード２
-                if (!(cSearchKey.p_strJukiBanchiCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiBanchiCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4574,9 +4574,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基番地コード３
-                if (!(cSearchKey.p_strJukiBanchiCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiBanchiCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4594,9 +4594,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // データ区分
-                if (!(cSearchKey.p_strDataKB.Trim == string.Empty))
+                if (!(cSearchKey.p_strDataKB.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4632,9 +4632,9 @@ namespace Densan.Reams.AB.AB000BB
 
                 if (!(cSearchKey.p_strJuminShubetu1 == string.Empty & cSearchKey.p_strJuminShubetu2 == string.Empty))
                 {
-                    if (cSearchKey.p_strDataKB.Trim == string.Empty)
+                    if (cSearchKey.p_strDataKB.Trim() == string.Empty)
                     {
-                        if (!(csWHERE.RLength == 0))
+                        if (!(csWHERE.RLength() == 0))
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -4647,9 +4647,9 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 住民種別１
-                    if (!(cSearchKey.p_strJuminShubetu1.Trim == string.Empty))
+                    if (!(cSearchKey.p_strJuminShubetu1.Trim() == string.Empty))
                     {
-                        if (!(csWHERE.RLength == 0))
+                        if (!(csWHERE.RLength() == 0))
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -4661,9 +4661,9 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 住民種別２
-                    if (!(cSearchKey.p_strJuminShubetu2.Trim == string.Empty))
+                    if (!(cSearchKey.p_strJuminShubetu2.Trim() == string.Empty))
                     {
-                        if (!(csWHERE.RLength == 0))
+                        if (!(csWHERE.RLength() == 0))
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -4676,7 +4676,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // '期間年月日
-                // If Not (strKikanYMD.Trim = String.Empty) Then
+                // If Not (strKikanYMD.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -4704,9 +4704,9 @@ namespace Densan.Reams.AB.AB000BB
                 // End If
 
                 // 市町村コード
-                if (!(cSearchKey.p_strShichosonCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strShichosonCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4729,7 +4729,7 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000030 2014/04/28 追加開始
                 // ---------------------------------------------------------------------------------------------------------
                 // 共通番号が指定されている場合
-                if (cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                if (cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                 {
 
                     // -----------------------------------------------------------------------------------------------------
@@ -4737,9 +4737,9 @@ namespace Densan.Reams.AB.AB000BB
                     // 直近検索区分の整備
                     switch (cSearchKey.p_strMyNumberChokkinSearchKB)
                     {
-                        case var @case when @case == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode.ToString:
+                        case var @case when @case == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode().ToString:
                         // noop
-                        case var case1 when case1 == ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode.ToString:
+                        case var case1 when case1 == ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode().ToString:
                             {
                                 break;
                             }
@@ -4753,11 +4753,11 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 直近検索区分が"1"（直近のみ）の場合
-                    if (cSearchKey.p_strMyNumberChokkinSearchKB == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode.ToString)
+                    if (cSearchKey.p_strMyNumberChokkinSearchKB == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode().ToString())
                     {
 
                         // 共通番号カラムに共通番号を指定する。
-                        if (csWHERE.RLength > 0)
+                        if (csWHERE.RLength() > 0)
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -4780,7 +4780,7 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // 共通番号マスタへのサブクエリに共通番号を指定する。
-                        if (csWHERE.RLength > 0)
+                        if (csWHERE.RLength() > 0)
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -4810,7 +4810,7 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // 個人法人区分カラムに個人法人区分を指定する。
-                        if (csWHERE.RLength > 0)
+                        if (csWHERE.RLength() > 0)
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -4844,9 +4844,9 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000030 2014/04/28 追加終了
 
                 // 電話番号
-                if (!(cSearchKey.p_strRenrakusaki.Trim == string.Empty))
+                if (!(cSearchKey.p_strRenrakusaki.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4878,10 +4878,10 @@ namespace Densan.Reams.AB.AB000BB
 
                 // 宛名標準
                 strWhereHyojun = CreateWhereHyojun(cSearchKey);
-                if (strWhereHyojun.RLength > 0)
+                if (strWhereHyojun.RLength() > 0)
                 {
 
-                    if (csWHERE.RLength > 0)
+                    if (csWHERE.RLength() > 0)
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -4902,10 +4902,10 @@ namespace Densan.Reams.AB.AB000BB
 
                 // 宛名付随
                 strWhereFzy = CreateWhereFZY(cSearchKey);
-                if (strWhereFzy.RLength > 0)
+                if (strWhereFzy.RLength() > 0)
                 {
 
-                    if (csWHERE.RLength > 0)
+                    if (csWHERE.RLength() > 0)
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -6709,7 +6709,7 @@ namespace Densan.Reams.AB.AB000BB
                     case var case115 when case115 == ABAtenaEntity.GYOSEIKUCD:               // 行政区コード
                         {
                             // * 履歴番号 000020 2005/12/26 修正開始
-                            // 'If (Not UFStringClass.CheckNumber(strValue.TrimStart)) Then
+                            // 'If (Not UFStringClass.CheckNumber(strValue.TrimStart())) Then
                             if (!UFStringClass.CheckANK(strValue.TrimStart()))
                             {
                                 // * 履歴番号 000020 2005/12/26 修正終了
@@ -7111,7 +7111,7 @@ namespace Densan.Reams.AB.AB000BB
                     case var case143 when case143 == ABAtenaEntity.JUKIGYOSEIKUCD:           // 住基行政区コード
                         {
                             // * 履歴番号 000020 2005/12/26 修正開始
-                            // 'If (Not UFStringClass.CheckNumber(strValue.TrimStart)) Then
+                            // 'If (Not UFStringClass.CheckNumber(strValue.TrimStart())) Then
                             if (!UFStringClass.CheckANK(strValue.TrimStart()))
                             {
                                 // * 履歴番号 000020 2005/12/26 修正終了
@@ -8623,10 +8623,10 @@ namespace Densan.Reams.AB.AB000BB
 
                     // 履歴に対する抽出条件が指定されている場合、
                     // 該当者の住民コードで直近を絞り込む
-                    if (csWhereForRireki.RLength > 0)
+                    if (csWhereForRireki.RLength() > 0)
                     {
 
-                        if (csWhere.RLength > 0)
+                        if (csWhere.RLength() > 0)
                         {
                             csWhere.Append(" AND ");
                         }
@@ -8648,10 +8648,10 @@ namespace Densan.Reams.AB.AB000BB
 
                     // 履歴標準
                     strWhereRirekiHyojun = CreateWhereRirekiHyojun(cSearchKey);
-                    if (strWhereRirekiHyojun.RLength > 0)
+                    if (strWhereRirekiHyojun.RLength() > 0)
                     {
 
-                        if (csWhere.RLength > 0)
+                        if (csWhere.RLength() > 0)
                         {
                             csWhere.Append(" AND ");
                         }
@@ -8673,10 +8673,10 @@ namespace Densan.Reams.AB.AB000BB
 
                     // 履歴付随
                     strWhereRirekiFZY = CreateWhereRirekiFZY(cSearchKey);
-                    if (strWhereRirekiFZY.RLength > 0)
+                    if (strWhereRirekiFZY.RLength() > 0)
                     {
 
-                        if (csWhere.RLength > 0)
+                        if (csWhere.RLength() > 0)
                         {
                             csWhere.Append(" AND ");
                         }
@@ -8707,7 +8707,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 削除フラグ
                     if (blnSakujoFG == false)
                     {
-                        if (!(csWhere.RLength == 0))
+                        if (!(csWhere.RLength() == 0))
                         {
                             csWhere.Append(" AND ");
                         }
@@ -8766,9 +8766,9 @@ namespace Densan.Reams.AB.AB000BB
                 csWHERE = new StringBuilder(256);
 
                 // 住民コード
-                if (!(cSearchKey.p_strJuminCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJuminCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -8786,9 +8786,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住民優先区分
-                if (!(cSearchKey.p_strJuminYuseniKB.Trim == string.Empty))
+                if (!(cSearchKey.p_strJuminYuseniKB.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -8806,9 +8806,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住登外優先区分
-                if (!(cSearchKey.p_strJutogaiYusenKB.Trim == string.Empty))
+                if (!(cSearchKey.p_strJutogaiYusenKB.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -8826,9 +8826,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // データ区分
-                if (!(cSearchKey.p_strDataKB.Trim == string.Empty))
+                if (!(cSearchKey.p_strDataKB.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -8857,7 +8857,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 宛名データ種別
-                switch (cSearchKey.p_strDataKB.Trim)
+                switch (cSearchKey.p_strDataKB.Trim())
                 {
 
                     // noop
@@ -8873,9 +8873,9 @@ namespace Densan.Reams.AB.AB000BB
 
                             if (!(cSearchKey.p_strJuminShubetu1 == string.Empty & cSearchKey.p_strJuminShubetu2 == string.Empty))
                             {
-                                if (cSearchKey.p_strDataKB.Trim == string.Empty)
+                                if (cSearchKey.p_strDataKB.Trim() == string.Empty)
                                 {
-                                    if (!(csWHERE.RLength == 0))
+                                    if (!(csWHERE.RLength() == 0))
                                     {
                                         csWHERE.Append(" AND ");
                                     }
@@ -8888,9 +8888,9 @@ namespace Densan.Reams.AB.AB000BB
                                 }
 
                                 // 住民種別１
-                                if (!(cSearchKey.p_strJuminShubetu1.Trim == string.Empty))
+                                if (!(cSearchKey.p_strJuminShubetu1.Trim() == string.Empty))
                                 {
-                                    if (!(csWHERE.RLength == 0))
+                                    if (!(csWHERE.RLength() == 0))
                                     {
                                         csWHERE.Append(" AND ");
                                     }
@@ -8902,9 +8902,9 @@ namespace Densan.Reams.AB.AB000BB
                                 }
 
                                 // 住民種別２
-                                if (!(cSearchKey.p_strJuminShubetu2.Trim == string.Empty))
+                                if (!(cSearchKey.p_strJuminShubetu2.Trim() == string.Empty))
                                 {
-                                    if (!(csWHERE.RLength == 0))
+                                    if (!(csWHERE.RLength() == 0))
                                     {
                                         csWHERE.Append(" AND ");
                                     }
@@ -8922,9 +8922,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 市町村コード
-                if (!(cSearchKey.p_strShichosonCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strShichosonCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -8943,7 +8943,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // ---------------------------------------------------------------------------------------------------------
                 // 共通番号が指定されている場合
-                if (cSearchKey.p_strMyNumber.Trim.RLength > 0)
+                if (cSearchKey.p_strMyNumber.Trim().RLength() > 0)
                 {
 
                     // -----------------------------------------------------------------------------------------------------
@@ -8951,9 +8951,9 @@ namespace Densan.Reams.AB.AB000BB
                     // 直近検索区分の整備
                     switch (cSearchKey.p_strMyNumberChokkinSearchKB)
                     {
-                        case var case1 when case1 == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode.ToString:
+                        case var case1 when case1 == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode().ToString:
                         // noop
-                        case var case2 when case2 == ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode.ToString:
+                        case var case2 when case2 == ABEnumDefine.MyNumberChokkinSearchKB.RRK.GetHashCode().ToString:
                             {
                                 break;
                             }
@@ -8967,11 +8967,11 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
                     // 直近検索区分が"1"（直近のみ）の場合
-                    if (cSearchKey.p_strMyNumberChokkinSearchKB == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode.ToString)
+                    if (cSearchKey.p_strMyNumberChokkinSearchKB == ABEnumDefine.MyNumberChokkinSearchKB.CKIN.GetHashCode().ToString())
                     {
 
                         // 共通番号カラムに共通番号を指定する。
-                        if (csWHERE.RLength > 0)
+                        if (csWHERE.RLength() > 0)
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -8994,7 +8994,7 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // 共通番号マスタへのサブクエリに共通番号を指定する。
-                        if (csWHERE.RLength > 0)
+                        if (csWHERE.RLength() > 0)
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -9024,7 +9024,7 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // 個人法人区分カラムに個人法人区分を指定する。
-                        if (csWHERE.RLength > 0)
+                        if (csWHERE.RLength() > 0)
                         {
                             csWHERE.Append(" AND ");
                         }
@@ -9059,7 +9059,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 削除フラグ
                 if (blnSakujoFG == false)
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9115,9 +9115,9 @@ namespace Densan.Reams.AB.AB000BB
                 csWHERE = new StringBuilder(256);
 
                 // 世帯コード
-                if (!(cSearchKey.p_strStaiCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strStaiCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9136,7 +9136,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // *履歴番号 000032 2020/01/10 修正開始
                 // '検索用カナ姓名
-                // If Not (cSearchKey.p_strSearchKanaSeiMei.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanaSeiMei.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -9165,7 +9165,7 @@ namespace Densan.Reams.AB.AB000BB
                 // End If
 
                 // '検索用カナ姓
-                // If Not (cSearchKey.p_strSearchKanaSei.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanaSei.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -9234,7 +9234,7 @@ namespace Densan.Reams.AB.AB000BB
                 // End If
 
                 // '検索用カナ名
-                // If Not (cSearchKey.p_strSearchKanaMei.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanaMei.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -9266,7 +9266,7 @@ namespace Densan.Reams.AB.AB000BB
                 // End If
 
                 // '検索用漢字名称
-                // If Not (cSearchKey.p_strSearchKanjiMeisho.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strSearchKanjiMeisho.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -9299,7 +9299,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // ' 本名漢字姓名 本名検索="2(Tsusho_Seishiki)"のときのみ漢字氏名２は検索項目となる
                 // If (cSearchKey.p_enGaikokuHommyoKensaku = FrnHommyoKensakuType.Tsusho_Seishiki) Then
-                // If Not (cSearchKey.p_strKanjiMeisho2.Trim = String.Empty) Then
+                // If Not (cSearchKey.p_strKanjiMeisho2.Trim() = String.Empty) Then
                 // If Not (csWHERE.Length = 0) Then
                 // csWHERE.Append(" AND ")
                 // End If
@@ -9336,9 +9336,9 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000032 2020/01/10 修正終了
 
                 // 生年月日
-                if (!(cSearchKey.p_strUmareYMD.Trim == string.Empty))
+                if (!(cSearchKey.p_strUmareYMD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9365,7 +9365,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 検索条件のパラメータを作成
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABAtenaRirekiEntity.KEY_UMAREYMD;
-                        cfUFParameterClass.Value = cSearchKey.p_strUmareYMD.TrimEnd;
+                        cfUFParameterClass.Value = cSearchKey.p_strUmareYMD.TrimEnd();
 
                         // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                         m_cfSelectUFParameterCollectionClass.Add(cfUFParameterClass);
@@ -9374,9 +9374,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 性別
-                if (!(cSearchKey.p_strSeibetsuCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strSeibetsuCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9394,9 +9394,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住所コード
-                if (!(cSearchKey.p_strJushoCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJushoCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9414,9 +9414,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 行政区コード
-                if (!(cSearchKey.p_strGyoseikuCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strGyoseikuCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9434,9 +9434,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 地区コード１
-                if (!(cSearchKey.p_strChikuCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strChikuCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9454,9 +9454,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 地区コード２
-                if (!(cSearchKey.p_strChikuCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strChikuCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9474,9 +9474,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 地区コード３
-                if (!(cSearchKey.p_strChikuCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strChikuCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9494,9 +9494,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地コード１
-                if (!(cSearchKey.p_strBanchiCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strBanchiCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9514,9 +9514,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地コード２
-                if (!(cSearchKey.p_strBanchiCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strBanchiCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9534,9 +9534,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地コード３
-                if (!(cSearchKey.p_strBanchiCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strBanchiCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9554,9 +9554,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基住所コード
-                if (!(cSearchKey.p_strJukiJushoCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiJushoCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9574,9 +9574,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基行政区コード
-                if (!(cSearchKey.p_strJukiGyoseikuCD.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiGyoseikuCD.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9594,9 +9594,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基地区コード１
-                if (!(cSearchKey.p_strJukiChikuCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiChikuCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9614,9 +9614,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基地区コード２
-                if (!(cSearchKey.p_strJukiChikuCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiChikuCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9634,9 +9634,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基地区コード３
-                if (!(cSearchKey.p_strJukiChikuCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiChikuCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9654,9 +9654,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基番地コード１
-                if (!(cSearchKey.p_strJukiBanchiCD1.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiBanchiCD1.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9674,9 +9674,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基番地コード２
-                if (!(cSearchKey.p_strJukiBanchiCD2.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiBanchiCD2.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9694,9 +9694,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住基番地コード３
-                if (!(cSearchKey.p_strJukiBanchiCD3.Trim == string.Empty))
+                if (!(cSearchKey.p_strJukiBanchiCD3.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9714,7 +9714,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 法人形態
-                switch (cSearchKey.p_strDataKB.Trim)
+                switch (cSearchKey.p_strDataKB.Trim())
                 {
 
                     case var @case when @case == ABConstClass.ATENADATAKB_HOJIN:
@@ -9725,9 +9725,9 @@ namespace Densan.Reams.AB.AB000BB
                             if (!(cSearchKey.p_strJuminShubetu1 == string.Empty & cSearchKey.p_strJuminShubetu2 == string.Empty))
                             {
                                 // 住民種別１
-                                if (!(cSearchKey.p_strJuminShubetu1.Trim == string.Empty))
+                                if (!(cSearchKey.p_strJuminShubetu1.Trim() == string.Empty))
                                 {
-                                    if (!(csWHERE.RLength == 0))
+                                    if (!(csWHERE.RLength() == 0))
                                     {
                                         csWHERE.Append(" AND ");
                                     }
@@ -9739,9 +9739,9 @@ namespace Densan.Reams.AB.AB000BB
                                 }
 
                                 // 住民種別２
-                                if (!(cSearchKey.p_strJuminShubetu2.Trim == string.Empty))
+                                if (!(cSearchKey.p_strJuminShubetu2.Trim() == string.Empty))
                                 {
-                                    if (!(csWHERE.RLength == 0))
+                                    if (!(csWHERE.RLength() == 0))
                                     {
                                         csWHERE.Append(" AND ");
                                     }
@@ -9764,9 +9764,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 電話番号
-                if (!(cSearchKey.p_strRenrakusaki.Trim == string.Empty))
+                if (!(cSearchKey.p_strRenrakusaki.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9844,9 +9844,9 @@ namespace Densan.Reams.AB.AB000BB
                 csWHERE = new StringBuilder(256);
 
                 // 住所
-                if (!(cSearchKey.p_strJusho.Trim == string.Empty))
+                if (!(cSearchKey.p_strJusho.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9872,9 +9872,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 方書
-                if (!(cSearchKey.p_strKatagaki.Trim == string.Empty))
+                if (!(cSearchKey.p_strKatagaki.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9900,9 +9900,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 旧氏
-                if (!(cSearchKey.p_strKyuuji.Trim == string.Empty))
+                if (!(cSearchKey.p_strKyuuji.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -9928,9 +9928,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // カナ旧氏
-                if (!(cSearchKey.p_strKanaKyuuji.Trim == string.Empty))
+                if (!(cSearchKey.p_strKanaKyuuji.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -10003,9 +10003,9 @@ namespace Densan.Reams.AB.AB000BB
                 csWHERE = new StringBuilder(256);
 
                 // カタカナ併記名
-                if (!(cSearchKey.p_strKatakanaHeikimei.Trim == string.Empty))
+                if (!(cSearchKey.p_strKatakanaHeikimei.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -10078,9 +10078,9 @@ namespace Densan.Reams.AB.AB000BB
                 csWHERE = new StringBuilder(256);
 
                 // 住所
-                if (!(cSearchKey.p_strJusho.Trim == string.Empty))
+                if (!(cSearchKey.p_strJusho.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -10106,9 +10106,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 方書
-                if (!(cSearchKey.p_strKatagaki.Trim == string.Empty))
+                if (!(cSearchKey.p_strKatagaki.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -10134,9 +10134,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 旧氏
-                if (!(cSearchKey.p_strKyuuji.Trim == string.Empty))
+                if (!(cSearchKey.p_strKyuuji.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -10162,9 +10162,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // カナ旧氏
-                if (!(cSearchKey.p_strKanaKyuuji.Trim == string.Empty))
+                if (!(cSearchKey.p_strKanaKyuuji.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }
@@ -10237,9 +10237,9 @@ namespace Densan.Reams.AB.AB000BB
                 csWHERE = new StringBuilder(256);
 
                 // カタカナ併記名
-                if (!(cSearchKey.p_strKatakanaHeikimei.Trim == string.Empty))
+                if (!(cSearchKey.p_strKatakanaHeikimei.Trim() == string.Empty))
                 {
-                    if (!(csWHERE.RLength == 0))
+                    if (!(csWHERE.RLength() == 0))
                     {
                         csWHERE.Append(" AND ");
                     }

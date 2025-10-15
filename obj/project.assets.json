@@ -481,7 +481,19 @@
     "net8.0": [
       "D:\\convert\\AB001BX\\AB001BX.vbproj",
       "Microsoft.AspNetCore.SystemWebAdapters >= 2.0.0",
-      "Microsoft.AspNetCore.SystemWebAdapters.CoreServices >= 2.0.0"
+      "Microsoft.AspNetCore.SystemWebAdapters.CoreServices >= 2.0.0",
+      "ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon >= 25.1.1-pre.*",
+      "ndensan.framework.uf.publicmodule.library.businesscommon.uftools >= 25.1.1-pre.*",
+      "ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi >= 25.1.1-pre.*",
+      "ndensan.framework.us.publicmodule.library.businesscommon.uscommon >= 25.1.1-pre.*",
+      "ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog >= 25.1.1-pre.*",
+      "ndensan.framework.us.publicmodule.library.businesscommon.uslcommon >= 25.1.1-pre.*",
+      "ndensan.reams.ur.publicmodule.library.business.ur001b >= 25.1.1-pre.*",
+      "ndensan.reams.ur.publicmodule.library.business.ur002b >= 25.1.1-pre.*",
+      "ndensan.reams.ur.publicmodule.library.business.ur010b >= 25.1.1-pre.*",
+      "ndensan.reams.ur.publicmodule.library.businesscommon.ur001x >= 25.1.1-pre.*",
+      "ndensan.reams.ur.publicmodule.library.businesscommon.ur002x >= 25.1.1-pre.*",
+      "ndensan.reams.ur.publicmodule.library.businesscommon.ur010x >= 25.1.1-pre.*"
     ]
   },
   "packageFolders": {
@@ -491,9 +503,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.vbproj",
-      "projectName": "Densan.Reams.AB.AB000BB",
-      "projectPath": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.vbproj",
+      "projectUniqueName": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj",
+      "projectName": "AB000BB",
+      "projectPath": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
       "outputPath": "D:\\convert\\AB000BB_1_作業前back\\obj\\",
       "projectStyle": "PackageReference",
@@ -546,6 +558,54 @@
           "Microsoft.AspNetCore.SystemWebAdapters.CoreServices": {
             "target": "Package",
             "version": "[2.0.0, )"
+          },
+          "ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.framework.uf.publicmodule.library.businesscommon.uftools": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.framework.us.publicmodule.library.businesscommon.uscommon": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.framework.us.publicmodule.library.businesscommon.uslcommon": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.reams.ur.publicmodule.library.business.ur001b": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.reams.ur.publicmodule.library.business.ur002b": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.reams.ur.publicmodule.library.business.ur010b": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.reams.ur.publicmodule.library.businesscommon.ur001x": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.reams.ur.publicmodule.library.businesscommon.ur002x": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
+          },
+          "ndensan.reams.ur.publicmodule.library.businesscommon.ur010x": {
+            "target": "Package",
+            "version": "[25.1.1-pre.*, )"
           }
         },
         "imports": [
@@ -569,6 +629,114 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.businesscommon.ur001x. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.businesscommon.ur001x",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.business.ur002b. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.business.ur002b",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.businesscommon.ur010x. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.businesscommon.ur010x",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.businesscommon.ur002x. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.businesscommon.ur002x",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.uf.publicmodule.library.businesscommon.uftools. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.uf.publicmodule.library.businesscommon.uftools",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.business.ur001b. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.business.ur001b",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.us.publicmodule.library.businesscommon.uscommon. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.us.publicmodule.library.businesscommon.uscommon",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.business.ur010b. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.business.ur010b",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.us.publicmodule.library.businesscommon.uslcommon. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.us.publicmodule.library.businesscommon.uslcommon",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
     {
       "code": "NU1104",
       "level": "Error",

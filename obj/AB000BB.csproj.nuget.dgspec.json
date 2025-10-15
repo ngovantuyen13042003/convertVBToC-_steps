@@ -1,0 +1,136 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj": {}
+  },
+  "projects": {
+    "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj",
+        "projectName": "AB000BB",
+        "projectPath": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\convert\\AB000BB_1_作業前back\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\convert\\AB001BX\\AB001BX.vbproj": {
+                "projectPath": "D:\\convert\\AB001BX\\AB001BX.vbproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.SystemWebAdapters": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Microsoft.AspNetCore.SystemWebAdapters.CoreServices": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.framework.uf.publicmodule.library.businesscommon.uftools": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.framework.us.publicmodule.library.businesscommon.uscommon": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.framework.us.publicmodule.library.businesscommon.uslcommon": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.reams.ur.publicmodule.library.business.ur001b": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.reams.ur.publicmodule.library.business.ur002b": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.reams.ur.publicmodule.library.business.ur010b": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.reams.ur.publicmodule.library.businesscommon.ur001x": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.reams.ur.publicmodule.library.businesscommon.ur002x": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            },
+            "ndensan.reams.ur.publicmodule.library.businesscommon.ur010x": {
+              "target": "Package",
+              "version": "[25.1.1-pre.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

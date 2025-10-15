@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1d1ezLhbnhE=",
+  "dgSpecHash": "mH34tBV/Bmc=",
   "success": false,
-  "projectFilePath": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.vbproj",
+  "projectFilePath": "D:\\convert\\AB000BB_1_作業前back\\AB000BB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.systemwebadapters\\2.0.0\\microsoft.aspnetcore.systemwebadapters.2.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.systemwebadapters.abstractions\\2.0.0\\microsoft.aspnetcore.systemwebadapters.abstractions.2.0.0.nupkg.sha512",
@@ -15,6 +15,114 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.businesscommon.ur001x. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.businesscommon.ur001x",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.business.ur002b. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.business.ur002b",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.businesscommon.ur010x. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.businesscommon.ur010x",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.businesscommon.ur002x. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.businesscommon.ur002x",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.uf.publicmodule.library.businesscommon.uftools. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.uf.publicmodule.library.businesscommon.uftools",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.business.ur001b. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.business.ur001b",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.us.publicmodule.library.businesscommon.uscommon. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.us.publicmodule.library.businesscommon.uscommon",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.reams.ur.publicmodule.library.business.ur010b. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.reams.ur.publicmodule.library.business.ur010b",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ndensan.framework.us.publicmodule.library.businesscommon.uslcommon. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ndensan.framework.us.publicmodule.library.businesscommon.uslcommon",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
     {
       "code": "NU1104",
       "level": "Error",

@@ -30,7 +30,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABKyoyuKoshinBClass
@@ -159,14 +159,14 @@ namespace Densan.Reams.AB.AB000BB
                 // 住登外マスタの追加を行なう
                 if (IntKoshinKB == cABEnumDefine.KoshinKB.Insert)
                 {
-                    intUpdataCount = cJutogaiB.InsertJutogaiB(cABJutogai.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0));
+                    intUpdataCount = cJutogaiB.InsertJutogaiB(cABJutogai.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0]);
                 }
                 else
                 {
                     csJutogaiEntity = cJutogaiB.GetJutogaiBHoshu(StrJuminCD);
 
                     // 住登外データが存在しない場合、エラーを発生する
-                    if (csJutogaiEntity.Tables(ABJutogaiEntity.TABLE_NAME).Rows.Count == 0)
+                    if (csJutogaiEntity.Tables[ABJutogaiEntity.TABLE_NAME].Rows.Count == 0)
                     {
                         m_cfErrorClass = new UFErrorClass(ABConstClass.THIS_BUSINESSID);
                         // エラー定義を取得（更新対象のデータが存在しません。：住登外）
@@ -174,13 +174,13 @@ namespace Densan.Reams.AB.AB000BB
                         throw new UFAppException(objErrorStruct.m_strErrorMessage + "住登外", objErrorStruct.m_strErrorCode);
                     }
 
-                    csJutogaiRow = csJutogaiEntity.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0);
-                    csJutogaiRowN = cABJutogai.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0);
+                    csJutogaiRow = csJutogaiEntity.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0];
+                    csJutogaiRowN = cABJutogai.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0];
 
                     csJutogaiRow.BeginEdit();
 
                     // For Each csColumn In csJutogaiRow.Table.Columns
-                    // csJutogaiRow(csColumn.ColumnName) = csJutogaiRowN(csColumn)
+                    // csJutogaiRow[csColumn.ColumnName] = csJutogaiRowN[csColumn]
                     // Next csColumn
                     // csJutogaiRow = csJutogaiRowN
                     // 住登外編集処理
@@ -188,7 +188,7 @@ namespace Densan.Reams.AB.AB000BB
 
                     csJutogaiRow.EndEdit();
 
-                    intUpdataCount = cJutogaiB.UpdateJutogaiB(csJutogaiEntity.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0));
+                    intUpdataCount = cJutogaiB.UpdateJutogaiB(csJutogaiEntity.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0]);
                     // intUpdataCount = cJutogaiB.UpdateJutogaiB(csJutogaiRow)
                 }
 
@@ -222,7 +222,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 EditAtenaJutogai(IntKoshinKB, StrIdoYMD, cABJutogai, ref csAtenaEntity);
 
-                foreach (DataRow currentCsDataRow in csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows)
+                foreach (DataRow currentCsDataRow in csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows)
                 {
                     csDataRow = currentCsDataRow;
 
@@ -258,10 +258,10 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaRirekiEntity = cAtenaRirekiB.GetAtenaRBHoshu(999, cAtenaSearchKey, "", true);
 
                 // 直近ロウを退避しておく
-                csRirekiRows = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2' AND " + ABAtenaRirekiEntity.RRKED_YMD + " = '99999999'");
+                csRirekiRows = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2' AND " + ABAtenaRirekiEntity.RRKED_YMD + " = '99999999'");
                 if (csRirekiRows.Length > 0)
                 {
-                    csRirekiCkinRow = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).NewRow();
+                    csRirekiCkinRow = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].NewRow();
                     csRirekiCkinRow.ItemArray = csRirekiRows[0].ItemArray;
                 }
                 else
@@ -274,7 +274,7 @@ namespace Densan.Reams.AB.AB000BB
                 EditAtenaRireki(StrIdoYMD, csAtenaEntity, ref csAtenaRirekiEntity);
 
                 // 宛名履歴マスタの追加を行なう
-                foreach (DataRow currentCsDataRow1 in csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Rows)
+                foreach (DataRow currentCsDataRow1 in csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Rows)
                 {
                     csDataRow = currentCsDataRow1;
                     switch (csDataRow.RowState)
@@ -326,7 +326,7 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000005 2006/09/13 修正終了
 
                 // 宛名累積マスタの追加を行なう
-                foreach (DataRow currentCsDataRow2 in csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).Rows)
+                foreach (DataRow currentCsDataRow2 in csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].Rows)
                 {
                     csDataRow = currentCsDataRow2;
                     switch (csDataRow.RowState)
@@ -366,7 +366,7 @@ namespace Densan.Reams.AB.AB000BB
                         }
                 }
                 // ワークフロー連携処理の呼び出し
-                AtenaDataReplicaKoshin((string)cABJutogai.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0).Item(ABJutogaiEntity.JUMINCD), (string)cABJutogai.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0).Item(ABJutogaiEntity.STAICD), IntKoshinKB.ToString());
+                AtenaDataReplicaKoshin((string)cABJutogai.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0][ABJutogaiEntity.JUMINCD], (string)cABJutogai.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0][ABJutogaiEntity.STAICD], IntKoshinKB.ToString());
                 // *履歴番号 000003 2006/03/27 追加終了
 
                 // * 履歴番号 000009 2015/01/08 削除開始
@@ -467,111 +467,111 @@ namespace Densan.Reams.AB.AB000BB
                 m_cfLog.DebugStartWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME);
 
                 // 市町村コード
-                csJutogaiRow(cABJutogaiIF.SHICHOSONCD) = csJutogaiRowN(cABJutogaiIF.SHICHOSONCD);
+                csJutogaiRow[cABJutogaiIF.SHICHOSONCD] = csJutogaiRowN[cABJutogaiIF.SHICHOSONCD];
                 // 旧市町村コード
-                csJutogaiRow(cABJutogaiIF.KYUSHICHOSONCD) = csJutogaiRowN(cABJutogaiIF.KYUSHICHOSONCD);
+                csJutogaiRow[cABJutogaiIF.KYUSHICHOSONCD] = csJutogaiRowN[cABJutogaiIF.KYUSHICHOSONCD];
                 // 世帯コード
-                csJutogaiRow(cABJutogaiIF.STAICD) = csJutogaiRowN(cABJutogaiIF.STAICD);
+                csJutogaiRow[cABJutogaiIF.STAICD] = csJutogaiRowN[cABJutogaiIF.STAICD];
                 // 宛名データ区分
-                csJutogaiRow(cABJutogaiIF.ATENADATAKB) = csJutogaiRowN(cABJutogaiIF.ATENADATAKB);
+                csJutogaiRow[cABJutogaiIF.ATENADATAKB] = csJutogaiRowN[cABJutogaiIF.ATENADATAKB];
                 // 宛名データ種別
-                csJutogaiRow(cABJutogaiIF.ATENADATASHU) = csJutogaiRowN(cABJutogaiIF.ATENADATASHU);
+                csJutogaiRow[cABJutogaiIF.ATENADATASHU] = csJutogaiRowN[cABJutogaiIF.ATENADATASHU];
                 // 検索用カナ姓名
-                csJutogaiRow(cABJutogaiIF.SEARCHKANASEIMEI) = csJutogaiRowN(cABJutogaiIF.SEARCHKANASEIMEI);
+                csJutogaiRow[cABJutogaiIF.SEARCHKANASEIMEI] = csJutogaiRowN[cABJutogaiIF.SEARCHKANASEIMEI];
                 // 検索用カナ姓
-                csJutogaiRow(cABJutogaiIF.SEARCHKANASEI) = csJutogaiRowN(cABJutogaiIF.SEARCHKANASEI);
+                csJutogaiRow[cABJutogaiIF.SEARCHKANASEI] = csJutogaiRowN[cABJutogaiIF.SEARCHKANASEI];
                 // 検索用カナ名
-                csJutogaiRow(cABJutogaiIF.SEARCHKANAMEI) = csJutogaiRowN(cABJutogaiIF.SEARCHKANAMEI);
+                csJutogaiRow[cABJutogaiIF.SEARCHKANAMEI] = csJutogaiRowN[cABJutogaiIF.SEARCHKANAMEI];
                 // カナ名称1
-                csJutogaiRow(cABJutogaiIF.KANAMEISHO1) = csJutogaiRowN(cABJutogaiIF.KANAMEISHO1);
+                csJutogaiRow[cABJutogaiIF.KANAMEISHO1] = csJutogaiRowN[cABJutogaiIF.KANAMEISHO1];
                 // 漢字名称1
-                csJutogaiRow(cABJutogaiIF.KANJIMEISHO1) = csJutogaiRowN(cABJutogaiIF.KANJIMEISHO1);
+                csJutogaiRow[cABJutogaiIF.KANJIMEISHO1] = csJutogaiRowN[cABJutogaiIF.KANJIMEISHO1];
                 // カナ名称2
-                csJutogaiRow(cABJutogaiIF.KANAMEISHO2) = csJutogaiRowN(cABJutogaiIF.KANAMEISHO2);
+                csJutogaiRow[cABJutogaiIF.KANAMEISHO2] = csJutogaiRowN[cABJutogaiIF.KANAMEISHO2];
                 // 漢字名称2
-                csJutogaiRow(cABJutogaiIF.KANJIMEISHO2) = csJutogaiRowN(cABJutogaiIF.KANJIMEISHO2);
+                csJutogaiRow[cABJutogaiIF.KANJIMEISHO2] = csJutogaiRowN[cABJutogaiIF.KANJIMEISHO2];
                 // 生年月日
-                csJutogaiRow(cABJutogaiIF.UMAREYMD) = csJutogaiRowN(cABJutogaiIF.UMAREYMD);
+                csJutogaiRow[cABJutogaiIF.UMAREYMD] = csJutogaiRowN[cABJutogaiIF.UMAREYMD];
                 // 生和暦年月日
-                csJutogaiRow(cABJutogaiIF.UMAREWMD) = csJutogaiRowN(cABJutogaiIF.UMAREWMD);
+                csJutogaiRow[cABJutogaiIF.UMAREWMD] = csJutogaiRowN[cABJutogaiIF.UMAREWMD];
                 // 性別コード
-                csJutogaiRow(cABJutogaiIF.SEIBETSUCD) = csJutogaiRowN(cABJutogaiIF.SEIBETSUCD);
+                csJutogaiRow[cABJutogaiIF.SEIBETSUCD] = csJutogaiRowN[cABJutogaiIF.SEIBETSUCD];
                 // 性別
-                csJutogaiRow(cABJutogaiIF.SEIBETSU) = csJutogaiRowN(cABJutogaiIF.SEIBETSU);
+                csJutogaiRow[cABJutogaiIF.SEIBETSU] = csJutogaiRowN[cABJutogaiIF.SEIBETSU];
                 // 続柄コード
-                csJutogaiRow(cABJutogaiIF.ZOKUGARACD) = csJutogaiRowN(cABJutogaiIF.ZOKUGARACD);
+                csJutogaiRow[cABJutogaiIF.ZOKUGARACD] = csJutogaiRowN[cABJutogaiIF.ZOKUGARACD];
                 // 続柄
-                csJutogaiRow(cABJutogaiIF.ZOKUGARA) = csJutogaiRowN(cABJutogaiIF.ZOKUGARA);
+                csJutogaiRow[cABJutogaiIF.ZOKUGARA] = csJutogaiRowN[cABJutogaiIF.ZOKUGARA];
                 // 第2続柄コード
-                csJutogaiRow(cABJutogaiIF.DAI2ZOKUGARACD) = csJutogaiRowN(cABJutogaiIF.DAI2ZOKUGARACD);
+                csJutogaiRow[cABJutogaiIF.DAI2ZOKUGARACD] = csJutogaiRowN[cABJutogaiIF.DAI2ZOKUGARACD];
                 // 第2続柄
-                csJutogaiRow(cABJutogaiIF.DAI2ZOKUGARA) = csJutogaiRowN(cABJutogaiIF.DAI2ZOKUGARA);
+                csJutogaiRow[cABJutogaiIF.DAI2ZOKUGARA] = csJutogaiRowN[cABJutogaiIF.DAI2ZOKUGARA];
                 // 漢字法人代表者氏名
-                csJutogaiRow(cABJutogaiIF.KANJIHJNDAIHYOSHSHIMEI) = csJutogaiRowN(cABJutogaiIF.KANJIHJNDAIHYOSHSHIMEI);
+                csJutogaiRow[cABJutogaiIF.KANJIHJNDAIHYOSHSHIMEI] = csJutogaiRowN[cABJutogaiIF.KANJIHJNDAIHYOSHSHIMEI];
                 // 汎用区分1
-                csJutogaiRow(cABJutogaiIF.HANYOKB1) = csJutogaiRowN(cABJutogaiIF.HANYOKB1);
+                csJutogaiRow[cABJutogaiIF.HANYOKB1] = csJutogaiRowN[cABJutogaiIF.HANYOKB1];
                 // 漢字法人形態
-                csJutogaiRow(cABJutogaiIF.KANJIHJNKEITAI) = csJutogaiRowN(cABJutogaiIF.KANJIHJNKEITAI);
+                csJutogaiRow[cABJutogaiIF.KANJIHJNKEITAI] = csJutogaiRowN[cABJutogaiIF.KANJIHJNKEITAI];
                 // 個人法人区分
-                csJutogaiRow(cABJutogaiIF.KJNHJNKB) = csJutogaiRowN(cABJutogaiIF.KJNHJNKB);
+                csJutogaiRow[cABJutogaiIF.KJNHJNKB] = csJutogaiRowN[cABJutogaiIF.KJNHJNKB];
                 // 汎用区分2
-                csJutogaiRow(cABJutogaiIF.HANYOKB2) = csJutogaiRowN(cABJutogaiIF.HANYOKB2);
+                csJutogaiRow[cABJutogaiIF.HANYOKB2] = csJutogaiRowN[cABJutogaiIF.HANYOKB2];
                 // 管内管外区分
-                csJutogaiRow(cABJutogaiIF.KANNAIKANGAIKB) = csJutogaiRowN(cABJutogaiIF.KANNAIKANGAIKB);
+                csJutogaiRow[cABJutogaiIF.KANNAIKANGAIKB] = csJutogaiRowN[cABJutogaiIF.KANNAIKANGAIKB];
                 // 家屋敷区分
-                csJutogaiRow(cABJutogaiIF.KAOKUSHIKIKB) = csJutogaiRowN(cABJutogaiIF.KAOKUSHIKIKB);
+                csJutogaiRow[cABJutogaiIF.KAOKUSHIKIKB] = csJutogaiRowN[cABJutogaiIF.KAOKUSHIKIKB];
                 // 備考税目
-                csJutogaiRow(cABJutogaiIF.BIKOZEIMOKU) = csJutogaiRowN(cABJutogaiIF.BIKOZEIMOKU);
+                csJutogaiRow[cABJutogaiIF.BIKOZEIMOKU] = csJutogaiRowN[cABJutogaiIF.BIKOZEIMOKU];
                 // 郵便番号
-                csJutogaiRow(cABJutogaiIF.YUBINNO) = csJutogaiRowN(cABJutogaiIF.YUBINNO);
+                csJutogaiRow[cABJutogaiIF.YUBINNO] = csJutogaiRowN[cABJutogaiIF.YUBINNO];
                 // 住所コード
-                csJutogaiRow(cABJutogaiIF.JUSHOCD) = csJutogaiRowN(cABJutogaiIF.JUSHOCD);
+                csJutogaiRow[cABJutogaiIF.JUSHOCD] = csJutogaiRowN[cABJutogaiIF.JUSHOCD];
                 // 住所
-                csJutogaiRow(cABJutogaiIF.JUSHO) = csJutogaiRowN(cABJutogaiIF.JUSHO);
+                csJutogaiRow[cABJutogaiIF.JUSHO] = csJutogaiRowN[cABJutogaiIF.JUSHO];
                 // 番地コード1
-                csJutogaiRow(cABJutogaiIF.BANCHICD1) = csJutogaiRowN(cABJutogaiIF.BANCHICD1);
+                csJutogaiRow[cABJutogaiIF.BANCHICD1] = csJutogaiRowN[cABJutogaiIF.BANCHICD1];
                 // 番地コード2
-                csJutogaiRow(cABJutogaiIF.BANCHICD2) = csJutogaiRowN(cABJutogaiIF.BANCHICD2);
+                csJutogaiRow[cABJutogaiIF.BANCHICD2] = csJutogaiRowN[cABJutogaiIF.BANCHICD2];
                 // 番地コード3
-                csJutogaiRow(cABJutogaiIF.BANCHICD3) = csJutogaiRowN(cABJutogaiIF.BANCHICD3);
+                csJutogaiRow[cABJutogaiIF.BANCHICD3] = csJutogaiRowN[cABJutogaiIF.BANCHICD3];
                 // 番地
-                csJutogaiRow(cABJutogaiIF.BANCHI) = csJutogaiRowN(cABJutogaiIF.BANCHI);
+                csJutogaiRow[cABJutogaiIF.BANCHI] = csJutogaiRowN[cABJutogaiIF.BANCHI];
                 // 肩書フラグ
-                csJutogaiRow(cABJutogaiIF.KATAGAKIFG) = csJutogaiRowN(cABJutogaiIF.KATAGAKIFG);
+                csJutogaiRow[cABJutogaiIF.KATAGAKIFG] = csJutogaiRowN[cABJutogaiIF.KATAGAKIFG];
                 // 肩書コード
-                csJutogaiRow(cABJutogaiIF.KATAGAKICD) = csJutogaiRowN(cABJutogaiIF.KATAGAKICD);
+                csJutogaiRow[cABJutogaiIF.KATAGAKICD] = csJutogaiRowN[cABJutogaiIF.KATAGAKICD];
                 // 肩書
-                csJutogaiRow(cABJutogaiIF.KATAGAKI) = csJutogaiRowN(cABJutogaiIF.KATAGAKI);
+                csJutogaiRow[cABJutogaiIF.KATAGAKI] = csJutogaiRowN[cABJutogaiIF.KATAGAKI];
                 // 連絡先1
-                csJutogaiRow(cABJutogaiIF.RENRAKUSAKI1) = csJutogaiRowN(cABJutogaiIF.RENRAKUSAKI1);
+                csJutogaiRow[cABJutogaiIF.RENRAKUSAKI1] = csJutogaiRowN[cABJutogaiIF.RENRAKUSAKI1];
                 // 連絡先2
-                csJutogaiRow(cABJutogaiIF.RENRAKUSAKI2) = csJutogaiRowN(cABJutogaiIF.RENRAKUSAKI2);
+                csJutogaiRow[cABJutogaiIF.RENRAKUSAKI2] = csJutogaiRowN[cABJutogaiIF.RENRAKUSAKI2];
                 // 行政区コード
-                csJutogaiRow(cABJutogaiIF.GYOSEIKUCD) = csJutogaiRowN(cABJutogaiIF.GYOSEIKUCD);
+                csJutogaiRow[cABJutogaiIF.GYOSEIKUCD] = csJutogaiRowN[cABJutogaiIF.GYOSEIKUCD];
                 // 行政区名
-                csJutogaiRow(cABJutogaiIF.GYOSEIKUMEI) = csJutogaiRowN(cABJutogaiIF.GYOSEIKUMEI);
+                csJutogaiRow[cABJutogaiIF.GYOSEIKUMEI] = csJutogaiRowN[cABJutogaiIF.GYOSEIKUMEI];
                 // 地区コード1
-                csJutogaiRow(cABJutogaiIF.CHIKUCD1) = csJutogaiRowN(cABJutogaiIF.CHIKUCD1);
+                csJutogaiRow[cABJutogaiIF.CHIKUCD1] = csJutogaiRowN[cABJutogaiIF.CHIKUCD1];
                 // 地区名1
-                csJutogaiRow(cABJutogaiIF.CHIKUMEI1) = csJutogaiRowN(cABJutogaiIF.CHIKUMEI1);
+                csJutogaiRow[cABJutogaiIF.CHIKUMEI1] = csJutogaiRowN[cABJutogaiIF.CHIKUMEI1];
                 // 地区コード2
-                csJutogaiRow(cABJutogaiIF.CHIKUCD2) = csJutogaiRowN(cABJutogaiIF.CHIKUCD2);
+                csJutogaiRow[cABJutogaiIF.CHIKUCD2] = csJutogaiRowN[cABJutogaiIF.CHIKUCD2];
                 // 地区名2
-                csJutogaiRow(cABJutogaiIF.CHIKUMEI2) = csJutogaiRowN(cABJutogaiIF.CHIKUMEI2);
+                csJutogaiRow[cABJutogaiIF.CHIKUMEI2] = csJutogaiRowN[cABJutogaiIF.CHIKUMEI2];
                 // 地区コード3
-                csJutogaiRow(cABJutogaiIF.CHIKUCD3) = csJutogaiRowN(cABJutogaiIF.CHIKUCD3);
+                csJutogaiRow[cABJutogaiIF.CHIKUCD3] = csJutogaiRowN[cABJutogaiIF.CHIKUCD3];
                 // 地区名3
-                csJutogaiRow(cABJutogaiIF.CHIKUMEI3) = csJutogaiRowN(cABJutogaiIF.CHIKUMEI3);
+                csJutogaiRow[cABJutogaiIF.CHIKUMEI3] = csJutogaiRowN[cABJutogaiIF.CHIKUMEI3];
                 // 登録異動年月日
-                csJutogaiRow(cABJutogaiIF.TOROKUIDOYMD) = csJutogaiRowN(cABJutogaiIF.TOROKUIDOYMD);
+                csJutogaiRow[cABJutogaiIF.TOROKUIDOYMD] = csJutogaiRowN[cABJutogaiIF.TOROKUIDOYMD];
                 // 登録事由コード
-                csJutogaiRow(cABJutogaiIF.TOROKUJIYUCD) = csJutogaiRowN(cABJutogaiIF.TOROKUJIYUCD);
+                csJutogaiRow[cABJutogaiIF.TOROKUJIYUCD] = csJutogaiRowN[cABJutogaiIF.TOROKUJIYUCD];
                 // 消除異動年月日
-                csJutogaiRow(cABJutogaiIF.SHOJOIDOYMD) = csJutogaiRowN(cABJutogaiIF.SHOJOIDOYMD);
+                csJutogaiRow[cABJutogaiIF.SHOJOIDOYMD] = csJutogaiRowN[cABJutogaiIF.SHOJOIDOYMD];
                 // 消除事由コード
-                csJutogaiRow(cABJutogaiIF.SHOJOJIYUCD) = csJutogaiRowN(cABJutogaiIF.SHOJOJIYUCD);
+                csJutogaiRow[cABJutogaiIF.SHOJOJIYUCD] = csJutogaiRowN[cABJutogaiIF.SHOJOJIYUCD];
                 // リザーブ
-                csJutogaiRow(cABJutogaiIF.RESERVE) = csJutogaiRowN(cABJutogaiIF.RESERVE);
+                csJutogaiRow[cABJutogaiIF.RESERVE] = csJutogaiRowN[cABJutogaiIF.RESERVE];
 
                 // デバッグ終了ログ出力
                 m_cfLog.DebugEndWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME);
@@ -672,11 +672,11 @@ namespace Densan.Reams.AB.AB000BB
                 // * 履歴番号 000006 2007/10/11 削除開始
 
                 // 住登外データRow
-                csJutogaiRow = csJutogaiEntity.Tables(ABJutogaiEntity.TABLE_NAME).Rows(0);
+                csJutogaiRow = csJutogaiEntity.Tables[ABJutogaiEntity.TABLE_NAME].Rows[0];
 
                 if (IntKoshinKB == cABEnumDefine.KoshinKB.Insert)
                 {
-                    csRow = csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).NewRow;
+                    csRow = csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].NewRow();
                     // DataRowの初期化
                     m_cCommonClass.InitColumnValue(csRow);
                 }
@@ -684,7 +684,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 宛名マスタを取得する
                     // 宛名ＤＡクラスのインスタンス化
-                    csRow = csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows(0);
+                    csRow = csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows[0];
                 }
 
                 // **
@@ -692,82 +692,82 @@ namespace Densan.Reams.AB.AB000BB
                 // *
                 strSystemDate = m_cfRdb.GetSystemDate().ToString("yyyyMMdd");                                        // システム日付
 
-                csRow(ABAtenaEntity.JUMINCD) = csJutogaiRow(ABJutogaiEntity.JUMINCD);                                // 住民コード
-                csRow(ABAtenaEntity.SHICHOSONCD) = csJutogaiRow(ABJutogaiEntity.SHICHOSONCD);                        // 市町村コード
-                csRow(ABAtenaEntity.KYUSHICHOSONCD) = csJutogaiRow(ABJutogaiEntity.KYUSHICHOSONCD);                  // 旧市町村コード
-                csRow(ABAtenaEntity.JUMINJUTOGAIKB) = "2";                                                           // 住民住登外区分
-                csRow(ABAtenaEntity.JUMINYUSENIKB) = "0";                                                            // 住民優先区分
-                csRow(ABAtenaEntity.JUTOGAIYUSENKB) = "1";                                                           // 住登外優先区分
-                csRow(ABAtenaEntity.ATENADATAKB) = csJutogaiRow(ABJutogaiEntity.ATENADATAKB);                        // 宛名データ区分
-                csRow(ABAtenaEntity.STAICD) = csJutogaiRow(ABJutogaiEntity.STAICD);                                  // 世帯コード
-                csRow(ABAtenaEntity.ATENADATASHU) = csJutogaiRow(ABJutogaiEntity.ATENADATASHU);                      // 宛名データ種別
-                csRow(ABAtenaEntity.HANYOKB1) = csJutogaiRow(ABJutogaiEntity.HANYOKB1);                              // 汎用区分1
-                csRow(ABAtenaEntity.KJNHJNKB) = csJutogaiRow(ABJutogaiEntity.KJNHJNKB);                              // 個人法人区分
-                csRow(ABAtenaEntity.HANYOKB2) = csJutogaiRow(ABJutogaiEntity.HANYOKB2);                              // 汎用区分2
-                csRow(ABAtenaEntity.KANNAIKANGAIKB) = csJutogaiRow(ABJutogaiEntity.KANNAIKANGAIKB);                  // 管内管外区分
-                csRow(ABAtenaEntity.KANAMEISHO1) = csJutogaiRow(ABJutogaiEntity.KANAMEISHO1);                        // カナ名称1
-                csRow(ABAtenaEntity.KANJIMEISHO1) = csJutogaiRow(ABJutogaiEntity.KANJIMEISHO1);                      // 漢字名称1
-                csRow(ABAtenaEntity.KANAMEISHO2) = csJutogaiRow(ABJutogaiEntity.KANAMEISHO2);                        // カナ名称2
-                csRow(ABAtenaEntity.KANJIMEISHO2) = csJutogaiRow(ABJutogaiEntity.KANJIMEISHO2);                      // 漢字名称2
-                csRow(ABAtenaEntity.KANJIHJNKEITAI) = csJutogaiRow(ABJutogaiEntity.KANJIHJNKEITAI);                  // 漢字法人形態
-                csRow(ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI) = csJutogaiRow(ABJutogaiEntity.KANJIHJNDAIHYOSHSHIMEI);  // 漢字法人代表者氏名
-                csRow(ABAtenaEntity.SEARCHKANJIMEISHO) = csJutogaiRow(ABJutogaiEntity.KANJIMEISHO1);             // 検索用漢字名称
-                csRow(ABAtenaEntity.SEARCHKANASEIMEI) = csJutogaiRow(ABJutogaiEntity.SEARCHKANASEIMEI);              // 検索用カナ姓名
-                csRow(ABAtenaEntity.SEARCHKANASEI) = csJutogaiRow(ABJutogaiEntity.SEARCHKANASEI);                    // 検索用カナ姓
-                csRow(ABAtenaEntity.SEARCHKANAMEI) = csJutogaiRow(ABJutogaiEntity.SEARCHKANAMEI);                    // 検索用カナ名
-                csRow(ABAtenaEntity.RRKST_YMD) = StrIdoYMD;                                                      // 履歴開始年月日
-                csRow(ABAtenaEntity.RRKED_YMD) = "99999999";                                                         // 履歴終了年月日
-                csRow(ABAtenaEntity.UMAREYMD) = csJutogaiRow(ABJutogaiEntity.UMAREYMD);                              // 生年月日
-                csRow(ABAtenaEntity.UMAREWMD) = csJutogaiRow(ABJutogaiEntity.UMAREWMD);                              // 生和暦年月日
-                csRow(ABAtenaEntity.SEIBETSUCD) = csJutogaiRow(ABJutogaiEntity.SEIBETSUCD);                          // 性別コード
-                csRow(ABAtenaEntity.SEIBETSU) = csJutogaiRow(ABJutogaiEntity.SEIBETSU);                              // 性別
-                csRow(ABAtenaEntity.ZOKUGARACD) = csJutogaiRow(ABJutogaiEntity.ZOKUGARACD);                          // 続柄コード
-                csRow(ABAtenaEntity.ZOKUGARA) = csJutogaiRow(ABJutogaiEntity.ZOKUGARA);                              // 続柄
-                csRow(ABAtenaEntity.DAI2ZOKUGARACD) = csJutogaiRow(ABJutogaiEntity.DAI2ZOKUGARACD);                  // 第2続柄コード
-                csRow(ABAtenaEntity.DAI2ZOKUGARA) = csJutogaiRow(ABJutogaiEntity.DAI2ZOKUGARA);                      // 第2続柄
-                csRow(ABAtenaEntity.YUBINNO) = csJutogaiRow(ABJutogaiEntity.YUBINNO);                                // 郵便番号
-                csRow(ABAtenaEntity.JUSHOCD) = csJutogaiRow(ABJutogaiEntity.JUSHOCD);                                // 住所コード
-                csRow(ABAtenaEntity.JUSHO) = csJutogaiRow(ABJutogaiEntity.JUSHO);                                    // 住所
-                csRow(ABAtenaEntity.BANCHICD1) = csJutogaiRow(ABJutogaiEntity.BANCHICD1);                            // 番地コード1
-                csRow(ABAtenaEntity.BANCHICD2) = csJutogaiRow(ABJutogaiEntity.BANCHICD2);                            // 番地コード2
-                csRow(ABAtenaEntity.BANCHICD3) = csJutogaiRow(ABJutogaiEntity.BANCHICD3);                            // 番地コード3
-                csRow(ABAtenaEntity.BANCHI) = csJutogaiRow(ABJutogaiEntity.BANCHI);                                  // 番地
-                csRow(ABAtenaEntity.KATAGAKIFG) = csJutogaiRow(ABJutogaiEntity.KATAGAKIFG);                          // 方書フラグ
-                csRow(ABAtenaEntity.KATAGAKICD) = csJutogaiRow(ABJutogaiEntity.KATAGAKICD);                          // 方書コード
-                csRow(ABAtenaEntity.KATAGAKI) = csJutogaiRow(ABJutogaiEntity.KATAGAKI);                              // 方書
-                csRow(ABAtenaEntity.RENRAKUSAKI1) = csJutogaiRow(ABJutogaiEntity.RENRAKUSAKI1);                      // 連絡先1
-                csRow(ABAtenaEntity.RENRAKUSAKI2) = csJutogaiRow(ABJutogaiEntity.RENRAKUSAKI2);                      // 連絡先2
+                csRow[ABAtenaEntity.JUMINCD] = csJutogaiRow[ABJutogaiEntity.JUMINCD];                                // 住民コード
+                csRow[ABAtenaEntity.SHICHOSONCD] = csJutogaiRow[ABJutogaiEntity.SHICHOSONCD];                        // 市町村コード
+                csRow[ABAtenaEntity.KYUSHICHOSONCD] = csJutogaiRow[ABJutogaiEntity.KYUSHICHOSONCD];                  // 旧市町村コード
+                csRow[ABAtenaEntity.JUMINJUTOGAIKB] = "2";                                                           // 住民住登外区分
+                csRow[ABAtenaEntity.JUMINYUSENIKB] = "0";                                                            // 住民優先区分
+                csRow[ABAtenaEntity.JUTOGAIYUSENKB] = "1";                                                           // 住登外優先区分
+                csRow[ABAtenaEntity.ATENADATAKB] = csJutogaiRow[ABJutogaiEntity.ATENADATAKB];                        // 宛名データ区分
+                csRow[ABAtenaEntity.STAICD] = csJutogaiRow[ABJutogaiEntity.STAICD];                                  // 世帯コード
+                csRow[ABAtenaEntity.ATENADATASHU] = csJutogaiRow[ABJutogaiEntity.ATENADATASHU];                      // 宛名データ種別
+                csRow[ABAtenaEntity.HANYOKB1] = csJutogaiRow[ABJutogaiEntity.HANYOKB1];                              // 汎用区分1
+                csRow[ABAtenaEntity.KJNHJNKB] = csJutogaiRow[ABJutogaiEntity.KJNHJNKB];                              // 個人法人区分
+                csRow[ABAtenaEntity.HANYOKB2] = csJutogaiRow[ABJutogaiEntity.HANYOKB2];                              // 汎用区分2
+                csRow[ABAtenaEntity.KANNAIKANGAIKB] = csJutogaiRow[ABJutogaiEntity.KANNAIKANGAIKB];                  // 管内管外区分
+                csRow[ABAtenaEntity.KANAMEISHO1] = csJutogaiRow[ABJutogaiEntity.KANAMEISHO1];                        // カナ名称1
+                csRow[ABAtenaEntity.KANJIMEISHO1] = csJutogaiRow[ABJutogaiEntity.KANJIMEISHO1];                      // 漢字名称1
+                csRow[ABAtenaEntity.KANAMEISHO2] = csJutogaiRow[ABJutogaiEntity.KANAMEISHO2];                        // カナ名称2
+                csRow[ABAtenaEntity.KANJIMEISHO2] = csJutogaiRow[ABJutogaiEntity.KANJIMEISHO2];                      // 漢字名称2
+                csRow[ABAtenaEntity.KANJIHJNKEITAI] = csJutogaiRow[ABJutogaiEntity.KANJIHJNKEITAI];                  // 漢字法人形態
+                csRow[ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI] = csJutogaiRow[ABJutogaiEntity.KANJIHJNDAIHYOSHSHIMEI];  // 漢字法人代表者氏名
+                csRow[ABAtenaEntity.SEARCHKANJIMEISHO] = csJutogaiRow[ABJutogaiEntity.KANJIMEISHO1];             // 検索用漢字名称
+                csRow[ABAtenaEntity.SEARCHKANASEIMEI] = csJutogaiRow[ABJutogaiEntity.SEARCHKANASEIMEI];              // 検索用カナ姓名
+                csRow[ABAtenaEntity.SEARCHKANASEI] = csJutogaiRow[ABJutogaiEntity.SEARCHKANASEI];                    // 検索用カナ姓
+                csRow[ABAtenaEntity.SEARCHKANAMEI] = csJutogaiRow[ABJutogaiEntity.SEARCHKANAMEI];                    // 検索用カナ名
+                csRow[ABAtenaEntity.RRKST_YMD] = StrIdoYMD;                                                      // 履歴開始年月日
+                csRow[ABAtenaEntity.RRKED_YMD] = "99999999";                                                         // 履歴終了年月日
+                csRow[ABAtenaEntity.UMAREYMD] = csJutogaiRow[ABJutogaiEntity.UMAREYMD];                              // 生年月日
+                csRow[ABAtenaEntity.UMAREWMD] = csJutogaiRow[ABJutogaiEntity.UMAREWMD];                              // 生和暦年月日
+                csRow[ABAtenaEntity.SEIBETSUCD] = csJutogaiRow[ABJutogaiEntity.SEIBETSUCD];                          // 性別コード
+                csRow[ABAtenaEntity.SEIBETSU] = csJutogaiRow[ABJutogaiEntity.SEIBETSU];                              // 性別
+                csRow[ABAtenaEntity.ZOKUGARACD] = csJutogaiRow[ABJutogaiEntity.ZOKUGARACD];                          // 続柄コード
+                csRow[ABAtenaEntity.ZOKUGARA] = csJutogaiRow[ABJutogaiEntity.ZOKUGARA];                              // 続柄
+                csRow[ABAtenaEntity.DAI2ZOKUGARACD] = csJutogaiRow[ABJutogaiEntity.DAI2ZOKUGARACD];                  // 第2続柄コード
+                csRow[ABAtenaEntity.DAI2ZOKUGARA] = csJutogaiRow[ABJutogaiEntity.DAI2ZOKUGARA];                      // 第2続柄
+                csRow[ABAtenaEntity.YUBINNO] = csJutogaiRow[ABJutogaiEntity.YUBINNO];                                // 郵便番号
+                csRow[ABAtenaEntity.JUSHOCD] = csJutogaiRow[ABJutogaiEntity.JUSHOCD];                                // 住所コード
+                csRow[ABAtenaEntity.JUSHO] = csJutogaiRow[ABJutogaiEntity.JUSHO];                                    // 住所
+                csRow[ABAtenaEntity.BANCHICD1] = csJutogaiRow[ABJutogaiEntity.BANCHICD1];                            // 番地コード1
+                csRow[ABAtenaEntity.BANCHICD2] = csJutogaiRow[ABJutogaiEntity.BANCHICD2];                            // 番地コード2
+                csRow[ABAtenaEntity.BANCHICD3] = csJutogaiRow[ABJutogaiEntity.BANCHICD3];                            // 番地コード3
+                csRow[ABAtenaEntity.BANCHI] = csJutogaiRow[ABJutogaiEntity.BANCHI];                                  // 番地
+                csRow[ABAtenaEntity.KATAGAKIFG] = csJutogaiRow[ABJutogaiEntity.KATAGAKIFG];                          // 方書フラグ
+                csRow[ABAtenaEntity.KATAGAKICD] = csJutogaiRow[ABJutogaiEntity.KATAGAKICD];                          // 方書コード
+                csRow[ABAtenaEntity.KATAGAKI] = csJutogaiRow[ABJutogaiEntity.KATAGAKI];                              // 方書
+                csRow[ABAtenaEntity.RENRAKUSAKI1] = csJutogaiRow[ABJutogaiEntity.RENRAKUSAKI1];                      // 連絡先1
+                csRow[ABAtenaEntity.RENRAKUSAKI2] = csJutogaiRow[ABJutogaiEntity.RENRAKUSAKI2];                      // 連絡先2
                                                                                                                      // 直近異動年月日
                                                                                                                      // m_cfDateClass.p_strDateValue = m_cNyuryokuParaX.p_strCkinIdoYMD
                                                                                                                      // *履歴番号 000002 2004/05/17 修正開始
-                                                                                                                     // csRow(ABAtenaEntity.CKINIDOYMD) = strSystemDate                                                      ' 履歴開始年月日
-                csRow(ABAtenaEntity.CKINIDOYMD) = StrIdoYMD;
+                                                                                                                     // csRow[ABAtenaEntity.CKINIDOYMD] = strSystemDate                                                      ' 履歴開始年月日
+                csRow[ABAtenaEntity.CKINIDOYMD] = StrIdoYMD;
                 // *履歴番号 000002 2004/05/17 修正終了
                 // 登録異動年月日
-                csRow(ABAtenaEntity.TOROKUIDOYMD) = csJutogaiRow(ABJutogaiEntity.TOROKUIDOYMD);
+                csRow[ABAtenaEntity.TOROKUIDOYMD] = csJutogaiRow[ABJutogaiEntity.TOROKUIDOYMD];
                 // 登録異動和暦年月日
-                m_cfDateClass.p_strDateValue = (string)csJutogaiRow(ABJutogaiEntity.TOROKUIDOYMD);
-                csRow(ABAtenaEntity.TOROKUIDOWMD) = m_cfDateClass.p_strWarekiYMD;
-                csRow(ABAtenaEntity.TOROKUJIYUCD) = csJutogaiRow(ABJutogaiEntity.TOROKUJIYUCD);                      // 登録事由コード
-                csRow(ABAtenaEntity.TOROKUJIYU) = cIdoJiyuB.GetIdoJiyu(csJutogaiRow(ABJutogaiEntity.TOROKUJIYUCD).ToString);     // 登録事由
-                csRow(ABAtenaEntity.SHOJOIDOYMD) = csJutogaiRow(ABJutogaiEntity.SHOJOIDOYMD);                        // 消除異動年月日
-                csRow(ABAtenaEntity.SHOJOJIYUCD) = csJutogaiRow(ABJutogaiEntity.SHOJOJIYUCD);                        // 消除事由コード
-                csRow(ABAtenaEntity.SHOJOJIYU) = cIdoJiyuB.GetIdoJiyu(csJutogaiRow(ABJutogaiEntity.SHOJOJIYUCD).ToString);       // 消除事由
-                csRow(ABAtenaEntity.GYOSEIKUCD) = csJutogaiRow(ABJutogaiEntity.GYOSEIKUCD);                          // 行政区コード
-                csRow(ABAtenaEntity.GYOSEIKUMEI) = csJutogaiRow(ABJutogaiEntity.GYOSEIKUMEI);                        // 行政区名
-                csRow(ABAtenaEntity.CHIKUCD1) = csJutogaiRow(ABJutogaiEntity.CHIKUCD1);                              // 地区コード1
-                csRow(ABAtenaEntity.CHIKUMEI1) = csJutogaiRow(ABJutogaiEntity.CHIKUMEI1);                            // 地区名1
-                csRow(ABAtenaEntity.CHIKUCD2) = csJutogaiRow(ABJutogaiEntity.CHIKUCD2);                              // 地区コード2
-                csRow(ABAtenaEntity.CHIKUMEI2) = csJutogaiRow(ABJutogaiEntity.CHIKUMEI2);                            // 地区名2
-                csRow(ABAtenaEntity.CHIKUCD3) = csJutogaiRow(ABJutogaiEntity.CHIKUCD3);                              // 地区コード3
-                csRow(ABAtenaEntity.CHIKUMEI3) = csJutogaiRow(ABJutogaiEntity.CHIKUMEI3);                            // 地区名3
-                csRow(ABAtenaEntity.KAOKUSHIKIKB) = csJutogaiRow(ABJutogaiEntity.KAOKUSHIKIKB);                      // 家屋敷区分
-                csRow(ABAtenaEntity.BIKOZEIMOKU) = csJutogaiRow(ABJutogaiEntity.BIKOZEIMOKU);                        // 備考税目
+                m_cfDateClass.p_strDateValue = Convert.ToString(csJutogaiRow[ABJutogaiEntity.TOROKUIDOYMD]);
+                csRow[ABAtenaEntity.TOROKUIDOWMD] = m_cfDateClass.p_strWarekiYMD;
+                csRow[ABAtenaEntity.TOROKUJIYUCD] = csJutogaiRow[ABJutogaiEntity.TOROKUJIYUCD];                      // 登録事由コード
+                csRow[ABAtenaEntity.TOROKUJIYU] = cIdoJiyuB.GetIdoJiyu(csJutogaiRow[ABJutogaiEntity.TOROKUJIYUCD].ToString());     // 登録事由
+                csRow[ABAtenaEntity.SHOJOIDOYMD] = csJutogaiRow[ABJutogaiEntity.SHOJOIDOYMD];                        // 消除異動年月日
+                csRow[ABAtenaEntity.SHOJOJIYUCD] = csJutogaiRow[ABJutogaiEntity.SHOJOJIYUCD];                        // 消除事由コード
+                csRow[ABAtenaEntity.SHOJOJIYU] = cIdoJiyuB.GetIdoJiyu(csJutogaiRow[ABJutogaiEntity.SHOJOJIYUCD].ToString());       // 消除事由
+                csRow[ABAtenaEntity.GYOSEIKUCD] = csJutogaiRow[ABJutogaiEntity.GYOSEIKUCD];                          // 行政区コード
+                csRow[ABAtenaEntity.GYOSEIKUMEI] = csJutogaiRow[ABJutogaiEntity.GYOSEIKUMEI];                        // 行政区名
+                csRow[ABAtenaEntity.CHIKUCD1] = csJutogaiRow[ABJutogaiEntity.CHIKUCD1];                              // 地区コード1
+                csRow[ABAtenaEntity.CHIKUMEI1] = csJutogaiRow[ABJutogaiEntity.CHIKUMEI1];                            // 地区名1
+                csRow[ABAtenaEntity.CHIKUCD2] = csJutogaiRow[ABJutogaiEntity.CHIKUCD2];                              // 地区コード2
+                csRow[ABAtenaEntity.CHIKUMEI2] = csJutogaiRow[ABJutogaiEntity.CHIKUMEI2];                            // 地区名2
+                csRow[ABAtenaEntity.CHIKUCD3] = csJutogaiRow[ABJutogaiEntity.CHIKUCD3];                              // 地区コード3
+                csRow[ABAtenaEntity.CHIKUMEI3] = csJutogaiRow[ABJutogaiEntity.CHIKUMEI3];                            // 地区名3
+                csRow[ABAtenaEntity.KAOKUSHIKIKB] = csJutogaiRow[ABJutogaiEntity.KAOKUSHIKIKB];                      // 家屋敷区分
+                csRow[ABAtenaEntity.BIKOZEIMOKU] = csJutogaiRow[ABJutogaiEntity.BIKOZEIMOKU];                        // 備考税目
 
                 // 新規作成の場合
                 if (IntKoshinKB == cABEnumDefine.KoshinKB.Insert)
                 {
-                    csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows.Add(csRow);
+                    csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows.Add(csRow);
                 }
 
                 // デバッグ終了ログ出力
@@ -845,11 +845,11 @@ namespace Densan.Reams.AB.AB000BB
                 strSystemDate = m_cfRdb.GetSystemDate().ToString("yyyyMMdd");        // システム日付
 
                 // 宛名Rowを取得する
-                csAtenaRows = csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Select(ABAtenaEntity.JUMINJUTOGAIKB + "='2'");
+                csAtenaRows = csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Select(ABAtenaEntity.JUMINJUTOGAIKB + "='2'");
                 csAtenaRow = csAtenaRows[0];
 
                 // 宛名履歴より新しいRowを取得する
-                csRow = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).NewRow;
+                csRow = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].NewRow();
                 // DataRowの初期化
                 m_cCommonClass.InitColumnValue(csRow);
 
@@ -857,63 +857,63 @@ namespace Densan.Reams.AB.AB000BB
                 // * 編集処理
                 // *
 
-                if (csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Rows.Count == 0)
+                if (csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Rows.Count == 0)
                 {
                     // 履歴番号
-                    csRow(ABAtenaRirekiEntity.RIREKINO) = "0001";
+                    csRow[ABAtenaRirekiEntity.RIREKINO] = "0001";
 
                     // *履歴番号 000005 2006/09/13 追加開始
                     // 宛名マスタを宛名履歴へそのまま編集する
                     foreach (DataColumn currentCsColumn in csAtenaRow.Table.Columns)
                     {
                         csColumn = currentCsColumn;
-                        csRow(csColumn.ColumnName) = csAtenaRow(csColumn);
+                        csRow[csColumn.ColumnName] = csAtenaRow[csColumn];
                     }
 
                     // 宛名履歴へ追加する
-                    csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Rows.Add(csRow);
+                    csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Rows.Add(csRow);
                 }
                 // *履歴番号 000005 2006/09/13 追加終了
                 else
                 {
                     // *履歴番号 000005 2006/09/13 修正開始
                     // * corresponds to VS2008 Start 2010/04/16 000007
-                    // 'csRows = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Select("", ABAtenaRirekiEntity.RIREKINO + " DESC")
+                    // 'csRows = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Select("", ABAtenaRirekiEntity.RIREKINO + " DESC")
                     // ''' 履歴終了日にシステム日付の前日を設定する
                     // 'm_cfDateClass.p_strDateValue = StrIdoYMD
-                    // 'csRows(0).BeginEdit()
-                    // 'csRows(0).Item(ABAtenaRirekiEntity.RRKED_YMD) = m_cfDateClass.AddDay(-1)
-                    // 'csRows(0).EndEdit()
+                    // 'csRows[0].BeginEdit()
+                    // 'csRows[0][ABAtenaRirekiEntity.RRKED_YMD] = m_cfDateClass.AddDay(-1)
+                    // 'csRows[0].EndEdit()
 
                     // ''' 履歴番号
-                    // 'csRow(ABAtenaRirekiEntity.RIREKINO) = CType((CType(csRows(0).Item(ABAtenaRirekiEntity.RIREKINO), Integer) + 1), String).PadLeft(4, "0"c)
+                    // 'csRow[ABAtenaRirekiEntity.RIREKINO] = CType((CType(csRows[0][ABAtenaRirekiEntity.RIREKINO], Integer) + 1), String).PadLeft(4, "0"c)
                     // * corresponds to VS2008 End 2010/04/16 000007
 
                     // 追加するレコード用に履歴番号を取得する
-                    csRows = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Select("", ABAtenaRirekiEntity.RIREKINO + " DESC");
-                    strRirekiNO = ((int)csRows[0].Item(ABAtenaRirekiEntity.RIREKINO) + 1).ToString().RPadLeft(4, '0');
+                    csRows = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Select("", ABAtenaRirekiEntity.RIREKINO + " DESC");
+                    strRirekiNO = ((int)csRows[0][ABAtenaRirekiEntity.RIREKINO] + 1).ToString().RPadLeft(4, '0');
 
                     // 住民住登外区分="2"で抽出し、履歴開始年月日昇順・履歴番号昇順にソートする
-                    csRows = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2'", ABAtenaRirekiEntity.RRKST_YMD + " ASC , " + ABAtenaRirekiEntity.RIREKINO + " ASC");
+                    csRows = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2'", ABAtenaRirekiEntity.RRKST_YMD + " ASC , " + ABAtenaRirekiEntity.RIREKINO + " ASC");
 
                     // どのレコードの開始～終了に当てはまるかを調べる
                     foreach (var csRirekiRow in csRows)
                     {
                         // 開始・終了年月日を取得
-                        strST_YMD = (string)csRirekiRow.Item(ABAtenaRirekiEntity.RRKST_YMD);
-                        strED_YMD = (string)csRirekiRow.Item(ABAtenaRirekiEntity.RRKED_YMD);
+                        strST_YMD = Convert.ToString(csRirekiRow[ABAtenaRirekiEntity.RRKST_YMD]);
+                        strED_YMD = Convert.ToString(csRirekiRow[ABAtenaRirekiEntity.RRKED_YMD]);
 
                         if (blnHit == false)
                         {
                             // まだ当てはまるレコードが見つかっていない
-                            if (Operators.CompareString(strST_YMD, StrIdoYMD, false) > 0)
+                            if (UFVBAPI.CompareString(strST_YMD, StrIdoYMD, false) > 0)
                             {
                                 // 開始年月日＞StrIdoYMD
 
                                 blnHit = true;   // フラグをTrueにして、これ以降のレコードの更新を行う
                             }
 
-                            else if (Operators.CompareString(strST_YMD, StrIdoYMD, false) <= 0 && Operators.CompareString(StrIdoYMD, strED_YMD, false) <= 0 && strED_YMD != "99999999")
+                            else if (UFVBAPI.CompareString(strST_YMD, StrIdoYMD, false) <= 0 && UFVBAPI.CompareString(StrIdoYMD, strED_YMD, false) <= 0 && strED_YMD != "99999999")
                             {
                                 // 開始年月日≦StrIdoYMD≦終了年月日
                                 // かつ
@@ -940,7 +940,7 @@ namespace Densan.Reams.AB.AB000BB
                                 {
                                     // 住民CD・履歴番号・開始・終了・直近異動年月日・作成日時・作成ユーザ以外を上書きする
 
-                                    csRirekiRow(csColumn.ColumnName) = csAtenaRow(csColumn);
+                                    csRirekiRow[csColumn.ColumnName] = csAtenaRow[csColumn];
                                 }
                             }
                         }
@@ -951,13 +951,13 @@ namespace Densan.Reams.AB.AB000BB
                     if (blnHit == false)
                     {
                         // 住民住登外区分="2"、履歴終了年月日="99999999"で抽出
-                        csRows = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2' AND " + ABAtenaRirekiEntity.RRKED_YMD + " = '99999999'");
+                        csRows = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2' AND " + ABAtenaRirekiEntity.RRKED_YMD + " = '99999999'");
                         if (csRows.Length > 0)
                         {
                             m_cfDateClass.p_strDateValue = StrIdoYMD;
                             // 直近レコードの終了年月日をStrIdoYMDの一日前の値で更新する
                             csRows[0].BeginEdit();
-                            csRows[0].Item(ABAtenaRirekiEntity.RRKED_YMD) = m_cfDateClass.AddDay(-1);
+                            csRows[0][ABAtenaRirekiEntity.RRKED_YMD] = m_cfDateClass.AddDay(-1);
                             csRows[0].EndEdit();
                         }
 
@@ -965,14 +965,14 @@ namespace Densan.Reams.AB.AB000BB
                         foreach (DataColumn currentCsColumn2 in csAtenaRow.Table.Columns)
                         {
                             csColumn = currentCsColumn2;
-                            csRow(csColumn.ColumnName) = csAtenaRow(csColumn);
+                            csRow[csColumn.ColumnName] = csAtenaRow[csColumn];
                         }
 
                         // 履歴番号を設定する
-                        csRow(ABAtenaRirekiEntity.RIREKINO) = strRirekiNO;
+                        csRow[ABAtenaRirekiEntity.RIREKINO] = strRirekiNO;
 
                         // 宛名履歴へ追加する
-                        csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Rows.Add(csRow);
+                        csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Rows.Add(csRow);
                     }
                     // *履歴番号 000005 2006/09/13 修正終了
                 }
@@ -981,11 +981,11 @@ namespace Densan.Reams.AB.AB000BB
                 // * corresponds to VS2008 Start 2010/04/16 000007
                 // ''' 宛名マスタを宛名履歴へそのまま編集する
                 // 'For Each csColumn In csAtenaRow.Table.Columns
-                // '    csRow(csColumn.ColumnName) = csAtenaRow(csColumn)
+                // '    csRow[csColumn.ColumnName] = csAtenaRow[csColumn]
                 // 'Next csColumn
 
                 // ''' 宛名履歴へ追加する
-                // 'csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Rows.Add(csRow)
+                // 'csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Rows.Add(csRow)
                 // *履歴番号 000005 2006/09/13 削除終了
                 // * corresponds to VS2008 End 2010/04/16 000007
 
@@ -1068,51 +1068,51 @@ namespace Densan.Reams.AB.AB000BB
                 if (csRirekiCkinRow is not null)
                 {
                     // 宛名累積より新しいRowを取得する
-                    csRow = csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).NewRow;
+                    csRow = csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].NewRow();
                     // DataRowの初期化
                     m_cCommonClass.InitColumnValue(csRow);
 
                     // 処理日時
-                    csRow(ABAtenaRuisekiEntity.SHORINICHIJI) = strSystemDate;
+                    csRow[ABAtenaRuisekiEntity.SHORINICHIJI] = strSystemDate;
                     // 前後区分
-                    csRow(ABAtenaRuisekiEntity.ZENGOKB) = "1";
+                    csRow[ABAtenaRuisekiEntity.ZENGOKB] = "1";
 
                     // 履歴→累積
-                    foreach (DataColumn currentCsColumn in csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Columns)
+                    foreach (DataColumn currentCsColumn in csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Columns)
                     {
                         csColumn = currentCsColumn;
-                        csRow(csColumn.ColumnName) = csRirekiCkinRow(csColumn);
+                        csRow[csColumn.ColumnName] = csRirekiCkinRow[csColumn];
                     }
 
                     // 宛名累積へ追加する
-                    csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).Rows.Add(csRow);
+                    csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].Rows.Add(csRow);
                 }
                 // *履歴番号 000005 2006/09/13 追加終了
 
-                foreach (DataRow csAtenaRirekiRow in csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Rows)
+                foreach (DataRow csAtenaRirekiRow in csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Rows)
                 {
 
                     if (csAtenaRirekiRow.RowState == DataRowState.Added)
                     {
                         // 宛名累積より新しいRowを取得する
-                        csRow = csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).NewRow;
+                        csRow = csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].NewRow();
                         // DataRowの初期化
                         m_cCommonClass.InitColumnValue(csRow);
 
                         // 処理日時
-                        csRow(ABAtenaRuisekiEntity.SHORINICHIJI) = strSystemDate;
+                        csRow[ABAtenaRuisekiEntity.SHORINICHIJI] = strSystemDate;
                         // 前後区分
-                        csRow(ABAtenaRuisekiEntity.ZENGOKB) = "2";
+                        csRow[ABAtenaRuisekiEntity.ZENGOKB] = "2";
 
                         // 宛名履歴マスタを宛名累積へそのまま編集する
-                        foreach (DataColumn currentCsColumn1 in csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Columns)
+                        foreach (DataColumn currentCsColumn1 in csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Columns)
                         {
                             csColumn = currentCsColumn1;
-                            csRow(csColumn.ColumnName) = csAtenaRirekiRow(csColumn);
+                            csRow[csColumn.ColumnName] = csAtenaRirekiRow[csColumn];
                         }
 
                         // 宛名累積へ追加する
-                        csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).Rows.Add(csRow);
+                        csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].Rows.Add(csRow);
 
                         blnAtoAdd = true;
                         break;
@@ -1123,7 +1123,7 @@ namespace Densan.Reams.AB.AB000BB
                     // '''    Case DataRowState.Added
 
                     // '''        ' 宛名累積より新しいRowを取得する
-                    // '''        csRow = csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).NewRow
+                    // '''        csRow = csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].NewRow
                     // '''        ' DataRowの初期化
                     // '''        m_cCommonClass.InitColumnValue(csRow)
 
@@ -1135,23 +1135,23 @@ namespace Densan.Reams.AB.AB000BB
                     // '''        '*履歴番号 000004 2006/05/31 削除開始
                     // '''        'strSystemDate = m_cfRdb.GetSystemDate().ToString("yyyyMMddHHmmssfff")                   'システム日付
                     // '''        '*履歴番号 000004 2006/05/31 削除終了
-                    // '''        csRow(ABAtenaRuisekiEntity.SHORINICHIJI) = strSystemDate
+                    // '''        csRow[ABAtenaRuisekiEntity.SHORINICHIJI] = strSystemDate
 
                     // '''        ' 前後区分
-                    // '''        csRow(ABAtenaRuisekiEntity.ZENGOKB) = "2"
+                    // '''        csRow[ABAtenaRuisekiEntity.ZENGOKB] = "2"
 
                     // '''        ' 宛名マスタを宛名履歴へそのまま編集する
-                    // '''        For Each csColumn In csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Columns
-                    // '''            csRow(csColumn.ColumnName) = csAtenaRirekiRow(csColumn)
+                    // '''        For Each csColumn In csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Columns
+                    // '''            csRow[csColumn.ColumnName] = csAtenaRirekiRow[csColumn]
                     // '''        Next csColumn
 
                     // '''        ' 宛名累積へ追加する
-                    // '''        csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).Rows.Add(csRow)
+                    // '''        csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].Rows.Add(csRow)
 
                     // '''        '*履歴番号 000004 2006/05/31 追加開始
                     // '''    Case DataRowState.Modified
                     // '''        ' 宛名累積より新しいRowを取得する
-                    // '''        csRow = csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).NewRow
+                    // '''        csRow = csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].NewRow
                     // '''        ' DataRowの初期化
                     // '''        m_cCommonClass.InitColumnValue(csRow)
 
@@ -1160,18 +1160,18 @@ namespace Densan.Reams.AB.AB000BB
                     // '''        '*
 
                     // '''        ' 処理日時
-                    // '''        csRow(ABAtenaRuisekiEntity.SHORINICHIJI) = strSystemDate
+                    // '''        csRow[ABAtenaRuisekiEntity.SHORINICHIJI] = strSystemDate
 
                     // '''        ' 前後区分
-                    // '''        csRow(ABAtenaRuisekiEntity.ZENGOKB) = "1"
+                    // '''        csRow[ABAtenaRuisekiEntity.ZENGOKB] = "1"
 
                     // '''        ' 宛名履歴データを宛名累積へそのまま編集する
-                    // '''        For Each csColumn In csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Columns
-                    // '''            csRow(csColumn.ColumnName) = csAtenaRirekiRow(csColumn)
+                    // '''        For Each csColumn In csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Columns
+                    // '''            csRow[csColumn.ColumnName] = csAtenaRirekiRow[csColumn]
                     // '''        Next csColumn
 
                     // '''        ' 宛名累積へ追加する
-                    // '''        csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).Rows.Add(csRow)
+                    // '''        csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].Rows.Add(csRow)
                     // '''        '*履歴番号 000004 2006/05/31 追加終了
                     // '''End Select
                     // '*履歴番号 000005 2006/09/13 削除終了
@@ -1182,27 +1182,27 @@ namespace Densan.Reams.AB.AB000BB
                 if (blnAtoAdd == false)
                 {
                     // 操作後の履歴直近レコードを取得する
-                    csRows = csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2' AND " + ABAtenaRirekiEntity.RRKED_YMD + " = '99999999'");
+                    csRows = csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Select(ABAtenaRirekiEntity.JUMINJUTOGAIKB + " = '2' AND " + ABAtenaRirekiEntity.RRKED_YMD + " = '99999999'");
 
                     // 宛名累積より新しいRowを取得する
-                    csRow = csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).NewRow;
+                    csRow = csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].NewRow();
                     // DataRowの初期化
                     m_cCommonClass.InitColumnValue(csRow);
 
                     // 処理日時
-                    csRow(ABAtenaRuisekiEntity.SHORINICHIJI) = strSystemDate;
+                    csRow[ABAtenaRuisekiEntity.SHORINICHIJI] = strSystemDate;
                     // 前後区分
-                    csRow(ABAtenaRuisekiEntity.ZENGOKB) = "2";
+                    csRow[ABAtenaRuisekiEntity.ZENGOKB] = "2";
 
                     // 宛名履歴マスタを宛名累積へそのまま編集する
-                    foreach (DataColumn currentCsColumn2 in csAtenaRirekiEntity.Tables(ABAtenaRirekiEntity.TABLE_NAME).Columns)
+                    foreach (DataColumn currentCsColumn2 in csAtenaRirekiEntity.Tables[ABAtenaRirekiEntity.TABLE_NAME].Columns)
                     {
                         csColumn = currentCsColumn2;
-                        csRow(csColumn.ColumnName) = csRows[0](csColumn);
+                        csRow[csColumn.ColumnName] = csRows[0](csColumn);
                     }
 
                     // 宛名累積へ追加する
-                    csAtenaRuisekiEntity.Tables(ABAtenaRuisekiEntity.TABLE_NAME).Rows.Add(csRow);
+                    csAtenaRuisekiEntity.Tables[ABAtenaRuisekiEntity.TABLE_NAME].Rows.Add(csRow);
 
                 }
 
@@ -1284,7 +1284,7 @@ namespace Densan.Reams.AB.AB000BB
                     strSearchKana[3] = strKanaMeisho.RSubstring(0, intIndex);
 
                     // 先頭からの空白位置が文字列長と以上場合
-                    if (intIndex + 1 >= strKanaMeisho.RLength)
+                    if (intIndex + 1 >= strKanaMeisho.RLength())
                     {
                         strSearchKana[2] = string.Empty;
                         strSearchKana[4] = string.Empty;
@@ -1365,7 +1365,7 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "01");
 
                 // 管理情報のワークフローレコードが存在し、パラメータが"1"と"2"の時だけワークフロー処理を行う
-                if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0) && ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "1" || (string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "2"))
+                if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0) && ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "1" || (string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "2"))
 
                 {
 
@@ -1378,13 +1378,13 @@ namespace Densan.Reams.AB.AB000BB
                     csABToshoPrmEntity.Tables.Add(csABToshoPrmTable);
 
                     // 新規ロウの作成
-                    csABToshoPrmRow = csABToshoPrmEntity.Tables(ABToshoPrmEntity.TABLE_NAME).NewRow();
+                    csABToshoPrmRow = csABToshoPrmEntity.Tables[ABToshoPrmEntity.TABLE_NAME].NewRow();
                     // レプリカデータ作成用パラメータにセット
-                    csABToshoPrmRow.Item(ABToshoPrmEntity.JUMINCD) = strJuminCD;                 // 住民コード
-                    csABToshoPrmRow.Item(ABToshoPrmEntity.STAICD) = strStaiCD;                   // 世帯コード
-                    csABToshoPrmRow.Item(ABToshoPrmEntity.KOSHINKB) = strKoshinKB;               // 更新区分（追加:1 修正:2 論理削除:9 削除データ回復:2 物理削除:D）
+                    csABToshoPrmRow[ABToshoPrmEntity.JUMINCD] = strJuminCD;                 // 住民コード
+                    csABToshoPrmRow[ABToshoPrmEntity.STAICD] = strStaiCD;                   // 世帯コード
+                    csABToshoPrmRow[ABToshoPrmEntity.KOSHINKB] = strKoshinKB;               // 更新区分（追加:1 修正:2 論理削除:9 削除データ回復:2 物理削除:D）
                                                                                                  // データセットにロウを追加する
-                    csABToshoPrmEntity.Tables(ABToshoPrmEntity.TABLE_NAME).Rows.Add(csABToshoPrmRow);
+                    csABToshoPrmEntity.Tables[ABToshoPrmEntity.TABLE_NAME].Rows.Add(csABToshoPrmRow);
 
                     // ワークフロー送信処理呼び出し
                     cABAtenaCnvBClass.WorkFlowExec(csABToshoPrmEntity, WORK_FLOW_NAME, DATA_NAME);

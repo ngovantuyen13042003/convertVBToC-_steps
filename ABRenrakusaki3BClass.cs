@@ -22,7 +22,7 @@ using System.Text;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     /// <summary>
@@ -96,7 +96,7 @@ namespace Densan.Reams.AB.AB000BB
 
             // パラメーター変数の初期化
             m_strSelectSQL = string.Empty;
-            m_cfSelectParamCollection = (object)null;
+            m_cfSelectParamCollection = null;
 
             // SQL作成済みフラグの初期化
             m_blnIsCreateSelectSQL = false;
@@ -252,7 +252,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // WHERE区の作成
-                if (strWhere.Trim().RLength > 0)
+                if (strWhere.Trim().RLength() > 0)
                 {
                     strSQL = string.Format(m_strSelectSQL, string.Concat(" WHERE ", strWhere));
                 }
@@ -274,122 +274,122 @@ namespace Densan.Reams.AB.AB000BB
                 // 取得結果を分割
                 csResultEntity = new DataSet();
                 csRenrakusakiEntity = GetRenrakusakiTableSchema();
-                csResultEntity.Tables.Add(csRenrakusakiEntity.Tables(ABRenrakusakiEntity.TABLE_NAME).Clone);
+                csResultEntity.Tables.Add(csRenrakusakiEntity.Tables[ABRenrakusakiEntity.TABLE_NAME].Clone());
                 csRenrakusakiFZYEntity = GetRenrakusakiFZYTableSchema();
-                csResultEntity.Tables.Add(csRenrakusakiFZYEntity.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Clone);
+                csResultEntity.Tables.Add(csRenrakusakiFZYEntity.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Clone());
                 // *履歴番号 000001 2024/01/11 追加開始
                 csRenrakusakiFZYHyojunEntity = GetRenrakusakiFZYHyojunTableSchema();
-                csResultEntity.Tables.Add(csRenrakusakiFZYHyojunEntity.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Clone);
+                csResultEntity.Tables.Add(csRenrakusakiFZYHyojunEntity.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Clone());
                 // *履歴番号 000001 2024/01/11 追加終了
 
                 foreach (DataRow csDataRow in csRenrakusakiJoinEntity.Tables(string.Concat(ABRenrakusakiEntity.TABLE_NAME, SUFFIX_JOIN)).Rows)
                 {
 
-                    csNewRow = csResultEntity.Tables(ABRenrakusakiEntity.TABLE_NAME).NewRow;
+                    csNewRow = csResultEntity.Tables[ABRenrakusakiEntity.TABLE_NAME].NewRow();
                     {
                         ref var withBlock = ref csNewRow;
                         withBlock.BeginEdit();
-                        withBlock.Item(ABRenrakusakiEntity.JUMINCD) = csDataRow.Item(ABRenrakusakiEntity.JUMINCD);
-                        withBlock.Item(ABRenrakusakiEntity.SHICHOSONCD) = csDataRow.Item(ABRenrakusakiEntity.SHICHOSONCD);
-                        withBlock.Item(ABRenrakusakiEntity.KYUSHICHOSONCD) = csDataRow.Item(ABRenrakusakiEntity.KYUSHICHOSONCD);
-                        withBlock.Item(ABRenrakusakiEntity.GYOMUCD) = csDataRow.Item(ABRenrakusakiEntity.GYOMUCD);
-                        withBlock.Item(ABRenrakusakiEntity.GYOMUNAISHU_CD) = csDataRow.Item(ABRenrakusakiEntity.GYOMUNAISHU_CD);
+                        withBlock[ABRenrakusakiEntity.JUMINCD] = csDataRow[ABRenrakusakiEntity.JUMINCD];
+                        withBlock[ABRenrakusakiEntity.SHICHOSONCD] = csDataRow[ABRenrakusakiEntity.SHICHOSONCD];
+                        withBlock[ABRenrakusakiEntity.KYUSHICHOSONCD] = csDataRow[ABRenrakusakiEntity.KYUSHICHOSONCD];
+                        withBlock[ABRenrakusakiEntity.GYOMUCD] = csDataRow[ABRenrakusakiEntity.GYOMUCD];
+                        withBlock[ABRenrakusakiEntity.GYOMUNAISHU_CD] = csDataRow[ABRenrakusakiEntity.GYOMUNAISHU_CD];
                         // *履歴番号 000001 2024/01/11 追加開始
-                        withBlock.Item(ABRenrakusakiEntity.TOROKURENBAN) = csDataRow.Item(ABRenrakusakiEntity.TOROKURENBAN);
+                        withBlock[ABRenrakusakiEntity.TOROKURENBAN] = csDataRow[ABRenrakusakiEntity.TOROKURENBAN];
                         // *履歴番号 000001 2024/01/11 追加終了
-                        withBlock.Item(ABRenrakusakiEntity.RENRAKUSAKIKB) = csDataRow.Item(ABRenrakusakiEntity.RENRAKUSAKIKB);
-                        withBlock.Item(ABRenrakusakiEntity.RENRAKUSAKIMEI) = csDataRow.Item(ABRenrakusakiEntity.RENRAKUSAKIMEI);
-                        withBlock.Item(ABRenrakusakiEntity.RENRAKUSAKI1) = csDataRow.Item(ABRenrakusakiEntity.RENRAKUSAKI1);
-                        withBlock.Item(ABRenrakusakiEntity.RENRAKUSAKI2) = csDataRow.Item(ABRenrakusakiEntity.RENRAKUSAKI2);
-                        withBlock.Item(ABRenrakusakiEntity.RENRAKUSAKI3) = csDataRow.Item(ABRenrakusakiEntity.RENRAKUSAKI3);
-                        withBlock.Item(ABRenrakusakiEntity.RESERVE) = csDataRow.Item(ABRenrakusakiEntity.RESERVE);
-                        withBlock.Item(ABRenrakusakiEntity.TANMATSUID) = csDataRow.Item(ABRenrakusakiEntity.TANMATSUID);
-                        withBlock.Item(ABRenrakusakiEntity.SAKUJOFG) = csDataRow.Item(ABRenrakusakiEntity.SAKUJOFG);
-                        withBlock.Item(ABRenrakusakiEntity.KOSHINCOUNTER) = csDataRow.Item(ABRenrakusakiEntity.KOSHINCOUNTER);
-                        withBlock.Item(ABRenrakusakiEntity.SAKUSEINICHIJI) = csDataRow.Item(ABRenrakusakiEntity.SAKUSEINICHIJI);
-                        withBlock.Item(ABRenrakusakiEntity.SAKUSEIUSER) = csDataRow.Item(ABRenrakusakiEntity.SAKUSEIUSER);
-                        withBlock.Item(ABRenrakusakiEntity.KOSHINNICHIJI) = csDataRow.Item(ABRenrakusakiEntity.KOSHINNICHIJI);
-                        withBlock.Item(ABRenrakusakiEntity.KOSHINUSER) = csDataRow.Item(ABRenrakusakiEntity.KOSHINUSER);
+                        withBlock[ABRenrakusakiEntity.RENRAKUSAKIKB] = csDataRow[ABRenrakusakiEntity.RENRAKUSAKIKB];
+                        withBlock[ABRenrakusakiEntity.RENRAKUSAKIMEI] = csDataRow[ABRenrakusakiEntity.RENRAKUSAKIMEI];
+                        withBlock[ABRenrakusakiEntity.RENRAKUSAKI1] = csDataRow[ABRenrakusakiEntity.RENRAKUSAKI1];
+                        withBlock[ABRenrakusakiEntity.RENRAKUSAKI2] = csDataRow[ABRenrakusakiEntity.RENRAKUSAKI2];
+                        withBlock[ABRenrakusakiEntity.RENRAKUSAKI3] = csDataRow[ABRenrakusakiEntity.RENRAKUSAKI3];
+                        withBlock[ABRenrakusakiEntity.RESERVE] = csDataRow[ABRenrakusakiEntity.RESERVE];
+                        withBlock[ABRenrakusakiEntity.TANMATSUID] = csDataRow[ABRenrakusakiEntity.TANMATSUID];
+                        withBlock[ABRenrakusakiEntity.SAKUJOFG] = csDataRow[ABRenrakusakiEntity.SAKUJOFG];
+                        withBlock[ABRenrakusakiEntity.KOSHINCOUNTER] = csDataRow[ABRenrakusakiEntity.KOSHINCOUNTER];
+                        withBlock[ABRenrakusakiEntity.SAKUSEINICHIJI] = csDataRow[ABRenrakusakiEntity.SAKUSEINICHIJI];
+                        withBlock[ABRenrakusakiEntity.SAKUSEIUSER] = csDataRow[ABRenrakusakiEntity.SAKUSEIUSER];
+                        withBlock[ABRenrakusakiEntity.KOSHINNICHIJI] = csDataRow[ABRenrakusakiEntity.KOSHINNICHIJI];
+                        withBlock[ABRenrakusakiEntity.KOSHINUSER] = csDataRow[ABRenrakusakiEntity.KOSHINUSER];
                         withBlock.EndEdit();
                     }
-                    csResultEntity.Tables(ABRenrakusakiEntity.TABLE_NAME).Rows.Add(csNewRow);
+                    csResultEntity.Tables[ABRenrakusakiEntity.TABLE_NAME].Rows.Add(csNewRow);
 
-                    csNewRow = csResultEntity.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).NewRow;
+                    csNewRow = csResultEntity.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].NewRow();
                     {
                         ref var withBlock1 = ref csNewRow;
                         withBlock1.BeginEdit();
-                        withBlock1.Item(ABRenrakusakiFZYEntity.JUMINCD) = csDataRow.Item(ABRenrakusakiEntity.JUMINCD);
-                        withBlock1.Item(ABRenrakusakiFZYEntity.SHICHOSONCD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SHICHOSONCD, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.KYUSHICHOSONCD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KYUSHICHOSONCD, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.GYOMUCD) = csDataRow.Item(ABRenrakusakiEntity.GYOMUCD);
-                        withBlock1.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD) = csDataRow.Item(ABRenrakusakiEntity.GYOMUNAISHU_CD);
+                        withBlock1[ABRenrakusakiFZYEntity.JUMINCD] = csDataRow[ABRenrakusakiEntity.JUMINCD];
+                        withBlock1[ABRenrakusakiFZYEntity.SHICHOSONCD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SHICHOSONCD, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.KYUSHICHOSONCD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KYUSHICHOSONCD, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.GYOMUCD] = csDataRow[ABRenrakusakiEntity.GYOMUCD];
+                        withBlock1[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD] = csDataRow[ABRenrakusakiEntity.GYOMUNAISHU_CD];
                         // *履歴番号 000001 2024/01/11 追加開始
-                        withBlock1.Item(ABRenrakusakiFZYEntity.TOROKURENBAN) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.TOROKURENBAN, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.TOROKURENBAN] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.TOROKURENBAN, SUFFIX_FZY));
                         // *履歴番号 000001 2024/01/11 追加終了
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI4, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI5, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI6, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.RESERVE) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RESERVE, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.TANMATSUID) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.TANMATSUID, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.SAKUJOFG) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SAKUJOFG, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.KOSHINCOUNTER) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KOSHINCOUNTER, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.SAKUSEINICHIJI) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SAKUSEINICHIJI, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.SAKUSEIUSER) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SAKUSEIUSER, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.KOSHINNICHIJI) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KOSHINNICHIJI, SUFFIX_FZY));
-                        withBlock1.Item(ABRenrakusakiFZYEntity.KOSHINUSER) = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KOSHINUSER, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI4] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI4, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI5] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI5, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI6] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI6, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.RESERVE] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.RESERVE, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.TANMATSUID] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.TANMATSUID, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.SAKUJOFG] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SAKUJOFG, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.KOSHINCOUNTER] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KOSHINCOUNTER, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.SAKUSEINICHIJI] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SAKUSEINICHIJI, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.SAKUSEIUSER] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.SAKUSEIUSER, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.KOSHINNICHIJI] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KOSHINNICHIJI, SUFFIX_FZY));
+                        withBlock1[ABRenrakusakiFZYEntity.KOSHINUSER] = csDataRow.Item(string.Concat(ABRenrakusakiFZYEntity.KOSHINUSER, SUFFIX_FZY));
                         withBlock1.EndEdit();
                     }
-                    csResultEntity.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Rows.Add(csNewRow);
+                    csResultEntity.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Rows.Add(csNewRow);
 
                     // *履歴番号 000001 2024/01/11 追加開始
-                    csNewRow = csResultEntity.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).NewRow;
+                    csNewRow = csResultEntity.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].NewRow();
                     csNewRow.BeginEdit();
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.JUMINCD) = csDataRow.Item(ABRenrakusakiFZYHyojunEntity.JUMINCD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUCD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.GYOMUCD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKUYMD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.TOROKUYMD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.BIKO) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.BIKO, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE1) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE1, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE2) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE2, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE3) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE3, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE4) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE4, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE5) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE5, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.TANMATSUID) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.TANMATSUID, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.SAKUJOFG) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.SAKUJOFG, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.SAKUSEIUSER) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.SAKUSEIUSER, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI, SUFFIX_FZY_HYOJUN));
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.KOSHINUSER) = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.KOSHINUSER, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.JUMINCD] = csDataRow[ABRenrakusakiFZYHyojunEntity.JUMINCD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.GYOMUCD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.GYOMUCD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.TOROKURENBAN] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.TOROKUYMD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.TOROKUYMD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.BIKO] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.BIKO, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE1] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE1, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE2] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE2, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE3] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE3, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE4] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE4, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE5] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.RESERVE5, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.TANMATSUID] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.TANMATSUID, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.SAKUJOFG, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.KOSHINCOUNTER, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.SAKUSEIUSER] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.SAKUSEIUSER, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI, SUFFIX_FZY_HYOJUN));
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.KOSHINUSER] = csDataRow.Item(string.Concat(ABRenrakusakiFZYHyojunEntity.KOSHINUSER, SUFFIX_FZY_HYOJUN));
                     csNewRow.EndEdit();
-                    csResultEntity.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Rows.Add(csNewRow);
+                    csResultEntity.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Rows.Add(csNewRow);
                     // *履歴番号 000001 2024/01/11 追加終了
 
                 }
@@ -733,39 +733,39 @@ namespace Densan.Reams.AB.AB000BB
                 // キー情報で連絡先付随マスタを取得
                 // *履歴番号 000001 2024/01/11 修正開始
                 // csDataSet = m_cRenrakusakiFZYB.SelectByKey( _
-                // csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.JUMINCD).ToString, _
-                // csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUCD).ToString, _
-                // csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD).ToString, _
+                // csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.JUMINCD].ToString(), _
+                // csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUCD].ToString(), _
+                // csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD].ToString(), _
                 // True)
-                csDataSet = m_cRenrakusakiFZYB.SelectByKey(csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.JUMINCD).ToString, csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUCD).ToString, csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD).ToString, csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.TOROKURENBAN).ToString, true);
+                csDataSet = m_cRenrakusakiFZYB.SelectByKey(csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.JUMINCD].ToString(), csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUCD].ToString(), csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD].ToString(), csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.TOROKURENBAN].ToString(), true);
 
 
 
 
                 // *履歴番号 000001 2024/01/11 修正終了
 
-                if (csDataSet.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    foreach (DataRow csDataRow in csDataSet.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Rows)
+                    foreach (DataRow csDataRow in csDataSet.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Rows)
                     {
 
                         // データ編集
                         csDataRow.BeginEdit();
-                        csDataRow.Item(ABRenrakusakiFZYEntity.SHICHOSONCD) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SHICHOSONCD);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.KYUSHICHOSONCD) = csRenrakusakiRow.Item(ABRenrakusakiEntity.KYUSHICHOSONCD);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.RESERVE) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RESERVE);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.SAKUJOFG) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SAKUJOFG);
-                        csDataRow.Item(ABRenrakusakiFZYEntity.KOSHINNICHIJI) = csRenrakusakiRow.Item(ABRenrakusakiEntity.KOSHINNICHIJI);
+                        csDataRow[ABRenrakusakiFZYEntity.SHICHOSONCD] = csRenrakusakiRow[ABRenrakusakiEntity.SHICHOSONCD];
+                        csDataRow[ABRenrakusakiFZYEntity.KYUSHICHOSONCD] = csRenrakusakiRow[ABRenrakusakiEntity.KYUSHICHOSONCD];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO];
+                        csDataRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO];
+                        csDataRow[ABRenrakusakiFZYEntity.RESERVE] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RESERVE];
+                        csDataRow[ABRenrakusakiFZYEntity.SAKUJOFG] = csRenrakusakiRow[ABRenrakusakiEntity.SAKUJOFG];
+                        csDataRow[ABRenrakusakiFZYEntity.KOSHINNICHIJI] = csRenrakusakiRow[ABRenrakusakiEntity.KOSHINNICHIJI];
                         csDataRow.EndEdit();
 
                         // 連絡先付随マスタの更新処理
@@ -790,31 +790,31 @@ namespace Densan.Reams.AB.AB000BB
                 {
 
                     // データ編集
-                    csNewRow = csDataSet.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).NewRow;
+                    csNewRow = csDataSet.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].NewRow();
                     csNewRow.EndEdit();
-                    csNewRow.Item(ABRenrakusakiFZYEntity.JUMINCD) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.JUMINCD);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.SHICHOSONCD) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SHICHOSONCD);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.KYUSHICHOSONCD) = csRenrakusakiRow.Item(ABRenrakusakiEntity.KYUSHICHOSONCD);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.GYOMUCD) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUCD);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD);
+                    csNewRow[ABRenrakusakiFZYEntity.JUMINCD] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.JUMINCD];
+                    csNewRow[ABRenrakusakiFZYEntity.SHICHOSONCD] = csRenrakusakiRow[ABRenrakusakiEntity.SHICHOSONCD];
+                    csNewRow[ABRenrakusakiFZYEntity.KYUSHICHOSONCD] = csRenrakusakiRow[ABRenrakusakiEntity.KYUSHICHOSONCD];
+                    csNewRow[ABRenrakusakiFZYEntity.GYOMUCD] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUCD];
+                    csNewRow[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD];
                     // *履歴番号 000001 2024/01/11 追加開始
-                    csNewRow.Item(ABRenrakusakiFZYEntity.TOROKURENBAN) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.TOROKURENBAN);
+                    csNewRow[ABRenrakusakiFZYEntity.TOROKURENBAN] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.TOROKURENBAN];
                     // *履歴番号 000001 2024/01/11 追加終了
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.RESERVE) = csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.RESERVE);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.SAKUJOFG) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SAKUJOFG);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.SAKUSEINICHIJI) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SAKUSEINICHIJI);
-                    csNewRow.Item(ABRenrakusakiFZYEntity.KOSHINNICHIJI) = csRenrakusakiRow.Item(ABRenrakusakiEntity.KOSHINNICHIJI);
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI1BIKO];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI2BIKO];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI3BIKO];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI4BIKO];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI5BIKO];
+                    csNewRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RENRAKUSAKI6BIKO];
+                    csNewRow[ABRenrakusakiFZYEntity.RESERVE] = csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.RESERVE];
+                    csNewRow[ABRenrakusakiFZYEntity.SAKUJOFG] = csRenrakusakiRow[ABRenrakusakiEntity.SAKUJOFG];
+                    csNewRow[ABRenrakusakiFZYEntity.SAKUSEINICHIJI] = csRenrakusakiRow[ABRenrakusakiEntity.SAKUSEINICHIJI];
+                    csNewRow[ABRenrakusakiFZYEntity.KOSHINNICHIJI] = csRenrakusakiRow[ABRenrakusakiEntity.KOSHINNICHIJI];
                     csNewRow.EndEdit();
-                    csDataSet.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Rows.Add(csNewRow);
+                    csDataSet.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Rows.Add(csNewRow);
 
                     // 連絡先付随マスタの追加処理
                     m_cRenrakusakiFZYB.Insert(csNewRow);
@@ -926,46 +926,46 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // キー情報で連絡先付随標準マスタを取得
-                csDataSet = m_cRenrakusakiFZYHyojunB.SelectByKey(csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.JUMINCD).ToString, csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUCD).ToString, csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD).ToString, csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN).ToString, true);
+                csDataSet = m_cRenrakusakiFZYHyojunB.SelectByKey(csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.JUMINCD].ToString(), csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOMUCD].ToString(), csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD].ToString(), csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.TOROKURENBAN].ToString(), true);
 
 
 
 
 
-                if (csDataSet.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    foreach (DataRow csDataRow in csDataSet.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Rows)
+                    foreach (DataRow csDataRow in csDataSet.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Rows)
                     {
 
                         // データ編集
                         csDataRow.BeginEdit();
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.BIKO) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.BIKO);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE1) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE1);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE2) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE2);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE3) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE3);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE4) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE4);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE5) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE5);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.SAKUJOFG) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SAKUJOFG);
-                        csDataRow.Item(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = csRenrakusakiRow.Item(ABRenrakusakiEntity.KOSHINNICHIJI);
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.BIKO] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.BIKO];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RESERVE1] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE1];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RESERVE2] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE2];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RESERVE3] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE3];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RESERVE4] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE4];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.RESERVE5] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE5];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG] = csRenrakusakiRow[ABRenrakusakiEntity.SAKUJOFG];
+                        csDataRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = csRenrakusakiRow[ABRenrakusakiEntity.KOSHINNICHIJI];
 
                         csDataRow.EndEdit();
 
@@ -991,44 +991,44 @@ namespace Densan.Reams.AB.AB000BB
                 {
 
                     // データ編集
-                    csNewRow = csDataSet.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).NewRow;
+                    csNewRow = csDataSet.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].NewRow();
                     csNewRow.EndEdit();
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.JUMINCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.JUMINCD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUCD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKUYMD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKUYMD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.BIKO) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.BIKO);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE1) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE1);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE2) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE2);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE3) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE3);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE4) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE4);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE5) = csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.RESERVE5);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.SAKUJOFG) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SAKUJOFG);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI) = csRenrakusakiRow.Item(ABRenrakusakiEntity.SAKUSEINICHIJI);
-                    csNewRow.Item(ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI) = csRenrakusakiRow.Item(ABRenrakusakiEntity.KOSHINNICHIJI);
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.JUMINCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.JUMINCD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.GYOMUCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOMUCD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.TOROKURENBAN] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.TOROKURENBAN];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_STYMD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKI_EDYMD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU1];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU2];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU3];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU4];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU5];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHUBETSU6];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIYUBINNO];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHOCD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIJUSHO];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHIKUCHOSONCD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZACD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKTODOFUKEN];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKISHICHOSON];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIMACHIAZA];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIBANCHI];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIKATAGAKI];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.TOROKUYMD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.TOROKUYMD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOSEIKUCD];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RENRAKUSAKIEDABAN];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.BIKO] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.BIKO];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE1] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE1];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE2] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE2];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE3] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE3];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE4] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE4];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.RESERVE5] = csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.RESERVE5];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.SAKUJOFG] = csRenrakusakiRow[ABRenrakusakiEntity.SAKUJOFG];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.SAKUSEINICHIJI] = csRenrakusakiRow[ABRenrakusakiEntity.SAKUSEINICHIJI];
+                    csNewRow[ABRenrakusakiFZYHyojunEntity.KOSHINNICHIJI] = csRenrakusakiRow[ABRenrakusakiEntity.KOSHINNICHIJI];
                     csNewRow.EndEdit();
-                    csDataSet.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Rows.Add(csNewRow);
+                    csDataSet.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Rows.Add(csNewRow);
 
                     // 連絡先付随標準マスタの追加処理
                     m_cRenrakusakiFZYHyojunB.Insert(csNewRow);
@@ -1139,21 +1139,21 @@ namespace Densan.Reams.AB.AB000BB
                 // キー情報で連絡先付随マスタを取得
                 // *履歴番号 000001 2024/01/11 修正開始
                 // csDataSet = m_cRenrakusakiFZYB.SelectByKey( _
-                // csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.JUMINCD, DataRowVersion.Original).ToString, _
-                // csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUCD, DataRowVersion.Original).ToString, _
-                // csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD, DataRowVersion.Original).ToString, _
+                // csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.JUMINCD, DataRowVersion.Original].ToString(), _
+                // csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUCD, DataRowVersion.Original].ToString(), _
+                // csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD, DataRowVersion.Original].ToString(), _
                 // True)
-                csDataSet = m_cRenrakusakiFZYB.SelectByKey(csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.JUMINCD, DataRowVersion.Original).ToString, csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUCD, DataRowVersion.Original).ToString, csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.GYOMUNAISHU_CD, DataRowVersion.Original).ToString, csRenrakusakiFZYRow.Item(ABRenrakusakiFZYEntity.TOROKURENBAN, DataRowVersion.Original).ToString, true);
+                csDataSet = m_cRenrakusakiFZYB.SelectByKey(csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.JUMINCD, DataRowVersion.Original].ToString(), csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUCD, DataRowVersion.Original].ToString(), csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.GYOMUNAISHU_CD, DataRowVersion.Original].ToString(), csRenrakusakiFZYRow[ABRenrakusakiFZYEntity.TOROKURENBAN, DataRowVersion.Original].ToString(), true);
 
 
 
 
                 // *履歴番号 000001 2024/01/11 修正終了
 
-                if (csDataSet.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    foreach (DataRow csDataRow in csDataSet.Tables(ABRenrakusakiFZYEntity.TABLE_NAME).Rows)
+                    foreach (DataRow csDataRow in csDataSet.Tables[ABRenrakusakiFZYEntity.TABLE_NAME].Rows)
                     {
 
                         // 連絡先付随マスタの物理削除処理
@@ -1281,16 +1281,16 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // キー情報で連絡先付随標準マスタを取得
-                csDataSet = m_cRenrakusakiFZYHyojunB.SelectByKey(csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.JUMINCD, DataRowVersion.Original).ToString, csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUCD, DataRowVersion.Original).ToString, csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD, DataRowVersion.Original).ToString, csRenrakusakiFZYHyojunRow.Item(ABRenrakusakiFZYHyojunEntity.TOROKURENBAN, DataRowVersion.Original).ToString, true);
+                csDataSet = m_cRenrakusakiFZYHyojunB.SelectByKey(csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.JUMINCD, DataRowVersion.Original].ToString(), csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOMUCD, DataRowVersion.Original].ToString(), csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.GYOMUNAISHU_CD, DataRowVersion.Original].ToString(), csRenrakusakiFZYHyojunRow[ABRenrakusakiFZYHyojunEntity.TOROKURENBAN, DataRowVersion.Original].ToString(), true);
 
 
 
 
 
-                if (csDataSet.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    foreach (DataRow csDataRow in csDataSet.Tables(ABRenrakusakiFZYHyojunEntity.TABLE_NAME).Rows)
+                    foreach (DataRow csDataRow in csDataSet.Tables[ABRenrakusakiFZYHyojunEntity.TABLE_NAME].Rows)
                     {
 
                         // 連絡先付随標準マスタの物理削除処理

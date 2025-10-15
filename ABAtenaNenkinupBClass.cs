@@ -21,7 +21,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABAtenaNenkinupBClass
@@ -144,45 +144,45 @@ namespace Densan.Reams.AB.AB000BB
                 {
 
                     // 宛名年金マスタ抽出呼び出し
-                    csAtenaNenkinEntity = cABAtenaNenkinBClass.GetAtenaNenkin((string)cABKobetsuProperty[intcnt].p_strJUMINCD);
+                    csAtenaNenkinEntity = cABAtenaNenkinBClass.GetAtenaNenkin(Convert.ToString(cABKobetsuProperty[intcnt]).p_strJUMINCD);
 
                     // 追加・更新の判定
-                    if (csAtenaNenkinEntity.Tables(ABAtenaNenkinEntity.TABLE_NAME).Rows.Count == 0)
+                    if (csAtenaNenkinEntity.Tables[ABAtenaNenkinEntity.TABLE_NAME].Rows.Count == 0)
                     {
 
-                        cDatRow = csAtenaNenkinEntity.Tables(ABAtenaNenkinEntity.TABLE_NAME).NewRow();
+                        cDatRow = csAtenaNenkinEntity.Tables[ABAtenaNenkinEntity.TABLE_NAME].NewRow();
                         // 各項目をプロパティから取得
-                        cDatRow.Item(ABAtenaNenkinEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cDatRow.Item(ABAtenaNenkinEntity.HIHOKENSHAGAITOKB) = string.Empty;
-                        cDatRow.Item(ABAtenaNenkinEntity.KSNENKNNO) = cABKobetsuProperty[intcnt].p_strKSNENKNNO;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSHUTKYMD) = cABKobetsuProperty[intcnt].p_strSKAKSHUTKYMD;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSHUTKSHU) = cABKobetsuProperty[intcnt].p_strSKAKSHUTKSHU;
-                        cDatRow.Item(ABAtenaNenkinEntity.SHUBETSUHENKOYMD) = string.Empty;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSHUTKRIYUCD) = cABKobetsuProperty[intcnt].p_strSKAKSHUTKRIYUCD;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSSHTSYMD) = cABKobetsuProperty[intcnt].p_strSKAKSSHTSYMD;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSSHTSRIYUCD) = cABKobetsuProperty[intcnt].p_strSKAKSSHTSRIYUCD;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKIGO1) = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNNO1) = cABKobetsuProperty[intcnt].p_strJKYNENKNNO1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNSHU1) = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNEDABAN1) = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKB1) = cABKobetsuProperty[intcnt].p_strJKYNENKNKB1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKIGO2) = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNNO2) = cABKobetsuProperty[intcnt].p_strJKYNENKNNO2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNSHU2) = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNEDABAN2) = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKB2) = cABKobetsuProperty[intcnt].p_strJKYNENKNKB2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKIGO3) = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNNO3) = cABKobetsuProperty[intcnt].p_strJKYNENKNNO3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNSHU3) = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNEDABAN3) = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKB3) = cABKobetsuProperty[intcnt].p_strJKYNENKNKB3;
+                        cDatRow[ABAtenaNenkinEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                        cDatRow[ABAtenaNenkinEntity.HIHOKENSHAGAITOKB] = string.Empty;
+                        cDatRow[ABAtenaNenkinEntity.KSNENKNNO] = cABKobetsuProperty[intcnt].p_strKSNENKNNO;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSHUTKYMD] = cABKobetsuProperty[intcnt].p_strSKAKSHUTKYMD;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSHUTKSHU] = cABKobetsuProperty[intcnt].p_strSKAKSHUTKSHU;
+                        cDatRow[ABAtenaNenkinEntity.SHUBETSUHENKOYMD] = string.Empty;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSHUTKRIYUCD] = cABKobetsuProperty[intcnt].p_strSKAKSHUTKRIYUCD;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSSHTSYMD] = cABKobetsuProperty[intcnt].p_strSKAKSSHTSYMD;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSSHTSRIYUCD] = cABKobetsuProperty[intcnt].p_strSKAKSSHTSRIYUCD;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKIGO1] = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNNO1] = cABKobetsuProperty[intcnt].p_strJKYNENKNNO1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNSHU1] = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNEDABAN1] = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKB1] = cABKobetsuProperty[intcnt].p_strJKYNENKNKB1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKIGO2] = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNNO2] = cABKobetsuProperty[intcnt].p_strJKYNENKNNO2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNSHU2] = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNEDABAN2] = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKB2] = cABKobetsuProperty[intcnt].p_strJKYNENKNKB2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKIGO3] = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNNO3] = cABKobetsuProperty[intcnt].p_strJKYNENKNNO3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNSHU3] = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNEDABAN3] = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKB3] = cABKobetsuProperty[intcnt].p_strJKYNENKNKB3;
                         // 市町村コード
-                        cDatRow.Item(ABAtenaNenkinEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaNenkinEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                         // 旧市町村コード
-                        cDatRow.Item(ABAtenaNenkinEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaNenkinEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                         // データの追加
-                        // csAtenaNenkinEntity.Tables(ABAtenaNenkinEntity.TABLE_NAME).Rows.Add(cDatRow)
+                        // csAtenaNenkinEntity.Tables[ABAtenaNenkinEntity.TABLE_NAME].Rows.Add(cDatRow)
 
                         // 宛名年金マスタ追加メソッド呼び出し
                         intUpdCnt = cABAtenaNenkinBClass.InsertAtenaNenkin(cDatRow);
@@ -190,35 +190,35 @@ namespace Densan.Reams.AB.AB000BB
                     else
                     {
 
-                        cDatRow = csAtenaNenkinEntity.Tables(ABAtenaNenkinEntity.TABLE_NAME).Rows(0);
+                        cDatRow = csAtenaNenkinEntity.Tables[ABAtenaNenkinEntity.TABLE_NAME].Rows[0];
                         // 各項目をプロパティから取得
-                        cDatRow.Item(ABAtenaNenkinEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cDatRow.Item(ABAtenaNenkinEntity.KSNENKNNO) = cABKobetsuProperty[intcnt].p_strKSNENKNNO;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSHUTKYMD) = cABKobetsuProperty[intcnt].p_strSKAKSHUTKYMD;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSHUTKSHU) = cABKobetsuProperty[intcnt].p_strSKAKSHUTKSHU;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSHUTKRIYUCD) = cABKobetsuProperty[intcnt].p_strSKAKSHUTKRIYUCD;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSSHTSYMD) = cABKobetsuProperty[intcnt].p_strSKAKSSHTSYMD;
-                        cDatRow.Item(ABAtenaNenkinEntity.SKAKSSHTSRIYUCD) = cABKobetsuProperty[intcnt].p_strSKAKSSHTSRIYUCD;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKIGO1) = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNNO1) = cABKobetsuProperty[intcnt].p_strJKYNENKNNO1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNSHU1) = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNEDABAN1) = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKB1) = cABKobetsuProperty[intcnt].p_strJKYNENKNKB1;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKIGO2) = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNNO2) = cABKobetsuProperty[intcnt].p_strJKYNENKNNO2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNSHU2) = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNEDABAN2) = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKB2) = cABKobetsuProperty[intcnt].p_strJKYNENKNKB2;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKIGO3) = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNNO3) = cABKobetsuProperty[intcnt].p_strJKYNENKNNO3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNSHU3) = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNEDABAN3) = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN3;
-                        cDatRow.Item(ABAtenaNenkinEntity.JKYNENKNKB3) = cABKobetsuProperty[intcnt].p_strJKYNENKNKB3;
+                        cDatRow[ABAtenaNenkinEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                        cDatRow[ABAtenaNenkinEntity.KSNENKNNO] = cABKobetsuProperty[intcnt].p_strKSNENKNNO;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSHUTKYMD] = cABKobetsuProperty[intcnt].p_strSKAKSHUTKYMD;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSHUTKSHU] = cABKobetsuProperty[intcnt].p_strSKAKSHUTKSHU;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSHUTKRIYUCD] = cABKobetsuProperty[intcnt].p_strSKAKSHUTKRIYUCD;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSSHTSYMD] = cABKobetsuProperty[intcnt].p_strSKAKSSHTSYMD;
+                        cDatRow[ABAtenaNenkinEntity.SKAKSSHTSRIYUCD] = cABKobetsuProperty[intcnt].p_strSKAKSSHTSRIYUCD;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKIGO1] = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNNO1] = cABKobetsuProperty[intcnt].p_strJKYNENKNNO1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNSHU1] = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNEDABAN1] = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKB1] = cABKobetsuProperty[intcnt].p_strJKYNENKNKB1;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKIGO2] = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNNO2] = cABKobetsuProperty[intcnt].p_strJKYNENKNNO2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNSHU2] = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNEDABAN2] = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKB2] = cABKobetsuProperty[intcnt].p_strJKYNENKNKB2;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKIGO3] = cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNNO3] = cABKobetsuProperty[intcnt].p_strJKYNENKNNO3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNSHU3] = cABKobetsuProperty[intcnt].p_strJKYNENKNSHU3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNEDABAN3] = cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN3;
+                        cDatRow[ABAtenaNenkinEntity.JKYNENKNKB3] = cABKobetsuProperty[intcnt].p_strJKYNENKNKB3;
 
                         // 市町村コード
-                        cDatRow.Item(ABAtenaNenkinEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaNenkinEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                         // 旧市町村コード
-                        cDatRow.Item(ABAtenaNenkinEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaNenkinEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                         // 宛名年金マスタ更新メソッド呼び出し
                         intUpdCnt = cABAtenaNenkinBClass.UpdateAtenaNenkin(cDatRow);
@@ -243,9 +243,9 @@ namespace Densan.Reams.AB.AB000BB
                 // 宛名管理情報の種別04識別キー23のデータを取得する(住基側の更新処理の結果を判断するかどうか)
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "23");
                 // 管理情報にレコードが存在し、パラメータが"1"の時はチェックしない
-                if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0))
+                if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0))
                 {
-                    if ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "1")
+                    if ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "1")
                     {
                         // ﾊﾟﾗﾒｰﾀが"1"のときはチェックしない
                         strJukiResult = "1";
@@ -280,28 +280,28 @@ namespace Densan.Reams.AB.AB000BB
                     cAAKOBETSUNENKINParamClass[intcnt] = new localhost.AAKOBETSUNENKINParamClass();
 
                     // 更新・追加した項目を取得
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJUMINCD = (string)cABKobetsuProperty[intcnt].p_strJUMINCD;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strKSNENKNNO = (string)cABKobetsuProperty[intcnt].p_strKSNENKNNO;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSHUTKYMD = (string)cABKobetsuProperty[intcnt].p_strSKAKSHUTKYMD;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSHUTKSHU = (string)cABKobetsuProperty[intcnt].p_strSKAKSHUTKSHU;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSHUTKRIYUCD = (string)cABKobetsuProperty[intcnt].p_strSKAKSHUTKRIYUCD;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSSHTSYMD = (string)cABKobetsuProperty[intcnt].p_strSKAKSSHTSYMD;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSSHTSRIYUCD = (string)cABKobetsuProperty[intcnt].p_strSKAKSSHTSRIYUCD;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKIGO1 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO1;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNNO1 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNNO1;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNSHU1 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNSHU1;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNEDABAN1 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN1;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKB1 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNKB1;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKIGO2 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO2;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNNO2 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNNO2;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNSHU2 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNSHU2;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNEDABAN2 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN2;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKB2 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNKB2;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKIGO3 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNKIGO3;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNNO3 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNNO3;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNSHU3 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNSHU3;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNEDABAN3 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNEDABAN3;
-                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKB3 = (string)cABKobetsuProperty[intcnt].p_strJKYNENKNKB3;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJUMINCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJUMINCD;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strKSNENKNNO = Convert.ToString(cABKobetsuProperty[intcnt]).p_strKSNENKNNO;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSHUTKYMD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strSKAKSHUTKYMD;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSHUTKSHU = Convert.ToString(cABKobetsuProperty[intcnt]).p_strSKAKSHUTKSHU;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSHUTKRIYUCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strSKAKSHUTKRIYUCD;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSSHTSYMD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strSKAKSSHTSYMD;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strSKAKSSHTSRIYUCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strSKAKSSHTSRIYUCD;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKIGO1 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNKIGO1;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNNO1 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNNO1;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNSHU1 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNSHU1;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNEDABAN1 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNEDABAN1;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKB1 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNKB1;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKIGO2 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNKIGO2;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNNO2 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNNO2;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNSHU2 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNSHU2;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNEDABAN2 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNEDABAN2;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKB2 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNKB2;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKIGO3 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNKIGO3;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNNO3 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNNO3;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNSHU3 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNSHU3;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNEDABAN3 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNEDABAN3;
+                    cAAKOBETSUNENKINParamClass[intcnt].m_strJKYNENKNKB3 = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJKYNENKNKB3;
 
                 }
 

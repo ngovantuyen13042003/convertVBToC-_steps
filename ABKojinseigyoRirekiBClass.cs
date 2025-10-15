@@ -21,7 +21,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABKojinseigyoRirekiBClass
@@ -96,7 +96,7 @@ namespace Densan.Reams.AB.AB000BB
             m_CsSb = new StringBuilder();
             {
                 ref var withBlock = ref m_CsSb;
-                withBlock.RRemove(0, withBlock.RLength);
+                withBlock.RRemove(0, withBlock.RLength());
                 withBlock.Append(STR_SELECT_ALL);
                 withBlock.Append(STR_SELECT_FROM);
                 withBlock.Append(ABKojinseigyoRirekiEntity.TABLE_NAME);
@@ -251,20 +251,20 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 更新日時の取得
-                strUpdateDateTime = m_cfRdbClass.GetSystemDate.ToString(STR_DATEFORMATE);        // 作成日時
+                strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString(STR_DATEFORMATE);        // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABKojinseigyoRirekiEntity.TANMATSUID) = m_cfControlData.m_strClientId;      // 端末ＩＤ
-                csDataRow(ABKojinseigyoRirekiEntity.SAKUJOFG) = SAKUJOFG_0;                           // 削除フラグ
-                csDataRow(ABKojinseigyoRirekiEntity.KOSHINCOUNTER) = decimal.Zero;                    // 更新カウンタ
-                csDataRow(ABKojinseigyoRirekiEntity.SAKUSEINICHIJI) = strUpdateDateTime;              // 作成日時
-                csDataRow(ABKojinseigyoRirekiEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;       // 作成ユーザー
-                csDataRow(ABKojinseigyoRirekiEntity.KOSHINNICHIJI) = strUpdateDateTime;               // 更新日時
-                csDataRow(ABKojinseigyoRirekiEntity.KOSHINUSER) = m_cfControlData.m_strUserId;        // 更新ユーザー
+                csDataRow[ABKojinseigyoRirekiEntity.TANMATSUID] = m_cfControlData.m_strClientId;      // 端末ＩＤ
+                csDataRow[ABKojinseigyoRirekiEntity.SAKUJOFG] = SAKUJOFG_0;                           // 削除フラグ
+                csDataRow[ABKojinseigyoRirekiEntity.KOSHINCOUNTER] = decimal.Zero;                    // 更新カウンタ
+                csDataRow[ABKojinseigyoRirekiEntity.SAKUSEINICHIJI] = strUpdateDateTime;              // 作成日時
+                csDataRow[ABKojinseigyoRirekiEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;       // 作成ユーザー
+                csDataRow[ABKojinseigyoRirekiEntity.KOSHINNICHIJI] = strUpdateDateTime;               // 更新日時
+                csDataRow[ABKojinseigyoRirekiEntity.KOSHINUSER] = m_cfControlData.m_strUserId;        // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
-                    this.m_cfInsertUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABKojinseigyoRirekiEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    this.m_cfInsertUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABKojinseigyoRirekiEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // RDBアクセスログ出力
                 m_cABLogX.RdbWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, m_cfRdbClass.GetDevelopmentSQLString(m_strInsertSQL, m_cfInsertUFParameterCollectionClass));
@@ -352,7 +352,7 @@ namespace Densan.Reams.AB.AB000BB
                     // INSERT コレクションにパラメータを追加
                     {
                         ref var withBlock = ref m_CsSb;
-                        withBlock.RRemove(0, withBlock.RLength);
+                        withBlock.RRemove(0, withBlock.RLength());
                         withBlock.Append(ABKojinseigyoRirekiEntity.PARAM_PLACEHOLDER);
                         withBlock.Append(csDataColumn.ColumnName);
                     }

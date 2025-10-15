@@ -17,7 +17,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABMojiretsuHenshuBClass
@@ -188,7 +188,7 @@ namespace Densan.Reams.AB.AB000BB
                                     strRet = strRet + strWkMeisho.RSubstring(0, intIndexFrom);                // 左括弧の直前まで出力対象
 
                                     // ワーク文字列より括弧除去文字列が長い場合は空白をセット
-                                    if (strWkMeisho.RLength > intIndexFrom + intIndexTo + 2)
+                                    if (strWkMeisho.RLength() > intIndexFrom + intIndexTo + 2)
                                     {
                                         strWkMeisho = strWkMeisho.RSubstring(intIndexFrom + intIndexTo + 2);      // 右括弧の次からワークにセット
                                     }

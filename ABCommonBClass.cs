@@ -23,7 +23,7 @@ using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.reams.ur.publicmodule.library.businesscommon.ur010x;
 using ndensan.reams.ur.publicmodule.library.business.ur010b;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     /// <summary>
@@ -313,7 +313,7 @@ namespace Densan.Reams.AB.AB000BB
             try
             {
 
-                if (m_cfRdbClass.GetSystemDate.ToString("yyyyMMdd") < GetHojinBangoRiyoKaishiYMD())
+                if (m_cfRdbClass.GetSystemDate().ToString("yyyyMMdd") < GetHojinBangoRiyoKaishiYMD())
                 {
                     blnResult = false;
                 }
@@ -346,7 +346,7 @@ namespace Densan.Reams.AB.AB000BB
         [SecuritySafeCritical]
         public string URBangoMask(URBangoMaskPrmClass crBangoMaskPrm)
         {
-            return m_crBangoMaskB.URBangoMaskNoSession(crBangoMaskPrm);
+            return m_crBangoMaskB.URBangoMaskNoSession[crBangoMaskPrm];
         }
 
         #endregion
@@ -452,7 +452,7 @@ namespace Densan.Reams.AB.AB000BB
 
             // 住民コードに値が存在しない場合、アクセスログを出力しない。
             // ※住民コードと紐付けがされていない共通番号を処理する場合、アクセスログの出力は行わない方針。
-            if (crBangoMaskPrm.p_strJuminCd is not null && crBangoMaskPrm.p_strJuminCd.Trim.RLength > 0)
+            if (crBangoMaskPrm.p_strJuminCd is not null && crBangoMaskPrm.p_strJuminCd.Trim().RLength() > 0)
             {
                 blnWriteAccessLog = true;
             }
@@ -466,7 +466,7 @@ namespace Densan.Reams.AB.AB000BB
             // ※値なしと桁数分の空白を同様に扱うため。（業共側のエラー回避）
             if (crBangoMaskPrm.p_strMaskBango is not null)
             {
-                crBangoMaskPrm.p_strMaskBango = crBangoMaskPrm.p_strMaskBango.Trim;
+                crBangoMaskPrm.p_strMaskBango = crBangoMaskPrm.p_strMaskBango.Trim();
             }
             else
             {
@@ -548,7 +548,7 @@ namespace Densan.Reams.AB.AB000BB
                         if (blnWriteAccessLog == true)
                         {
 
-                            if (crBangoMaskPrm.p_strMaskBango.RLength > 0)
+                            if (crBangoMaskPrm.p_strMaskBango.RLength() > 0)
                             {
 
                                 cuPersonalData = new USLPersonalDataKojinBango();
@@ -707,7 +707,7 @@ namespace Densan.Reams.AB.AB000BB
                 strMyNumberWork = strMyNumber.Trim();
             }
 
-            switch (strMyNumberWork.RLength)
+            switch (strMyNumberWork.RLength())
             {
                 case var @case when @case == ABConstClass.MYNUMBER.LENGTH.KOJIN:
                     {

@@ -21,7 +21,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABBatchAtenaHenshuBClass : ABAtenaHenshuBClass        // 宛名編集Ｂクラスを継承
@@ -115,7 +115,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cSofuJushoGyoseikuType = m_cURKanriJohoB.GetSofuJushoGyoseiku_SofuJushoGyoseiku_Param
                 if (m_bSofuJushoGyoseikuTypeFlg == false)
                 {
-                    m_cSofuJushoGyoseikuType = m_cURKanriJohoB.GetSofuJushoGyoseiku_SofuJushoGyoseiku_Param;
+                    m_cSofuJushoGyoseikuType = m_cURKanriJohoB.GetSofuJushoGyoseiku_SofuJushoGyoseiku_Param();
                     m_bSofuJushoGyoseikuTypeFlg = true;
                 }
                 cSofuJushoGyoseikuType = m_cSofuJushoGyoseikuType;

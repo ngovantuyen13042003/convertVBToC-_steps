@@ -22,7 +22,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABLTXmlDatBClass
@@ -370,7 +370,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 全件取得処理
                 csLtXmlDat_All = m_cfRdbClass.GetDataSet(strSQL_ALL.ToString(), cfUFParameterCollectionClass);
 
-                intAllCount = (int)csLtXmlDat_All.Tables(0).Rows(0)(COL_COUNT);
+                intAllCount = (int)csLtXmlDat_All.Tables[0].Rows[0](COL_COUNT);
 
 
                 // RDBアクセスログ出力
@@ -541,51 +541,51 @@ namespace Densan.Reams.AB.AB000BB
 
 
                 // ｅＬＴＡＸ受信ＸＭＬ届出・申告データ件数データセットにセット
-                foreach (DataRow currentCsDataRow in csDataSet.Tables(ABLTXMLDatEntity.TABLE_NAME).Rows)
+                foreach (DataRow currentCsDataRow in csDataSet.Tables[ABLTXMLDatEntity.TABLE_NAME].Rows)
                 {
                     csDataRow = currentCsDataRow;
 
-                    csNewRow = csLtXMLDatCountDS.Tables(ABLTXmlDatCountData.TABLE_NAME).NewRow;
+                    csNewRow = csLtXMLDatCountDS.Tables[ABLTXmlDatCountData.TABLE_NAME].NewRow();
 
-                    csNewRow(ABLTXmlDatCountData.TAXKB) = csDataRow(ABLTXMLDatEntity.TAXKB);
-                    csNewRow(ABLTXmlDatCountData.PROCID) = csDataRow(ABLTXMLDatEntity.PROCID);
-                    csNewRow(ABLTXmlDatCountData.PROCRYAKUMEI) = GetProcRyakumei((string)csDataRow(ABLTXMLDatEntity.PROCID));
-                    csNewRow(ABLTXmlDatCountData.COUNT) = csDataRow("COUNT");
+                    csNewRow[ABLTXmlDatCountData.TAXKB] = csDataRow[ABLTXMLDatEntity.TAXKB];
+                    csNewRow[ABLTXmlDatCountData.PROCID] = csDataRow[ABLTXMLDatEntity.PROCID];
+                    csNewRow[ABLTXmlDatCountData.PROCRYAKUMEI] = GetProcRyakumei(Convert.ToString(csDataRow[ABLTXMLDatEntity.PROCID]));
+                    csNewRow[ABLTXmlDatCountData.COUNT] = csDataRow["COUNT"];
 
-                    csLtXMLDatCountDS.Tables(ABLTXmlDatCountData.TABLE_NAME).Rows.Add(csNewRow);
+                    csLtXMLDatCountDS.Tables[ABLTXmlDatCountData.TABLE_NAME].Rows.Add(csNewRow);
 
                 }
                 // ----------------------------------------------------------------------------
                 // 合計行追加
-                csNewRow = csLtXMLDatCountDS.Tables(ABLTXmlDatCountData.TABLE_NAME).NewRow;
+                csNewRow = csLtXMLDatCountDS.Tables[ABLTXmlDatCountData.TABLE_NAME].NewRow();
 
                 // 税目区分
                 if (csABLTXmlDatParaX.p_strTaxKB != ABEnumDefine.ZeimokuCDType.Empty)
                 {
                     // 空白以外
-                    csNewRow(ABLTXmlDatCountData.TAXKB) = (string)csABLTXmlDatParaX.p_strTaxKB;
+                    csNewRow[ABLTXmlDatCountData.TAXKB] = (string)csABLTXmlDatParaX.p_strTaxKB;
                 }
                 else
                 {
                     // 空白の場合
-                    csNewRow(ABLTXmlDatCountData.TAXKB) = string.Empty;
+                    csNewRow[ABLTXmlDatCountData.TAXKB] = string.Empty;
                 }
 
                 // 手続ID
-                csNewRow(ABLTXmlDatCountData.PROCID) = string.Empty;
+                csNewRow[ABLTXmlDatCountData.PROCID] = string.Empty;
 
                 // 手続名
-                csNewRow(ABLTXmlDatCountData.PROCRYAKUMEI) = string.Empty;
+                csNewRow[ABLTXmlDatCountData.PROCRYAKUMEI] = string.Empty;
 
                 // 件数
-                foreach (DataRow currentCsDataRow1 in csDataSet.Tables(ABLTXMLDatEntity.TABLE_NAME).Rows)
+                foreach (DataRow currentCsDataRow1 in csDataSet.Tables[ABLTXMLDatEntity.TABLE_NAME].Rows)
                 {
                     csDataRow = currentCsDataRow1;
-                    intCount += (int)csDataRow("COUNT");
+                    intCount += (int)csDataRow["COUNT"];
                 }
-                csNewRow(ABLTXmlDatCountData.COUNT) = intCount.ToString();
+                csNewRow[ABLTXmlDatCountData.COUNT] = intCount.ToString();
 
-                csLtXMLDatCountDS.Tables(ABLTXmlDatCountData.TABLE_NAME).Rows.Add(csNewRow);
+                csLtXMLDatCountDS.Tables[ABLTXmlDatCountData.TABLE_NAME].Rows.Add(csNewRow);
                 // ----------------------------------------------------------------------------
 
 
@@ -656,16 +656,16 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 更新日時の取得
-                strUpdateDateTime = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");        // 作成日時
+                strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");        // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABLTXMLDatEntity.TANMATSUID) = m_cfControlData.m_strClientId;              // 端末ＩＤ
-                csDataRow(ABLTXMLDatEntity.SAKUJOFG) = "0";                                          // 削除フラグ
-                csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) = decimal.Zero;                            // 更新カウンタ
-                csDataRow(ABLTXMLDatEntity.SAKUSEINICHIJI) = strUpdateDateTime;                      // 作成日時
-                csDataRow(ABLTXMLDatEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;               // 作成ユーザー
-                csDataRow(ABLTXMLDatEntity.KOSHINNICHIJI) = strUpdateDateTime;                       // 更新日時
-                csDataRow(ABLTXMLDatEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                // 更新ユーザー
+                csDataRow[ABLTXMLDatEntity.TANMATSUID] = m_cfControlData.m_strClientId;              // 端末ＩＤ
+                csDataRow[ABLTXMLDatEntity.SAKUJOFG] = "0";                                          // 削除フラグ
+                csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] = decimal.Zero;                            // 更新カウンタ
+                csDataRow[ABLTXMLDatEntity.SAKUSEINICHIJI] = strUpdateDateTime;                      // 作成日時
+                csDataRow[ABLTXMLDatEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;               // 作成ユーザー
+                csDataRow[ABLTXMLDatEntity.KOSHINNICHIJI] = strUpdateDateTime;                       // 更新日時
+                csDataRow[ABLTXMLDatEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                // 更新ユーザー
 
 
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
@@ -674,12 +674,12 @@ namespace Densan.Reams.AB.AB000BB
                     {
                         // 項目:XMLDatの場合は、byte型のままセットする
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength));
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength())];
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfInsertUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                        this.m_cfInsertUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength())].ToString();
                     }
                 }
 
@@ -758,28 +758,28 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABLTXMLDatEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
-                csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) + 1m;         // 更新カウンタ
-                csDataRow(ABLTXMLDatEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");    // 更新日時
-                csDataRow(ABLTXMLDatEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                    // 更新ユーザー
+                csDataRow[ABLTXMLDatEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
+                csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] + 1m;         // 更新カウンタ
+                csDataRow[ABLTXMLDatEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
+                csDataRow[ABLTXMLDatEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                    // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateUFParameterCollectionClass)
                 {
-                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength) == ABLTXMLDatEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength()) == ABLTXMLDatEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else if (cfParam.ParameterName == ABLTXMLDatEntity.KEY_XMLDAT)
                     {
                         // 項目:XMLDatの場合は、byte型のままセットする
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current);
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current];
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -859,22 +859,22 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABLTXMLDatEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
-                csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) + 1m;         // 更新カウンタ
-                csDataRow(ABLTXMLDatEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");    // 更新日時
-                csDataRow(ABLTXMLDatEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                    // 更新ユーザー
+                csDataRow[ABLTXMLDatEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
+                csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] + 1m;         // 更新カウンタ
+                csDataRow[ABLTXMLDatEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
+                csDataRow[ABLTXMLDatEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                    // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateConvertFGUFParameterCollectionClass)
                 {
-                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength) == ABLTXMLDatEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength()) == ABLTXMLDatEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateConvertFGUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateConvertFGUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateConvertFGUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current);
+                        this.m_cfUpdateConvertFGUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current];
                     }
                 }
 
@@ -954,22 +954,22 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABLTXMLDatEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
-                csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) + 1m;         // 更新カウンタ
-                csDataRow(ABLTXMLDatEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");    // 更新日時
-                csDataRow(ABLTXMLDatEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                    // 更新ユーザー
+                csDataRow[ABLTXMLDatEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
+                csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] + 1m;         // 更新カウンタ
+                csDataRow[ABLTXMLDatEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
+                csDataRow[ABLTXMLDatEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                    // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateSakujoFGUFParameterCollectionClass)
                 {
-                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength) == ABLTXMLDatEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength()) == ABLTXMLDatEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateSakujoFGUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateSakujoFGUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateSakujoFGUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString;
+                        this.m_cfUpdateSakujoFGUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -1051,22 +1051,22 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABLTXMLDatEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
-                csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) + 1m;         // 更新カウンタ
-                csDataRow(ABLTXMLDatEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");    // 更新日時
-                csDataRow(ABLTXMLDatEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                    // 更新ユーザー
+                csDataRow[ABLTXMLDatEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
+                csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] + 1m;         // 更新カウンタ
+                csDataRow[ABLTXMLDatEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
+                csDataRow[ABLTXMLDatEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                    // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateSakujoFGUFParameterCollectionClass)
                 {
-                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength) == ABLTXMLDatEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength()) == ABLTXMLDatEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateSakujoFGUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateSakujoFGUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateSakujoFGUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString;
+                        this.m_cfUpdateSakujoFGUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -1145,22 +1145,22 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABLTXMLDatEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
-                csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABLTXMLDatEntity.KOSHINCOUNTER) + 1m;         // 更新カウンタ
-                csDataRow(ABLTXMLDatEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");    // 更新日時
-                csDataRow(ABLTXMLDatEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                    // 更新ユーザー
+                csDataRow[ABLTXMLDatEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                  // 端末ＩＤ
+                csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABLTXMLDatEntity.KOSHINCOUNTER] + 1m;         // 更新カウンタ
+                csDataRow[ABLTXMLDatEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");    // 更新日時
+                csDataRow[ABLTXMLDatEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                    // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfDeleteUFParameterCollectionClass)
                 {
-                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength) == ABLTXMLDatEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLTXMLDatEntity.PREFIX_KEY.RLength()) == ABLTXMLDatEntity.PREFIX_KEY)
                     {
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString;
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLTXMLDatEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 

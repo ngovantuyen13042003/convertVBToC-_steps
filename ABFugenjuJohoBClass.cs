@@ -23,7 +23,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABFugenjuJohoBClass
@@ -137,7 +137,7 @@ namespace Densan.Reams.AB.AB000BB
                 strSQL.Append(ABFugenjuJohoEntity.SAKUJOFG).Append(" <> '1'");
 
                 // 氏名
-                if (csABFugenjuJohoParaX.p_strShimei.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strShimei.Trim().RLength() > 0)
                 {
                     // AB000BB.ABKensakuShimeiBClassのGetKensakuShimeiメソッドを利用し、検索用氏名を編集する。
                     // ※漢字の場合は類字化、カナの場合は半角清音化、アルファベットの場合は大文字化を行い、引数の前方一致の値に応じて文字列の前後に半角％の付与を行う。
@@ -149,7 +149,7 @@ namespace Densan.Reams.AB.AB000BB
                     intAimaiKanji = Strings.InStr(cABKensakuShimeiB.p_strSearchkanjimei, CHAR_PERCENT);
                     intAimaiKana = Strings.InStr(cABKensakuShimeiB.p_strSearchKanaseimei, CHAR_PERCENT);
 
-                    if (cABKensakuShimeiB.p_strSearchkanjimei.Trim().RLength > 0)
+                    if (cABKensakuShimeiB.p_strSearchkanjimei.Trim().RLength() > 0)
                     {
                         // 検索用氏名クラス.検索用漢字名称≠空白の場合
                         if (intAimaiKanji > 0)
@@ -178,7 +178,7 @@ namespace Densan.Reams.AB.AB000BB
                         cfUFParameterCollectionClass.Add(cfUFParameterClass);
                     }
 
-                    else if (cABKensakuShimeiB.p_strSearchKanaseimei.Trim().RLength > 0)
+                    else if (cABKensakuShimeiB.p_strSearchKanaseimei.Trim().RLength() > 0)
                     {
                         // 検索用氏名クラス.検索用カナ姓名≠空白の場合
                         if (intAimaiKana > 0)
@@ -210,7 +210,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 生年月日
-                if (csABFugenjuJohoParaX.p_strUmareymd.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strUmareymd.Trim().RLength() > 0)
                 {
                     // AB不現住情報.不現住情報（生年月日）　＝　'AB不現住情報.生年月日'
                     strSQL.Append(" AND ");
@@ -221,13 +221,13 @@ namespace Densan.Reams.AB.AB000BB
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_FUGENJUJOHO_UMAREYMD;
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strUmareymd.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strUmareymd.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
                 }
 
                 // 性別
-                if (csABFugenjuJohoParaX.p_strSeibetuCD.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strSeibetuCD.Trim().RLength() > 0)
                 {
                     // AB不現住情報.不現住情報（性別）　＝　'AB不現住情報.性別'
                     strSQL.Append(" AND ");
@@ -238,21 +238,21 @@ namespace Densan.Reams.AB.AB000BB
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_FUGENJUJOHO_SEIBETSU;
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strSeibetuCD.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strSeibetuCD.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
                 }
 
                 // 住所コード
-                if (csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim.ToString == "1" || csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim.ToString == "3")
+                if (csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim().ToString() == "1" || csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim().ToString() == "3")
                 {
                     // 不現住検索パラメータ.住所検索指定＝1（住所コードで検索） or 3（住所コードと住所で検索）の場合
-                    if (csABFugenjuJohoParaX.p_strJushoCD.Trim.RLength > 0)
+                    if (csABFugenjuJohoParaX.p_strJushoCD.Trim().RLength() > 0)
                     {
-                        if (csABFugenjuJohoParaX.p_strKangaiJushoKB.Trim.ToString == "1")
+                        if (csABFugenjuJohoParaX.p_strKangaiJushoKB.Trim().ToString() == "1")
                         {
                             // 不現住検索パラメータ.管外住所区分＝1（管外住所） 
-                            if (System.Text.RegularExpressions.Regex.IsMatch(csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(2), "0+?") && csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(2).Distinct().Count() == 1)
+                            if (System.Text.RegularExpressions.Regex.IsMatch(csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(2), "0+?") && csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(2).Distinct().Count() == 1)
                             {
                                 // 不現住検索パラメータ.市区町村コードの上2桁以降が全て"0"の場合（都道府県コードで検索）
                                 // LTRIM（AB不現住情報.不現住だった住所_住所コード）　LIKE　'不現住検索パラメータ.住所コードの上2桁 + 半角％'
@@ -260,9 +260,9 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_JUSHOCD);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_JUSHOCD);
-                                strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(0, 2) + CHAR_PERCENT;
+                                strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(0, 2) + CHAR_PERCENT;
                             }
-                            else if (System.Text.RegularExpressions.Regex.IsMatch(csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(5), "0+?") && csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(5).Distinct().Count() == 1)
+                            else if (System.Text.RegularExpressions.Regex.IsMatch(csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(5), "0+?") && csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(5).Distinct().Count() == 1)
                             {
                                 // 不現住検索パラメータ.住所コードの上5桁以降が全て"0"の場合（市区町村コードで検索）
                                 // LTRIM（AB不現住情報.不現住だった住所_住所コード）　LIKE　'不現住検索パラメータ.住所コードの上5桁 + 半角％'
@@ -270,9 +270,9 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_JUSHOCD);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_JUSHOCD);
-                                strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(0, 5) + CHAR_PERCENT;
+                                strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(0, 5) + CHAR_PERCENT;
                             }
-                            else if (System.Text.RegularExpressions.Regex.IsMatch(csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(8), "0+?") && csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(8).Distinct().Count() == 1)
+                            else if (System.Text.RegularExpressions.Regex.IsMatch(csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(8), "0+?") && csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(8).Distinct().Count() == 1)
                             {
                                 // 不現住検索パラメータ.住所コードの上8桁以降が全て"0"の場合（市区町村コードで検索）
                                 // LTRIM（AB不現住情報.不現住だった住所_住所コード）　LIKE　'不現住検索パラメータ.住所コードの上8桁 + 半角％'
@@ -280,7 +280,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_JUSHOCD);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_JUSHOCD);
-                                strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim.RSubstring(0, 8) + CHAR_PERCENT;
+                                strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim().RSubstring(0, 8) + CHAR_PERCENT;
                             }
                             else
                             {
@@ -300,7 +300,7 @@ namespace Densan.Reams.AB.AB000BB
                             strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_JUSHOCD);
                             strSQL.Append(" = ");
                             strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_JUSHOCD);
-                            strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim.RPadLeft(13);
+                            strJushoCD = csABFugenjuJohoParaX.p_strJushoCD.Trim().RPadLeft(13);
                         }
 
                         // 検索条件のパラメータを作成
@@ -313,13 +313,13 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住所
-                if (csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim.ToString == "2" || csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim.ToString == "3")
+                if (csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim().ToString() == "2" || csABFugenjuJohoParaX.p_strJushoSearchShitei.Trim().ToString() == "3")
                 {
                     // 不現住検索パラメータ.住所検索指定＝2（住所で検索） or 3（住所コードと住所で検索）の場合
-                    if (csABFugenjuJohoParaX.p_strJusho.Trim.RLength > 0)
+                    if (csABFugenjuJohoParaX.p_strJusho.Trim().RLength() > 0)
                     {
-                        strRuijiJusho = cRuijiClass.GetRuijiMojiList(csABFugenjuJohoParaX.p_strJusho.Replace("　", string.Empty)).ToUpper;
-                        switch (csABFugenjuJohoParaX.p_strJushoZenpoIcchi.Trim.ToString)
+                        strRuijiJusho = cRuijiClass.GetRuijiMojiList(csABFugenjuJohoParaX.p_strJusho.Replace("　", string.Empty)).ToUpper();
+                        switch (csABFugenjuJohoParaX.p_strJushoZenpoIcchi.Trim().ToString())
                         {
                             case "1":
                                 {
@@ -364,9 +364,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 番地
-                if (csABFugenjuJohoParaX.p_strBanchi.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strBanchi.Trim().RLength() > 0)
                 {
-                    switch (csABFugenjuJohoParaX.p_strBanchiZenpoIcchi.Trim.ToString)
+                    switch (csABFugenjuJohoParaX.p_strBanchiZenpoIcchi.Trim().ToString())
                     {
                         case "1":
                             {
@@ -376,7 +376,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_BANCHI);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_BANCHI);
-                                strBanchi = csABFugenjuJohoParaX.p_strBanchi.Trim.ToString + CHAR_PERCENT;
+                                strBanchi = csABFugenjuJohoParaX.p_strBanchi.Trim().ToString() + CHAR_PERCENT;
                                 break;
                             }
                         case "2":
@@ -387,7 +387,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_BANCHI);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_BANCHI);
-                                strBanchi = CHAR_PERCENT + csABFugenjuJohoParaX.p_strBanchi.Trim.ToString + CHAR_PERCENT;
+                                strBanchi = CHAR_PERCENT + csABFugenjuJohoParaX.p_strBanchi.Trim().ToString() + CHAR_PERCENT;
                                 break;
                             }
 
@@ -399,7 +399,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_BANCHI);
                                 strSQL.Append(" = ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_BANCHI);
-                                strBanchi = csABFugenjuJohoParaX.p_strBanchi.Trim.ToString;
+                                strBanchi = csABFugenjuJohoParaX.p_strBanchi.Trim().ToString();
                                 break;
                             }
                     }
@@ -413,9 +413,9 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 方書
-                if (csABFugenjuJohoParaX.p_strKatagaki.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strKatagaki.Trim().RLength() > 0)
                 {
-                    switch (csABFugenjuJohoParaX.p_strKatagakiZenpoIcchi.Trim.ToString)
+                    switch (csABFugenjuJohoParaX.p_strKatagakiZenpoIcchi.Trim().ToString())
                     {
                         case "1":
                             {
@@ -425,7 +425,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_KATAGAKI);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_KATAGAKI);
-                                strKatagaki = csABFugenjuJohoParaX.p_strKatagaki.Trim.ToString + CHAR_PERCENT;
+                                strKatagaki = csABFugenjuJohoParaX.p_strKatagaki.Trim().ToString() + CHAR_PERCENT;
                                 break;
                             }
                         case "2":
@@ -436,7 +436,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_KATAGAKI);
                                 strSQL.Append(" LIKE ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_KATAGAKI);
-                                strKatagaki = CHAR_PERCENT + csABFugenjuJohoParaX.p_strKatagaki.Trim.ToString + CHAR_PERCENT;
+                                strKatagaki = CHAR_PERCENT + csABFugenjuJohoParaX.p_strKatagaki.Trim().ToString() + CHAR_PERCENT;
                                 break;
                             }
 
@@ -448,7 +448,7 @@ namespace Densan.Reams.AB.AB000BB
                                 strSQL.Append(ABFugenjuJohoEntity.FUGENJUDATTAJUSHO_KATAGAKI);
                                 strSQL.Append(" = ");
                                 strSQL.Append(ABFugenjuJohoEntity.PARAM_FUGENJUDATTAJUSHO_KATAGAKI);
-                                strKatagaki = csABFugenjuJohoParaX.p_strKatagaki.Trim.ToString;
+                                strKatagaki = csABFugenjuJohoParaX.p_strKatagaki.Trim().ToString();
                                 break;
                             }
                     }
@@ -462,7 +462,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 住民コード
-                if (csABFugenjuJohoParaX.p_strJuminCD.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strJuminCD.Trim().RLength() > 0)
                 {
                     // AB不現住情報.住民コード　＝　’不現住検索パラメータ.住民コード’
                     strSQL.Append(" AND ");
@@ -473,13 +473,13 @@ namespace Densan.Reams.AB.AB000BB
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_JUMINCD;
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strJuminCD.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strJuminCD.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
                 }
 
                 // 登録年月日
-                if (csABFugenjuJohoParaX.p_strTorokuSTYMD.Trim.RLength > 0 && csABFugenjuJohoParaX.p_strTorokuEDYMD.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strTorokuSTYMD.Trim().RLength() > 0 && csABFugenjuJohoParaX.p_strTorokuEDYMD.Trim().RLength() > 0)
                 {
                     // AB不現住情報.不現住登録年月日　≧　’不現住検索パラメータ.開始登録年月日’
                     // AND　AB不現住情報.不現住登録年月日　≦　’不現住検索パラメータ.終了登録年月日’
@@ -493,20 +493,20 @@ namespace Densan.Reams.AB.AB000BB
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_FUGENJUTOROKUYMD + "_ST";
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strTorokuSTYMD.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strTorokuSTYMD.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
 
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_FUGENJUTOROKUYMD + "_ED";
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strTorokuEDYMD.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strTorokuEDYMD.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
                 }
 
                 // 居住不明年月日
-                if (csABFugenjuJohoParaX.p_strKyojuFumeiSTYMD.Trim.RLength > 0 && csABFugenjuJohoParaX.p_strKyojuFumeiEDYMD.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strKyojuFumeiSTYMD.Trim().RLength() > 0 && csABFugenjuJohoParaX.p_strKyojuFumeiEDYMD.Trim().RLength() > 0)
                 {
                     // AB不現住情報.不現住居住不明年月日　≧　’不現住検索パラメータ.開始居住不明年月日’
                     // AND　AB不現住情報.不現住居住不明年月日　≦　’不現住検索パラメータ.終了居住不明年月日’
@@ -521,20 +521,20 @@ namespace Densan.Reams.AB.AB000BB
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_KYOJUFUMEI_YMD + "_ST";
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strKyojuFumeiSTYMD.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strKyojuFumeiSTYMD.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
 
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_KYOJUFUMEI_YMD + "_ED";
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strKyojuFumeiEDYMD.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strKyojuFumeiEDYMD.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
                 }
 
                 // 不現住区分
-                if (csABFugenjuJohoParaX.p_strFugenjuKB.Trim.RLength > 0)
+                if (csABFugenjuJohoParaX.p_strFugenjuKB.Trim().RLength() > 0)
                 {
                     strSQL.Append(" AND ");
                     strSQL.Append(ABFugenjuJohoEntity.FUGENJUKB);
@@ -544,7 +544,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 検索条件のパラメータを作成
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABFugenjuJohoEntity.PARAM_FUGENJUKB;
-                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strFugenjuKB.Trim.ToString;
+                    cfUFParameterClass.Value = csABFugenjuJohoParaX.p_strFugenjuKB.Trim().ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
                 }
@@ -634,20 +634,20 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 更新日時の取得
-                strUpdateDateTime = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");            // 作成日時
+                strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");            // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABFugenjuJohoEntity.TANMATSUID) = m_cfControlData.m_strClientId;               // 端末ＩＤ
-                csDataRow(ABFugenjuJohoEntity.SAKUJOFG) = "0";                                           // 削除フラグ
-                csDataRow(ABFugenjuJohoEntity.KOSHINCOUNTER) = decimal.Zero;                             // 更新カウンタ
-                csDataRow(ABFugenjuJohoEntity.SAKUSEINICHIJI) = strUpdateDateTime;                       // 作成日時
-                csDataRow(ABFugenjuJohoEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;                // 作成ユーザー
-                csDataRow(ABFugenjuJohoEntity.KOSHINNICHIJI) = strUpdateDateTime;                        // 更新日時
-                csDataRow(ABFugenjuJohoEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                 // 更新ユーザー
+                csDataRow[ABFugenjuJohoEntity.TANMATSUID] = m_cfControlData.m_strClientId;               // 端末ＩＤ
+                csDataRow[ABFugenjuJohoEntity.SAKUJOFG] = "0";                                           // 削除フラグ
+                csDataRow[ABFugenjuJohoEntity.KOSHINCOUNTER] = decimal.Zero;                             // 更新カウンタ
+                csDataRow[ABFugenjuJohoEntity.SAKUSEINICHIJI] = strUpdateDateTime;                       // 作成日時
+                csDataRow[ABFugenjuJohoEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;                // 作成ユーザー
+                csDataRow[ABFugenjuJohoEntity.KOSHINNICHIJI] = strUpdateDateTime;                        // 更新日時
+                csDataRow[ABFugenjuJohoEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                 // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
-                    this.m_cfInsertUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABFugenjuJohoEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    this.m_cfInsertUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABFugenjuJohoEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + GetType().Name + "】" + "【メソッド名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "】" + "【実行メソッド名:ExecuteSQL】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(m_strInsertSQL, m_cfInsertUFParameterCollectionClass) + "】");
@@ -720,23 +720,23 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABFugenjuJohoEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
-                csDataRow(ABFugenjuJohoEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABFugenjuJohoEntity.KOSHINCOUNTER) + 1m;       // 更新カウンタ
-                csDataRow(ABFugenjuJohoEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");     // 更新日時
-                csDataRow(ABFugenjuJohoEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                     // 更新ユーザー
+                csDataRow[ABFugenjuJohoEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
+                csDataRow[ABFugenjuJohoEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABFugenjuJohoEntity.KOSHINCOUNTER] + 1m;       // 更新カウンタ
+                csDataRow[ABFugenjuJohoEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");     // 更新日時
+                csDataRow[ABFugenjuJohoEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                     // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABFugenjuJohoEntity.PREFIX_KEY.RLength) == ABFugenjuJohoEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABFugenjuJohoEntity.PREFIX_KEY.RLength()) == ABFugenjuJohoEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABFugenjuJohoEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABFugenjuJohoEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABFugenjuJohoEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABFugenjuJohoEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 

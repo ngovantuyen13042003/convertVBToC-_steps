@@ -29,7 +29,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABKensakuShimeiBClass
@@ -157,12 +157,12 @@ namespace Densan.Reams.AB.AB000BB
             // intIchi = InStr(strHenshu, "＊")
             // '* 履歴番号 000001 2003/03/11 修正終了
             // If (intIchi > 0) Then
-            // Mid(strHenshu, intIchi, 1) = "　"
+            // UFVBAPI.Mid(strHenshu, intIchi, 1) = "　"
             // End If
             // '* 履歴番号 000002 2005/04/04 追加開始
             // intIchi = InStr(strHenshu, "％")
             // If (intIchi > 0) Then
-            // Mid(strHenshu, intIchi, 1) = "%"
+            // UFVBAPI.Mid(strHenshu, intIchi, 1) = "%"
             // End If
             // '* 履歴番号 000002 2005/04/04 追加終了
             // If (strAimai = "1") Then
@@ -174,7 +174,7 @@ namespace Densan.Reams.AB.AB000BB
             // '* 履歴番号 000002 2005/04/04 追加開始
             // intIchi = InStr(strShimei, "％")
             // If (intIchi > 0) Then
-            // Mid(strHenshu, intIchi, 1) = "%"
+            // UFVBAPI.Mid(strHenshu, intIchi, 1) = "%"
             // End If
             // '* 履歴番号 000002 2005/04/04 追加終了
             // '* 履歴番号 000001 2003/03/11 修正開始
@@ -187,13 +187,13 @@ namespace Densan.Reams.AB.AB000BB
             // If (intIchi <> 0) Then
             // '分割
             // '姓
-            // strHenshuSei = cuString.ToKanaKey(Left(strHenshu, intIchi - 1))
+            // strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1))
             // If (strAimai = "1") Then
             // strHenshuSei = strHenshuSei + "%"
             // End If
             // m_strSearchKanasei = strHenshuSei
             // '名
-            // strHenshuMei = cuString.ToKanaKey(Mid(strHenshu, intIchi + 1))
+            // strHenshuMei = cuString.ToKanaKey(UFVBAPI.Mid(strHenshu, intIchi + 1))
             // If (strAimai = "1") Then
             // strHenshuMei = strHenshuMei + "%"
             // End If
@@ -287,9 +287,9 @@ namespace Densan.Reams.AB.AB000BB
                 csABKanriJohoDS = cABKanriJohoB.GetKanriJohoHoshu("03", "14");
 
                 // 管理情報チェック
-                if (csABKanriJohoDS is not null && csABKanriJohoDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csABKanriJohoDS is not null && csABKanriJohoDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
-                    strZenAlphabetKB = csABKanriJohoDS.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0)(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strZenAlphabetKB = csABKanriJohoDS.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0](ABAtenaKanriJohoEntity.PARAMETER).ToString();
                 }
                 else
                 {
@@ -356,7 +356,7 @@ namespace Densan.Reams.AB.AB000BB
                     {
                         StringType.MidStmtStr(ref strHenshu, intIchi, 1, "　");
                     }
-                    strHenshu = m_cRuijiClass.GetRuijiMojiList(strHenshu.Replace("　", string.Empty)).ToUpper;
+                    strHenshu = m_cRuijiClass.GetRuijiMojiList(strHenshu.Replace("　", string.Empty)).ToUpper();
                     intIchi = Strings.InStr(strHenshu, "％");
                     if (intIchi > 0)
                     {
@@ -397,8 +397,8 @@ namespace Densan.Reams.AB.AB000BB
                             // 分割
                             // 姓
                             // * 履歴番号 000004 2007/10/10 修正開始
-                            strHenshuSei = cuString.ToKanaKey(Strings.Left(strHenshu, intIchi - 1)).ToUpper();
-                            // strHenshuSei = cuString.ToKanaKey(Left(strHenshu, intIchi - 1))
+                            strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1)).ToUpper();
+                            // strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1))
                             // * 履歴番号 000004 2007/10/10 修正終了
                             if (strAimai == "1")
                             {
@@ -407,8 +407,8 @@ namespace Densan.Reams.AB.AB000BB
                             m_strSearchKanasei = strHenshuSei;
                             // 名
                             // * 履歴番号 000004 2007/10/10 修正開始
-                            strHenshuMei = cuString.ToKanaKey(Strings.Mid(strHenshu, intIchi + 1)).ToUpper();
-                            // strHenshuMei = cuString.ToKanaKey(Mid(strHenshu, intIchi + 1))
+                            strHenshuMei = cuString.ToKanaKey(UFVBAPI.Mid(strHenshu, intIchi + 1)).ToUpper();
+                            // strHenshuMei = cuString.ToKanaKey(UFVBAPI.Mid(strHenshu, intIchi + 1))
                             // * 履歴番号 000004 2007/10/10 修正終了
                             if (strAimai == "1")
                             {
@@ -453,8 +453,8 @@ namespace Densan.Reams.AB.AB000BB
                         {
                             // *履歴番号 000005 2007/11/06 修正開始
                             // 分割あり カナ姓カナ名を抽出
-                            strHenshuSei = cuString.ToKanaKey(Strings.Left(strHenshu, intIchi - 1)).ToUpper();
-                            strHenshuMei = cuString.ToKanaKey(Strings.Mid(strHenshu, intIchi + 1)).ToUpper();
+                            strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1)).ToUpper();
+                            strHenshuMei = cuString.ToKanaKey(UFVBAPI.Mid(strHenshu, intIchi + 1)).ToUpper();
                             if (strAimai == "1")    // 曖昧検索（前方一致チェックがTrue）のとき"%"を付加
                             {
                                 if (!string.IsNullOrEmpty(strHenshuSei.Trim()))
@@ -481,8 +481,8 @@ namespace Densan.Reams.AB.AB000BB
                             }
                         }
                         // '分割あり カナ姓カナ名を抽出
-                        // strHenshuSei = cuString.ToKanaKey(Left(strHenshu, intIchi - 1)).ToUpper()
-                        // strHenshuMei = cuString.ToKanaKey((Mid(strHenshu, intIchi + 1))).ToUpper()
+                        // strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1)).ToUpper()
+                        // strHenshuMei = cuString.ToKanaKey((UFVBAPI.Mid(strHenshu, intIchi + 1))).ToUpper()
                         // If (strAimai = "1") Then    '曖昧検索（前方一致チェックがTrue）のとき"%"を付加
                         // strHenshuMei = strHenshuMei + "%"
                         // End If
@@ -511,8 +511,8 @@ namespace Densan.Reams.AB.AB000BB
                     {
                         // *履歴番号 000005 2007/11/06 修正開始
                         // 分割ありの場合姓名分割
-                        strHenshuSei = cuString.ToKanaKey(Strings.Left(strHenshu, intIchi - 1)).ToUpper();
-                        strHenshuMei = cuString.ToKanaKey(Strings.Mid(strHenshu, intIchi + 1)).ToUpper();
+                        strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1)).ToUpper();
+                        strHenshuMei = cuString.ToKanaKey(UFVBAPI.Mid(strHenshu, intIchi + 1)).ToUpper();
                         if (strAimai == "1")    // 曖昧検索（前方一致チェックがTrue）のとき"%"を付加
                         {
                             strHenshuSei = strHenshuSei + "%";
@@ -537,8 +537,8 @@ namespace Densan.Reams.AB.AB000BB
                         }
                     }
                     // '分割ありの場合姓名分割
-                    // strHenshuSei = cuString.ToKanaKey(Left(strHenshu, intIchi - 1)).ToUpper()
-                    // strHenshuMei = cuString.ToKanaKey(Mid(strHenshu, intIchi + 1)).ToUpper()
+                    // strHenshuSei = cuString.ToKanaKey(UFVBAPI.Left(strHenshu, intIchi - 1)).ToUpper()
+                    // strHenshuMei = cuString.ToKanaKey(UFVBAPI.Mid(strHenshu, intIchi + 1)).ToUpper()
                     // If (strAimai = "1") Then    '曖昧検索（前方一致チェックがTrue）のとき"%"を付加
                     // strHenshuSei = strHenshuSei + "%"
                     // strHenshuMei = strHenshuMei + "%"
@@ -601,7 +601,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     StringType.MidStmtStr(ref strHenshu, intIchi, 1, "　");
                 }
-                strHenshu = m_cRuijiClass.GetRuijiMojiList(strHenshu.Replace("　", string.Empty)).ToUpper;
+                strHenshu = m_cRuijiClass.GetRuijiMojiList(strHenshu.Replace("　", string.Empty)).ToUpper();
                 intIchi = Strings.InStr(strHenshu, "％");
                 if (intIchi > 0)
                 {
@@ -644,7 +644,7 @@ namespace Densan.Reams.AB.AB000BB
             {
 
                 // カナ検索部、漢字検索部に１つでも値が存在する場合に検索条件を追加する
-                if (cSearchKey.p_strSearchKanaSeiMei.Trim.RLength > 0 || cSearchKey.p_strSearchKanaSei.Trim.Trim.RLength > 0 || cSearchKey.p_strSearchKanaSei2.Trim.Trim.RLength > 0 || cSearchKey.p_strSearchKanaMei.Trim.Trim.RLength > 0 || cSearchKey.p_strSearchKanjiMeisho.Trim.Trim.RLength > 0 || cSearchKey.p_enGaikokuHommyoKensaku == FrnHommyoKensakuType.Tsusho_Seishiki && cSearchKey.p_strKanjiMeisho2.Trim.Trim.RLength > 0)
+                if (cSearchKey.p_strSearchKanaSeiMei.Trim().RLength() > 0 || cSearchKey.p_strSearchKanaSei.Trim().Trim.RLength() > 0 || cSearchKey.p_strSearchKanaSei2.Trim().Trim.RLength() > 0 || cSearchKey.p_strSearchKanaMei.Trim().Trim.RLength() > 0 || cSearchKey.p_strSearchKanjiMeisho.Trim().Trim.RLength() > 0 || cSearchKey.p_enGaikokuHommyoKensaku == FrnHommyoKensakuType.Tsusho_Seishiki && cSearchKey.p_strKanjiMeisho2.Trim().Trim.RLength() > 0)
 
 
 
@@ -652,7 +652,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 {
 
-                    if (csWhere.RLength > 0)
+                    if (csWhere.RLength() > 0)
                     {
                         csWhere.Append(" AND ");
                     }
@@ -667,7 +667,7 @@ namespace Densan.Reams.AB.AB000BB
 
                     // -----------------------------------------------------------------------------
                     // 検索用カナ姓名
-                    if (cSearchKey.p_strSearchKanaSeiMei.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaSeiMei.Trim().RLength() > 0)
                     {
 
                         if (cSearchKey.p_strSearchKanaSeiMei.RIndexOf("%") < 0)
@@ -694,7 +694,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock1 = ref cfParam;
                                 withBlock1.ParameterName = ABAtenaEntity.KEY_SEARCHKANASEIMEI;
-                                withBlock1.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd;
+                                withBlock1.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd();
                             }
 
                         }
@@ -709,10 +709,10 @@ namespace Densan.Reams.AB.AB000BB
                     }
                     // -----------------------------------------------------------------------------
                     // 検索用カナ姓
-                    if (cSearchKey.p_strSearchKanaSei.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaSei.Trim().RLength() > 0)
                     {
 
-                        if (csWhereForKanaShimei.RLength > 0)
+                        if (csWhereForKanaShimei.RLength() > 0)
                         {
                             csWhereForKanaShimei.Append(" AND ");
                         }
@@ -721,7 +721,7 @@ namespace Densan.Reams.AB.AB000BB
                             // noop
                         }
 
-                        if (cSearchKey.p_strSearchKanaSei2.Trim.RLength > 0)
+                        if (cSearchKey.p_strSearchKanaSei2.Trim().RLength() > 0)
                         {
                             csWhereForKanaShimei.Append("(");
                         }
@@ -754,7 +754,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock3 = ref cfParam;
                                 withBlock3.ParameterName = ABAtenaEntity.KEY_SEARCHKANASEI;
-                                withBlock3.Value = cSearchKey.p_strSearchKanaSei.TrimEnd;
+                                withBlock3.Value = cSearchKey.p_strSearchKanaSei.TrimEnd();
                             }
 
                         }
@@ -769,7 +769,7 @@ namespace Densan.Reams.AB.AB000BB
                     }
                     // -----------------------------------------------------------------------------
                     // 検索カナ姓２
-                    if (cSearchKey.p_strSearchKanaSei2.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaSei2.Trim().RLength() > 0)
                     {
 
                         csWhereForKanaShimei.Append(" OR ");
@@ -798,7 +798,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock5 = ref cfParam;
                                 withBlock5.ParameterName = ABAtenaEntity.KEY_SEARCHKANASEI2;
-                                withBlock5.Value = cSearchKey.p_strSearchKanaSei2.TrimEnd;
+                                withBlock5.Value = cSearchKey.p_strSearchKanaSei2.TrimEnd();
                             }
 
                         }
@@ -815,10 +815,10 @@ namespace Densan.Reams.AB.AB000BB
                     }
                     // -----------------------------------------------------------------------------
                     // 検索用カナ名
-                    if (cSearchKey.p_strSearchKanaMei.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaMei.Trim().RLength() > 0)
                     {
 
-                        if (csWhereForKanaShimei.RLength > 0)
+                        if (csWhereForKanaShimei.RLength() > 0)
                         {
                             csWhereForKanaShimei.Append(" AND ");
                         }
@@ -851,7 +851,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock7 = ref cfParam;
                                 withBlock7.ParameterName = ABAtenaEntity.KEY_SEARCHKANAMEI;
-                                withBlock7.Value = cSearchKey.p_strSearchKanaMei.TrimEnd;
+                                withBlock7.Value = cSearchKey.p_strSearchKanaMei.TrimEnd();
                             }
 
                         }
@@ -874,7 +874,7 @@ namespace Densan.Reams.AB.AB000BB
 
                     // -----------------------------------------------------------------------------
                     // 検索用漢字名称
-                    if (cSearchKey.p_strSearchKanjiMeisho.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanjiMeisho.Trim().RLength() > 0)
                     {
 
                         if (cSearchKey.p_strSearchKanjiMeisho.RIndexOf("%") < 0)
@@ -901,7 +901,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock9 = ref cfParam;
                                 withBlock9.ParameterName = ABAtenaEntity.PARAM_SEARCHKANJIMEISHO;
-                                withBlock9.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd;
+                                withBlock9.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd();
                             }
 
                         }
@@ -919,7 +919,7 @@ namespace Densan.Reams.AB.AB000BB
                     if (cSearchKey.p_enGaikokuHommyoKensaku == FrnHommyoKensakuType.Tsusho_Seishiki)
                     {
 
-                        if (cSearchKey.p_strKanjiMeisho2.Trim.RLength > 0)
+                        if (cSearchKey.p_strKanjiMeisho2.Trim().RLength() > 0)
                         {
 
                             if (cSearchKey.p_strKanjiMeisho2.RIndexOf("%") < 0)
@@ -944,7 +944,7 @@ namespace Densan.Reams.AB.AB000BB
                                 // 検索条件のパラメータを作成
                                 cfParam = new UFParameterClass();
                                 cfParam.ParameterName = ABAtenaEntity.PARAM_KANJIMEISHO2;
-                                cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd;
+                                cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd();
 
                             }
 
@@ -968,9 +968,9 @@ namespace Densan.Reams.AB.AB000BB
 
                     // ---------------------------------------------------------------------------------
                     // カナ検索部と漢字検索部が両方設定されている場合、ＯＲ条件で連結する
-                    if (csWhereForKanaShimei.RLength > 0)
+                    if (csWhereForKanaShimei.RLength() > 0)
                     {
-                        if (csWhereForKanjiShimei.RLength > 0)
+                        if (csWhereForKanjiShimei.RLength() > 0)
                         {
                             csWhere.AppendFormat("(({0}) OR ({1}))", csWhereForKanaShimei.ToString(), csWhereForKanjiShimei.ToString());
                         }
@@ -1024,7 +1024,7 @@ namespace Densan.Reams.AB.AB000BB
             {
 
                 // カナ検索部、漢字検索部に１つでも値が存在する場合に検索条件を追加する
-                if (cSearchKey.p_strSearchKanaSeiMei.Trim.RLength > 0 || cSearchKey.p_strSearchKanaSei.Trim.Trim.RLength > 0 || cSearchKey.p_strSearchKanaSei2.Trim.Trim.RLength > 0 || cSearchKey.p_strSearchKanaMei.Trim.Trim.RLength > 0 || cSearchKey.p_strSearchKanjiMeisho.Trim.Trim.RLength > 0 || cSearchKey.p_enGaikokuHommyoKensaku == FrnHommyoKensakuType.Tsusho_Seishiki && cSearchKey.p_strKanjiMeisho2.Trim.Trim.RLength > 0)
+                if (cSearchKey.p_strSearchKanaSeiMei.Trim().RLength() > 0 || cSearchKey.p_strSearchKanaSei.Trim().Trim.RLength() > 0 || cSearchKey.p_strSearchKanaSei2.Trim().Trim.RLength() > 0 || cSearchKey.p_strSearchKanaMei.Trim().Trim.RLength() > 0 || cSearchKey.p_strSearchKanjiMeisho.Trim().Trim.RLength() > 0 || cSearchKey.p_enGaikokuHommyoKensaku == FrnHommyoKensakuType.Tsusho_Seishiki && cSearchKey.p_strKanjiMeisho2.Trim().Trim.RLength() > 0)
 
 
 
@@ -1032,7 +1032,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 {
 
-                    if (csWhere.RLength > 0)
+                    if (csWhere.RLength() > 0)
                     {
                         csWhere.Append(" AND ");
                     }
@@ -1047,10 +1047,10 @@ namespace Densan.Reams.AB.AB000BB
 
                     // -----------------------------------------------------------------------------
                     // 検索用カナ姓名
-                    if (cSearchKey.p_strSearchKanaSeiMei.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaSeiMei.Trim().RLength() > 0)
                     {
                         strWhereFZYHyojunKana = CreateWhereFZYHyojunKana(cSearchKey, strFZYHyojunTableName, blnFromAtenaRireki, intHyojunKB);
-                        if (strWhereFZYHyojunKana.RLength > 0)
+                        if (strWhereFZYHyojunKana.RLength() > 0)
                         {
                             csWhereForKanaShimei.Append("(");
                         }
@@ -1077,14 +1077,14 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock1 = ref cfParam;
                                 withBlock1.ParameterName = ABAtenaEntity.KEY_SEARCHKANASEIMEI;
-                                withBlock1.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd;
+                                withBlock1.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd();
                             }
 
                         }
 
                         // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                         cfParamCollection.Add(cfParam);
-                        if (strWhereFZYHyojunKana.RLength > 0)
+                        if (strWhereFZYHyojunKana.RLength() > 0)
                         {
                             if (blnFromAtenaRireki)
                             {
@@ -1100,17 +1100,17 @@ namespace Densan.Reams.AB.AB000BB
                             }
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHKANAFRNMEI;
-                            cfParam.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd();
                             cfParamCollection.Add(cfParam);
 
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHKANATSUSHOMEI;
-                            cfParam.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd();
                             cfParamCollection.Add(cfParam);
 
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHKANAHEIKIMEI;
-                            cfParam.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strSearchKanaSeiMei.TrimEnd();
                             cfParamCollection.Add(cfParam);
                         }
                     }
@@ -1121,10 +1121,10 @@ namespace Densan.Reams.AB.AB000BB
 
                     // -----------------------------------------------------------------------------
                     // 検索用カナ姓
-                    if (cSearchKey.p_strSearchKanaSei.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaSei.Trim().RLength() > 0)
                     {
 
-                        if (csWhereForKanaShimei.RLength > 0)
+                        if (csWhereForKanaShimei.RLength() > 0)
                         {
                             csWhereForKanaShimei.Append(" AND ");
                         }
@@ -1133,7 +1133,7 @@ namespace Densan.Reams.AB.AB000BB
                             // noop
                         }
 
-                        if (cSearchKey.p_strSearchKanaSei2.Trim.RLength > 0)
+                        if (cSearchKey.p_strSearchKanaSei2.Trim().RLength() > 0)
                         {
                             csWhereForKanaShimei.Append("(");
                         }
@@ -1166,7 +1166,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock3 = ref cfParam;
                                 withBlock3.ParameterName = ABAtenaEntity.KEY_SEARCHKANASEI;
-                                withBlock3.Value = cSearchKey.p_strSearchKanaSei.TrimEnd;
+                                withBlock3.Value = cSearchKey.p_strSearchKanaSei.TrimEnd();
                             }
 
                         }
@@ -1181,7 +1181,7 @@ namespace Densan.Reams.AB.AB000BB
                     }
                     // -----------------------------------------------------------------------------
                     // 検索カナ姓２
-                    if (cSearchKey.p_strSearchKanaSei2.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaSei2.Trim().RLength() > 0)
                     {
 
                         csWhereForKanaShimei.Append(" OR ");
@@ -1210,7 +1210,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock5 = ref cfParam;
                                 withBlock5.ParameterName = ABAtenaEntity.KEY_SEARCHKANASEI2;
-                                withBlock5.Value = cSearchKey.p_strSearchKanaSei2.TrimEnd;
+                                withBlock5.Value = cSearchKey.p_strSearchKanaSei2.TrimEnd();
                             }
 
                         }
@@ -1227,10 +1227,10 @@ namespace Densan.Reams.AB.AB000BB
                     }
                     // -----------------------------------------------------------------------------
                     // 検索用カナ名
-                    if (cSearchKey.p_strSearchKanaMei.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanaMei.Trim().RLength() > 0)
                     {
 
-                        if (csWhereForKanaShimei.RLength > 0)
+                        if (csWhereForKanaShimei.RLength() > 0)
                         {
                             csWhereForKanaShimei.Append(" AND ");
                         }
@@ -1263,7 +1263,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock7 = ref cfParam;
                                 withBlock7.ParameterName = ABAtenaEntity.KEY_SEARCHKANAMEI;
-                                withBlock7.Value = cSearchKey.p_strSearchKanaMei.TrimEnd;
+                                withBlock7.Value = cSearchKey.p_strSearchKanaMei.TrimEnd();
                             }
 
                         }
@@ -1284,7 +1284,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 漢字検索部編集
                     csWhereForKanjiShimei = new StringBuilder();
 
-                    if (cSearchKey.p_strSearchKanjiMeisho.Trim.RLength > 0 || cSearchKey.p_enGaikokuHommyoKensaku == 2 & cSearchKey.p_strKanjiMeisho2.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanjiMeisho.Trim().RLength() > 0 || cSearchKey.p_enGaikokuHommyoKensaku == 2 & cSearchKey.p_strKanjiMeisho2.Trim().RLength() > 0)
                     {
                         strWhereFzyHyojunKanji = CreateWhereFZYHyojunKanji(cSearchKey, strFZYHyojunTableName, blnFromAtenaRireki, intHyojunKB);
                     }
@@ -1292,13 +1292,13 @@ namespace Densan.Reams.AB.AB000BB
                     {
                         strWhereFzyHyojunKanji = string.Empty;
                     }
-                    if (strWhereFzyHyojunKanji.RLength > 0)
+                    if (strWhereFzyHyojunKanji.RLength() > 0)
                     {
                         csWhereForKanjiShimei.Append("(");
                     }
                     // -----------------------------------------------------------------------------
                     // 検索用漢字名称
-                    if (cSearchKey.p_strSearchKanjiMeisho.Trim.RLength > 0)
+                    if (cSearchKey.p_strSearchKanjiMeisho.Trim().RLength() > 0)
                     {
 
                         if (cSearchKey.p_strSearchKanjiMeisho.RIndexOf("%") < 0)
@@ -1325,7 +1325,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 ref var withBlock9 = ref cfParam;
                                 withBlock9.ParameterName = ABAtenaEntity.PARAM_SEARCHKANJIMEISHO;
-                                withBlock9.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd;
+                                withBlock9.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd();
                             }
 
                         }
@@ -1343,7 +1343,7 @@ namespace Densan.Reams.AB.AB000BB
                     if (cSearchKey.p_enGaikokuHommyoKensaku == FrnHommyoKensakuType.Tsusho_Seishiki)
                     {
 
-                        if (cSearchKey.p_strKanjiMeisho2.Trim.RLength > 0)
+                        if (cSearchKey.p_strKanjiMeisho2.Trim().RLength() > 0)
                         {
 
                             if (cSearchKey.p_strKanjiMeisho2.RIndexOf("%") < 0)
@@ -1370,7 +1370,7 @@ namespace Densan.Reams.AB.AB000BB
                                 {
                                     ref var withBlock11 = ref cfParam;
                                     withBlock11.ParameterName = ABAtenaEntity.PARAM_KANJIMEISHO2;
-                                    withBlock11.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd;
+                                    withBlock11.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd();
                                 }
 
                             }
@@ -1390,7 +1390,7 @@ namespace Densan.Reams.AB.AB000BB
                         // noop
                     }
                     // -----------------------------------------------------------------------------
-                    if (strWhereFzyHyojunKanji.RLength > 0)
+                    if (strWhereFzyHyojunKanji.RLength() > 0)
                     {
                         if (blnFromAtenaRireki)
                         {
@@ -1404,38 +1404,38 @@ namespace Densan.Reams.AB.AB000BB
                             csWhereForKanjiShimei.AppendFormat(" WHERE {0}", strWhereFzyHyojunKanji);
                             csWhereForKanjiShimei.Append("))");
                         }
-                        if (cSearchKey.p_strSearchKanjiMeisho.RLength > 0)
+                        if (cSearchKey.p_strSearchKanjiMeisho.RLength() > 0)
                         {
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHFRNMEI;
-                            cfParam.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd();
                             cfParamCollection.Add(cfParam);
 
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHTSUSHOMEI;
-                            cfParam.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd();
                             cfParamCollection.Add(cfParam);
 
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHKANJIHEIKIMEI;
-                            cfParam.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strSearchKanjiMeisho.TrimEnd();
                             cfParamCollection.Add(cfParam);
                         }
                         else
                         {
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHFRNMEI;
-                            cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd();
                             cfParamCollection.Add(cfParam);
 
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHTSUSHOMEI;
-                            cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd();
                             cfParamCollection.Add(cfParam);
 
                             cfParam = new UFParameterClass();
                             cfParam.ParameterName = ABAtenaFZYHyojunEntity.PARAM_SEARCHKANJIHEIKIMEI;
-                            cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd;
+                            cfParam.Value = cSearchKey.p_strKanjiMeisho2.TrimEnd();
                             cfParamCollection.Add(cfParam);
                         }
 
@@ -1444,9 +1444,9 @@ namespace Densan.Reams.AB.AB000BB
 
                     // ---------------------------------------------------------------------------------
                     // カナ検索部と漢字検索部が両方設定されている場合、ＯＲ条件で連結する
-                    if (csWhereForKanaShimei.RLength > 0)
+                    if (csWhereForKanaShimei.RLength() > 0)
                     {
-                        if (csWhereForKanjiShimei.RLength > 0)
+                        if (csWhereForKanjiShimei.RLength() > 0)
                         {
                             csWhere.AppendFormat("(({0}) OR ({1}))", csWhereForKanaShimei.ToString(), csWhereForKanjiShimei.ToString());
                         }

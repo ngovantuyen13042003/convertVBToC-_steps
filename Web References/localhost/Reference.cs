@@ -19,7 +19,7 @@ using System.Data;
 // このソース コードは Microsoft.VSDesigner、バージョン 1.0.3705.288 によって自動生成されました。
 
 // 
-namespace Densan.Reams.AB.AB000BB.localhost
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b.localhost
 {
 
     // <remarks/>
@@ -59,7 +59,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int UpdateKBINKAN(string strControl, AAKOBETSUINKANParamClass[] cAAKOBETSUINKANParam)
         {
             object[] results = this.Invoke("UpdateKBINKAN", new object[] { strControl, cAAKOBETSUINKANParam });
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -72,7 +72,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int EndUpdateKBINKAN(IAsyncResult asyncResult)
         {
             object[] results = this.EndInvoke(asyncResult);
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -80,7 +80,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int UpdateKBJITE(string strControl, AAKOBETSUJITEParamClass[] cKOBETSUJITEParam)
         {
             object[] results = this.Invoke("UpdateKBJITE", new object[] { strControl, cKOBETSUJITEParam });
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -93,7 +93,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int EndUpdateKBJITE(IAsyncResult asyncResult)
         {
             object[] results = this.EndInvoke(asyncResult);
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -101,7 +101,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int UpdateKBKAIGO(string strControl, AAKOBETSUKAIGOParamClass[] cAAKOBETSUKAIGOParam)
         {
             object[] results = this.Invoke("UpdateKBKAIGO", new object[] { strControl, cAAKOBETSUKAIGOParam });
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -114,7 +114,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int EndUpdateKBKAIGO(IAsyncResult asyncResult)
         {
             object[] results = this.EndInvoke(asyncResult);
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -122,7 +122,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int UpdateKBKOKUHO(string strControl, AAKOBETSUKOKUHOParamClass[] cAAKOBETSUKOKUHOParam)
         {
             object[] results = this.Invoke("UpdateKBKOKUHO", new object[] { strControl, cAAKOBETSUKOKUHOParam });
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -135,7 +135,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int EndUpdateKBKOKUHO(IAsyncResult asyncResult)
         {
             object[] results = this.EndInvoke(asyncResult);
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -143,7 +143,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int UpdateKBNENKIN(string strControl, AAKOBETSUNENKINParamClass[] cAAKOBETSUNENKINParam)
         {
             object[] results = this.Invoke("UpdateKBNENKIN", new object[] { strControl, cAAKOBETSUNENKINParam });
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -156,7 +156,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int EndUpdateKBNENKIN(IAsyncResult asyncResult)
         {
             object[] results = this.EndInvoke(asyncResult);
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -164,7 +164,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int UpdateKBSENKYO(string strControl, AAKOBETSUSENKYOParamClass[] cAAKOBETSUSENKYOParam)
         {
             object[] results = this.Invoke("UpdateKBSENKYO", new object[] { strControl, cAAKOBETSUSENKYOParam });
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
 
         // <remarks/>
@@ -177,7 +177,7 @@ namespace Densan.Reams.AB.AB000BB.localhost
         public int EndUpdateKBSENKYO(IAsyncResult asyncResult)
         {
             object[] results = this.EndInvoke(asyncResult);
-            return Conversions.ToInteger(results[0]);
+            return UFVBAPI.ToInteger(results[0]);
         }
     }
 

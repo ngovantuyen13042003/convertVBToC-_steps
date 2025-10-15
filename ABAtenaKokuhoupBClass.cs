@@ -26,7 +26,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.framework.us.publicmodule.library.businesscommon.uwfkokai;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABAtenaKokuhoupBClass
@@ -153,40 +153,40 @@ namespace Densan.Reams.AB.AB000BB
                 csABAtenaKokuhoEntity = cABAtenaKokuhoBClass.GetAtenaKokuho(cABKobetsuProperty.p_strJUMINCD);
 
                 // 追加・更新の判定
-                if (csABAtenaKokuhoEntity.Tables(ABAtenaKokuhoEntity.TABLE_NAME).Rows.Count == 0)
+                if (csABAtenaKokuhoEntity.Tables[ABAtenaKokuhoEntity.TABLE_NAME].Rows.Count == 0)
                 {
 
-                    cDatRow = csABAtenaKokuhoEntity.Tables(ABAtenaKokuhoEntity.TABLE_NAME).NewRow();
+                    cDatRow = csABAtenaKokuhoEntity.Tables[ABAtenaKokuhoEntity.TABLE_NAME].NewRow();
                     // 各項目をプロパティから取得
-                    cDatRow.Item(ABAtenaKokuhoEntity.JUMINCD) = cABKobetsuProperty.p_strJUMINCD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHONO) = cABKobetsuProperty.p_strKOKUHONO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.HIHOKENSHAGAITOKB) = string.Empty;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHIKAKUKB) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBMEISHO) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOGAKUENKB) = cABKobetsuProperty.p_strKOKUHOGAKUENKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOGAKUENKBMEISHO) = cABKobetsuProperty.p_strKOKUHOGAKUENKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOGAKUENKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOGAKUENKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHUTOKUYMD) = cABKobetsuProperty.p_strKOKUHOSHUTOKUYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSOSHITSUYMD) = cABKobetsuProperty.p_strKOKUHOSOSHITSUYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKKB) = cABKobetsuProperty.p_strKOKUHOTISHKKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKKBMEISHO) = cABKobetsuProperty.p_strKOKUHOTISHKKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOTISHKKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKB) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBMEISHO) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKGAITOYMD) = cABKobetsuProperty.p_strKOKUHOTISHKGAITOYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHIGAITOYMD) = cABKobetsuProperty.p_strKOKUHOTISHKHIGAITOYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOHOKENSHOKIGO) = cABKobetsuProperty.p_strKOKUHOHOKENSHOKIGO;   // *DB(ABATENAKOKUHO)に存在してない
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOHOKENSHONO) = cABKobetsuProperty.p_strKOKUHOHOKENSHONO;
+                    cDatRow[ABAtenaKokuhoEntity.JUMINCD] = cABKobetsuProperty.p_strJUMINCD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHONO] = cABKobetsuProperty.p_strKOKUHONO;
+                    cDatRow[ABAtenaKokuhoEntity.HIHOKENSHAGAITOKB] = string.Empty;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHIKAKUKB] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBMEISHO] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOGAKUENKB] = cABKobetsuProperty.p_strKOKUHOGAKUENKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOGAKUENKBMEISHO] = cABKobetsuProperty.p_strKOKUHOGAKUENKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOGAKUENKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOGAKUENKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHUTOKUYMD] = cABKobetsuProperty.p_strKOKUHOSHUTOKUYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSOSHITSUYMD] = cABKobetsuProperty.p_strKOKUHOSOSHITSUYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKKB] = cABKobetsuProperty.p_strKOKUHOTISHKKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKKBMEISHO] = cABKobetsuProperty.p_strKOKUHOTISHKKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOTISHKKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKB] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBMEISHO] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKGAITOYMD] = cABKobetsuProperty.p_strKOKUHOTISHKGAITOYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHIGAITOYMD] = cABKobetsuProperty.p_strKOKUHOTISHKHIGAITOYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOHOKENSHOKIGO] = cABKobetsuProperty.p_strKOKUHOHOKENSHOKIGO;   // *DB(ABATENAKOKUHO)に存在してない
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOHOKENSHONO] = cABKobetsuProperty.p_strKOKUHOHOKENSHONO;
 
                     // 市町村コード
-                    cDatRow.Item(ABAtenaKokuhoEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                    cDatRow[ABAtenaKokuhoEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                     // 旧市町村コード
-                    cDatRow.Item(ABAtenaKokuhoEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                    cDatRow[ABAtenaKokuhoEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                     // データの追加
-                    // csABAtenaKokuhoEntity.Tables(ABAtenaKokuhoEntity.TABLE_NAME).Rows.Add(cDatRow)
+                    // csABAtenaKokuhoEntity.Tables[ABAtenaKokuhoEntity.TABLE_NAME].Rows.Add(cDatRow)
 
                     // 宛名国保マスタ追加メソッド呼び出し
                     intUpdCnt = cABAtenaKokuhoBClass.InsertAtenaKokuho(cDatRow);
@@ -194,33 +194,33 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
 
-                    cDatRow = csABAtenaKokuhoEntity.Tables(ABAtenaKokuhoEntity.TABLE_NAME).Rows(0);
+                    cDatRow = csABAtenaKokuhoEntity.Tables[ABAtenaKokuhoEntity.TABLE_NAME].Rows[0];
                     // 各項目をプロパティから取得
-                    cDatRow.Item(ABAtenaKokuhoEntity.JUMINCD) = cABKobetsuProperty.p_strJUMINCD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHONO) = cABKobetsuProperty.p_strKOKUHONO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHIKAKUKB) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBMEISHO) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOGAKUENKB) = cABKobetsuProperty.p_strKOKUHOGAKUENKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOGAKUENKBMEISHO) = cABKobetsuProperty.p_strKOKUHOGAKUENKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOGAKUENKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOGAKUENKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSHUTOKUYMD) = cABKobetsuProperty.p_strKOKUHOSHUTOKUYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOSOSHITSUYMD) = cABKobetsuProperty.p_strKOKUHOSOSHITSUYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKKB) = cABKobetsuProperty.p_strKOKUHOTISHKKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKKBMEISHO) = cABKobetsuProperty.p_strKOKUHOTISHKKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOTISHKKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKB) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKB;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBMEISHO) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBMEISHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBRYAKUSHO;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKGAITOYMD) = cABKobetsuProperty.p_strKOKUHOTISHKGAITOYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOTISHKHIGAITOYMD) = cABKobetsuProperty.p_strKOKUHOTISHKHIGAITOYMD;
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOHOKENSHOKIGO) = cABKobetsuProperty.p_strKOKUHOHOKENSHOKIGO;  // *DB(ABATENAKOKUHO)に存在してない
-                    cDatRow.Item(ABAtenaKokuhoEntity.KOKUHOHOKENSHONO) = cABKobetsuProperty.p_strKOKUHOHOKENSHONO;
+                    cDatRow[ABAtenaKokuhoEntity.JUMINCD] = cABKobetsuProperty.p_strJUMINCD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHONO] = cABKobetsuProperty.p_strKOKUHONO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHIKAKUKB] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBMEISHO] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHIKAKUKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOGAKUENKB] = cABKobetsuProperty.p_strKOKUHOGAKUENKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOGAKUENKBMEISHO] = cABKobetsuProperty.p_strKOKUHOGAKUENKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOGAKUENKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOGAKUENKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSHUTOKUYMD] = cABKobetsuProperty.p_strKOKUHOSHUTOKUYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOSOSHITSUYMD] = cABKobetsuProperty.p_strKOKUHOSOSHITSUYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKKB] = cABKobetsuProperty.p_strKOKUHOTISHKKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKKBMEISHO] = cABKobetsuProperty.p_strKOKUHOTISHKKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOTISHKKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKB] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKB;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBMEISHO] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBMEISHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHONHIKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBRYAKUSHO;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKGAITOYMD] = cABKobetsuProperty.p_strKOKUHOTISHKGAITOYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOTISHKHIGAITOYMD] = cABKobetsuProperty.p_strKOKUHOTISHKHIGAITOYMD;
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOHOKENSHOKIGO] = cABKobetsuProperty.p_strKOKUHOHOKENSHOKIGO;  // *DB(ABATENAKOKUHO)に存在してない
+                    cDatRow[ABAtenaKokuhoEntity.KOKUHOHOKENSHONO] = cABKobetsuProperty.p_strKOKUHOHOKENSHONO;
 
                     // 市町村コード
-                    cDatRow.Item(ABAtenaKokuhoEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                    cDatRow[ABAtenaKokuhoEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                     // 旧市町村コード
-                    cDatRow.Item(ABAtenaKokuhoEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                    cDatRow[ABAtenaKokuhoEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                     // 宛名国保マスタ更新メソッド呼び出し
                     intUpdCnt = cABAtenaKokuhoBClass.UpdateAtenaKokuho(cDatRow);
@@ -245,9 +245,9 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "11");
 
                 // 管理情報の住基更新レコードが存在し、パラメータが"0"の時だけ住基更新処理を行う
-                if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0))
+                if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0))
                 {
-                    if ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "0")
+                    if ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "0")
                     {
 
                         // WebserviceのURLをWebConfigから取得して設定する
@@ -288,9 +288,9 @@ namespace Densan.Reams.AB.AB000BB
                         // 宛名管理情報の種別04識別キー22のデータを取得する(住基側の更新処理の結果を判断するかどうか)
                         csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "22");
                         // 管理情報にレコードが存在し、パラメータが"1"の時はチェックしない
-                        if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0))
+                        if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0))
                         {
-                            if ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "1")
+                            if ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "1")
                             {
                                 // ﾊﾟﾗﾒｰﾀが"1"のときはチェックしない
                                 strJukiResult = "1";
@@ -352,9 +352,9 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "02");
 
                 // 管理情報のワークフローレコードが存在し、パラメータが"1"の時だけワークフロー処理を行う
-                if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0))
+                if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0))
                 {
-                    if ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "1")
+                    if ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "1")
                     {
                         // ワークフロー処理メソッドを呼ぶ
                         WorkFlowSet(cABKobetsuProperty);
@@ -483,7 +483,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 市町村管理情報の取得
                 cuCityInfoClass.GetCityInfo(m_cfControlData);
                 // 市町村コードの取得
-                strCityCD = cuCityInfoClass.p_strShichosonCD(0);
+                strCityCD = cuCityInfoClass.p_strShichosonCD[0];
                 // 作成日時(14桁)の取得
                 strNen = DateTime.Now.ToString("yyyyMMddHHmmss");
                 // 連番用カウンターの初期設定
@@ -500,35 +500,35 @@ namespace Densan.Reams.AB.AB000BB
                 // *
                 // *****
                 // 新規レコードの作成
-                csABKokuhoRow = csABKokuhoEntity.Tables(ABKobetsuKokuhoEntity.TABLE_NAME).NewRow;
+                csABKokuhoRow = csABKokuhoEntity.Tables[ABKobetsuKokuhoEntity.TABLE_NAME].NewRow();
                 // 各項目にデータをセット
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.SHICHOSONCD) = strCityCD;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.SHIKIBETSUID) = "AA60";
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.LASTRECKB) = "";
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.SAKUSEIYMD) = strNen;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.RENBAN) = intRecCnt.ToString().RPadLeft(7, '0');
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.JUMINCD) = cABKobetsuProperty.p_strJUMINCD.RSubstring(3, 12);
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHONO) = cABKobetsuProperty.p_strKOKUHONO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOSHIKAKUKB) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKB;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOSHIKAKUKBMEISHO) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBMEISHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOSHIKAKUKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBRYAKUSHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOGAKUENKB) = cABKobetsuProperty.p_strKOKUHOGAKUENKB;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOGAKUENKBMEISHO) = cABKobetsuProperty.p_strKOKUHOGAKUENKBMEISHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOGAKUENKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOGAKUENKBRYAKUSHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOSHUTOKUYMD) = cABKobetsuProperty.p_strKOKUHOSHUTOKUYMD;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOSOSHITSUYMD) = cABKobetsuProperty.p_strKOKUHOSOSHITSUYMD;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKKB) = cABKobetsuProperty.p_strKOKUHOTISHKKB;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKKBMEISHO) = cABKobetsuProperty.p_strKOKUHOTISHKKBMEISHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOTISHKKBRYAKUSHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKHONHIKB) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKB;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKHONHIKBMEISHO) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBMEISHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKHONHIKBRYAKUSHO) = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBRYAKUSHO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKGAITOYMD) = cABKobetsuProperty.p_strKOKUHOTISHKGAITOYMD;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOTISHKHIGAITOYMD) = cABKobetsuProperty.p_strKOKUHOTISHKHIGAITOYMD;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOHOKENSHOKIGO) = cABKobetsuProperty.p_strKOKUHOHOKENSHOKIGO;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.KOKUHOHOKENSHONO) = cABKobetsuProperty.p_strKOKUHOHOKENSHONO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.SHICHOSONCD] = strCityCD;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.SHIKIBETSUID] = "AA60";
+                csABKokuhoRow[ABKobetsuKokuhoEntity.LASTRECKB] = "";
+                csABKokuhoRow[ABKobetsuKokuhoEntity.SAKUSEIYMD] = strNen;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.RENBAN] = intRecCnt.ToString().RPadLeft(7, '0');
+                csABKokuhoRow[ABKobetsuKokuhoEntity.JUMINCD] = cABKobetsuProperty.p_strJUMINCD.RSubstring(3, 12);
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHONO] = cABKobetsuProperty.p_strKOKUHONO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOSHIKAKUKB] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKB;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOSHIKAKUKBMEISHO] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBMEISHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOSHIKAKUKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOSHIKAKUKBRYAKUSHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOGAKUENKB] = cABKobetsuProperty.p_strKOKUHOGAKUENKB;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOGAKUENKBMEISHO] = cABKobetsuProperty.p_strKOKUHOGAKUENKBMEISHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOGAKUENKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOGAKUENKBRYAKUSHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOSHUTOKUYMD] = cABKobetsuProperty.p_strKOKUHOSHUTOKUYMD;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOSOSHITSUYMD] = cABKobetsuProperty.p_strKOKUHOSOSHITSUYMD;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKKB] = cABKobetsuProperty.p_strKOKUHOTISHKKB;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKKBMEISHO] = cABKobetsuProperty.p_strKOKUHOTISHKKBMEISHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOTISHKKBRYAKUSHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKHONHIKB] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKB;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKHONHIKBMEISHO] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBMEISHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKHONHIKBRYAKUSHO] = cABKobetsuProperty.p_strKOKUHOTISHKHONHIKBRYAKUSHO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKGAITOYMD] = cABKobetsuProperty.p_strKOKUHOTISHKGAITOYMD;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOTISHKHIGAITOYMD] = cABKobetsuProperty.p_strKOKUHOTISHKHIGAITOYMD;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOHOKENSHOKIGO] = cABKobetsuProperty.p_strKOKUHOHOKENSHOKIGO;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.KOKUHOHOKENSHONO] = cABKobetsuProperty.p_strKOKUHOHOKENSHONO;
                 // データセットにレコードを追加
-                csABKokuhoEntity.Tables(ABKobetsuKokuhoEntity.TABLE_NAME).Rows.Add(csABKokuhoRow);
+                csABKokuhoEntity.Tables[ABKobetsuKokuhoEntity.TABLE_NAME].Rows.Add(csABKokuhoRow);
 
                 // *****
                 // *　最終行の編集
@@ -537,15 +537,15 @@ namespace Densan.Reams.AB.AB000BB
                 // 連番用カウンタに１を足す
                 intRecCnt += 1;
                 // 新規レコードの作成
-                csABKokuhoRow = csABKokuhoEntity.Tables(ABKobetsuKokuhoEntity.TABLE_NAME).NewRow;
+                csABKokuhoRow = csABKokuhoEntity.Tables[ABKobetsuKokuhoEntity.TABLE_NAME].NewRow();
                 // 各項目にデータをセット
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.SHICHOSONCD) = strCityCD;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.SHIKIBETSUID) = "AA60";
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.LASTRECKB) = "E";
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.SAKUSEIYMD) = strNen;
-                csABKokuhoRow.Item(ABKobetsuKokuhoEntity.RENBAN) = intRecCnt.ToString().RPadLeft(7, '0');
+                csABKokuhoRow[ABKobetsuKokuhoEntity.SHICHOSONCD] = strCityCD;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.SHIKIBETSUID] = "AA60";
+                csABKokuhoRow[ABKobetsuKokuhoEntity.LASTRECKB] = "E";
+                csABKokuhoRow[ABKobetsuKokuhoEntity.SAKUSEIYMD] = strNen;
+                csABKokuhoRow[ABKobetsuKokuhoEntity.RENBAN] = intRecCnt.ToString().RPadLeft(7, '0');
                 // データセットにレコードを追加
-                csABKokuhoEntity.Tables(ABKobetsuKokuhoEntity.TABLE_NAME).Rows.Add(csABKokuhoRow);
+                csABKokuhoEntity.Tables[ABKobetsuKokuhoEntity.TABLE_NAME].Rows.Add(csABKokuhoRow);
 
                 // *****
                 // *　ワークフロー送信

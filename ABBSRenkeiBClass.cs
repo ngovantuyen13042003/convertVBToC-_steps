@@ -39,7 +39,7 @@ using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 // * 履歴番号 000008 2015/09/29 追加開始
 using System.Text.RegularExpressions;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     // * 履歴番号 000008 2015/09/29 追加終了
 
@@ -331,9 +331,9 @@ namespace Densan.Reams.AB.AB000BB
             m_cuCityInfo = new USSCityInfoClass();
             m_cuCityInfo.GetCityInfo(m_cfControlData);
             // * 履歴番号 000001 2015/01/08 追加開始
-            m_strShichosonCD5 = m_cuCityInfo.p_strShichosonCD(0).RSubstring(0, 5);
+            m_strShichosonCD5 = m_cuCityInfo.p_strShichosonCD[0].RSubstring(0, 5);
             // * 履歴番号 000001 2015/01/08 追加終了
-            m_strShichosonMeisho = m_cuCityInfo.p_strShichosonMeisho(0).Trim;
+            m_strShichosonMeisho = m_cuCityInfo.p_strShichosonMeisho[0].Trim();
 
             // 法人名称編集ビジネスクラスのインスタンス化
             m_cABHojinMeishoB = new ABHojinMeishoBClass(m_cfControlData, m_cfConfigDataClass);
@@ -369,7 +369,7 @@ namespace Densan.Reams.AB.AB000BB
         // * 履歴番号 000001 2015/01/08 削除開始
         #region 【廃止】即時連携がなくなり、スケジューラーでの日次連携のみとなったため、コメントアウト
 
-        // #Region "連携有無取得"
+        // #region "連携有無取得"
 
         // ''' <summary>
         // ''' 連携有無取得
@@ -395,13 +395,13 @@ namespace Densan.Reams.AB.AB000BB
         // csDataSet = m_cABAtenaKanriJohoB.GetKanriJohoHoshu(KEYINFO_35_21(KEY_INDEX.SHUKEY), KEYINFO_35_21(KEY_INDEX.SHIKIBETSUKEY))
 
         // ' 取得件数を判定
-        // If (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0) Then
+        // If (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0) Then
 
         // ' 取得結果が1件以上の場合、パラメーターを取得
-        // strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString
+        // strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString
 
         // ' パラメーター値を判定
-        // If (strParameter.Trim.Length > 0) Then
+        // If (strParameter.Trim().Length > 0) Then
 
         // ' システム日付を取得
         // strSystemDate = m_cfRdbClass.GetSystemDate().ToString("yyyyMMdd")
@@ -432,9 +432,9 @@ namespace Densan.Reams.AB.AB000BB
 
         // End Function
 
-        // #End Region
+        // 
 
-        // #Region "中間サーバーＢＳ連携一連処理"
+        // #region "中間サーバーＢＳ連携一連処理"
 
         // ''' <summary>
         // ''' 中間サーバーＢＳ連携一連処理
@@ -507,9 +507,9 @@ namespace Densan.Reams.AB.AB000BB
 
         // End Sub
 
-        // #End Region
+        // 
 
-        // #Region "バッチパラメーター取得"
+        // #region "バッチパラメーター取得"
 
         // ''' <summary>
         // ''' バッチパラメーター取得
@@ -537,8 +537,8 @@ namespace Densan.Reams.AB.AB000BB
         // csDataRow = csDataTalbe.NewRow
         // With csDataRow
         // .BeginEdit()
-        // .Item(ABBPBSRenkei.CHUSHUTSUKBN) = ABBPBSRenkei.DEFALUT.CHUSHUTSUKBN.IDOBUN
-        // .Item(ABBPBSRenkei.CHUSHUTSUJOKEN) = ABBPBSRenkei.DEFALUT.CHUSHUTSUJOKEN.JUMINCD
+        // [ABBPBSRenkei.CHUSHUTSUKBN] = ABBPBSRenkei.DEFALUT.CHUSHUTSUKBN.IDOBUN
+        // [ABBPBSRenkei.CHUSHUTSUJOKEN] = ABBPBSRenkei.DEFALUT.CHUSHUTSUJOKEN.JUMINCD
         // .EndEdit()
         // End With
         // csDataTalbe.Rows.Add(csDataRow)
@@ -551,9 +551,9 @@ namespace Densan.Reams.AB.AB000BB
 
         // End Function
 
-        // #End Region
+        // 
 
-        // #Region "住民コードパラメーター追加"
+        // #region "住民コードパラメーター追加"
 
         // ''' <summary>
         // ''' 住民コードパラメーター追加
@@ -584,7 +584,7 @@ namespace Densan.Reams.AB.AB000BB
         // csDataRow = csDataTalbe.NewRow
         // With csDataRow
         // .BeginEdit()
-        // .Item(ABBPJuminCD.JUMINCD) = strJuminCD
+        // [ABBPJuminCD.JUMINCD] = strJuminCD
         // .EndEdit()
         // End With
         // csDataTalbe.Rows.Add(csDataRow)
@@ -599,7 +599,7 @@ namespace Densan.Reams.AB.AB000BB
 
         // End Function
 
-        // #End Region
+        // 
 
         #endregion
         // * 履歴番号 000001 2015/01/08 削除終了
@@ -647,7 +647,7 @@ namespace Densan.Reams.AB.AB000BB
                     // * 履歴番号 000001 2015/01/08 追加終了
                     // -----------------------------------------------------------------------------------------------------
                     // 識別コード
-                    withBlock.m_strShikibetsuCD = cParam.m_strJuminCd.Trim.RPadLeft(15, '0');
+                    withBlock.m_strShikibetsuCD = cParam.m_strJuminCd.Trim().RPadLeft(15, '0');
                     // * 履歴番号 000001 2015/01/08 追加開始
                     // -----------------------------------------------------------------------------------------------------
                     // 登録日時
@@ -741,7 +741,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 郵便番号
                     // * 履歴番号 000008 2015/09/29 修正開始
                     // .m_strYubinNo = cParam.m_strYubinNo.Trim
-                    withBlock.m_strYubinNo = this.CheckZIPCode(cParam.m_strYubinNo.Trim);
+                    withBlock.m_strYubinNo = this.CheckZIPCode(cParam.m_strYubinNo.Trim());
                     // * 履歴番号 000008 2015/09/29 修正終了
                     // -----------------------------------------------------------------------------------------------------
                     // 住所
@@ -762,7 +762,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 異動日
                     // * 履歴番号 000008 2015/09/29 修正開始
                     // .m_strIdoYMD = cParam.m_strCkinIdoYmd.Trim
-                    withBlock.m_strIdoYMD = this.CheckDate(cParam.m_strCkinIdoYmd.Trim);
+                    withBlock.m_strIdoYMD = this.CheckDate(cParam.m_strCkinIdoYmd.Trim());
                     // * 履歴番号 000008 2015/09/29 修正終了
                     // -----------------------------------------------------------------------------------------------------
                     // 異動事由コード
@@ -779,7 +779,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 個人番号
                     // * 履歴番号 000001 2015/01/08 修正開始
                     // .m_strKojinBango = Me.GetKojinBango(cParam)
-                    withBlock.m_strKojinBango = cParam.m_strMyNumber.Trim;
+                    withBlock.m_strKojinBango = cParam.m_strMyNumber.Trim();
                     // * 履歴番号 000001 2015/01/08 修正終了
                     // -----------------------------------------------------------------------------------------------------
                     // 直近区分
@@ -876,12 +876,12 @@ namespace Densan.Reams.AB.AB000BB
     /// <param name="intMaxLength">最大文字数</param>
     /// <returns>切り取り結果文字列</returns>
     /// <remarks></remarks>
-        private string Left(string strValue, int intMaxLength)
+        private string UFVBAPI.Left(string strValue, int intMaxLength)
         {
             string strResult = string.Empty;
             try
             {
-                if (strValue is not null && strValue.RLength > intMaxLength)
+                if (strValue is not null && strValue.RLength() > intMaxLength)
                 {
                     strResult = strValue.RSubstring(0, intMaxLength);
                 }
@@ -1199,7 +1199,7 @@ namespace Densan.Reams.AB.AB000BB
                     strResult = cParam.m_strKanjiMeisho1;
                 }
                 // Left内でTrimEndして設定することとする。
-                strResult = Left(strResult, LENGTH.KANJISHIMEI);
+                strResult = UFVBAPI.Left(strResult, LENGTH.KANJISHIMEI);
             }
 
             catch (Exception csExp)
@@ -1235,13 +1235,13 @@ namespace Densan.Reams.AB.AB000BB
                     // * 履歴番号 000005 2015/06/09 追加開始
                     // ※カナ法人名のTrimEndは準拠する為なので放置する。
                     // * 履歴番号 000005 2015/06/09 追加終了
-                    if (cParam.m_strKanaMeisho2.Trim.RLength > 0)
+                    if (cParam.m_strKanaMeisho2.Trim().RLength() > 0)
                     {
-                        strResult = string.Concat(cParam.m_strKanaMeisho1.TrimEnd, ' ', cParam.m_strKanaMeisho2.TrimEnd);
+                        strResult = string.Concat(cParam.m_strKanaMeisho1.TrimEnd(), ' ', cParam.m_strKanaMeisho2.TrimEnd());
                     }
                     else
                     {
-                        strResult = cParam.m_strKanaMeisho1.TrimEnd;
+                        strResult = cParam.m_strKanaMeisho1.TrimEnd();
                     }
                 }
                 else
@@ -1249,7 +1249,7 @@ namespace Densan.Reams.AB.AB000BB
                     strResult = cParam.m_strKanaMeisho1;
                 }
                 // Left内でTrimEndして設定することとする。
-                strResult = Left(strResult, LENGTH.KANASHIMEI);
+                strResult = UFVBAPI.Left(strResult, LENGTH.KANASHIMEI);
             }
 
             catch (Exception csExp)
@@ -1280,7 +1280,7 @@ namespace Densan.Reams.AB.AB000BB
             {
 
                 // 値有無判定は漢字項目で行う。
-                if (cParam.m_strFZYKanjiHeikimei.Trim.RLength > 0)
+                if (cParam.m_strFZYKanjiHeikimei.Trim().RLength() > 0)
                 {
                     // 漢字併記名に値が存在する場合->カナ併記名を設定
                     strResult = cParam.m_strFZYKanaHeikimei;
@@ -1291,7 +1291,7 @@ namespace Densan.Reams.AB.AB000BB
                     strResult = cParam.m_strFZYKanaHongokumei;
                 }
                 // Left内でTrimEndして設定することとする。
-                strResult = Left(strResult, LENGTH.FRNKANASHIMEI);
+                strResult = UFVBAPI.Left(strResult, LENGTH.FRNKANASHIMEI);
             }
 
             catch (Exception csExp)
@@ -1328,10 +1328,10 @@ namespace Densan.Reams.AB.AB000BB
                 if (IsFrn(cParam) == true)
                 {
 
-                    if (cParam.m_strHanyoKb2.Trim == "2")
+                    if (cParam.m_strHanyoKb2.Trim() == "2")
                     {
 
-                        if (cParam.m_strFZYKanjiHeikimei.Trim.RLength > 0)
+                        if (cParam.m_strFZYKanjiHeikimei.Trim().RLength() > 0)
                         {
                             strResult = HEIKIMEI;
                         }
@@ -1342,11 +1342,11 @@ namespace Densan.Reams.AB.AB000BB
                     }
 
 
-                    else if (cParam.m_strFZYKanjiTsushomei.Trim.RLength > 0)
+                    else if (cParam.m_strFZYKanjiTsushomei.Trim().RLength() > 0)
                     {
                         strResult = TSUSHOMEI;
                     }
-                    else if (cParam.m_strFZYKanjiHeikimei.Trim.RLength > 0)
+                    else if (cParam.m_strFZYKanjiHeikimei.Trim().RLength() > 0)
                     {
                         strResult = HEIKIMEI;
                     }
@@ -1403,7 +1403,7 @@ namespace Densan.Reams.AB.AB000BB
 
                         default:
                             {
-                                strResult = cParam.m_strUmareYmd.Trim;
+                                strResult = cParam.m_strUmareYmd.Trim();
                                 break;
                             }
                     }
@@ -1617,7 +1617,7 @@ namespace Densan.Reams.AB.AB000BB
                     // * 履歴番号 000011 2016/11/19 追加開始
                 }
                 // * 履歴番号 000011 2016/11/19 追加終了
-                strResult = Left(strResult, LENGTH.JUSHO);
+                strResult = UFVBAPI.Left(strResult, LENGTH.JUSHO);
             }
 
             catch (Exception csExp)
@@ -1648,183 +1648,183 @@ namespace Densan.Reams.AB.AB000BB
                 m_csJutonaiJiyuCDConvertTable = new Hashtable();
                 // -------------------------------------------------------------------------------------
                 // 特殊追加
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuTsuika.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.TokushuTsuika);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuTsuika.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.TokushuTsuika);
 
                 // -------------------------------------------------------------------------------------
                 // 特殊修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.TokushuShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.TokushuShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 特殊削除
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuSakujo.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.TokushuSakujo);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuSakujo.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.TokushuSakujo);
 
                 // -------------------------------------------------------------------------------------
                 // 住民票ＣＤ修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuCodeShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoCDShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuCodeShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoCDShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 個人番号修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 履歴修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuRirekiShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.RirekiShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TokushuRirekiShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.RirekiShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 転入
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tennyu.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Tennyu);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tennyu.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Tennyu);
 
                 // -------------------------------------------------------------------------------------
                 // 出生
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Shussei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Shussei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Shussei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Shussei);
 
                 // -------------------------------------------------------------------------------------
                 // 職権記載
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.ShokkenKisai.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.ShokkenKisai);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.ShokkenKisai.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.ShokkenKisai);
 
                 // -------------------------------------------------------------------------------------
                 // 住所設定
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.JushoSettei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.JushoSettei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.JushoSettei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.JushoSettei);
 
                 // -------------------------------------------------------------------------------------
                 // 転出
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tenshutsu.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Tenshutsu);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tenshutsu.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Tenshutsu);
 
                 // -------------------------------------------------------------------------------------
                 // 死亡
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Shibo.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Shibo);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Shibo.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Shibo);
 
                 // -------------------------------------------------------------------------------------
                 // 失踪宣告
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Shisso.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.ShissoSenkoku);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Shisso.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.ShissoSenkoku);
 
                 // -------------------------------------------------------------------------------------
                 // 職権消除
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.ShokkenShojo.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.ShokkenShojo);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.ShokkenShojo.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.ShokkenShojo);
 
                 // -------------------------------------------------------------------------------------
                 // 転居
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tenkyo.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Tenkyo);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tenkyo.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Tenkyo);
 
                 // -------------------------------------------------------------------------------------
                 // 帰化
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Kika.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Kika);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Kika.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Kika);
 
                 // -------------------------------------------------------------------------------------
                 // 国籍取得
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KokusekiShutoku.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KokusekiShutoku);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KokusekiShutoku.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KokusekiShutoku);
 
                 // -------------------------------------------------------------------------------------
                 // 国籍喪失
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KokusekiSoshitsu.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KokusekiSoshitsu);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KokusekiSoshitsu.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KokusekiSoshitsu);
 
                 // -------------------------------------------------------------------------------------
                 // 主変更
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetainushiHenko.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.NushiHenko);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetainushiHenko.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.NushiHenko);
 
                 // -------------------------------------------------------------------------------------
                 // 世帯分離
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetaiBunri.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.SetaiBunri);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetaiBunri.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.SetaiBunri);
 
                 // -------------------------------------------------------------------------------------
                 // 世帯合併
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetaiGappei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.SetaiGappei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetaiGappei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.SetaiGappei);
 
                 // -------------------------------------------------------------------------------------
                 // 世帯変更
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetaiKoseiHenko.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.SetaiHenko);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.SetaiKoseiHenko.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.SetaiHenko);
 
                 // -------------------------------------------------------------------------------------
                 // 婚姻
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Konin.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Konin);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Konin.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Konin);
 
                 // -------------------------------------------------------------------------------------
                 // 離婚
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Rikon.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Rikon);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Rikon.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Rikon);
 
                 // -------------------------------------------------------------------------------------
                 // 養子縁組
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.YoshiEngumi.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.YoshiEngumi);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.YoshiEngumi.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.YoshiEngumi);
 
                 // -------------------------------------------------------------------------------------
                 // 養子離縁
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.YoshiRien.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.YoshiRien);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.YoshiRien.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.YoshiRien);
 
                 // -------------------------------------------------------------------------------------
                 // 転籍
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tenseki.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Tenseki);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Tenseki.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Tenseki);
 
                 // -------------------------------------------------------------------------------------
                 // 分籍
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Bunseki.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Bunseki);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Bunseki.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Bunseki);
 
                 // -------------------------------------------------------------------------------------
                 // 入籍
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Nyuseki.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Nyuseki);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Nyuseki.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Nyuseki);
 
                 // -------------------------------------------------------------------------------------
                 // 認知
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Ninchi.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.Ninchi);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Ninchi.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.Ninchi);
 
                 // -------------------------------------------------------------------------------------
                 // 戸籍その他
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KosekiSonota.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KosekiSonota);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KosekiSonota.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KosekiSonota);
 
                 // -------------------------------------------------------------------------------------
                 // 職権修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.ShokkenShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.ShokkenShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.ShokkenShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.ShokkenShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 戸籍修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KosekiShogoShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KosekiShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KosekiShogoShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KosekiShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 転出取消
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TenshutsuTorikeshi.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.TenshutsuTorikeshi);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TenshutsuTorikeshi.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.TenshutsuTorikeshi);
 
                 // -------------------------------------------------------------------------------------
                 // 職権回復
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Kaifuku.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.ShokkenKaifuku);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.Kaifuku.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.ShokkenKaifuku);
 
                 // -------------------------------------------------------------------------------------
                 // 転入通知受理
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TennyuTsuchiJuri.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.TennyuTsuchiJuri);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.TennyuTsuchiJuri.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.TennyuTsuchiJuri);
 
                 // -------------------------------------------------------------------------------------
                 // 住民票ＣＤ記載
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.CodeShokkenKisai.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoCDKisai);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.CodeShokkenKisai.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoCDKisai);
 
                 // -------------------------------------------------------------------------------------
                 // 住民票ＣＤ変更
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.CodeHenkoSeikyu.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoCDHenko);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.CodeHenkoSeikyu.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoCDHenko);
 
                 // -------------------------------------------------------------------------------------
                 // 個人番号記載
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoKisai.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoKisai);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoKisai.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoKisai);
 
                 // -------------------------------------------------------------------------------------
                 // 個人番号変更
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoHenko.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoHenko);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoHenko.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoHenko);
 
                 // -------------------------------------------------------------------------------------
                 // 個人番号職権修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoShokkenShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoShokkenShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KojinNoShokkenShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KojinBangoShokkenShusei);
 
                 // -------------------------------------------------------------------------------------
                 // 住民票改製
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.JuminhyoKaisei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoKaisei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.JuminhyoKaisei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.JuminhyoKaisei);
 
                 // -------------------------------------------------------------------------------------
                 // 写し制御
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.UtsushiSeigyo.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.UtsushiSeigyo);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.UtsushiSeigyo.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.UtsushiSeigyo);
 
                 // -------------------------------------------------------------------------------------
                 // 表示順変更
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.HyojijunHenko.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.HyojijunHenko);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.HyojijunHenko.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.HyojijunHenko);
 
                 // -------------------------------------------------------------------------------------
                 // 個別事項修正
-                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KobetsuShusei.GetHashCode.ToString("00"), ABJikiJukiShoriJiyuType.KobetsuJikoShusei);
+                m_csJutonaiJiyuCDConvertTable.Add(ABJukiShoriJiyuType.KobetsuShusei.GetHashCode().ToString("00"), ABJikiJukiShoriJiyuType.KobetsuJikoShusei);
 
                 // -------------------------------------------------------------------------------------
 
@@ -1929,7 +1929,7 @@ namespace Densan.Reams.AB.AB000BB
                 // コード変換処理
                 if (csIdoJiyuCDConvertTable.ContainsKey(cParam.m_strCkinJiyuCd) == true)
                 {
-                    strResult = csIdoJiyuCDConvertTable(cParam.m_strCkinJiyuCd).GetHashCode.ToString("00");
+                    strResult = csIdoJiyuCDConvertTable[cParam.m_strCkinJiyuCd].GetHashCode().ToString("00");
                 }
                 else
                 {
@@ -1964,9 +1964,9 @@ namespace Densan.Reams.AB.AB000BB
             try
             {
 
-                if (cParam.m_strMyNumberJuminCD.Trim.RLength > 0)
+                if (cParam.m_strMyNumberJuminCD.Trim().RLength() > 0)
                 {
-                    strResult = cParam.m_strMyNumberKoshinNichiji.Trim;
+                    strResult = cParam.m_strMyNumberKoshinNichiji.Trim();
                 }
                 else
                 {
@@ -1974,19 +1974,19 @@ namespace Densan.Reams.AB.AB000BB
                     // 宛名マスタの更新日時
                     // 宛名累積マスタの処理日時
                     // strResult = cParam.m_strKoshinNichiji.Trim
-                    strResult = cParam.m_strShoriNichiji.Trim;
+                    strResult = cParam.m_strShoriNichiji.Trim();
                     // * 履歴番号 000002 2015/02/09 修正終了
                 }
 
                 // * 履歴番号 000006 2015/07/07 追加開始
                 // * 履歴番号 000007 2015/07/15 修正開始
-                // If (strResult.Trim.Length > 0) Then
+                // If (strResult.Trim().Length > 0) Then
                 // ' noop
                 // Else
                 // ' 値が存在しない場合は、システム日時を設定する。
-                // strResult = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff")
+                // strResult = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff")
                 // End If
-                strResult = this.CheckDateTime(cParam.m_strJuminCd, strResult);
+                strResult = this.CheckDate()Time(cParam.m_strJuminCd, strResult);
             }
             // * 履歴番号 000007 2015/07/15 修正終了
             // * 履歴番号 000006 2015/07/07 追加終了
@@ -2149,7 +2149,7 @@ namespace Densan.Reams.AB.AB000BB
 
         // Try
 
-        // If (cParam.m_strMyNumber.Trim.Length = ABConstClass.MYNUMBER.LENGTH.KOJIN) Then
+        // If (cParam.m_strMyNumber.Trim().Length = ABConstClass.MYNUMBER.LENGTH.KOJIN) Then
         // strResult = cParam.m_strMyNumber.Trim
         // Else
         // strResult = String.Empty
@@ -2232,7 +2232,7 @@ namespace Densan.Reams.AB.AB000BB
 
         // Try
 
-        // If (cParam.m_strMyNumber.Trim.Length = ABConstClass.MYNUMBER.LENGTH.HOJIN) Then
+        // If (cParam.m_strMyNumber.Trim().Length = ABConstClass.MYNUMBER.LENGTH.HOJIN) Then
         // strResult = cParam.m_strMyNumber.Trim
         // Else
         // strResult = String.Empty
@@ -2270,8 +2270,8 @@ namespace Densan.Reams.AB.AB000BB
                 // Case ABConstClass.KANNAIKB
                 // strResult = m_strShichosonCD5
                 // Case Else
-                // If (cParam.m_strJushoCd.Trim.Length > 5) Then
-                // strResult = cParam.m_strJushoCd.Trim.Substring(0, 5).Trim
+                // If (cParam.m_strJushoCd.Trim().Length > 5) Then
+                // strResult = cParam.m_strJushoCd.Trim().Substring(0, 5).Trim
                 // Else
                 // strResult = cParam.m_strJushoCd.Trim
                 // End If
@@ -2282,13 +2282,13 @@ namespace Densan.Reams.AB.AB000BB
 
                     // * 履歴番号 000012 2017/05/23 修正開始
                     // strResult = cParam.m_strChikuCd3.Trim
-                    if (cParam.m_strChikuCd3.Trim.RLength > 5)
+                    if (cParam.m_strChikuCd3.Trim().RLength() > 5)
                     {
-                        strResult = cParam.m_strChikuCd3.Trim.RSubstring(0, 5).Trim;
+                        strResult = cParam.m_strChikuCd3.Trim().RSubstring(0, 5).Trim();
                     }
                     else
                     {
-                        strResult = cParam.m_strChikuCd3.Trim;
+                        strResult = cParam.m_strChikuCd3.Trim();
                     }
                 }
                 // * 履歴番号 000012 2017/05/23 修正終了
@@ -2308,13 +2308,13 @@ namespace Densan.Reams.AB.AB000BB
                         default:
                             {
 
-                                if (cParam.m_strJushoCd.Trim.RLength > 5)
+                                if (cParam.m_strJushoCd.Trim().RLength() > 5)
                                 {
-                                    strResult = cParam.m_strJushoCd.Trim.RSubstring(0, 5).Trim;
+                                    strResult = cParam.m_strJushoCd.Trim().RSubstring(0, 5).Trim();
                                 }
                                 else
                                 {
-                                    strResult = cParam.m_strJushoCd.Trim;
+                                    strResult = cParam.m_strJushoCd.Trim();
                                 }
 
                                 break;
@@ -2353,7 +2353,7 @@ namespace Densan.Reams.AB.AB000BB
             try
             {
 
-                if (cParam.m_strKojinSeigyoKbn.Trim.RLength > 0)
+                if (cParam.m_strKojinSeigyoKbn.Trim().RLength() > 0)
                 {
                     strResult = SEIGYOKBN_ON;
                 }
@@ -2550,19 +2550,19 @@ namespace Densan.Reams.AB.AB000BB
                 strResult = strTorokuNichiji.Trim();
 
                 // 歴上日になるように登録日時を整備する。
-                if (strResult.RLength == DATE_TIME_MAX_LENGTH && UFStringClass.CheckNumber(strResult) == true)
+                if (strResult.RLength() == DATE_TIME_MAX_LENGTH && UFStringClass.CheckNumber(strResult) == true)
                 {
 
                     strResult = strResult.RPadRight(17, '0');
-                    strYear = strResult.RSubstring(0, 4).Trim.RPadLeft(4, '0');
-                    strMonth = strResult.RSubstring(4, 2).Trim.RPadLeft(2, '0');
-                    strDay = strResult.RSubstring(6, 2).Trim.RPadLeft(2, '0');
-                    strHour = strResult.RSubstring(8, 2).Trim.RPadLeft(2, '0');
-                    strMinute = strResult.RSubstring(10, 2).Trim.RPadLeft(2, '0');
-                    strSecond = strResult.RSubstring(12, 2).Trim.RPadLeft(2, '0');
-                    strMilliSecond = strResult.RSubstring(14, 3).Trim.RPadLeft(3, '0');
+                    strYear = strResult.RSubstring(0, 4).Trim().RPadLeft(4, '0');
+                    strMonth = strResult.RSubstring(4, 2).Trim().RPadLeft(2, '0');
+                    strDay = strResult.RSubstring(6, 2).Trim().RPadLeft(2, '0');
+                    strHour = strResult.RSubstring(8, 2).Trim().RPadLeft(2, '0');
+                    strMinute = strResult.RSubstring(10, 2).Trim().RPadLeft(2, '0');
+                    strSecond = strResult.RSubstring(12, 2).Trim().RPadLeft(2, '0');
+                    strMilliSecond = strResult.RSubstring(14, 3).Trim().RPadLeft(3, '0');
 
-                    if (Operators.CompareString(HOUR_MAX, strHour, false) < 0)
+                    if (UFVBAPI.CompareString(HOUR_MAX, strHour, false) < 0)
                     {
                         strHour = HOUR_MAX;
                     }
@@ -2571,7 +2571,7 @@ namespace Densan.Reams.AB.AB000BB
                         // noop
                     }
 
-                    if (Operators.CompareString(MINUTE_MAX, strMinute, false) < 0)
+                    if (UFVBAPI.CompareString(MINUTE_MAX, strMinute, false) < 0)
                     {
                         strMinute = MINUTE_MAX;
                     }
@@ -2580,7 +2580,7 @@ namespace Densan.Reams.AB.AB000BB
                         // noop
                     }
 
-                    if (Operators.CompareString(SECOND_MAX, strSecond, false) < 0)
+                    if (UFVBAPI.CompareString(SECOND_MAX, strSecond, false) < 0)
                     {
                         strSecond = SECOND_MAX;
                     }
@@ -2595,13 +2595,13 @@ namespace Densan.Reams.AB.AB000BB
                     // noop
                     else
                     {
-                        csDateTime = m_cfRdbClass.GetSystemDate;
+                        csDateTime = m_cfRdbClass.GetSystemDate();
                     }
                 }
 
                 else
                 {
-                    csDateTime = m_cfRdbClass.GetSystemDate;
+                    csDateTime = m_cfRdbClass.GetSystemDate();
                 }
 
                 // 住民コード単位にブレイクする。
@@ -2802,10 +2802,10 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = m_cABAtenaKanriJohoB.GetKanriJohoHoshu(strShukey, strShikibetsukey);
 
                 // 取得件数を判定
-                if (csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count > 0)
                 {
                     // 取得結果が1件以上の場合、パラメーターを取得
-                    strParameter = csDataSet.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER).ToString;
+                    strParameter = csDataSet.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER].ToString();
                     // パラメーター値を返却する
                     return strParameter.Trim();
                 }

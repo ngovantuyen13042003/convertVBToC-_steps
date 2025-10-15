@@ -24,7 +24,7 @@ using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 
 #region 参照名前空間
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     #endregion
@@ -205,17 +205,17 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDateTime = m_cfRdb.GetSystemDate().ToString("yyyyMMddHHmmssfff");  // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABKojinSeigyoTempEntity.TANMATSUID) = m_cfControlData.m_strClientId;   // 端末ＩＤ
-                csDataRow(ABKojinSeigyoTempEntity.SAKUJOFG) = "0";                               // 削除フラグ
-                csDataRow(ABKojinSeigyoTempEntity.KOSHINCOUNTER) = decimal.Zero;                 // 更新カウンタ
-                csDataRow(ABKojinSeigyoTempEntity.SAKUSEINICHIJI) = strUpdateDateTime;           // 作成日時
-                csDataRow(ABKojinSeigyoTempEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;    // 作成ユーザー
-                csDataRow(ABKojinSeigyoTempEntity.KOSHINNICHIJI) = strUpdateDateTime;            // 更新日時
-                csDataRow(ABKojinSeigyoTempEntity.KOSHINUSER) = m_cfControlData.m_strUserId;     // 更新ユーザー
+                csDataRow[ABKojinSeigyoTempEntity.TANMATSUID] = m_cfControlData.m_strClientId;   // 端末ＩＤ
+                csDataRow[ABKojinSeigyoTempEntity.SAKUJOFG] = "0";                               // 削除フラグ
+                csDataRow[ABKojinSeigyoTempEntity.KOSHINCOUNTER] = decimal.Zero;                 // 更新カウンタ
+                csDataRow[ABKojinSeigyoTempEntity.SAKUSEINICHIJI] = strUpdateDateTime;           // 作成日時
+                csDataRow[ABKojinSeigyoTempEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;    // 作成ユーザー
+                csDataRow[ABKojinSeigyoTempEntity.KOSHINNICHIJI] = strUpdateDateTime;            // 更新日時
+                csDataRow[ABKojinSeigyoTempEntity.KOSHINUSER] = m_cfControlData.m_strUserId;     // 更新ユーザー
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollection)
-                    cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABKojinSeigyoTempEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABKojinSeigyoTempEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // RDBアクセスログ出力
                 m_cABLogX.RdbWrite(THIS_METHOD_NAME, "ExecuteSQL", m_cfRdb.GetDevelopmentSQLString(m_strInsertSQL, m_cfInsertUFParameterCollection));
@@ -302,7 +302,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfDelButuriUFParameterCollection)
-                    cfParam.Value = csDataRow(cfParam.ParameterName.RSubstring(ABKojinSeigyoTempEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    cfParam.Value = csDataRow[cfParam.ParameterName.RSubstring(ABKojinSeigyoTempEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // RDBアクセスログ出力
                 m_cABLogX.RdbWrite(THIS_METHOD_NAME, m_cfRdb.GetDevelopmentSQLString(m_strDelButuriSQL, m_cfDelButuriUFParameterCollection) + "】");

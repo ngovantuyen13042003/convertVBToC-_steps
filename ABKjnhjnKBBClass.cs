@@ -17,7 +17,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABKjnhjnKBBClass
@@ -130,17 +130,17 @@ namespace Densan.Reams.AB.AB000BB
                 // 各フィールドにデータを格納する
                 // 個人法人区分 = 1
                 csKjnHjnDataRow = csKjnHjnDataTbl.NewRow();
-                csKjnHjnDataRow.Item(ABKjnHjnData.KJNHJNKB) = "1";
-                csKjnHjnDataRow.Item(ABKjnHjnData.KJNHJNKBMEI) = "個人";
+                csKjnHjnDataRow[ABKjnHjnData.KJNHJNKB] = "1";
+                csKjnHjnDataRow[ABKjnHjnData.KJNHJNKBMEI] = "個人";
                 // データの追加
-                csKjnHjnData.Tables(ABKjnHjnData.TABLE_NAME).Rows.Add(csKjnHjnDataRow);
+                csKjnHjnData.Tables[ABKjnHjnData.TABLE_NAME].Rows.Add(csKjnHjnDataRow);
 
                 // 個人法人区分 = 2
                 csKjnHjnDataRow = csKjnHjnDataTbl.NewRow();
-                csKjnHjnDataRow.Item(ABKjnHjnData.KJNHJNKB) = "2";
-                csKjnHjnDataRow.Item(ABKjnHjnData.KJNHJNKBMEI) = "法人";
+                csKjnHjnDataRow[ABKjnHjnData.KJNHJNKB] = "2";
+                csKjnHjnDataRow[ABKjnHjnData.KJNHJNKBMEI] = "法人";
                 // データの追加
-                csKjnHjnData.Tables(ABKjnHjnData.TABLE_NAME).Rows.Add(csKjnHjnDataRow);
+                csKjnHjnData.Tables[ABKjnHjnData.TABLE_NAME].Rows.Add(csKjnHjnDataRow);
 
                 // デバッグ終了ログ出力
                 m_cfUFLogClass.DebugEndWrite(m_cfUFControlData, THIS_CLASS_NAME, "HenKangaiKangai");

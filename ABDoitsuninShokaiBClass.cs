@@ -26,7 +26,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABDoitsuninShokaiBClass
@@ -158,7 +158,7 @@ namespace Densan.Reams.AB.AB000BB
                 // "【クラス名:" + THIS_CLASS_NAME + "】" + _
                 // "【メソッド名:" + THIS_METHOD_NAME + "】" + _
                 // "【実行メソッド名:GetDataSet】" + _
-                // "【SQL内容:" + strSQL.ToString + "】")
+                // "【SQL内容:" + strSQL.ToString() + "】")
 
                 // RDBアクセスログ出力
                 m_cfLog.RdbWrite(m_cfControlData, "【クラス名:" + GetType().Name + "】" + "【メソッド名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "】" + "【実行メソッド名:GetDataSet】" + "【SQL内容:" + m_cfRdb.GetDevelopmentSQLString(strSQL.ToString(), cfParameterCollection) + "】");
@@ -228,7 +228,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDoitsuninDataEntity = m_cfRdb.GetTableSchema(ABGappeiDoitsuninEntity.TABLE_NAME);
 
                 // テーブル名を変更する
-                csDoitsuninDataTable = csDoitsuninDataEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME);
+                csDoitsuninDataTable = csDoitsuninDataEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME];
                 csDoitsuninDataTable.TableName = ABDoitsuninDataEntity.TABLE_NAME;
 
                 // **
@@ -473,23 +473,23 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     return csResultDS;
                 }
-                else if (csDataSet.Tables(ABAtenaEntity.TABLE_NAME).Rows.Count > 0)
+                else if (csDataSet.Tables[ABAtenaEntity.TABLE_NAME].Rows.Count > 0)
                 {
-                    csRow = csDataSet.Tables(ABAtenaEntity.TABLE_NAME).Rows(0);
-                    strUmareYMD = csRow.Item(ABAtenaEntity.UMAREYMD).ToString;
-                    strSearchKanaShimei1 = csRow.Item(ABAtenaEntity.SEARCHKANASEIMEI).ToString;
-                    if (csRow.Item(ABAtenaEntity.ATENADATAKB).ToString == ABConstClass.ATENADATAKB_HOJIN)
+                    csRow = csDataSet.Tables[ABAtenaEntity.TABLE_NAME].Rows[0];
+                    strUmareYMD = csRow[ABAtenaEntity.UMAREYMD].ToString();
+                    strSearchKanaShimei1 = csRow[ABAtenaEntity.SEARCHKANASEIMEI].ToString();
+                    if (csRow[ABAtenaEntity.ATENADATAKB].ToString() == ABConstClass.ATENADATAKB_HOJIN)
                     {
-                        strSearchKanaShimei2 = csRow.Item(ABAtenaEntity.SEARCHKANASEI).ToString;
+                        strSearchKanaShimei2 = csRow[ABAtenaEntity.SEARCHKANASEI].ToString();
                     }
                     else
                     {
                         strSearchKanaShimei2 = string.Empty;
                     }
-                    strSearchKanaShimei3 = csRow.Item(ABAtenaFZYHyojunEntity.SEARCHKANAFRNMEI).ToString;
-                    strSearchKanaShimei4 = csRow.Item(ABAtenaFZYHyojunEntity.SEARCHKANATSUSHOMEI).ToString;
-                    strSearchKanaShimei5 = csRow.Item(ABAtenaFZYHyojunEntity.SEARCHKANAHEIKIMEI).ToString;
-                    strSeibetsuCd = csRow.Item(ABAtenaEntity.SEIBETSUCD).ToString;
+                    strSearchKanaShimei3 = csRow[ABAtenaFZYHyojunEntity.SEARCHKANAFRNMEI].ToString();
+                    strSearchKanaShimei4 = csRow[ABAtenaFZYHyojunEntity.SEARCHKANATSUSHOMEI].ToString();
+                    strSearchKanaShimei5 = csRow[ABAtenaFZYHyojunEntity.SEARCHKANAHEIKIMEI].ToString();
+                    strSeibetsuCd = csRow[ABAtenaEntity.SEIBETSUCD].ToString();
                 }
                 else
                 {

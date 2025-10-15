@@ -32,7 +32,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     // *履歴番号 000009 2020/11/06 追加終了
 
@@ -147,7 +147,7 @@ namespace Densan.Reams.AB.AB000BB
                 m_cfLogClass.DebugStartWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME);
 
                 // パラメータチェック
-                if (csABLTRiyoTdkParaX.p_strJuminCD.Trim == string.Empty && csABLTRiyoTdkParaX.p_strZeimokuCD == ABEnumDefine.ZeimokuCDType.Empty)
+                if (csABLTRiyoTdkParaX.p_strJuminCD.Trim() == string.Empty && csABLTRiyoTdkParaX.p_strZeimokuCD == ABEnumDefine.ZeimokuCDType.Empty)
                 {
                     // パラメータ:住民CD、税目CDが設定されていない場合は引数エラー
                     // メッセージ『必須項目が入力されていません。：住民コード､税目コードのいずれかを設定してください。』
@@ -162,7 +162,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // *履歴番号 000009 2020/11/06 追加開始
-                if (!(csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "1" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "2" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "3" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "4"))
+                if (!(csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "1" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "2" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "3" || csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "4"))
 
 
 
@@ -202,7 +202,7 @@ namespace Densan.Reams.AB.AB000BB
                 strSQL.Append(" WHERE ");
 
                 // 住民コード
-                if (csABLTRiyoTdkParaX.p_strJuminCD.Trim != string.Empty)
+                if (csABLTRiyoTdkParaX.p_strJuminCD.Trim() != string.Empty)
                 {
                     // 住民コードが設定されている場合
                     strSQL.Append(ABLtRiyoTdkEntity.JUMINCD).Append(" = ");
@@ -283,10 +283,10 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000009 2020/11/06 修正開始
                 // If (csABLTRiyoTdkParaX.p_strOutKB = "1") Then
                 // csLtRiyoTdkEntity = m_csDataSchma_Select.Clone()
-                // csLtRiyoTdkEntity = m_cfRdbClass.GetDataSet(strSQL.ToString, csLtRiyoTdkEntity, ABLtRiyoTdkEntity.TABLE_NAME, cfUFParameterCollectionClass, False)
+                // csLtRiyoTdkEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), csLtRiyoTdkEntity, ABLtRiyoTdkEntity.TABLE_NAME, cfUFParameterCollectionClass, False)
                 // Else
                 // csLtRiyoTdkEntity = m_csDataSchma.Clone()
-                // csLtRiyoTdkEntity = m_cfRdbClass.GetDataSet(strSQL.ToString, csLtRiyoTdkEntity, ABLtRiyoTdkEntity.TABLE_NAME, cfUFParameterCollectionClass, False)
+                // csLtRiyoTdkEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), csLtRiyoTdkEntity, ABLtRiyoTdkEntity.TABLE_NAME, cfUFParameterCollectionClass, False)
                 // End If
                 // この時点ではcsLtRiyoTdkEntityは全項目とする
                 csLtRiyoTdkEntity = m_csDataSchma.Clone();
@@ -320,7 +320,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 該当する業務CDが設定されていた場合（共通納税は返却不要となる）
 
-                    switch (csABLTRiyoTdkParaX.p_strRiyoKB.Trim)
+                    switch (csABLTRiyoTdkParaX.p_strRiyoKB.Trim())
                     {
 
                         case "":
@@ -328,7 +328,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通＞申告＞共通納税の優先順（ただし、共通納税は除外する）
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -336,7 +336,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 申告＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -344,7 +344,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通納税＞共通の優先順（ただし、共通納税は除外する）
                                 strFilter = string.Format("{0}='{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "1");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -363,7 +363,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 該当する業務CDが設定されていない場合
 
-                    switch (csABLTRiyoTdkParaX.p_strRiyoKB.Trim)
+                    switch (csABLTRiyoTdkParaX.p_strRiyoKB.Trim())
                     {
 
                         case "":
@@ -371,7 +371,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通＞申告＞共通納税の優先順
                                 strFilter = string.Empty;
-                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -379,7 +379,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 申告＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -387,7 +387,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通納税＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "2");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -403,7 +403,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 }
 
-                csLtRiyoTdkRow = csLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).Select(strFilter, strSort);
+                csLtRiyoTdkRow = csLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].Select(strFilter, strSort);
 
                 // csRetLtRiyoTdkEntityへのセット
                 if (csLtRiyoTdkRow.Length > 0)
@@ -414,15 +414,15 @@ namespace Densan.Reams.AB.AB000BB
                     {
                         // 出力区分'1'の場合は納税者IDと利用者IDのみ返却するため、csRetLtRiyoTdkEntityはその2項目のみセットする
 
-                        if (csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "4")
+                        if (csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "4")
                         {
                             // 引数：利用区分＝"4"の場合は全件返却する。
                             for (int i = 0, loopTo = csLtRiyoTdkRow.Length - 1; i <= loopTo; i++)
                             {
-                                NewDataRow = csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).NewRow();                     // 追加するデータテーブルの新規行とする
-                                NewDataRow.Item(ABLtRiyoTdkEntity.NOZEIID) = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.NOZEIID);      // 納税者ID
-                                NewDataRow.Item(ABLtRiyoTdkEntity.RIYOSHAID) = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.RIYOSHAID);  // 利用者ID
-                                csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).Rows.Add(NewDataRow);                      // 返却用データテーブルに行追加
+                                NewDataRow = csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].NewRow();                     // 追加するデータテーブルの新規行とする
+                                NewDataRow[ABLtRiyoTdkEntity.NOZEIID] = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.NOZEIID];      // 納税者ID
+                                NewDataRow[ABLtRiyoTdkEntity.RIYOSHAID] = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.RIYOSHAID];  // 利用者ID
+                                csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].Rows.Add(NewDataRow);                      // 返却用データテーブルに行追加
                             }
                         }
                         else
@@ -432,13 +432,13 @@ namespace Densan.Reams.AB.AB000BB
 
                             for (int i = 0, loopTo1 = csLtRiyoTdkRow.Length - 1; i <= loopTo1; i++)
                             {
-                                if (strBreakKey != csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString)
+                                if (strBreakKey != csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString())
                                 {
-                                    NewDataRow = csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).NewRow();                     // 追加するデータテーブルの新規行とする
-                                    NewDataRow.Item(ABLtRiyoTdkEntity.NOZEIID) = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.NOZEIID);      // 納税者ID
-                                    NewDataRow.Item(ABLtRiyoTdkEntity.RIYOSHAID) = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.RIYOSHAID);  // 利用者ID
-                                    csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).Rows.Add(NewDataRow);                      // 返却用データテーブルに行追加
-                                    strBreakKey = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString;
+                                    NewDataRow = csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].NewRow();                     // 追加するデータテーブルの新規行とする
+                                    NewDataRow[ABLtRiyoTdkEntity.NOZEIID] = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.NOZEIID];      // 納税者ID
+                                    NewDataRow[ABLtRiyoTdkEntity.RIYOSHAID] = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.RIYOSHAID];  // 利用者ID
+                                    csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].Rows.Add(NewDataRow);                      // 返却用データテーブルに行追加
+                                    strBreakKey = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString();
                                 }
                             }
 
@@ -446,11 +446,11 @@ namespace Densan.Reams.AB.AB000BB
                     }
                     // 出力区分'1'以外の場合はそのままIMPORTする。
 
-                    else if (csABLTRiyoTdkParaX.p_strRiyoKB.Trim == "4")
+                    else if (csABLTRiyoTdkParaX.p_strRiyoKB.Trim() == "4")
                     {
                         // 引数：利用区分＝"4"の場合は全件返却する。
                         for (int i = 0, loopTo2 = csLtRiyoTdkRow.Length - 1; i <= loopTo2; i++)
-                            csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow[i]);
+                            csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[i]);
                     }
                     else
                     {
@@ -458,10 +458,10 @@ namespace Densan.Reams.AB.AB000BB
                         strBreakKey = "";
                         for (int i = 0, loopTo3 = csLtRiyoTdkRow.Length - 1; i <= loopTo3; i++)
                         {
-                            if (strBreakKey != csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString)
+                            if (strBreakKey != csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString())
                             {
-                                csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow[i]);
-                                strBreakKey = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString;
+                                csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[i]);
+                                strBreakKey = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString();
                             }
                         }
                     }
@@ -559,7 +559,7 @@ namespace Densan.Reams.AB.AB000BB
                 strSQL.Append(" FROM ").Append(ABLtRiyoTdkEntity.TABLE_NAME);
 
                 // *履歴番号 000010 2024/01/09 追加開始
-                if (cABLTRiyoTdkPara2X.p_strMyNumber.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strMyNumber.Trim() != string.Empty)
                 {
                     strSQL.Append(" INNER JOIN ");
                     strSQL.Append(ABMyNumberEntity.TABLE_NAME);
@@ -596,7 +596,7 @@ namespace Densan.Reams.AB.AB000BB
                 strSQL.Append(" WHERE ");
                 // ---------------------------------------------------------------------------------
                 // 税目区分
-                if (cABLTRiyoTdkPara2X.p_strTaxKB.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strTaxKB.Trim() != string.Empty)
                 {
                     // 税目区分が設定されている場合
 
@@ -619,7 +619,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 納税者ID
-                if (cABLTRiyoTdkPara2X.p_strNozeiID.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strNozeiID.Trim() != string.Empty)
                 {
                     // 納税者IDが設定されている場合
                     if (blnAndFg == true)
@@ -647,7 +647,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 利用者ID
-                if (cABLTRiyoTdkPara2X.p_strRiyoshaID.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strRiyoshaID.Trim() != string.Empty)
                 {
                     // 利用者IDが設定されている場合
                     if (blnAndFg == true)
@@ -677,7 +677,7 @@ namespace Densan.Reams.AB.AB000BB
                 // '*履歴番号 000007 2014/08/15 追加開始
                 // '---------------------------------------------------------------------------------
                 // ' 個人番号
-                // 'If (cABLTRiyoTdkPara2X.p_strMyNumber.Trim <> String.Empty) Then
+                // 'If (cABLTRiyoTdkPara2X.p_strMyNumber.Trim() <> String.Empty) Then
                 // '    住民コードが設定されている場合
                 // '    If (blnAndFg = True) Then
                 // '        AND判定フラグが"True"の場合、AND句をセット
@@ -703,7 +703,7 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000010 2024/01/09 削除終了
                 // ---------------------------------------------------------------------------------
                 // 住民コード
-                if (cABLTRiyoTdkPara2X.p_strJuminCD.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strJuminCD.Trim() != string.Empty)
                 {
                     // 住民コードが設定されている場合
                     if (blnAndFg == true)
@@ -731,7 +731,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 受付番号
-                if (cABLTRiyoTdkPara2X.p_strRcptNO.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strRcptNO.Trim() != string.Empty)
                 {
                     // 受付番号が設定されている場合
                     if (blnAndFg == true)
@@ -759,7 +759,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 受付日
-                if (cABLTRiyoTdkPara2X.p_strRcptYMD_From.Trim != string.Empty && cABLTRiyoTdkPara2X.p_strRcptYMD_To.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strRcptYMD_From.Trim() != string.Empty && cABLTRiyoTdkPara2X.p_strRcptYMD_To.Trim() != string.Empty)
                 {
                     // 受付日が設定されている場合
                     if (blnAndFg == true)
@@ -801,7 +801,7 @@ namespace Densan.Reams.AB.AB000BB
                 // ---------------------------------------------------------------------------------
                 // *履歴番号 000003 2009/07/27 追加開始
                 // 処理日
-                if (cABLTRiyoTdkPara2X.p_strShoriYMD_From.Trim != string.Empty && cABLTRiyoTdkPara2X.p_strShoriYMD_To.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strShoriYMD_From.Trim() != string.Empty && cABLTRiyoTdkPara2X.p_strShoriYMD_To.Trim() != string.Empty)
                 {
                     // 処理日が設定されている場合
                     if (blnAndFg == true)
@@ -843,7 +843,7 @@ namespace Densan.Reams.AB.AB000BB
                 // ---------------------------------------------------------------------------------
                 // カナ・漢字名称
                 // カナ名称
-                if (!(cABLTRiyoTdkPara2X.p_strKanaMeisho.Trim == string.Empty))
+                if (!(cABLTRiyoTdkPara2X.p_strKanaMeisho.Trim() == string.Empty))
                 {
                     if (blnAndFg == true)
                     {
@@ -877,7 +877,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 検索条件のパラメータを作成
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABLtRiyoTdkEntity.KEY_KANAMEISHO;
-                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanaMeisho.TrimEnd;
+                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanaMeisho.TrimEnd();
                     }
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
@@ -887,7 +887,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 検索用漢字名称
-                if (!(cABLTRiyoTdkPara2X.p_strKanjiMeisho.Trim == string.Empty))
+                if (!(cABLTRiyoTdkPara2X.p_strKanjiMeisho.Trim() == string.Empty))
                 {
                     if (blnAndFg == true)
                     {
@@ -915,7 +915,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 検索条件のパラメータを作成
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABLtRiyoTdkEntity.KEY_KANJIMEISHO;
-                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanjiMeisho.TrimEnd;
+                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanjiMeisho.TrimEnd();
 
                     }
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
@@ -927,7 +927,7 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000003 2009/07/27 追加終了
                 // ---------------------------------------------------------------------------------
                 // 廃止フラグ
-                if (cABLTRiyoTdkPara2X.p_strHaishiFG.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strHaishiFG.Trim() != string.Empty)
                 {
                     // 廃止フラグが設定されている場合
                     if (blnAndFg == true)
@@ -1023,7 +1023,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 管理情報（10-46）に該当する業務CDが設定されていた場合は共通納税は不要
 
-                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim)
+                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim())
                     {
 
                         case "":
@@ -1031,7 +1031,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通＞申告＞共通納税の優先順（ただし、共通納税は除外する）
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1039,7 +1039,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 申告＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1047,7 +1047,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通納税＞共通の優先順（ただし、共通納税は除外する）
                                 strFilter = string.Format("{0}='{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "1");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1066,7 +1066,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 管理情報（10-46）に該当する業務CDが設定されていない場合
 
-                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim)
+                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim())
                     {
 
                         case "":
@@ -1074,7 +1074,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通＞申告＞共通納税の優先順
                                 strFilter = string.Empty;
-                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1082,7 +1082,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 申告＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1090,7 +1090,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通納税＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "2");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1106,28 +1106,28 @@ namespace Densan.Reams.AB.AB000BB
 
                 }
 
-                csLtRiyoTdkRow = csLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).Select(strFilter, strSort);
+                csLtRiyoTdkRow = csLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].Select(strFilter, strSort);
 
                 if (csLtRiyoTdkRow.Length > 0)
                 {
                     // 取得件数が0件以上の場合
-                    if (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim == "4")
+                    if (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim() == "4")
                     {
                         // 引数：利用区分＝"4"の場合は全件返却する。
                         for (int i = 0, loopTo = csLtRiyoTdkRow.Length - 1; i <= loopTo; i++)
-                            csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow[i]);
+                            csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[i]);
                     }
                     else
                     {
-                        // csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow(0))
+                        // csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[0])
                         // 引数：利用区分≠"4"の場合は、住民コード、税目区分、廃止フラグのブレイク時に1件返却する。
                         strBreakKey = "";
                         for (int i = 0, loopTo1 = csLtRiyoTdkRow.Length - 1; i <= loopTo1; i++)
                         {
-                            if (strBreakKey != csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString)
+                            if (strBreakKey != csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString())
                             {
-                                csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow[i]);
-                                strBreakKey = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString;
+                                csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[i]);
+                                strBreakKey = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString();
                             }
                         }
                     }
@@ -1236,7 +1236,7 @@ namespace Densan.Reams.AB.AB000BB
                 strSQL_Conut.Append(" FROM ").Append(ABLtRiyoTdkEntity.TABLE_NAME);
 
                 // *履歴番号 000010 2024/01/09 追加開始
-                if (cABLTRiyoTdkPara2X.p_strMyNumber.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strMyNumber.Trim() != string.Empty)
                 {
                     strSQL.Append(" INNER JOIN ");
                     strSQL.Append(ABMyNumberEntity.TABLE_NAME);
@@ -1291,7 +1291,7 @@ namespace Densan.Reams.AB.AB000BB
                 strWhere.Append(" WHERE ");
                 // ---------------------------------------------------------------------------------
                 // 税目区分
-                if (cABLTRiyoTdkPara2X.p_strTaxKB.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strTaxKB.Trim() != string.Empty)
                 {
                     // 税目区分が設定されている場合
 
@@ -1314,7 +1314,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 納税者ID
-                if (cABLTRiyoTdkPara2X.p_strNozeiID.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strNozeiID.Trim() != string.Empty)
                 {
                     // 納税者IDが設定されている場合
                     if (blnAndFg == true)
@@ -1342,7 +1342,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 利用者ID
-                if (cABLTRiyoTdkPara2X.p_strRiyoshaID.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strRiyoshaID.Trim() != string.Empty)
                 {
                     // 利用者IDが設定されている場合
                     if (blnAndFg == true)
@@ -1372,7 +1372,7 @@ namespace Densan.Reams.AB.AB000BB
                 // '*履歴番号 000007 2014/08/15 追加開始
                 // '---------------------------------------------------------------------------------
                 // ' 個人番号
-                // If (cABLTRiyoTdkPara2X.p_strMyNumber.Trim <> String.Empty) Then
+                // If (cABLTRiyoTdkPara2X.p_strMyNumber.Trim() <> String.Empty) Then
                 // '*履歴番号 000007 2014/08/15 修正開始
                 // '' 住民コードが設定されている場合
                 // 'If (blnAndFg = True) Then
@@ -1408,7 +1408,7 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000010 2024/01/09 削除終了
                 // ---------------------------------------------------------------------------------
                 // 住民コード
-                if (cABLTRiyoTdkPara2X.p_strJuminCD.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strJuminCD.Trim() != string.Empty)
                 {
                     // 住民コードが設定されている場合
                     if (blnAndFg == true)
@@ -1436,7 +1436,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 受付番号
-                if (cABLTRiyoTdkPara2X.p_strRcptNO.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strRcptNO.Trim() != string.Empty)
                 {
                     // 受付番号が設定されている場合
                     if (blnAndFg == true)
@@ -1464,7 +1464,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // ---------------------------------------------------------------------------------
                 // 受付日
-                if (cABLTRiyoTdkPara2X.p_strRcptYMD_From.Trim != string.Empty && cABLTRiyoTdkPara2X.p_strRcptYMD_To.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strRcptYMD_From.Trim() != string.Empty && cABLTRiyoTdkPara2X.p_strRcptYMD_To.Trim() != string.Empty)
                 {
                     // 受付日が設定されている場合
                     if (blnAndFg == true)
@@ -1506,7 +1506,7 @@ namespace Densan.Reams.AB.AB000BB
                 // ---------------------------------------------------------------------------------
                 // *履歴番号 000003 2009/07/27 追加開始
                 // 処理日
-                if (cABLTRiyoTdkPara2X.p_strShoriYMD_From.Trim != string.Empty && cABLTRiyoTdkPara2X.p_strShoriYMD_To.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strShoriYMD_From.Trim() != string.Empty && cABLTRiyoTdkPara2X.p_strShoriYMD_To.Trim() != string.Empty)
                 {
                     // 処理日が設定されている場合
                     if (blnAndFg == true)
@@ -1548,7 +1548,7 @@ namespace Densan.Reams.AB.AB000BB
                 // ---------------------------------------------------------------------------------
                 // カナ・漢字名称
                 // カナ名称
-                if (!(cABLTRiyoTdkPara2X.p_strKanaMeisho.Trim == string.Empty))
+                if (!(cABLTRiyoTdkPara2X.p_strKanaMeisho.Trim() == string.Empty))
                 {
                     if (blnAndFg == true)
                     {
@@ -1582,7 +1582,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 検索条件のパラメータを作成
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABLtRiyoTdkEntity.KEY_KANAMEISHO;
-                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanaMeisho.TrimEnd;
+                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanaMeisho.TrimEnd();
                     }
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
@@ -1592,7 +1592,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 検索用漢字名称
-                if (!(cABLTRiyoTdkPara2X.p_strKanjiMeisho.Trim == string.Empty))
+                if (!(cABLTRiyoTdkPara2X.p_strKanjiMeisho.Trim() == string.Empty))
                 {
                     if (blnAndFg == true)
                     {
@@ -1620,7 +1620,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 検索条件のパラメータを作成
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABLtRiyoTdkEntity.KEY_KANJIMEISHO;
-                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanjiMeisho.TrimEnd;
+                        cfUFParameterClass.Value = cABLTRiyoTdkPara2X.p_strKanjiMeisho.TrimEnd();
 
                     }
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
@@ -1632,7 +1632,7 @@ namespace Densan.Reams.AB.AB000BB
                 // *履歴番号 000003 2009/07/27 追加終了
                 // ---------------------------------------------------------------------------------
                 // 廃止フラグ
-                if (cABLTRiyoTdkPara2X.p_strHaishiFG.Trim != string.Empty)
+                if (cABLTRiyoTdkPara2X.p_strHaishiFG.Trim() != string.Empty)
                 {
                     // 廃止フラグが設定されている場合
                     if (blnAndFg == true)
@@ -1709,7 +1709,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 全件取得処理
                 csLtRiyoTdk_AllCount = m_cfRdbClass.GetDataSet(strSQL_Conut.ToString(), cfUFParameterCollectionClass);
 
-                intAllCount = (int)csLtRiyoTdk_AllCount.Tables(0).Rows(0)(COL_COUNT);
+                intAllCount = (int)csLtRiyoTdk_AllCount.Tables[0].Rows[0](COL_COUNT);
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + THIS_CLASS_NAME + "】" + "【メソッド名:" + THIS_METHOD_NAME + "】" + "【実行メソッド名:GetDataSet】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(strSQL.ToString(), cfUFParameterCollectionClass) + "】");
@@ -1736,7 +1736,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 管理情報（10-46）に該当する業務CDが設定されていた場合は共通納税は不要
 
-                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim)
+                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim())
                     {
 
                         case "":
@@ -1744,7 +1744,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通＞申告＞共通納税の優先順（ただし、共通納税は除外する）
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1752,7 +1752,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 申告＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1760,7 +1760,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通納税＞共通の優先順（ただし、共通納税は除外する）
                                 strFilter = string.Format("{0}='{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "1");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1779,7 +1779,7 @@ namespace Densan.Reams.AB.AB000BB
                 {
                     // 管理情報（10-46）に該当する業務CDが設定されていない場合
 
-                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim)
+                    switch (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim())
                     {
 
                         case "":
@@ -1787,7 +1787,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通＞申告＞共通納税の優先順
                                 strFilter = string.Empty;
-                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3}", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1795,7 +1795,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 申告＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "3");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1803,7 +1803,7 @@ namespace Densan.Reams.AB.AB000BB
                             {
                                 // 共通納税＞共通の優先順
                                 strFilter = string.Format("{0}<>'{1}'", ABLtRiyoTdkEntity.RESERVE2.Trim, "2");
-                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim);
+                                strSort = string.Format("{0},{1},{2},{3} DESC", ABLtRiyoTdkEntity.JUMINCD, ABLtRiyoTdkEntity.TAXKB, ABLtRiyoTdkEntity.HAISHIFG, ABLtRiyoTdkEntity.RESERVE2.Trim());
                                 break;
                             }
 
@@ -1819,28 +1819,28 @@ namespace Densan.Reams.AB.AB000BB
 
                 }
 
-                csLtRiyoTdkRow = csLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).Select(strFilter, strSort);
+                csLtRiyoTdkRow = csLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].Select(strFilter, strSort);
 
                 if (csLtRiyoTdkRow.Length > 0)
                 {
                     // 取得件数が0件以上の場合
-                    if (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim == "4")
+                    if (cABLTRiyoTdkPara2X.p_strRiyoKB.Trim() == "4")
                     {
                         // 引数：利用区分＝"4"の場合は全件返却する。
                         for (int i = 0, loopTo = csLtRiyoTdkRow.Length - 1; i <= loopTo; i++)
-                            csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow[i]);
+                            csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[i]);
                     }
                     else
                     {
-                        // csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow(0))
+                        // csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[0])
                         // 引数：利用区分≠"4"の場合は、住民コード、税目区分、廃止フラグのブレイク時に1件返却する。
                         strBreakKey = "";
                         for (int i = 0, loopTo1 = csLtRiyoTdkRow.Length - 1; i <= loopTo1; i++)
                         {
-                            if (strBreakKey != csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString)
+                            if (strBreakKey != csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString())
                             {
-                                csRetLtRiyoTdkEntity.Tables(ABLtRiyoTdkEntity.TABLE_NAME).ImportRow(csLtRiyoTdkRow[i]);
-                                strBreakKey = csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.JUMINCD).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.TAXKB).ToString + csLtRiyoTdkRow[i].Item(ABLtRiyoTdkEntity.HAISHIFG).ToString;
+                                csRetLtRiyoTdkEntity.Tables[ABLtRiyoTdkEntity.TABLE_NAME].ImportRow(csLtRiyoTdkRow[i]);
+                                strBreakKey = csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.JUMINCD].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.TAXKB].ToString() + csLtRiyoTdkRow[i][ABLtRiyoTdkEntity.HAISHIFG].ToString();
                             }
                         }
                     }
@@ -1919,21 +1919,21 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 更新日時の取得
-                strUpdateDateTime = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");        // 作成日時
+                strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");        // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABLtRiyoTdkEntity.TANMATSUID) = m_cfControlData.m_strClientId;             // 端末ＩＤ
-                csDataRow(ABLtRiyoTdkEntity.SAKUJOFG) = "0";                                         // 削除フラグ
-                csDataRow(ABLtRiyoTdkEntity.KOSHINCOUNTER) = decimal.Zero;                           // 更新カウンタ
-                csDataRow(ABLtRiyoTdkEntity.SAKUSEINICHIJI) = strUpdateDateTime;                     // 作成日時
-                csDataRow(ABLtRiyoTdkEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;              // 作成ユーザー
-                csDataRow(ABLtRiyoTdkEntity.KOSHINNICHIJI) = strUpdateDateTime;                      // 更新日時
-                csDataRow(ABLtRiyoTdkEntity.KOSHINUSER) = m_cfControlData.m_strUserId;               // 更新ユーザー
+                csDataRow[ABLtRiyoTdkEntity.TANMATSUID] = m_cfControlData.m_strClientId;             // 端末ＩＤ
+                csDataRow[ABLtRiyoTdkEntity.SAKUJOFG] = "0";                                         // 削除フラグ
+                csDataRow[ABLtRiyoTdkEntity.KOSHINCOUNTER] = decimal.Zero;                           // 更新カウンタ
+                csDataRow[ABLtRiyoTdkEntity.SAKUSEINICHIJI] = strUpdateDateTime;                     // 作成日時
+                csDataRow[ABLtRiyoTdkEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;              // 作成ユーザー
+                csDataRow[ABLtRiyoTdkEntity.KOSHINNICHIJI] = strUpdateDateTime;                      // 更新日時
+                csDataRow[ABLtRiyoTdkEntity.KOSHINUSER] = m_cfControlData.m_strUserId;               // 更新ユーザー
 
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
-                    this.m_cfInsertUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    this.m_cfInsertUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + GetType().Name + "】" + "【メソッド名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "】" + "【実行メソッド名:ExecuteSQL】" + "【SQL内容:" + m_cfRdbClass.GetDevelopmentSQLString(m_strInsertSQL, m_cfInsertUFParameterCollectionClass) + "】");
@@ -2010,23 +2010,23 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABLtRiyoTdkEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                 // 端末ＩＤ
-                csDataRow(ABLtRiyoTdkEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABLtRiyoTdkEntity.KOSHINCOUNTER) + 1m;       // 更新カウンタ
-                csDataRow(ABLtRiyoTdkEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate.ToString("yyyyMMddHHmmssfff");   // 更新日時
-                csDataRow(ABLtRiyoTdkEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                   // 更新ユーザー
+                csDataRow[ABLtRiyoTdkEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                 // 端末ＩＤ
+                csDataRow[ABLtRiyoTdkEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABLtRiyoTdkEntity.KOSHINCOUNTER] + 1m;       // 更新カウンタ
+                csDataRow[ABLtRiyoTdkEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
+                csDataRow[ABLtRiyoTdkEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                   // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABLtRiyoTdkEntity.PREFIX_KEY.RLength) == ABLtRiyoTdkEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLtRiyoTdkEntity.PREFIX_KEY.RLength()) == ABLtRiyoTdkEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -2254,9 +2254,9 @@ namespace Densan.Reams.AB.AB000BB
                 {
 
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABLtRiyoTdkEntity.PREFIX_KEY.RLength) == ABLtRiyoTdkEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABLtRiyoTdkEntity.PREFIX_KEY.RLength()) == ABLtRiyoTdkEntity.PREFIX_KEY)
                     {
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABLtRiyoTdkEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                 }
 

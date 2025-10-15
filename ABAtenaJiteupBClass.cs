@@ -26,7 +26,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.framework.us.publicmodule.library.businesscommon.uwfkokai;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     // *履歴番号 000002 2005/10/13 追加終了
 
@@ -157,23 +157,23 @@ namespace Densan.Reams.AB.AB000BB
                     csABAtenaJiteEntity = cABAtenaJiteBClass.GetAtenaJite(cABKobetsuProperty[intcnt].p_strJUMINCD);
 
                     // 追加・更新の判定
-                    if (csABAtenaJiteEntity.Tables(ABAtenaJiteEntity.TABLE_NAME).Rows.Count == 0)
+                    if (csABAtenaJiteEntity.Tables[ABAtenaJiteEntity.TABLE_NAME].Rows.Count == 0)
                     {
 
-                        cDatRow = csABAtenaJiteEntity.Tables(ABAtenaJiteEntity.TABLE_NAME).NewRow();
+                        cDatRow = csABAtenaJiteEntity.Tables[ABAtenaJiteEntity.TABLE_NAME].NewRow();
                         // 各項目をプロパティから取得
-                        cDatRow.Item(ABAtenaJiteEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cDatRow.Item(ABAtenaJiteEntity.JIDOTEATEHIYOKB) = cABKobetsuProperty[intcnt].p_strHIYOKB;
-                        cDatRow.Item(ABAtenaJiteEntity.JIDOTEATESTYM) = cABKobetsuProperty[intcnt].p_strJIDOTEATESTYM;
-                        cDatRow.Item(ABAtenaJiteEntity.JIDOTEATEEDYM) = cABKobetsuProperty[intcnt].p_strJIDOTEATEEDYM;
+                        cDatRow[ABAtenaJiteEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                        cDatRow[ABAtenaJiteEntity.JIDOTEATEHIYOKB] = cABKobetsuProperty[intcnt].p_strHIYOKB;
+                        cDatRow[ABAtenaJiteEntity.JIDOTEATESTYM] = cABKobetsuProperty[intcnt].p_strJIDOTEATESTYM;
+                        cDatRow[ABAtenaJiteEntity.JIDOTEATEEDYM] = cABKobetsuProperty[intcnt].p_strJIDOTEATEEDYM;
 
                         // 市町村コード
-                        cDatRow.Item(ABAtenaJiteEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaJiteEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                         // 旧市町村コード
-                        cDatRow.Item(ABAtenaJiteEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaJiteEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                         // データの追加
-                        // csABAtenaJiteEntity.Tables(ABAtenaJiteEntity.TABLE_NAME).Rows.Add(cDatRow)
+                        // csABAtenaJiteEntity.Tables[ABAtenaJiteEntity.TABLE_NAME].Rows.Add(cDatRow)
 
                         // 宛名児手マスタ追加メソッド呼び出し
                         intUpdCnt = cABAtenaJiteBClass.InsertAtenaJite(cDatRow);
@@ -181,16 +181,16 @@ namespace Densan.Reams.AB.AB000BB
                     else
                     {
 
-                        cDatRow = csABAtenaJiteEntity.Tables(ABAtenaJiteEntity.TABLE_NAME).Rows(0);
+                        cDatRow = csABAtenaJiteEntity.Tables[ABAtenaJiteEntity.TABLE_NAME].Rows[0];
                         // 各項目をプロパティから取得
-                        cDatRow.Item(ABAtenaJiteEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cDatRow.Item(ABAtenaJiteEntity.JIDOTEATEHIYOKB) = cABKobetsuProperty[intcnt].p_strHIYOKB;
-                        cDatRow.Item(ABAtenaJiteEntity.JIDOTEATESTYM) = cABKobetsuProperty[intcnt].p_strJIDOTEATESTYM;
-                        cDatRow.Item(ABAtenaJiteEntity.JIDOTEATEEDYM) = cABKobetsuProperty[intcnt].p_strJIDOTEATEEDYM;
+                        cDatRow[ABAtenaJiteEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                        cDatRow[ABAtenaJiteEntity.JIDOTEATEHIYOKB] = cABKobetsuProperty[intcnt].p_strHIYOKB;
+                        cDatRow[ABAtenaJiteEntity.JIDOTEATESTYM] = cABKobetsuProperty[intcnt].p_strJIDOTEATESTYM;
+                        cDatRow[ABAtenaJiteEntity.JIDOTEATEEDYM] = cABKobetsuProperty[intcnt].p_strJIDOTEATEEDYM;
                         // 市町村コード
-                        cDatRow.Item(ABAtenaJiteEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaJiteEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                         // 旧市町村コード
-                        cDatRow.Item(ABAtenaJiteEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaJiteEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                         // 宛名児手マスタ更新メソッド呼び出し
                         intUpdCnt = cABAtenaJiteBClass.UpdateAtenaJite(cDatRow);
@@ -216,15 +216,15 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "16");
 
                 // 管理情報の住基更新レコードが存在しない、または、パラメータが"0"の時だけ住基更新処理を行う
-                if (csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0 || (string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "0")
+                if (csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0 || (string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "0")
                 {
 
                     // 宛名管理情報の種別04識別キー24のデータを取得する(住基側の更新処理の結果を判断するかどうか)
                     csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "24");
                     // 管理情報にレコードが存在し、パラメータが"1"の時はチェックしない
-                    if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0))
+                    if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0))
                     {
-                        if ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "1")
+                        if ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "1")
                         {
                             // ﾊﾟﾗﾒｰﾀが"1"のときはチェックしない
                             strJukiResult = "1";
@@ -256,10 +256,10 @@ namespace Densan.Reams.AB.AB000BB
                         cAAKOBETSUJITEParamClass[intcnt] = new localhost.AAKOBETSUJITEParamClass();
 
                         // 更新・追加した項目を取得
-                        cAAKOBETSUJITEParamClass[intcnt].m_strJUMINCD = (string)cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cAAKOBETSUJITEParamClass[intcnt].m_strHIYOKB = (string)cABKobetsuProperty[intcnt].p_strHIYOKB;
-                        cAAKOBETSUJITEParamClass[intcnt].m_strJIDOTEATESTYM = (string)cABKobetsuProperty[intcnt].p_strJIDOTEATESTYM;
-                        cAAKOBETSUJITEParamClass[intcnt].m_strJIDOTEATEEDYM = (string)cABKobetsuProperty[intcnt].p_strJIDOTEATEEDYM;
+                        cAAKOBETSUJITEParamClass[intcnt].m_strJUMINCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJUMINCD;
+                        cAAKOBETSUJITEParamClass[intcnt].m_strHIYOKB = Convert.ToString(cABKobetsuProperty[intcnt]).p_strHIYOKB;
+                        cAAKOBETSUJITEParamClass[intcnt].m_strJIDOTEATESTYM = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJIDOTEATESTYM;
+                        cAAKOBETSUJITEParamClass[intcnt].m_strJIDOTEATEEDYM = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJIDOTEATEEDYM;
 
                     }
 
@@ -302,8 +302,8 @@ namespace Densan.Reams.AB.AB000BB
                 // ' 宛名管理情報の種別04識別キー24のデータを取得する(住基側の更新処理の結果を判断するかどうか)
                 // csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "24")
                 // ' 管理情報にレコードが存在し、パラメータが"1"の時はチェックしない
-                // If Not (csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count = 0) Then
-                // If CStr(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER)) = "1" Then
+                // If Not (csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count = 0) Then
+                // If CStr(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER]) = "1" Then
                 // ' ﾊﾟﾗﾒｰﾀが"1"のときはチェックしない
                 // strJukiResult = "1"
                 // Else
@@ -387,9 +387,9 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "21");
 
                 // 管理情報のワークフローレコードが存在し、パラメータが"1"の時だけワークフロー処理を行う
-                if (!(csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0))
+                if (!(csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0))
                 {
-                    if ((string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "1")
+                    if ((string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "1")
                     {
                         // ワークフロー処理メソッドを呼ぶ
                         WorkFlowSet(cABKobetsuProperty);
@@ -501,7 +501,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 市町村管理情報の取得
                 cuCityInfoClass.GetCityInfo(m_cfControlData);
                 // 市町村コードの取得
-                strCityCD = cuCityInfoClass.p_strShichosonCD(0);
+                strCityCD = cuCityInfoClass.p_strShichosonCD[0];
                 // 作成日時(14桁)の取得
                 strNen = DateTime.Now.ToString("yyyyMMddHHmmss");
                 // 連番用カウンターの初期設定
@@ -521,24 +521,24 @@ namespace Densan.Reams.AB.AB000BB
                 for (intIdx = 0; intIdx <= loopTo; intIdx++)
                 {
                     // 新規レコードの作成
-                    csABJiteRow = csABJiteEntity.Tables(ABKobetsuJiteEntity.TABLE_NAME).NewRow;
+                    csABJiteRow = csABJiteEntity.Tables[ABKobetsuJiteEntity.TABLE_NAME].NewRow();
                     // 各項目にデータをセット
-                    csABJiteRow.Item(ABKobetsuJiteEntity.SHICHOSONCD) = strCityCD;
-                    csABJiteRow.Item(ABKobetsuJiteEntity.SHIKIBETSUID) = "AA64";
-                    csABJiteRow.Item(ABKobetsuJiteEntity.LASTRECKB) = "";
-                    csABJiteRow.Item(ABKobetsuJiteEntity.SAKUSEIYMD) = strNen;
-                    csABJiteRow.Item(ABKobetsuJiteEntity.RENBAN) = intRecCnt.ToString().RPadLeft(7, '0');
-                    csABJiteRow.Item(ABKobetsuJiteEntity.JUMINCD) = cABKobetsuProperty[intIdx].p_strJUMINCD;
+                    csABJiteRow[ABKobetsuJiteEntity.SHICHOSONCD] = strCityCD;
+                    csABJiteRow[ABKobetsuJiteEntity.SHIKIBETSUID] = "AA64";
+                    csABJiteRow[ABKobetsuJiteEntity.LASTRECKB] = "";
+                    csABJiteRow[ABKobetsuJiteEntity.SAKUSEIYMD] = strNen;
+                    csABJiteRow[ABKobetsuJiteEntity.RENBAN] = intRecCnt.ToString().RPadLeft(7, '0');
+                    csABJiteRow[ABKobetsuJiteEntity.JUMINCD] = cABKobetsuProperty[intIdx].p_strJUMINCD;
                     // *履歴番号 000003 2005/10/25 追加開始
-                    csABJiteRow.Item(ABKobetsuJiteEntity.CITYCD) = strCityCD;
-                    csABJiteRow.Item(ABKobetsuJiteEntity.KYUCITYCD) = string.Empty;
+                    csABJiteRow[ABKobetsuJiteEntity.CITYCD] = strCityCD;
+                    csABJiteRow[ABKobetsuJiteEntity.KYUCITYCD] = string.Empty;
                     // *履歴番号 000003 2005/10/25 追加終了
-                    csABJiteRow.Item(ABKobetsuJiteEntity.HIYOKB) = cABKobetsuProperty[intIdx].p_strHIYOKB;
-                    csABJiteRow.Item(ABKobetsuJiteEntity.JIDOTEATESTYM) = cABKobetsuProperty[intIdx].p_strJIDOTEATESTYM;
-                    csABJiteRow.Item(ABKobetsuJiteEntity.JIDOTEATEEDYM) = cABKobetsuProperty[intIdx].p_strJIDOTEATEEDYM;
+                    csABJiteRow[ABKobetsuJiteEntity.HIYOKB] = cABKobetsuProperty[intIdx].p_strHIYOKB;
+                    csABJiteRow[ABKobetsuJiteEntity.JIDOTEATESTYM] = cABKobetsuProperty[intIdx].p_strJIDOTEATESTYM;
+                    csABJiteRow[ABKobetsuJiteEntity.JIDOTEATEEDYM] = cABKobetsuProperty[intIdx].p_strJIDOTEATEEDYM;
 
                     // データセットにレコードを追加
-                    csABJiteEntity.Tables(ABKobetsuJiteEntity.TABLE_NAME).Rows.Add(csABJiteRow);
+                    csABJiteEntity.Tables[ABKobetsuJiteEntity.TABLE_NAME].Rows.Add(csABJiteRow);
                     // 連番用カウントアップ
                     intRecCnt += 1;
                 }
@@ -548,23 +548,23 @@ namespace Densan.Reams.AB.AB000BB
                 // *
                 // *****
                 // 新規レコードの作成
-                csABJiteRow = csABJiteEntity.Tables(ABKobetsuJiteEntity.TABLE_NAME).NewRow;
+                csABJiteRow = csABJiteEntity.Tables[ABKobetsuJiteEntity.TABLE_NAME].NewRow();
                 // 各項目にデータをセット
-                csABJiteRow.Item(ABKobetsuJiteEntity.SHICHOSONCD) = strCityCD;
-                csABJiteRow.Item(ABKobetsuJiteEntity.SHIKIBETSUID) = "AA64";
-                csABJiteRow.Item(ABKobetsuJiteEntity.LASTRECKB) = "E";
-                csABJiteRow.Item(ABKobetsuJiteEntity.SAKUSEIYMD) = strNen;
-                csABJiteRow.Item(ABKobetsuJiteEntity.RENBAN) = intRecCnt.ToString().RPadLeft(7, '0');
-                csABJiteRow.Item(ABKobetsuJiteEntity.JUMINCD) = string.Empty;
+                csABJiteRow[ABKobetsuJiteEntity.SHICHOSONCD] = strCityCD;
+                csABJiteRow[ABKobetsuJiteEntity.SHIKIBETSUID] = "AA64";
+                csABJiteRow[ABKobetsuJiteEntity.LASTRECKB] = "E";
+                csABJiteRow[ABKobetsuJiteEntity.SAKUSEIYMD] = strNen;
+                csABJiteRow[ABKobetsuJiteEntity.RENBAN] = intRecCnt.ToString().RPadLeft(7, '0');
+                csABJiteRow[ABKobetsuJiteEntity.JUMINCD] = string.Empty;
                 // *履歴番号 000003 2005/10/25 追加開始
-                csABJiteRow.Item(ABKobetsuJiteEntity.CITYCD) = string.Empty;
-                csABJiteRow.Item(ABKobetsuJiteEntity.KYUCITYCD) = string.Empty;
-                csABJiteRow.Item(ABKobetsuJiteEntity.HIYOKB) = string.Empty;
-                csABJiteRow.Item(ABKobetsuJiteEntity.JIDOTEATESTYM) = string.Empty;
-                csABJiteRow.Item(ABKobetsuJiteEntity.JIDOTEATEEDYM) = string.Empty;
+                csABJiteRow[ABKobetsuJiteEntity.CITYCD] = string.Empty;
+                csABJiteRow[ABKobetsuJiteEntity.KYUCITYCD] = string.Empty;
+                csABJiteRow[ABKobetsuJiteEntity.HIYOKB] = string.Empty;
+                csABJiteRow[ABKobetsuJiteEntity.JIDOTEATESTYM] = string.Empty;
+                csABJiteRow[ABKobetsuJiteEntity.JIDOTEATEEDYM] = string.Empty;
                 // *履歴番号 000003 2005/10/25 追加終了
                 // データセットにレコードを追加
-                csABJiteEntity.Tables(ABKobetsuJiteEntity.TABLE_NAME).Rows.Add(csABJiteRow);
+                csABJiteEntity.Tables[ABKobetsuJiteEntity.TABLE_NAME].Rows.Add(csABJiteRow);
 
                 // *****
                 // *　ワークフロー送信

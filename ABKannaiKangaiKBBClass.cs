@@ -17,7 +17,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABKannaiKangaiKBBClass
@@ -135,17 +135,17 @@ namespace Densan.Reams.AB.AB000BB
                 // 各フィールドにデータを格納する
                 // 管内管外区分 = 1
                 csKannaiKangaiDataRow = csKannaiKangaiDataTbl.NewRow();
-                csKannaiKangaiDataRow.Item(ABKannaiKangaiData.KANNAIKANGAIKB) = "1";
-                csKannaiKangaiDataRow.Item(ABKannaiKangaiData.KANNAIKANGAIKBMEI) = "管内";
+                csKannaiKangaiDataRow[ABKannaiKangaiData.KANNAIKANGAIKB] = "1";
+                csKannaiKangaiDataRow[ABKannaiKangaiData.KANNAIKANGAIKBMEI] = "管内";
                 // データの追加
-                csKannaiKangaiData.Tables(ABKannaiKangaiData.TABLE_NAME).Rows.Add(csKannaiKangaiDataRow);
+                csKannaiKangaiData.Tables[ABKannaiKangaiData.TABLE_NAME].Rows.Add(csKannaiKangaiDataRow);
 
                 // 管内管外区分 = 2
                 csKannaiKangaiDataRow = csKannaiKangaiDataTbl.NewRow();
-                csKannaiKangaiDataRow.Item(ABKannaiKangaiData.KANNAIKANGAIKB) = "2";
-                csKannaiKangaiDataRow.Item(ABKannaiKangaiData.KANNAIKANGAIKBMEI) = "管外";
+                csKannaiKangaiDataRow[ABKannaiKangaiData.KANNAIKANGAIKB] = "2";
+                csKannaiKangaiDataRow[ABKannaiKangaiData.KANNAIKANGAIKBMEI] = "管外";
                 // データの追加
-                csKannaiKangaiData.Tables(ABKannaiKangaiData.TABLE_NAME).Rows.Add(csKannaiKangaiDataRow);
+                csKannaiKangaiData.Tables[ABKannaiKangaiData.TABLE_NAME].Rows.Add(csKannaiKangaiDataRow);
 
                 // デバッグ終了ログ出力
                 m_cfUFLogClass.DebugEndWrite(m_cfUFControlData, THIS_CLASS_NAME, "HenKannaiKangai");

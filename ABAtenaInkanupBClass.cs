@@ -20,7 +20,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
 
@@ -140,25 +140,25 @@ namespace Densan.Reams.AB.AB000BB
                     {
 
                         // 宛名印鑑マスタ抽出呼び出し
-                        csABAtenaInkanEntity = cABAtenaInkanBClass.GetAtenaInkan((string)cABKobetsuProperty[intcnt].p_strJUMINCD);
+                        csABAtenaInkanEntity = cABAtenaInkanBClass.GetAtenaInkan(Convert.ToString(cABKobetsuProperty[intcnt]).p_strJUMINCD);
 
                         // 追加・更新の判定
-                        if (csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).Rows.Count == 0)
+                        if (csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].Rows.Count == 0)
                         {
 
-                            cDatRow = csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).NewRow();
+                            cDatRow = csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].NewRow();
                             // 各項目をプロパティから取得
-                            cDatRow.Item(ABAtenaInkanEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                            cDatRow.Item(ABAtenaInkanEntity.INKANNO) = cABKobetsuProperty[intcnt].p_strINKANNO;
-                            cDatRow.Item(ABAtenaInkanEntity.INKANTOROKUKB) = cABKobetsuProperty[intcnt].p_strINKANTOROKUKB;
+                            cDatRow[ABAtenaInkanEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                            cDatRow[ABAtenaInkanEntity.INKANNO] = cABKobetsuProperty[intcnt].p_strINKANNO;
+                            cDatRow[ABAtenaInkanEntity.INKANTOROKUKB] = cABKobetsuProperty[intcnt].p_strINKANTOROKUKB;
 
                             // 市町村コード
-                            cDatRow.Item(ABAtenaInkanEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                            cDatRow[ABAtenaInkanEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                             // 旧市町村コード
-                            cDatRow.Item(ABAtenaInkanEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                            cDatRow[ABAtenaInkanEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                             // データの追加
-                            // csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).Rows.Add(cDatRow)
+                            // csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].Rows.Add(cDatRow)
 
                             // 宛名印鑑マスタ追加メソッド呼び出し
                             intUpdCnt = cABAtenaInkanBClass.InsertAtenaInkan(cDatRow);
@@ -166,16 +166,16 @@ namespace Densan.Reams.AB.AB000BB
                         else
                         {
 
-                            cDatRow = csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).Rows(0);
+                            cDatRow = csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].Rows[0];
                             // 各項目をプロパティから取得
-                            cDatRow.Item(ABAtenaInkanEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                            cDatRow.Item(ABAtenaInkanEntity.INKANNO) = cABKobetsuProperty[intcnt].p_strINKANNO;
-                            cDatRow.Item(ABAtenaInkanEntity.INKANTOROKUKB) = cABKobetsuProperty[intcnt].p_strINKANTOROKUKB;
+                            cDatRow[ABAtenaInkanEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                            cDatRow[ABAtenaInkanEntity.INKANNO] = cABKobetsuProperty[intcnt].p_strINKANNO;
+                            cDatRow[ABAtenaInkanEntity.INKANTOROKUKB] = cABKobetsuProperty[intcnt].p_strINKANTOROKUKB;
 
                             // 市町村コード
-                            cDatRow.Item(ABAtenaInkanEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                            cDatRow[ABAtenaInkanEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                             // 旧市町村コード
-                            cDatRow.Item(ABAtenaInkanEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                            cDatRow[ABAtenaInkanEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                             // 宛名印鑑マスタ更新メソッド呼び出し
                             intUpdCnt = cABAtenaInkanBClass.UpdateAtenaInkan(cDatRow);
@@ -211,7 +211,7 @@ namespace Densan.Reams.AB.AB000BB
                     // エラー定義を取得
                     objErrorStruct = cfErrorClass.GetErrorStruct(ABErrorClass.ABE003004);
                     // ※ABLOGへ書き込み
-                    SetABLOG(cUSSCItyInfo.p_strShichosonCD(0), "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[intcnt].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
+                    SetABLOG(cUSSCItyInfo.p_strShichosonCD[0], "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[intcnt].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
 
                     throw exAppExp;
                 }
@@ -227,7 +227,7 @@ namespace Densan.Reams.AB.AB000BB
                     // エラー定義を取得
                     objErrorStruct = cfErrorClass.GetErrorStruct(ABErrorClass.ABE003004);
                     // ※ABLOGへ書き込み
-                    SetABLOG(cUSSCItyInfo.p_strShichosonCD(0), "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[intcnt].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
+                    SetABLOG(cUSSCItyInfo.p_strShichosonCD[0], "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[intcnt].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
 
                     throw exExp;
                 }
@@ -251,9 +251,9 @@ namespace Densan.Reams.AB.AB000BB
                         cAAKOBETSUINKANParamClass[intcnt] = new localhost.AAKOBETSUINKANParamClass();
 
                         // 更新・追加した項目を取得
-                        cAAKOBETSUINKANParamClass[intcnt].m_strJUMINCD = (string)cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cAAKOBETSUINKANParamClass[intcnt].m_strINKANNO = (string)cABKobetsuProperty[intcnt].p_strINKANNO;
-                        cAAKOBETSUINKANParamClass[intcnt].m_strINKANTOROKUKB = (string)cABKobetsuProperty[intcnt].p_strINKANTOROKUKB;
+                        cAAKOBETSUINKANParamClass[intcnt].m_strJUMINCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJUMINCD;
+                        cAAKOBETSUINKANParamClass[intcnt].m_strINKANNO = Convert.ToString(cABKobetsuProperty[intcnt]).p_strINKANNO;
+                        cAAKOBETSUINKANParamClass[intcnt].m_strINKANTOROKUKB = Convert.ToString(cABKobetsuProperty[intcnt]).p_strINKANTOROKUKB;
                     }
 
                     // 住基個別印鑑更新メソッドを実行する
@@ -310,7 +310,7 @@ namespace Densan.Reams.AB.AB000BB
                         // ※ABLOGへ書き込み
                         // ※　注　※　引数で住民コードを渡す個所ですが、cABKobetsuPropertyが複数であっても
                         // ＡＡから戻ってきたエラーでは何番目で落ちたか判断できないので、以下固定でIndex(0)を渡します。
-                        SetABLOG(cUSSCItyInfo.p_strShichosonCD(0), "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
+                        SetABLOG(cUSSCItyInfo.p_strShichosonCD[0], "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
                         // *履歴番号 000002 2007/03/16 追加終了
 
                         throw objAppExp;
@@ -329,7 +329,7 @@ namespace Densan.Reams.AB.AB000BB
                         // エラー定義を取得
                         objErrorStruct = cfErrorClass.GetErrorStruct(ABErrorClass.ABE003002);
                         // ※ABLOGへ書き込み
-                        SetABLOG(cUSSCItyInfo.p_strShichosonCD(0), "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
+                        SetABLOG(cUSSCItyInfo.p_strShichosonCD[0], "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
                         // *履歴番号 000002 2007/03/16 追加終了
                         throw objSoapExp;
                     }
@@ -348,7 +348,7 @@ namespace Densan.Reams.AB.AB000BB
                     // エラー定義を取得
                     objErrorStruct = cfErrorClass.GetErrorStruct(ABErrorClass.ABE003002);
                     // ※ABLOGへ書き込み
-                    SetABLOG(cUSSCItyInfo.p_strShichosonCD(0), "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
+                    SetABLOG(cUSSCItyInfo.p_strShichosonCD[0], "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
                     // *履歴番号 000002 2007/03/16 追加終了
 
                     throw exAppExp;
@@ -366,7 +366,7 @@ namespace Densan.Reams.AB.AB000BB
                     // エラー定義を取得
                     objErrorStruct = cfErrorClass.GetErrorStruct(ABErrorClass.ABE003002);
                     // ※ABLOGへ書き込み
-                    SetABLOG(cUSSCItyInfo.p_strShichosonCD(0), "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
+                    SetABLOG(cUSSCItyInfo.p_strShichosonCD[0], "ABKOB", "AC", "個別記載更新（印鑑）", cABKobetsuProperty[0].p_strJUMINCD, objErrorStruct.m_strErrorMessage);
                     // *履歴番号 000002 2007/03/16 追加終了
 
                     throw exExp;
@@ -493,36 +493,36 @@ namespace Densan.Reams.AB.AB000BB
         // csABAtenaInkanEntity = cABAtenaInkanBClass.GetAtenaInkan(CStr(cABKobetsuProperty(intcnt).p_strJUMINCD))
 
         // '追加・更新の判定
-        // If csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).Rows.Count = 0 Then
+        // If csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].Rows.Count = 0 Then
 
-        // cDatRow = csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).NewRow()
+        // cDatRow = csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].NewRow()
         // '各項目をプロパティから取得
-        // cDatRow.Item(ABAtenaInkanEntity.JUMINCD) = cABKobetsuProperty(intcnt).p_strJUMINCD
-        // cDatRow.Item(ABAtenaInkanEntity.INKANNO) = cABKobetsuProperty(intcnt).p_strINKANNO
-        // cDatRow.Item(ABAtenaInkanEntity.INKANTOROKUKB) = cABKobetsuProperty(intcnt).p_strINKANTOROKUKB
+        // cDatRow[ABAtenaInkanEntity.JUMINCD] = cABKobetsuProperty(intcnt).p_strJUMINCD
+        // cDatRow[ABAtenaInkanEntity.INKANNO] = cABKobetsuProperty(intcnt).p_strINKANNO
+        // cDatRow[ABAtenaInkanEntity.INKANTOROKUKB] = cABKobetsuProperty(intcnt).p_strINKANTOROKUKB
 
         // '市町村コード
-        // cDatRow.Item(ABAtenaInkanEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0)
+        // cDatRow[ABAtenaInkanEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0]
         // '旧市町村コード
-        // cDatRow.Item(ABAtenaInkanEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0)
+        // cDatRow[ABAtenaInkanEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0]
 
         // 'データの追加
-        // 'csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).Rows.Add(cDatRow)
+        // 'csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].Rows.Add(cDatRow)
 
         // '宛名印鑑マスタ追加メソッド呼び出し
         // intUpdCnt = cABAtenaInkanBClass.InsertAtenaInkan(cDatRow)
         // Else
 
-        // cDatRow = csABAtenaInkanEntity.Tables(ABAtenaInkanEntity.TABLE_NAME).Rows(0)
+        // cDatRow = csABAtenaInkanEntity.Tables[ABAtenaInkanEntity.TABLE_NAME].Rows[0]
         // '各項目をプロパティから取得
-        // cDatRow.Item(ABAtenaInkanEntity.JUMINCD) = cABKobetsuProperty(intcnt).p_strJUMINCD
-        // cDatRow.Item(ABAtenaInkanEntity.INKANNO) = cABKobetsuProperty(intcnt).p_strINKANNO
-        // cDatRow.Item(ABAtenaInkanEntity.INKANTOROKUKB) = cABKobetsuProperty(intcnt).p_strINKANTOROKUKB
+        // cDatRow[ABAtenaInkanEntity.JUMINCD] = cABKobetsuProperty(intcnt).p_strJUMINCD
+        // cDatRow[ABAtenaInkanEntity.INKANNO] = cABKobetsuProperty(intcnt).p_strINKANNO
+        // cDatRow[ABAtenaInkanEntity.INKANTOROKUKB] = cABKobetsuProperty(intcnt).p_strINKANTOROKUKB
 
         // '市町村コード
-        // cDatRow.Item(ABAtenaInkanEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0)
+        // cDatRow[ABAtenaInkanEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0]
         // '旧市町村コード
-        // cDatRow.Item(ABAtenaInkanEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0)
+        // cDatRow[ABAtenaInkanEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0]
 
         // '宛名印鑑マスタ更新メソッド呼び出し
         // intUpdCnt = cABAtenaInkanBClass.UpdateAtenaInkan(cDatRow)

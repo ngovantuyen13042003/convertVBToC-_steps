@@ -21,7 +21,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABLTTaxKBBClass
@@ -199,7 +199,7 @@ namespace Densan.Reams.AB.AB000BB
                         strSQL.Append(strGyomuCD[intI]);
                         strSQL.Append("',");
                     }
-                    strSQL.RRemove(strSQL.RLength - 1, 1);
+                    strSQL.RRemove(strSQL.RLength() - 1, 1);
                     strSQL.Append(")");
                 }
 

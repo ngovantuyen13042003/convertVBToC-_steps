@@ -18,7 +18,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABSekoYMDHanteiBClass
@@ -65,7 +65,7 @@ namespace Densan.Reams.AB.AB000BB
         }
         #endregion
 
-        #region 施行日取得(呼び出し)(GetSekoYMD)
+        #region 施行日取得(呼び出し)[GetSekoYMD]
         /// <summary>
     /// 施行日を取得します
     /// </summary>
@@ -141,17 +141,17 @@ namespace Densan.Reams.AB.AB000BB
 
                 // *取得した管理情報からパラメータをワークに設定
                 {
-                    var withBlock = csKanriJoho.Tables(ABAtenaKanriJohoEntity.TABLE_NAME);
+                    var withBlock = csKanriJoho.Tables[ABAtenaKanriJohoEntity.TABLE_NAME];
 
                     // ●施行日の設定
                     if (withBlock.Rows.Count > 0)
                     {
                         // **管理情報が取得された場合**
 
-                        strRetSekoYMD = (string)withBlock.Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER);
+                        strRetSekoYMD = (string)withBlock.Rows[0][ABAtenaKanriJohoEntity.PARAMETER];
                         m_cfDate.p_strDateValue = strRetSekoYMD;
 
-                        if (strRetSekoYMD.Trim().RLength == 8 && m_cfDate.CheckDate())
+                        if (strRetSekoYMD.Trim().RLength() == 8 && m_cfDate.CheckDate())
                         {
                         }
                         // **0行目のパラメータが8桁 かつ 日付として正しい場合**
@@ -223,11 +223,11 @@ namespace Densan.Reams.AB.AB000BB
                 strSekoYMD = GetSekoYMDFromKanriJoho();
 
                 // ●取得した施行日から判定をする
-                if (strSekoYMD.Trim().RLength > 0)
+                if (strSekoYMD.Trim().RLength() > 0)
                 {
                     // **施行日が空白でない場合**
 
-                    if (strSekoYMD <= m_cfRdb.GetSystemDate.ToString("yyyyMMdd"))
+                    if (strSekoYMD <= m_cfRdb.GetSystemDate().ToString("yyyyMMdd"))
                     {
                         // **施行日が現在日以前の場合**
 

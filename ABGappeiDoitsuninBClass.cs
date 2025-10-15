@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     // *履歴番号 000009 2018/05/01 追加終了
 
@@ -82,9 +82,9 @@ namespace Densan.Reams.AB.AB000BB
             m_strInsertSQL = string.Empty;
             m_strUpdateSQL = string.Empty;
             m_strDeleteSQL = string.Empty;
-            m_cfInsertUFParameterCollectionClass = (object)null;
-            m_cfUpdateUFParameterCollectionClass = (object)null;
-            m_cfDeleteUFParameterCollectionClass = (object)null;
+            m_cfInsertUFParameterCollectionClass = null;
+            m_cfUpdateUFParameterCollectionClass = null;
+            m_cfDeleteUFParameterCollectionClass = null;
         }
 
         // ************************************************************************************************
@@ -145,7 +145,7 @@ namespace Densan.Reams.AB.AB000BB
                 csGappeiDoitsuninEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfUFParameterCollectionClass);
 
                 // 取得件数が０件の時
-                if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 0)
+                if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 0)
                 {
                     m_cfErrorClass = new UFErrorClass(ABConstClass.THIS_BUSINESSID);
                     // エラー定義を取得
@@ -155,7 +155,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 取得件数が１件の時
-                if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 1)
+                if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 1)
                 {
                     // SQL文の作成
                     strSQL = new StringBuilder();
@@ -176,7 +176,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 同一人識別コード
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABGappeiDoitsuninEntity.KEY_DOITSUNINSHIKIBETSUCD;
-                    cfUFParameterClass.Value = (string)csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows(0).Item(ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD).ToString;
+                    cfUFParameterClass.Value = (string)csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows[0][ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD].ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
 
@@ -283,13 +283,13 @@ namespace Densan.Reams.AB.AB000BB
                     csGappeiDoitsuninEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfUFParameterCollectionClass);
 
                     // 取得件数が０件の時
-                    if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 0)
+                    if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 0)
                     {
                         break;
                     }
 
                     // 取得件数が１件の時
-                    if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 1)
+                    if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 1)
                     {
                         // SQL文の作成
                         strSQL = new StringBuilder();
@@ -310,7 +310,7 @@ namespace Densan.Reams.AB.AB000BB
                         // 同一人識別コード
                         cfUFParameterClass = new UFParameterClass();
                         cfUFParameterClass.ParameterName = ABGappeiDoitsuninEntity.KEY_DOITSUNINSHIKIBETSUCD;
-                        cfUFParameterClass.Value = (string)csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows(0).Item(ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD).ToString;
+                        cfUFParameterClass.Value = (string)csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows[0][ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD].ToString();
                         // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                         cfUFParameterCollectionClass.Add(cfUFParameterClass);
 
@@ -435,7 +435,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = m_cfRdbClass.GetDataSet(csSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfParameterCollection);
 
                 // 取得件数が１件以上の時
-                if (csDataSet.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
                     // SQL文の作成
@@ -449,7 +449,7 @@ namespace Densan.Reams.AB.AB000BB
                     csSQL.Append(ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD);
                     csSQL.Append(" IN (");
 
-                    for (int i = 0, loopTo1 = csDataSet.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count - 1; i <= loopTo1; i++)
+                    for (int i = 0, loopTo1 = csDataSet.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count - 1; i <= loopTo1; i++)
                     {
 
                         // -----------------------------------------------------------------------------
@@ -467,7 +467,7 @@ namespace Densan.Reams.AB.AB000BB
 
                         cfParameter = new UFParameterClass();
                         cfParameter.ParameterName = strParameterName;
-                        cfParameter.Value = csDataSet.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows(i).Item(ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD).ToString;
+                        cfParameter.Value = csDataSet.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows[i][ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD].ToString();
                         cfParameterCollection.Add(cfParameter);
                         // -----------------------------------------------------------------------------
 
@@ -571,7 +571,7 @@ namespace Densan.Reams.AB.AB000BB
                 csSQL.Append(ABGappeiDoitsuninEntity.JUMINCD);
                 csSQL.Append(" IN (");
 
-                for (int i = 0, loopTo = csJuminCDList.Count - 1; i <= loopTo; i++)
+                for (int i = 0, loopTo = csJuminCDList.Count() - 1; i <= loopTo; i++)
                 {
 
                     // -----------------------------------------------------------------------------
@@ -611,35 +611,35 @@ namespace Densan.Reams.AB.AB000BB
                 csDataSet = m_cfRdbClass.GetDataSet(csSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfParameterCollection);
 
                 // 取得件数が１件以上の時
-                if (csDataSet.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count > 0)
+                if (csDataSet.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count > 0)
                 {
 
-                    foreach (DataRow csDataRow in csDataSet.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows)
+                    foreach (DataRow csDataRow in csDataSet.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows)
                     {
 
                         // -----------------------------------------------------------------------------
                         // 同一人区分名称編集
-                        switch (csDataRow.Item(ABGappeiDoitsuninEntity.HONNINKB).ToString.Trim)
+                        switch (csDataRow[ABGappeiDoitsuninEntity.HONNINKB].ToString().Trim())
                         {
                             case var @case when @case == ABConstClass.HONNINKB.CODE.DAIHYO:
                                 {
-                                    csResult.Add(csDataRow.Item(ABGappeiDoitsuninEntity.JUMINCD).ToString, ABConstClass.HONNINKB.RYAKUSHO.DAIHYO);
+                                    csResult.Add(csDataRow[ABGappeiDoitsuninEntity.JUMINCD].ToString(), ABConstClass.HONNINKB.RYAKUSHO.DAIHYO);
                                     break;
                                 }
                             case var case1 when case1 == ABConstClass.HONNINKB.CODE.DOITSUNIN:
                                 {
-                                    csResult.Add(csDataRow.Item(ABGappeiDoitsuninEntity.JUMINCD).ToString, ABConstClass.HONNINKB.RYAKUSHO.DOITSUNIN);
+                                    csResult.Add(csDataRow[ABGappeiDoitsuninEntity.JUMINCD].ToString(), ABConstClass.HONNINKB.RYAKUSHO.DOITSUNIN);
                                     break;
                                 }
                             case var case2 when case2 == ABConstClass.HONNINKB.CODE.HAISHI:
                                 {
-                                    csResult.Add(csDataRow.Item(ABGappeiDoitsuninEntity.JUMINCD).ToString, ABConstClass.HONNINKB.RYAKUSHO.HAISHI);
+                                    csResult.Add(csDataRow[ABGappeiDoitsuninEntity.JUMINCD].ToString(), ABConstClass.HONNINKB.RYAKUSHO.HAISHI);
                                     break;
                                 }
 
                             default:
                                 {
-                                    csResult.Add(csDataRow.Item(ABGappeiDoitsuninEntity.JUMINCD).ToString, string.Empty);
+                                    csResult.Add(csDataRow[ABGappeiDoitsuninEntity.JUMINCD].ToString(), string.Empty);
                                     break;
                                 }
                         }
@@ -764,7 +764,7 @@ namespace Densan.Reams.AB.AB000BB
                 csDaihyosyaEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfUFParameterCollectionClass);
 
                 // 取得件数が０件の時
-                if (csDaihyosyaEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 0)
+                if (csDaihyosyaEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 0)
                 {
                     // 同一人管理されていない場合は、指定された住民コードを返却する
                     strDaihyoJuminCD = strJuminCD;
@@ -772,7 +772,7 @@ namespace Densan.Reams.AB.AB000BB
                 else
                 {
                     // 同一人管理されている場合は、同一人代表者の住民コードを返却する
-                    strDaihyoJuminCD = (string)csDaihyosyaEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows(0).Item(ABGappeiDoitsuninEntity.JUMINCD);
+                    strDaihyoJuminCD = (string)csDaihyosyaEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows[0][ABGappeiDoitsuninEntity.JUMINCD];
                 }
 
                 // デバッグログ出力
@@ -864,7 +864,7 @@ namespace Densan.Reams.AB.AB000BB
                 csGappeiDoitsuninEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfUFParameterCollectionClass);
 
                 // 取得件数が０件の時
-                if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 0)
+                if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 0)
                 {
                     m_cfErrorClass = new UFErrorClass(ABConstClass.THIS_BUSINESSID);
                     // エラー定義を取得
@@ -874,7 +874,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 取得件数が１件の時
-                if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 1)
+                if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 1)
                 {
                     // SQL文の作成
                     strSQL = new StringBuilder();
@@ -898,7 +898,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 同一人識別コード
                     cfUFParameterClass = new UFParameterClass();
                     cfUFParameterClass.ParameterName = ABGappeiDoitsuninEntity.KEY_DOITSUNINSHIKIBETSUCD;
-                    cfUFParameterClass.Value = (string)csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows(0).Item(ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD).ToString;
+                    cfUFParameterClass.Value = (string)csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows[0][ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD].ToString();
                     // 検索条件のパラメータコレクションオブジェクトにパラメータオブジェクトの追加
                     cfUFParameterCollectionClass.Add(cfUFParameterClass);
 
@@ -1000,7 +1000,7 @@ namespace Densan.Reams.AB.AB000BB
                 csGappeiDoitsuninEntity = m_cfRdbClass.GetDataSet(strSQL.ToString(), ABGappeiDoitsuninEntity.TABLE_NAME, cfUFParameterCollectionClass);
 
                 // 取得件数が０件の時
-                if (csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows.Count() == 0)
+                if (csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows.Count() == 0)
                 {
                     m_cfErrorClass = new UFErrorClass(ABConstClass.THIS_BUSINESSID);
                     // エラー定義を取得
@@ -1009,7 +1009,7 @@ namespace Densan.Reams.AB.AB000BB
                     throw new UFAppException(objErrorStruct.m_strErrorMessage, objErrorStruct.m_strErrorCode);
                 }
 
-                strShikibetsuCD = (string)csGappeiDoitsuninEntity.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Rows(0).Item(ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD);
+                strShikibetsuCD = (string)csGappeiDoitsuninEntity.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Rows[0][ABGappeiDoitsuninEntity.DOITSUNINSHIKIBETSUCD];
 
 
                 // デバッグログ出力
@@ -1075,22 +1075,22 @@ namespace Densan.Reams.AB.AB000BB
                 strUpdateDateTime = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");          // 作成日時
 
                 // 共通項目の編集を行う
-                csDataRow(ABGappeiDoitsuninEntity.TANMATSUID) = m_cfControlData.m_strClientId;           // 端末ＩＤ
-                csDataRow(ABGappeiDoitsuninEntity.SAKUJOFG) = "0";                                       // 削除フラグ
-                csDataRow(ABGappeiDoitsuninEntity.KOSHINCOUNTER) = decimal.Zero;                         // 更新カウンタ
-                csDataRow(ABGappeiDoitsuninEntity.SAKUSEINICHIJI) = strUpdateDateTime;                   // 作成日時
-                csDataRow(ABGappeiDoitsuninEntity.SAKUSEIUSER) = m_cfControlData.m_strUserId;            // 作成ユーザー
-                csDataRow(ABGappeiDoitsuninEntity.KOSHINNICHIJI) = strUpdateDateTime;                    // 更新日時
-                csDataRow(ABGappeiDoitsuninEntity.KOSHINUSER) = m_cfControlData.m_strUserId;             // 更新ユーザー
+                csDataRow[ABGappeiDoitsuninEntity.TANMATSUID] = m_cfControlData.m_strClientId;           // 端末ＩＤ
+                csDataRow[ABGappeiDoitsuninEntity.SAKUJOFG] = "0";                                       // 削除フラグ
+                csDataRow[ABGappeiDoitsuninEntity.KOSHINCOUNTER] = decimal.Zero;                         // 更新カウンタ
+                csDataRow[ABGappeiDoitsuninEntity.SAKUSEINICHIJI] = strUpdateDateTime;                   // 作成日時
+                csDataRow[ABGappeiDoitsuninEntity.SAKUSEIUSER] = m_cfControlData.m_strUserId;            // 作成ユーザー
+                csDataRow[ABGappeiDoitsuninEntity.KOSHINNICHIJI] = strUpdateDateTime;                    // 更新日時
+                csDataRow[ABGappeiDoitsuninEntity.KOSHINUSER] = m_cfControlData.m_strUserId;             // 更新ユーザー
 
                 // 当クラスのデータ整合性チェックを行う
                 foreach (DataColumn csDataColumn in csDataRow.Table.Columns)
                     // データ整合性チェック
-                    CheckColumnValue(csDataColumn.ColumnName, csDataRow(csDataColumn.ColumnName).ToString.Trim);
+                    CheckColumnValue(csDataColumn.ColumnName, csDataRow[csDataColumn.ColumnName].ToString().Trim());
 
                 // パラメータコレクションへ値の設定
                 foreach (UFParameterClass cfParam in m_cfInsertUFParameterCollectionClass)
-                    this.m_cfInsertUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength)).ToString();
+                    this.m_cfInsertUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength())].ToString();
 
                 // RDBアクセスログ出力
                 m_cfLogClass.RdbWrite(m_cfControlData, "【クラス名:" + THIS_CLASS_NAME + "】" + "【メソッド名:" + THIS_METHOD_NAME + "】" + "【実行メソッド名:ExecuteSQL】" + "【SQL内容:" + m_strInsertSQL + "】");
@@ -1163,25 +1163,25 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 共通項目の編集を行う
-                csDataRow(ABGappeiDoitsuninEntity.TANMATSUID) = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
-                csDataRow(ABGappeiDoitsuninEntity.KOSHINCOUNTER) = (decimal)csDataRow(ABGappeiDoitsuninEntity.KOSHINCOUNTER) + 1m;   // 更新カウンタ
-                csDataRow(ABGappeiDoitsuninEntity.KOSHINNICHIJI) = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
-                csDataRow(ABGappeiDoitsuninEntity.KOSHINUSER) = m_cfControlData.m_strUserId;                                     // 更新ユーザー
+                csDataRow[ABGappeiDoitsuninEntity.TANMATSUID] = m_cfControlData.m_strClientId;                                   // 端末ＩＤ
+                csDataRow[ABGappeiDoitsuninEntity.KOSHINCOUNTER] = (decimal)csDataRow[ABGappeiDoitsuninEntity.KOSHINCOUNTER] + 1m;   // 更新カウンタ
+                csDataRow[ABGappeiDoitsuninEntity.KOSHINNICHIJI] = m_cfRdbClass.GetSystemDate().ToString("yyyyMMddHHmmssfff");   // 更新日時
+                csDataRow[ABGappeiDoitsuninEntity.KOSHINUSER] = m_cfControlData.m_strUserId;                                     // 更新ユーザー
 
                 // 作成済みのパラメータへ更新行から値を設定する。
                 foreach (UFParameterClass cfParam in m_cfUpdateUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABGappeiDoitsuninEntity.PREFIX_KEY.RLength) == ABGappeiDoitsuninEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABGappeiDoitsuninEntity.PREFIX_KEY.RLength()) == ABGappeiDoitsuninEntity.PREFIX_KEY)
                     {
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // データ整合性チェック
-                        CheckColumnValue(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength), csDataRow(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString.Trim);
+                        CheckColumnValue(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength()), csDataRow[cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString().Trim());
                         // パラメータコレクションへ値の設定
-                        this.m_cfUpdateUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfUpdateUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PARAM_PLACEHOLDER.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -1262,14 +1262,14 @@ namespace Densan.Reams.AB.AB000BB
                 foreach (UFParameterClass cfParam in m_cfDeleteUFParameterCollectionClass)
                 {
                     // キー項目は更新前の値で設定
-                    if (cfParam.ParameterName.RSubstring(0, ABGappeiDoitsuninEntity.PREFIX_KEY.RLength) == ABGappeiDoitsuninEntity.PREFIX_KEY)
+                    if (cfParam.ParameterName.RSubstring(0, ABGappeiDoitsuninEntity.PREFIX_KEY.RLength()) == ABGappeiDoitsuninEntity.PREFIX_KEY)
                     {
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PREFIX_KEY.RLength), DataRowVersion.Original).ToString();
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PREFIX_KEY.RLength()), DataRowVersion.Original].ToString();
                     }
                     else
                     {
                         // パラメータコレクションへ値の設定
-                        this.m_cfDeleteUFParameterCollectionClass(cfParam.ParameterName).Value = csDataRow(cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PREFIX_KEY.RLength), DataRowVersion.Current).ToString();
+                        this.m_cfDeleteUFParameterCollectionClass[cfParam.ParameterName].Value = csDataRow[cfParam.ParameterName.RSubstring(ABGappeiDoitsuninEntity.PREFIX_KEY.RLength()), DataRowVersion.Current].ToString();
                     }
                 }
 
@@ -1379,7 +1379,7 @@ namespace Densan.Reams.AB.AB000BB
                 foreach (DataColumn csDataColumn in csDataRow.Table.Columns)
                 {
                     // ' カラムが存在する場合
-                    // If (m_csSchema.Tables(ABGappeiDoitsuninEntity.TABLE_NAME).Columns.Contains(csDataColumn.ColumnName)) Then
+                    // If (m_csSchema.Tables[ABGappeiDoitsuninEntity.TABLE_NAME].Columns.Contains(csDataColumn.ColumnName)) Then
 
                     cfUFParameterClass = new UFParameterClass();
 

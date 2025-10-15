@@ -21,7 +21,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     #region 窓あき封筒用宛名編集クラス
@@ -695,15 +695,15 @@ namespace Densan.Reams.AB.AB000BB
                 m_cfLogClass.DebugStartWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME);
 
                 // 窓あき宛名編集パラメータ・郵便番号の文字列長　≦　3の場合
-                if (m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim.RLength() <= 3)
+                if (m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim().RLength() <= 3)
                 {
                     // 窓あき宛名編集パラメータ・郵便番号をメンバ変数・郵便番号へセットする
-                    m_strYubinNO = m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim;
+                    m_strYubinNO = m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim();
                 }
                 else
                 {
                     // 窓あき宛名編集パラメータ・郵便番号の先頭3桁+「-」+窓あき宛名編集パラメータ・郵便番号の4桁目以降をメンバ変数・郵便番号にセットする
-                    m_strYubinNO = m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim.RSubstring(0, 3) + "-" + m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim.RSubstring(3);
+                    m_strYubinNO = m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim().RSubstring(0, 3) + "-" + m_cMadoakiAtenaEditParamXClass.p_strYubinNo.Trim().RSubstring(3);
                 }
 
                 // デバッグ終了ログ出力
@@ -874,7 +874,7 @@ namespace Densan.Reams.AB.AB000BB
                             case var case2 when case2 == withBlock.JushoEditPaturn.JushoKakkoGyoseiku:        // 3（住所（行政区））
                                 {
                                     // 窓あき宛名編集パラメータ・行政区名≠空白　AND 窓あき宛名編集パラメータ・住所≠空白の場合
-                                    if (withBlock.p_strGyoseikumei.Trim != string.Empty && withBlock.p_strJusho.Trim != string.Empty)
+                                    if (withBlock.p_strGyoseikumei.Trim() != string.Empty && withBlock.p_strJusho.Trim() != string.Empty)
                                     {
                                         // メンバ変数・住所は窓あき宛名編集パラメータ・住所+住所編集方法の括弧(左)+行政区名+住所編集方法の括弧(右)をセットする
                                         m_strJuSho = withBlock.p_strJusho + withBlock.p_strJushoEditPaturn_KakkoL + withBlock.p_strGyoseikumei + withBlock.p_strJushoEditPaturn_KakkoR;
@@ -890,7 +890,7 @@ namespace Densan.Reams.AB.AB000BB
                             case var case3 when case3 == withBlock.JushoEditPaturn.GyoseikuKakkoJusho:        // 4（行政区（住所））の場合  
                                 {
                                     // 窓あき宛名編集パラメータ・行政区名≠空白　AND 窓あき宛名編集パラメータ・住所≠空白の場合
-                                    if (withBlock.p_strGyoseikumei.Trim != string.Empty && withBlock.p_strJusho.Trim != string.Empty)
+                                    if (withBlock.p_strGyoseikumei.Trim() != string.Empty && withBlock.p_strJusho.Trim() != string.Empty)
                                     {
                                         // メンバ変数・住所は窓あき宛名編集パラメータ・行政区名+住所編集方法の括弧(左)+住所+住所編集方法の括弧(右)をセットする
                                         m_strJuSho = withBlock.p_strGyoseikumei + withBlock.p_strJushoEditPaturn_KakkoL + withBlock.p_strJusho + withBlock.p_strJushoEditPaturn_KakkoR;
@@ -1227,20 +1227,20 @@ namespace Densan.Reams.AB.AB000BB
                             case var @case when @case == withBlock.SamakataEditPaturn.Empty:                  // 0（空白）の場合
                                 {
                                     // 文字切れチェック(CheckOverflow)を呼び出し、先頭空白を削除してメンバ変数・方書配列(0)にセットする
-                                    m_strKatagaki_Array[0] = this.CheckOverflow(m_strKatagaki, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart;
+                                    m_strKatagaki_Array[0] = this.CheckOverflow(m_strKatagaki, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart();
                                     break;
                                 }
                             case var case1 when case1 == withBlock.SamakataEditPaturn.OneBlank:               // 1（1空白）の場合
                                 {
                                     // 全角空白＆文字列付加（PadCharOneBlank）を呼び出し、先頭空白を削除してメンバ変数・方書配列(0)にセットする
-                                    m_strKatagaki_Array[0] = this.PadCharOneBlank(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart;                                       // 上記以外
+                                    m_strKatagaki_Array[0] = this.PadCharOneBlank(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart();                                       // 上記以外
                                     break;
                                 }
 
                             default:
                                 {
                                     // 最後尾文字列付加（PadCharLast）を呼び出し、先頭空白を削除して、メンバ変数・方書配列(0)にセットする
-                                    m_strKatagaki_Array[0] = this.PadCharLast(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart;
+                                    m_strKatagaki_Array[0] = this.PadCharLast(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart();
                                     break;
                                 }
                         }
@@ -1279,14 +1279,14 @@ namespace Densan.Reams.AB.AB000BB
                             case var case3 when case3 == withBlock.SamakataEditPaturn.OneBlank:                   // 1（1空白）の場合
                                 {
                                     // 全角空白＆文字列付加（PadCharOneBlank）を呼び出し、先頭空白を削除してメンバ変数・方書配列(1)にセットする
-                                    m_strKatagaki_Array[1] = this.PadCharOneBlank(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart;                                           // 上記以外
+                                    m_strKatagaki_Array[1] = this.PadCharOneBlank(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart();                                           // 上記以外
                                     break;
                                 }
 
                             default:
                                 {
                                     // 最後尾文字列付加（PadCharLast）を呼び出し、先頭空白を削除して、メンバ変数・方書配列(1)にセットする
-                                    m_strKatagaki_Array[1] = this.PadCharLast(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart;
+                                    m_strKatagaki_Array[1] = this.PadCharLast(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline).TrimStart();
                                     break;
                                 }
                         }
@@ -1312,20 +1312,20 @@ namespace Densan.Reams.AB.AB000BB
                                 case var case4 when case4 == withBlock.SamakataEditPaturn.Empty:                      // 0（空白）の場合
                                     {
                                         // 文字切れチェック(CheckOverflow)を呼び出し、先頭空白を削除してメンバ変数・方書配列(0)にセットする
-                                        m_strKatagaki_Array[0] = this.CheckOverflow(m_strKatagaki, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline * (short)2).TrimStart;
+                                        m_strKatagaki_Array[0] = this.CheckOverflow(m_strKatagaki, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline * (short)2).TrimStart();
                                         break;
                                     }
                                 case var case5 when case5 == withBlock.SamakataEditPaturn.OneBlank:                   // 1（1空白）の場合
                                     {
                                         // 全角空白＆文字列付加（PadCharOneBlank）を呼び出し、先頭空白を削除してメンバ変数・方書配列(0)にセットする
-                                        m_strKatagaki_Array[0] = this.PadCharOneBlank(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline * (short)2).TrimStart;                                           // 上記以外
+                                        m_strKatagaki_Array[0] = this.PadCharOneBlank(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline * (short)2).TrimStart();                                           // 上記以外
                                         break;
                                     }
 
                                 default:
                                     {
                                         // 最後尾文字列付加（PadCharLast）を呼び出し、先頭空白を削除して、メンバ変数・方書配列(0)にセットする
-                                        m_strKatagaki_Array[0] = this.PadCharLast(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline * (short)2).TrimStart;
+                                        m_strKatagaki_Array[0] = this.PadCharLast(m_strKatagaki, withBlock.p_strCNS_Samakata, m_cMadoakiAtenaLengthParamXClass.p_shtKatagakiLengthEveryline * (short)2).TrimStart();
                                         break;
                                     }
                             }
@@ -2028,7 +2028,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 窓あき宛名文字数・行数指示パラメータ・氏名行数=2　And
                 // メンバ変数・本人氏名配列(0)の文字列長>0　And
                 // メンバ変数・本人氏名配列(1)の文字列長>0　
-                if (m_shtHonninShimeiFont != 0 && m_cMadoakiAtenaLengthParamXClass.p_shtShimeiLineCount == 2 && m_strHonninShimei_Array[0].RLength > 0 && m_strHonninShimei_Array[1].RLength > 0)
+                if (m_shtHonninShimeiFont != 0 && m_cMadoakiAtenaLengthParamXClass.p_shtShimeiLineCount == 2 && m_strHonninShimei_Array[0].RLength() > 0 && m_strHonninShimei_Array[1].RLength() > 0)
                 {
                     // 窓あき宛名編集結果パラメータ・本人氏名括弧上段に窓あき宛名編集パラメータ・本人氏名の括弧(左)をセットする
                     cMadoakiAtenaReturnXClass.p_strHonninShimei_KakkoHigh = m_cMadoakiAtenaEditParamXClass.p_strHonninShimei_KakkoL;
@@ -2046,7 +2046,7 @@ namespace Densan.Reams.AB.AB000BB
                 // メンバ変数・本人氏名配列(1)の文字列長＞0　）　OR
                 // （窓あき宛名文字数・行数指示パラメータ・氏名行数＝1　AND
                 // メンバ変数・本人氏名配列(0)の文字列長＞0）
-                if (m_shtHonninShimeiFont != 0 && m_cMadoakiAtenaLengthParamXClass.p_shtShimeiLineCount == 2 && m_strHonninShimei_Array[0].RLength == 0 && m_strHonninShimei_Array[1].RLength > 0 || m_cMadoakiAtenaLengthParamXClass.p_shtShimeiLineCount == 1 && m_strHonninShimei_Array[0].RLength > 0)
+                if (m_shtHonninShimeiFont != 0 && m_cMadoakiAtenaLengthParamXClass.p_shtShimeiLineCount == 2 && m_strHonninShimei_Array[0].RLength() == 0 && m_strHonninShimei_Array[1].RLength() > 0 || m_cMadoakiAtenaLengthParamXClass.p_shtShimeiLineCount == 1 && m_strHonninShimei_Array[0].RLength() > 0)
                 {
                     // 窓あき宛名編集結果パラメータ・本人氏名括弧下段に窓あき宛名編集パラメータ・本人氏名の括弧(左)をセットする
                     cMadoakiAtenaReturnXClass.p_strHonninShimei_KakkoLow = m_cMadoakiAtenaEditParamXClass.p_strHonninShimei_KakkoL;
@@ -2060,7 +2060,7 @@ namespace Densan.Reams.AB.AB000BB
                 // 様分
                 // 窓あき宛名編集結果パラメータ・本人氏名括弧上段の文字列長＞0　OR
                 // 窓あき宛名編集結果パラメータ・本人氏名括弧下段の文字列長>0　
-                if (cMadoakiAtenaReturnXClass.p_strHonninShimei_KakkoHigh.RLength > 0 || cMadoakiAtenaReturnXClass.p_strHonninShimei_KakkoLow.RLength > 0)
+                if (cMadoakiAtenaReturnXClass.p_strHonninShimei_KakkoHigh.RLength() > 0 || cMadoakiAtenaReturnXClass.p_strHonninShimei_KakkoLow.RLength() > 0)
                 {
                     // 窓あき宛名編集結果パラメータ・様分に窓あき宛名編集パラメータ・様分コンスタント　+　本人氏名の括弧(右)をセットする
                     cMadoakiAtenaReturnXClass.p_strSamabun = m_cMadoakiAtenaEditParamXClass.p_strCNS_Samabun + m_cMadoakiAtenaEditParamXClass.p_strHonninShimei_KakkoR;
@@ -2278,7 +2278,7 @@ namespace Densan.Reams.AB.AB000BB
                             // 変数・入力文字列の右を引数・文字数分、全角空白埋めを行い、変数・戻り値にセットする
                             // 変数・戻り値の末尾を変数・付加文字に置き換え（変数・戻り値の文字列長-変数・付加文字の文字列長の位置に付加文字を挿入）後ろ空白を削除する
                             strOutChar = strEditInput.RPadRight(shtMaxLength, "　");
-                            strOutChar = strOutChar.RInsert(strOutChar.RLength() - strFukaMoji.RLength(), strFukaMoji).TrimEnd;
+                            strOutChar = strOutChar.RInsert(strOutChar.RLength() - strFukaMoji.RLength(), strFukaMoji).TrimEnd();
                         }
                     }
                 }

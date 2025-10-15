@@ -29,7 +29,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.framework.us.publicmodule.library.businesscommon.uwfkokai;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABAtenaCnvBClass
@@ -132,7 +132,7 @@ namespace Densan.Reams.AB.AB000BB
             // 市町村情報の取得
             cuCityInfo.GetCityInfo(m_cfControlData);
             // 市町村ｺｰﾄﾞの取得
-            m_strCityCD = cuCityInfo.p_strShichosonCD(0);
+            m_strCityCD = cuCityInfo.p_strShichosonCD[0];
             // *履歴番号 000003 2004/11/05 追加終了
 
             // ログ出力クラスのインスタンス化
@@ -208,8 +208,8 @@ namespace Densan.Reams.AB.AB000BB
         // ' 被代納SQL実行
         // csHiDainoEntity = m_cfRdbClass.GetDataSet(m_strHIDAINOSQL, ABDainoEntity.TABLE_NAME)
         // '代納データの取得
-        // For Each csHiDainoRow In csHiDainoEntity.Tables(ABDainoEntity.TABLE_NAME).Rows
-        // m_strHidainoJuminCD(m_intHiDaiCnt) = CType(csHiDainoRow.Item(ABDainoEntity.JUMINCD), String)
+        // For Each csHiDainoRow In csHiDainoEntity.Tables[ABDainoEntity.TABLE_NAME].Rows
+        // m_strHidainoJuminCD(m_intHiDaiCnt) = CType(csHiDainoRow[ABDainoEntity.JUMINCD], String)
         // '被代納人の数をカウント
         // m_intHiDaiCnt += 1
         // Next
@@ -235,34 +235,34 @@ namespace Densan.Reams.AB.AB000BB
         // ''''市町村情報の取得
         // '''cuCityInfo.GetCityInfo(m_cfControlData)
         // ''''市町村ｺｰﾄﾞの取得
-        // '''strCityCD = cuCityInfo.p_strShichosonCD(0)
+        // '''strCityCD = cuCityInfo.p_strShichosonCD[0]
         // '*履歴番号 000003 2004/11/05 削除終了
 
         // '連番のカウントをとる
         // m_intRecCnt += 1
         // '新しいRowを追加
-        // csToshoRow = csToshoEntity.Tables(ABToshoTable.TABLE_NAME).NewRow
+        // csToshoRow = csToshoEntity.Tables[ABToshoTable.TABLE_NAME].NewRow
 
         // ' 市町村ｺｰﾄﾞ(6桁)
         // '*履歴番号 000003 2004/11/05 修正開始
-        // '''csToshoRow.Item(ABToshoTable.SHICHOSONCD) = strCityCD
-        // csToshoRow.Item(ABToshoTable.SHICHOSONCD) = m_strCityCD
+        // '''csToshoRow[ABToshoTable.SHICHOSONCD] = strCityCD
+        // csToshoRow[ABToshoTable.SHICHOSONCD] = m_strCityCD
         // '*履歴番号 000003 2004/11/05 修正終了
         // ' 識別ID(4桁)
-        // csToshoRow.Item(ABToshoTable.SHIKIBETSUID) = "AB21"
+        // csToshoRow[ABToshoTable.SHIKIBETSUID] = "AB21"
         // ' 作成日時(14桁)
-        // csToshoRow.Item(ABToshoTable.SAKUSEIYMD) = m_strNen
+        // csToshoRow[ABToshoTable.SAKUSEIYMD] = m_strNen
         // ' 最終行区分(1桁)
-        // csToshoRow.Item(ABToshoTable.LASTRECKB) = ""
+        // csToshoRow[ABToshoTable.LASTRECKB] = ""
         // ' 連番(7桁)
-        // csToshoRow.Item(ABToshoTable.RENBAN) = CType(m_intRecCnt, String).PadLeft(7, "0"c)
-        // ' 住民コード(8桁)(.NET12桁)
-        // csToshoRow.Item(ABToshoTable.JUMIN_CD) = cABToshoProperty(intCnt).p_strJuminCD.Substring(4, 8)
+        // csToshoRow[ABToshoTable.RENBAN] = CType(m_intRecCnt, String).PadLeft(7, "0"c)
+        // ' 住民コード(8桁)[.NET12桁]
+        // csToshoRow[ABToshoTable.JUMIN_CD] = cABToshoProperty(intCnt).p_strJuminCD.Substring(4, 8)
         // ' 更新区分(1桁)
-        // csToshoRow.Item(ABToshoTable.UPDATE_KBN) = cABToshoProperty(intCnt).p_strKoshinKB
+        // csToshoRow[ABToshoTable.UPDATE_KBN] = cABToshoProperty(intCnt).p_strKoshinKB
 
         // '編集したRowをデータセットに追加
-        // csToshoEntity.Tables(ABToshoTable.TABLE_NAME).Rows.Add(csToshoRow)
+        // csToshoEntity.Tables[ABToshoTable.TABLE_NAME].Rows.Add(csToshoRow)
 
         // End If
 
@@ -272,10 +272,10 @@ namespace Densan.Reams.AB.AB000BB
         // '連番のカウントをとる
         // m_intRecCnt += 1
         // '最終行の取得
-        // csToshoRow = csToshoEntity.Tables(ABToshoTable.TABLE_NAME).NewRow
+        // csToshoRow = csToshoEntity.Tables[ABToshoTable.TABLE_NAME].NewRow
         // csToshoRow = Me.ReflectLastData(csToshoRow)
         // '編集したRowをデータセットに追加
-        // csToshoEntity.Tables(ABToshoTable.TABLE_NAME).Rows.Add(csToshoRow)
+        // csToshoEntity.Tables[ABToshoTable.TABLE_NAME].Rows.Add(csToshoRow)
 
         // '**
         // '*ワークフロー送信処理呼び出し
@@ -370,16 +370,16 @@ namespace Densan.Reams.AB.AB000BB
         // '本人SQL実行
         // csAtenaEntity = m_cfRdbClass.GetDataSet(m_strSQL, ABAtenaEntity.TABLE_NAME)
         // ' 本人宛名データの取得
-        // For Each csAtenaRow In csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows
+        // For Each csAtenaRow In csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows
         // '連番のカウントをとる
         // m_intRecCnt += 1
         // '新しいRowを追加
-        // csToshoRow = csToshoEntity.Tables(ABToshoTable.TABLE_NAME).NewRow()
+        // csToshoRow = csToshoEntity.Tables[ABToshoTable.TABLE_NAME].NewRow()
 
         // ' 宛名本人のデータを一行読み込みセットする
         // csToshoRow = Me.ReflectAtenaData(csAtenaRow, csToshoRow, strUpdataKB)
         // '編集したRowをデータセットに追加
-        // csToshoEntity.Tables(ABToshoTable.TABLE_NAME).Rows.Add(csToshoRow)
+        // csToshoEntity.Tables[ABToshoTable.TABLE_NAME].Rows.Add(csToshoRow)
         // Next
 
         // '枝番のカウンタを初期化
@@ -403,50 +403,50 @@ namespace Densan.Reams.AB.AB000BB
         // csSfskEntity = m_cfRdbClass.GetDataSet(m_strSFSKSQL, ABSfskEntity.TABLE_NAME)
         // '送付先データの取得
         // ' データ編集 & 出力
-        // For Each csSfskRow In csSfskEntity.Tables(ABSfskEntity.TABLE_NAME).Rows
+        // For Each csSfskRow In csSfskEntity.Tables[ABSfskEntity.TABLE_NAME].Rows
         // '連番のカウントをとる
         // m_intRecCnt += 1
         // ''新しいRowを追加
-        // csToshoRow = csToshoEntity.Tables(ABToshoTable.TABLE_NAME).NewRow
+        // csToshoRow = csToshoEntity.Tables[ABToshoTable.TABLE_NAME].NewRow
         // ' 宛名本人・送付先を一行読み込みセットする
         // csToshoRow = Me.ReflectSofusakiData(csSfskRow, csToshoRow, strUpdataKB)
         // '枝番の編集
-        // If Not (CType(csToshoRow.Item(ABToshoTable.GYOMU_CD), String) = String.Empty) Then
+        // If Not (CType(csToshoRow[ABToshoTable.GYOMU_CD], String) = String.Empty) Then
         // 'ブレイクキーの設定(後キー)
-        // strKey(0) = CType(csToshoRow.Item(ABToshoTable.GYOMU_CD), String)
+        // strKey(0) = CType(csToshoRow[ABToshoTable.GYOMU_CD], String)
         // '前キーと後キーが同じだったら枝番カウンタに+1して枝番にデータを追加
         // If (strKey(0) = strKey(1)) Then
         // intED += 1
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
         // Else
         // '業務コード・枝番テーブルに新規ロウを作成
         // csGyomuRow = m_csGyomuTable.NewRow()
-        // csGyomuRow.Item(ABToshoTable.GYOMU_CD) = strKey(1)
-        // csGyomuRow.Item(ABToshoTable.EDABAN) = CStr(intED)
+        // csGyomuRow[ABToshoTable.GYOMU_CD] = strKey(1)
+        // csGyomuRow[ABToshoTable.EDABAN] = CStr(intED)
         // '業務コード・枝番テーブルにロウを追加
         // m_csGyomuTable.Rows.Add(csGyomuRow)
 
         // intED = 1
         // '枝番に一番目のデータ(001)
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
 
         // End If
         // Else
         // intED = 1
         // '枝番に一番目のデータ(001)
         // ' 枝番(3桁)
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
         // End If
         // 'ブレイクキーの設定(前キー)
-        // strKey(1) = CType(csToshoRow.Item(ABToshoTable.GYOMU_CD), String)
+        // strKey(1) = CType(csToshoRow[ABToshoTable.GYOMU_CD], String)
         // '編集したRowをデータセットに追加
-        // csToshoEntity.Tables(ABToshoTable.TABLE_NAME).Rows.Add(csToshoRow)
+        // csToshoEntity.Tables[ABToshoTable.TABLE_NAME].Rows.Add(csToshoRow)
         // Next
 
         // '業務コード・枝番テーブルに新規ロウを作成
         // csGyomuRow = m_csGyomuTable.NewRow()
-        // csGyomuRow.Item(ABToshoTable.GYOMU_CD) = strKey(1)
-        // csGyomuRow.Item(ABToshoTable.EDABAN) = CStr(intED)
+        // csGyomuRow[ABToshoTable.GYOMU_CD] = strKey(1)
+        // csGyomuRow[ABToshoTable.EDABAN] = CStr(intED)
         // '業務コード・枝番テーブルにロウを追加
         // m_csGyomuTable.Rows.Add(csGyomuRow)
 
@@ -464,23 +464,23 @@ namespace Densan.Reams.AB.AB000BB
         // csDainoEntity = m_cfRdbClass.GetDataSet(m_strDAINOSQL, ABDainoEntity.TABLE_NAME)
 
         // '代納データの取得
-        // For Each csDainoRow In csDainoEntity.Tables(ABDainoEntity.TABLE_NAME).Rows
+        // For Each csDainoRow In csDainoEntity.Tables[ABDainoEntity.TABLE_NAME].Rows
         // '連番のカウントをとる
         // m_intRecCnt += 1
         // '新しいRowを追加
-        // csToshoRow = csToshoEntity.Tables(ABToshoTable.TABLE_NAME).NewRow
+        // csToshoRow = csToshoEntity.Tables[ABToshoTable.TABLE_NAME].NewRow
 
         // ' 宛名本人・代納のデータを一行読み込みセットする
         // csToshoRow = Me.ReflectDainoData(csDainoRow, csToshoRow, strUpdataKB)
 
         // '枝番の編集
-        // If Not (CType(csToshoRow.Item(ABToshoTable.GYOMU_CD), String) = String.Empty) Then
+        // If Not (CType(csToshoRow[ABToshoTable.GYOMU_CD], String) = String.Empty) Then
         // 'ブレイクキーの設定(後キー)
-        // strKey(0) = CType(csToshoRow.Item(ABToshoTable.GYOMU_CD), String)
+        // strKey(0) = CType(csToshoRow[ABToshoTable.GYOMU_CD], String)
         // '前キーと後キーが同じだったら枝番カウンタに+1して枝番にデータを追加
         // If (strKey(0) = strKey(1)) Then
         // intED += 1
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
         // Else
         // If Not (m_csGyomuTable.Rows.Count = 0) Then
 
@@ -489,30 +489,30 @@ namespace Densan.Reams.AB.AB000BB
 
         // '業務ＣＤ・枝番テーブルにデータが存在するかどうか
         // If Not (csGERows.Length = 0) Then
-        // intED = CType(csGERows(0).Item(ABToshoTable.EDABAN), Integer) + 1
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CType(intED, String).PadLeft(3, "0"c)
+        // intED = CType(csGERows[0][ABToshoTable.EDABAN], Integer) + 1
+        // csToshoRow[ABToshoTable.EDABAN] = CType(intED, String).PadLeft(3, "0"c)
         // Else
         // intED = 1
         // '枝番に一番目のデータ(001)
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
         // End If
         // Else
         // intED = 1
         // '枝番に一番目のデータ(001)
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
         // End If
         // End If
         // Else
         // intED = 1
         // '枝番に一番目のデータ(001)
         // ' 枝番(3桁)
-        // csToshoRow.Item(ABToshoTable.EDABAN) = CStr(intED).PadLeft(3, "0"c)
+        // csToshoRow[ABToshoTable.EDABAN] = CStr(intED).PadLeft(3, "0"c)
         // End If
         // 'ブレイクキーの設定(前キー)
-        // strKey(1) = CType(csToshoRow.Item(ABToshoTable.GYOMU_CD), String)
+        // strKey(1) = CType(csToshoRow[ABToshoTable.GYOMU_CD], String)
 
         // '編集したRowをデータセットに追加
-        // csToshoEntity.Tables(ABToshoTable.TABLE_NAME).Rows.Add(csToshoRow)
+        // csToshoEntity.Tables[ABToshoTable.TABLE_NAME].Rows.Add(csToshoRow)
         // Next
 
 
@@ -574,213 +574,213 @@ namespace Densan.Reams.AB.AB000BB
         // m_cfLog.DebugStartWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME)
 
         // ' 市町村ｺｰﾄﾞ(6桁)
-        // csToshoRow.Item(ABToshoTable.SHICHOSONCD) = csRow.Item(strPrefixA + ABAtenaEntity.SHICHOSONCD)
+        // csToshoRow[ABToshoTable.SHICHOSONCD] = csRow.Item(strPrefixA + ABAtenaEntity.SHICHOSONCD)
         // ' 識別ID(4桁)
-        // csToshoRow.Item(ABToshoTable.SHIKIBETSUID) = "AB21"
+        // csToshoRow[ABToshoTable.SHIKIBETSUID] = "AB21"
         // ' 作成日時(14桁)
-        // csToshoRow.Item(ABToshoTable.SAKUSEIYMD) = m_strNen
+        // csToshoRow[ABToshoTable.SAKUSEIYMD] = m_strNen
         // ' 最終行区分(1桁)
-        // csToshoRow.Item(ABToshoTable.LASTRECKB) = ""
+        // csToshoRow[ABToshoTable.LASTRECKB] = ""
         // ' 連番(7桁)
-        // csToshoRow.Item(ABToshoTable.RENBAN) = CType(m_intRecCnt, String).PadLeft(7, "0"c)
-        // ' 住民コード(8桁)(.NET12桁)
-        // csToshoRow.Item(ABToshoTable.JUMIN_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.JUMINCD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.RENBAN] = CType(m_intRecCnt, String).PadLeft(7, "0"c)
+        // ' 住民コード(8桁)[.NET12桁]
+        // csToshoRow[ABToshoTable.JUMIN_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.JUMINCD), String).Substring(4, 8)
         // ' 枝番(3桁)
-        // csToshoRow.Item(ABToshoTable.EDABAN) = "001"
-        // ' 世帯コード(8桁)(.NET12桁)
+        // csToshoRow[ABToshoTable.EDABAN] = "001"
+        // ' 世帯コード(8桁)[.NET12桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String) = String.Empty Then
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = "        "
+        // csToshoRow[ABToshoTable.SETAI_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.SETAI_CD] = "        "
         // Else
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.SETAI_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Substring(4, 8)
         // End If
         // ' データ区分(2桁)
-        // csToshoRow.Item(ABToshoTable.DATA_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATAKB)
-        // Dim strDataKB As String = CType(csToshoRow.Item(ABToshoTable.DATA_KBN), String)
+        // csToshoRow[ABToshoTable.DATA_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATAKB)
+        // Dim strDataKB As String = CType(csToshoRow[ABToshoTable.DATA_KBN], String)
         // ' 住民基本台帳番号(14桁)
-        // csToshoRow.Item(ABToshoTable.DAICHO_NO) = ""
+        // csToshoRow[ABToshoTable.DAICHO_NO] = ""
         // ' データ種別(2桁)
-        // csToshoRow.Item(ABToshoTable.DATA_SHU) = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATASHU)
-        // Dim strDataSB As String = CType(csToshoRow.Item(ABToshoTable.DATA_SHU), String)
+        // csToshoRow[ABToshoTable.DATA_SHU] = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATASHU)
+        // Dim strDataSB As String = CType(csToshoRow[ABToshoTable.DATA_SHU], String)
         // ' 検索用カナ（姓）(24桁)
-        // csToshoRow.Item(ABToshoTable.KANASEI) = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANASEI)
+        // csToshoRow[ABToshoTable.KANASEI] = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANASEI)
         // ' 検索用カナ（名）(16桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEI) = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANAMEI)
+        // csToshoRow[ABToshoTable.KANAMEI] = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANAMEI)
         // ' カナ名称１(60桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEISHO1) = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO1)
+        // csToshoRow[ABToshoTable.KANAMEISHO1] = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO1)
         // ' 漢字名称１(80桁)
-        // csToshoRow.Item(ABToshoTable.MEISHO1) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO1)
+        // csToshoRow[ABToshoTable.MEISHO1] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO1)
         // ' カナ名称２(60桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEISHO2) = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO2)
+        // csToshoRow[ABToshoTable.KANAMEISHO2] = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO2)
         // ' 漢字名称２(80桁)
-        // csToshoRow.Item(ABToshoTable.MEISHO2) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO2)
+        // csToshoRow[ABToshoTable.MEISHO2] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO2)
         // '生年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.UMARE_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.UMAREYMD)
+        // csToshoRow[ABToshoTable.UMARE_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.UMAREYMD)
         // ' 生和暦年月日(7桁)
-        // csToshoRow.Item(ABToshoTable.UMARE_WYMD) = csRow.Item(strPrefixA + ABAtenaEntity.UMAREWMD)
+        // csToshoRow[ABToshoTable.UMARE_WYMD] = csRow.Item(strPrefixA + ABAtenaEntity.UMAREWMD)
         // '性別コード(1桁)
-        // csToshoRow.Item(ABToshoTable.SEIBETSU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSUCD)
+        // csToshoRow[ABToshoTable.SEIBETSU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSUCD)
         // ' 性別(2桁)
-        // csToshoRow.Item(ABToshoTable.SEIBETSU) = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSU)
+        // csToshoRow[ABToshoTable.SEIBETSU] = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSU)
         // ' 続柄コード(8桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA_CD) = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARACD)
+        // csToshoRow[ABToshoTable.ZOKUGARA_CD] = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARACD)
         // ' 続柄(30桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA) = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARA)
+        // csToshoRow[ABToshoTable.ZOKUGARA] = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARA)
         // ' 第２続柄コード(8桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARACD)
+        // csToshoRow[ABToshoTable.ZOKUGARA_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARACD)
         // ' 第２続柄(30桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA2) = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARA)
+        // csToshoRow[ABToshoTable.ZOKUGARA2] = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARA)
         // ' 共有代表者住民コード(8桁)
-        // csToshoRow.Item(ABToshoTable.K_DAIHYOJUMIN_CD) = ""
+        // csToshoRow[ABToshoTable.K_DAIHYOJUMIN_CD] = ""
         // ' 法人代表者名（漢字）(60桁)
-        // csToshoRow.Item(ABToshoTable.H_DAIHYOMEI) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI)
+        // csToshoRow[ABToshoTable.H_DAIHYOMEI] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI)
         // ' 産業分類コード(4桁)
-        // csToshoRow.Item(ABToshoTable.SANGYO_CD) = ""
+        // csToshoRow[ABToshoTable.SANGYO_CD] = ""
         // '*履歴番号 000002 2004/04/058 修正開始
-        // If CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Trim = String.Empty Then
+        // If CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Trim() = String.Empty Then
         // ' 本店コード(8桁)
-        // csToshoRow.Item(ABToshoTable.HONTEN_CD) = ""
+        // csToshoRow[ABToshoTable.HONTEN_CD] = ""
         // Else
         // ' 本店コード(8桁)
-        // csToshoRow.Item(ABToshoTable.HONTEN_CD) = CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.HONTEN_CD] = CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
         // End If
-        // 'csToshoRow.Item(ABToshoTable.HONTEN_CD) = ""
+        // 'csToshoRow[ABToshoTable.HONTEN_CD] = ""
         // '*履歴番号 000002 2004/04/058 修正終了
         // ' 汎用区分１(1桁)
         // '(データ区分が"11""12"の時、カナ名称２がある時の判定)
         // If (strDataKB = "11" Or strDataKB = "12") Then
-        // If Not (csToshoRow.Item(ABToshoTable.KANAMEISHO2) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = "T"
+        // If Not (csToshoRow[ABToshoTable.KANAMEISHO2] Is String.Empty) Then
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = "T"
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = "S"
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = "S"
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB1)
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB1)
         // End If
         // ' 法人形態(20桁)
-        // csToshoRow.Item(ABToshoTable.HOJINKEITAI) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNKEITAI)
+        // csToshoRow[ABToshoTable.HOJINKEITAI] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNKEITAI)
         // ' 個人法人区分(1桁)
-        // csToshoRow.Item(ABToshoTable.KOJINHOJIN_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.KJNHJNKB)
+        // csToshoRow[ABToshoTable.KOJINHOJIN_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.KJNHJNKB)
         // ' 他人数(4桁)
-        // csToshoRow.Item(ABToshoTable.HOKA_NINZU) = ""
+        // csToshoRow[ABToshoTable.HOKA_NINZU] = ""
         // ' 汎用区分２(1桁)
         // '(データ区分が"18""28"の時、転出確定住所・転出予定住所がある時の判定)
         // If strDataSB = "18" Or strDataSB = "28" Then
         // If Not (csRow.Item(strPrefixA + ABAtenaEntity.TENSHUTSUKKTIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = "K"
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = "K"
         // ElseIf Not (csRow.Item(strPrefixA + ABAtenaEntity.TENSHUTSUYOTEIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = "Y"
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = "Y"
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
         // End If
         // ' 管内管外区分(1桁)
-        // csToshoRow.Item(ABToshoTable.NAIGAI_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.KANNAIKANGAIKB)
+        // csToshoRow[ABToshoTable.NAIGAI_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.KANNAIKANGAIKB)
         // ' 郵便番号(7桁)
-        // csToshoRow.Item(ABToshoTable.YUBIN_NO) = csRow.Item(strPrefixA + ABAtenaEntity.YUBINNO)
+        // csToshoRow[ABToshoTable.YUBIN_NO] = csRow.Item(strPrefixA + ABAtenaEntity.YUBINNO)
         // ' 住所コード(11桁)
-        // csToshoRow.Item(ABToshoTable.JUSHO_CD) = csRow.Item(strPrefixA + ABAtenaEntity.JUSHOCD)
+        // csToshoRow[ABToshoTable.JUSHO_CD] = csRow.Item(strPrefixA + ABAtenaEntity.JUSHOCD)
         // ' 住所名(60桁)
-        // csToshoRow.Item(ABToshoTable.JUSHO) = csRow.Item(strPrefixA + ABAtenaEntity.JUSHO)
+        // csToshoRow[ABToshoTable.JUSHO] = csRow.Item(strPrefixA + ABAtenaEntity.JUSHO)
         // ' 番地コード１(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD1) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD1)
+        // csToshoRow[ABToshoTable.BANCHI_CD1] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD1)
         // ' 番地コード２(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD2)
+        // csToshoRow[ABToshoTable.BANCHI_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD2)
         // ' 番地コード３(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD3) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD3)
+        // csToshoRow[ABToshoTable.BANCHI_CD3] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD3)
         // ' 番地(40桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHI)
+        // csToshoRow[ABToshoTable.BANCHI] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHI)
         // ' 方書フラグ(1桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI_FLG) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKIFG)
+        // csToshoRow[ABToshoTable.KATAGAKI_FLG] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKIFG)
         // ' 方書コード(4桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI_CD) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKICD)
+        // csToshoRow[ABToshoTable.KATAGAKI_CD] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKICD)
         // ' 方書(60桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKI)
+        // csToshoRow[ABToshoTable.KATAGAKI] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKI)
         // ' 連絡先１(14桁)
-        // csToshoRow.Item(ABToshoTable.RENRAKUSAKI1) = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI1)
+        // csToshoRow[ABToshoTable.RENRAKUSAKI1] = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI1)
         // ' 連絡先２(14桁)
-        // csToshoRow.Item(ABToshoTable.RENRAKUSAKI2) = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI2)
-        // ' 行政区コード(7桁)(.NET9桁)
+        // csToshoRow[ABToshoTable.RENRAKUSAKI2] = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI2)
+        // ' 行政区コード(7桁)[.NET9桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Length <= 7 Then
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = "       "
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = "       "
         // Else
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
         // End If
         // ' 行政区名(60桁)
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU) = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUMEI)
-        // ' 地区コード１(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.GYOSEIKU] = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUMEI)
+        // ' 地区コード１(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区名１(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU1) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI1)
-        // ' 地区コード２(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.CHIKU1] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI1)
+        // ' 地区コード２(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Substring(2, 6)
         // End If
         // ' 地区名２(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU2) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI2)
-        // ' 地区コード３(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.CHIKU2] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI2)
+        // ' 地区コード３(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Substring(2, 6)
         // End If
         // ' 地区名３(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU3) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI3)
+        // csToshoRow[ABToshoTable.CHIKU3] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI3)
         // ' 登録異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.TRK_IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUIDOYMD)
+        // csToshoRow[ABToshoTable.TRK_IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUIDOYMD)
         // ' 登録事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.TRK_JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUJIYUCD)
+        // csToshoRow[ABToshoTable.TRK_JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUJIYUCD)
         // ' 削除異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.SJO_IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOIDOYMD)
+        // csToshoRow[ABToshoTable.SJO_IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOIDOYMD)
         // ' 削除事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.SJO_JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOJIYUCD)
+        // csToshoRow[ABToshoTable.SJO_JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOJIYUCD)
         // ' 最終履歴番号(4桁)
-        // csToshoRow.Item(ABToshoTable.LAST_RIREKI_NO) = ""
+        // csToshoRow[ABToshoTable.LAST_RIREKI_NO] = ""
         // ' 異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINIDOYMD)
+        // csToshoRow[ABToshoTable.IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINIDOYMD)
         // ' 異動事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINJIYUCD)
+        // csToshoRow[ABToshoTable.JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINJIYUCD)
         // ' 登録年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.TRK_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINTDKDYMD)
+        // csToshoRow[ABToshoTable.TRK_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINTDKDYMD)
         // ' 更新区分(1桁)
-        // csToshoRow.Item(ABToshoTable.UPDATE_KBN) = strUpDateKB
-        // ' ユーザID(8桁)(.NET32桁)
+        // csToshoRow[ABToshoTable.UPDATE_KBN] = strUpDateKB
+        // ' ユーザID(8桁)[.NET32桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Length >= 8 Then
-        // csToshoRow.Item(ABToshoTable.USER_ID) = CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Substring(0, 8)
+        // csToshoRow[ABToshoTable.USER_ID] = CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Substring(0, 8)
         // Else
-        // csToshoRow.Item(ABToshoTable.USER_ID) = csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER)
+        // csToshoRow[ABToshoTable.USER_ID] = csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER)
         // End If
-        // ' 端末ID(8桁)(.NET32桁)
+        // ' 端末ID(8桁)[.NET32桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Length >= 8 Then
-        // csToshoRow.Item(ABToshoTable.WS_ID) = CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Substring(0, 8)
+        // csToshoRow[ABToshoTable.WS_ID] = CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Substring(0, 8)
         // Else
-        // csToshoRow.Item(ABToshoTable.WS_ID) = csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID)
+        // csToshoRow[ABToshoTable.WS_ID] = csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID)
         // End If
         // ' タイムスタンプ(14桁)
-        // csToshoRow.Item(ABToshoTable.UP_DATE) = ""
+        // csToshoRow[ABToshoTable.UP_DATE] = ""
         // ' 論理ロックキー(6桁)
-        // csToshoRow.Item(ABToshoTable.LOCK_KEY) = ""
+        // csToshoRow[ABToshoTable.LOCK_KEY] = ""
 
         // ' デバッグログ出力
         // m_cfLog.DebugEndWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME)
@@ -834,289 +834,289 @@ namespace Densan.Reams.AB.AB000BB
         // m_cfLog.DebugStartWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME)
 
         // ' 市町村ｺｰﾄﾞ(6桁)
-        // csToshoRow.Item(ABToshoTable.SHICHOSONCD) = csRow.Item(strPrefixA + ABAtenaEntity.SHICHOSONCD)
+        // csToshoRow[ABToshoTable.SHICHOSONCD] = csRow.Item(strPrefixA + ABAtenaEntity.SHICHOSONCD)
         // ' 識別ID(4桁)
-        // csToshoRow.Item(ABToshoTable.SHIKIBETSUID) = "AB21"
+        // csToshoRow[ABToshoTable.SHIKIBETSUID] = "AB21"
         // ' 作成日時(14桁)
-        // csToshoRow.Item(ABToshoTable.SAKUSEIYMD) = m_strNen
+        // csToshoRow[ABToshoTable.SAKUSEIYMD] = m_strNen
         // ' 最終行区分(1桁)
-        // csToshoRow.Item(ABToshoTable.LASTRECKB) = ""
+        // csToshoRow[ABToshoTable.LASTRECKB] = ""
         // ' 連番(7桁)
-        // csToshoRow.Item(ABToshoTable.RENBAN) = CType(m_intRecCnt, String).PadLeft(7, "0"c)
-        // ' 住民コード(8桁)(.NET12桁)
-        // csToshoRow.Item(ABToshoTable.JUMIN_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.JUMINCD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.RENBAN] = CType(m_intRecCnt, String).PadLeft(7, "0"c)
+        // ' 住民コード(8桁)[.NET12桁]
+        // csToshoRow[ABToshoTable.JUMIN_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.JUMINCD), String).Substring(4, 8)
         // ' 枝番(3桁)
-        // 'csToshoRow.Item(ABToshoTable.EDABAN) = ""
-        // ' 世帯コード(8桁)(.NET12桁)
+        // 'csToshoRow[ABToshoTable.EDABAN] = ""
+        // ' 世帯コード(8桁)[.NET12桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String) = String.Empty Then
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = "        "
+        // csToshoRow[ABToshoTable.SETAI_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.SETAI_CD] = "        "
         // Else
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.SETAI_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Substring(4, 8)
         // End If
         // ' データ区分(2桁)
-        // csToshoRow.Item(ABToshoTable.DATA_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATAKB)
-        // Dim strDataKB As String = CType(csToshoRow.Item(ABToshoTable.DATA_KBN), String)
+        // csToshoRow[ABToshoTable.DATA_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATAKB)
+        // Dim strDataKB As String = CType(csToshoRow[ABToshoTable.DATA_KBN], String)
         // ' 住民基本台帳番号(14桁)
-        // csToshoRow.Item(ABToshoTable.DAICHO_NO) = ""
+        // csToshoRow[ABToshoTable.DAICHO_NO] = ""
         // ' データ種別(2桁)
-        // csToshoRow.Item(ABToshoTable.DATA_SHU) = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATASHU)
-        // Dim strDataSB As String = CType(csToshoRow.Item(ABToshoTable.DATA_SHU), String)
+        // csToshoRow[ABToshoTable.DATA_SHU] = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATASHU)
+        // Dim strDataSB As String = CType(csToshoRow[ABToshoTable.DATA_SHU], String)
         // ' 検索用カナ（姓）(24桁)
-        // csToshoRow.Item(ABToshoTable.KANASEI) = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANASEI)
+        // csToshoRow[ABToshoTable.KANASEI] = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANASEI)
         // ' 検索用カナ（名）(16桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEI) = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANAMEI)
+        // csToshoRow[ABToshoTable.KANAMEI] = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANAMEI)
         // ' カナ名称１(60桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEISHO1) = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO1)
+        // csToshoRow[ABToshoTable.KANAMEISHO1] = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO1)
         // ' 漢字名称１(80桁)
-        // csToshoRow.Item(ABToshoTable.MEISHO1) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO1)
+        // csToshoRow[ABToshoTable.MEISHO1] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO1)
         // ' カナ名称２(60桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEISHO2) = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO2)
+        // csToshoRow[ABToshoTable.KANAMEISHO2] = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO2)
         // ' 漢字名称２(80桁)
-        // csToshoRow.Item(ABToshoTable.MEISHO2) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO2)
+        // csToshoRow[ABToshoTable.MEISHO2] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO2)
         // '生年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.UMARE_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.UMAREYMD)
+        // csToshoRow[ABToshoTable.UMARE_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.UMAREYMD)
         // ' 生和暦年月日(7桁)
-        // csToshoRow.Item(ABToshoTable.UMARE_WYMD) = csRow.Item(strPrefixA + ABAtenaEntity.UMAREWMD)
+        // csToshoRow[ABToshoTable.UMARE_WYMD] = csRow.Item(strPrefixA + ABAtenaEntity.UMAREWMD)
         // '性別コード(1桁)
-        // csToshoRow.Item(ABToshoTable.SEIBETSU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSUCD)
+        // csToshoRow[ABToshoTable.SEIBETSU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSUCD)
         // ' 性別(2桁)
-        // csToshoRow.Item(ABToshoTable.SEIBETSU) = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSU)
+        // csToshoRow[ABToshoTable.SEIBETSU] = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSU)
         // ' 続柄コード(8桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA_CD) = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARACD)
+        // csToshoRow[ABToshoTable.ZOKUGARA_CD] = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARACD)
         // ' 続柄(30桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA) = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARA)
+        // csToshoRow[ABToshoTable.ZOKUGARA] = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARA)
         // ' 第２続柄コード(8桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARACD)
+        // csToshoRow[ABToshoTable.ZOKUGARA_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARACD)
         // ' 第２続柄(30桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA2) = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARA)
+        // csToshoRow[ABToshoTable.ZOKUGARA2] = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARA)
         // ' 共有代表者住民コード(8桁)
-        // csToshoRow.Item(ABToshoTable.K_DAIHYOJUMIN_CD) = ""
+        // csToshoRow[ABToshoTable.K_DAIHYOJUMIN_CD] = ""
         // ' 法人代表者名（漢字）(60桁)
-        // csToshoRow.Item(ABToshoTable.H_DAIHYOMEI) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI)
+        // csToshoRow[ABToshoTable.H_DAIHYOMEI] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI)
         // ' 産業分類コード(4桁)
-        // csToshoRow.Item(ABToshoTable.SANGYO_CD) = ""
+        // csToshoRow[ABToshoTable.SANGYO_CD] = ""
         // '*履歴番号 000002 2004/04/058 修正開始
-        // If CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Trim = String.Empty Then
+        // If CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Trim() = String.Empty Then
         // ' 本店コード(8桁)
-        // csToshoRow.Item(ABToshoTable.HONTEN_CD) = ""
+        // csToshoRow[ABToshoTable.HONTEN_CD] = ""
         // Else
         // ' 本店コード(8桁)
-        // csToshoRow.Item(ABToshoTable.HONTEN_CD) = CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.HONTEN_CD] = CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
         // End If
-        // 'csToshoRow.Item(ABToshoTable.HONTEN_CD) = ""
+        // 'csToshoRow[ABToshoTable.HONTEN_CD] = ""
         // '*履歴番号 000002 2004/04/058 修正終了
         // ' 汎用区分１(1桁)
         // '(データ区分が"11""12"の時、カナ名称２がある時の判定)
         // If (strDataKB = "11" Or strDataKB = "12") Then
-        // If Not (csToshoRow.Item(ABToshoTable.KANAMEISHO2) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = "T"
+        // If Not (csToshoRow[ABToshoTable.KANAMEISHO2] Is String.Empty) Then
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = "T"
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = "S"
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = "S"
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB1)
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB1)
         // End If
         // ' 法人形態(20桁)
-        // csToshoRow.Item(ABToshoTable.HOJINKEITAI) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNKEITAI)
+        // csToshoRow[ABToshoTable.HOJINKEITAI] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNKEITAI)
         // ' 個人法人区分(1桁)
-        // csToshoRow.Item(ABToshoTable.KOJINHOJIN_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.KJNHJNKB)
+        // csToshoRow[ABToshoTable.KOJINHOJIN_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.KJNHJNKB)
         // ' 他人数(4桁)
-        // csToshoRow.Item(ABToshoTable.HOKA_NINZU) = ""
+        // csToshoRow[ABToshoTable.HOKA_NINZU] = ""
         // ' 汎用区分２(1桁)
         // '(データ区分が"18""28"の時、転出確定住所・転出予定住所がある時の判定)
         // If strDataSB = "18" Or strDataSB = "28" Then
         // If Not (csRow.Item(strPrefixA + ABAtenaEntity.TENSHUTSUKKTIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = "K"
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = "K"
         // ElseIf Not (csRow.Item(strPrefixA + ABAtenaEntity.TENSHUTSUYOTEIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = "Y"
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = "Y"
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
         // End If
         // ' 管内管外区分(1桁)
-        // csToshoRow.Item(ABToshoTable.NAIGAI_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.KANNAIKANGAIKB)
+        // csToshoRow[ABToshoTable.NAIGAI_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.KANNAIKANGAIKB)
         // ' 郵便番号(7桁)
-        // csToshoRow.Item(ABToshoTable.YUBIN_NO) = csRow.Item(strPrefixA + ABAtenaEntity.YUBINNO)
+        // csToshoRow[ABToshoTable.YUBIN_NO] = csRow.Item(strPrefixA + ABAtenaEntity.YUBINNO)
         // ' 住所コード(11桁)
-        // csToshoRow.Item(ABToshoTable.JUSHO_CD) = csRow.Item(strPrefixA + ABAtenaEntity.JUSHOCD)
+        // csToshoRow[ABToshoTable.JUSHO_CD] = csRow.Item(strPrefixA + ABAtenaEntity.JUSHOCD)
         // ' 住所名(60桁)
-        // csToshoRow.Item(ABToshoTable.JUSHO) = csRow.Item(strPrefixA + ABAtenaEntity.JUSHO)
+        // csToshoRow[ABToshoTable.JUSHO] = csRow.Item(strPrefixA + ABAtenaEntity.JUSHO)
         // ' 番地コード１(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD1) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD1)
+        // csToshoRow[ABToshoTable.BANCHI_CD1] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD1)
         // ' 番地コード２(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD2)
+        // csToshoRow[ABToshoTable.BANCHI_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD2)
         // ' 番地コード３(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD3) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD3)
+        // csToshoRow[ABToshoTable.BANCHI_CD3] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD3)
         // ' 番地(40桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHI)
+        // csToshoRow[ABToshoTable.BANCHI] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHI)
         // ' 方書フラグ(1桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI_FLG) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKIFG)
+        // csToshoRow[ABToshoTable.KATAGAKI_FLG] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKIFG)
         // ' 方書コード(4桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI_CD) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKICD)
+        // csToshoRow[ABToshoTable.KATAGAKI_CD] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKICD)
         // ' 方書(60桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKI)
+        // csToshoRow[ABToshoTable.KATAGAKI] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKI)
         // ' 連絡先１(14桁)
-        // csToshoRow.Item(ABToshoTable.RENRAKUSAKI1) = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI1)
+        // csToshoRow[ABToshoTable.RENRAKUSAKI1] = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI1)
         // ' 連絡先２(14桁)
-        // csToshoRow.Item(ABToshoTable.RENRAKUSAKI2) = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI2)
-        // ' 行政区コード(7桁)(.NET9桁)
+        // csToshoRow[ABToshoTable.RENRAKUSAKI2] = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI2)
+        // ' 行政区コード(7桁)[.NET9桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Length <= 7 Then
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = "       "
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = "       "
         // Else
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
         // End If
         // ' 行政区名(60桁)
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU) = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUMEI)
-        // ' 地区コード１(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.GYOSEIKU] = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUMEI)
+        // ' 地区コード１(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区名１(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU1) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI1)
-        // ' 地区コード２(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.CHIKU1] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI1)
+        // ' 地区コード２(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Substring(2, 6)
         // End If
         // ' 地区名２(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU2) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI2)
-        // ' 地区コード３(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.CHIKU2] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI2)
+        // ' 地区コード３(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Substring(2, 6)
         // End If
         // ' 地区名３(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU3) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI3)
+        // csToshoRow[ABToshoTable.CHIKU3] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI3)
         // ' 登録異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.TRK_IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUIDOYMD)
+        // csToshoRow[ABToshoTable.TRK_IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUIDOYMD)
         // ' 登録事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.TRK_JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUJIYUCD)
+        // csToshoRow[ABToshoTable.TRK_JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUJIYUCD)
         // ' 削除異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.SJO_IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOIDOYMD)
+        // csToshoRow[ABToshoTable.SJO_IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOIDOYMD)
         // ' 削除事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.SJO_JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOJIYUCD)
+        // csToshoRow[ABToshoTable.SJO_JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOJIYUCD)
         // ' 最終履歴番号(4桁)
-        // csToshoRow.Item(ABToshoTable.LAST_RIREKI_NO) = ""
+        // csToshoRow[ABToshoTable.LAST_RIREKI_NO] = ""
         // ' 異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINIDOYMD)
+        // csToshoRow[ABToshoTable.IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINIDOYMD)
         // ' 異動事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINJIYUCD)
+        // csToshoRow[ABToshoTable.JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINJIYUCD)
         // ' 登録年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.TRK_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINTDKDYMD)
+        // csToshoRow[ABToshoTable.TRK_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINTDKDYMD)
         // ' 更新区分(1桁)
-        // csToshoRow.Item(ABToshoTable.UPDATE_KBN) = strUpDateKB
-        // ' ユーザID(8桁)(.NET32桁)
+        // csToshoRow[ABToshoTable.UPDATE_KBN] = strUpDateKB
+        // ' ユーザID(8桁)[.NET32桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Length >= 8 Then
-        // csToshoRow.Item(ABToshoTable.USER_ID) = CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Substring(0, 8)
+        // csToshoRow[ABToshoTable.USER_ID] = CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Substring(0, 8)
         // Else
-        // csToshoRow.Item(ABToshoTable.USER_ID) = csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER)
+        // csToshoRow[ABToshoTable.USER_ID] = csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER)
         // End If
-        // ' 端末ID(8桁)(.NET32桁)
+        // ' 端末ID(8桁)[.NET32桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Length >= 8 Then
-        // csToshoRow.Item(ABToshoTable.WS_ID) = CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Substring(0, 8)
+        // csToshoRow[ABToshoTable.WS_ID] = CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Substring(0, 8)
         // Else
-        // csToshoRow.Item(ABToshoTable.WS_ID) = csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID)
+        // csToshoRow[ABToshoTable.WS_ID] = csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID)
         // End If
         // ' タイムスタンプ(14桁)
-        // csToshoRow.Item(ABToshoTable.UP_DATE) = ""
+        // csToshoRow[ABToshoTable.UP_DATE] = ""
         // ' 論理ロックキー(6桁)
-        // csToshoRow.Item(ABToshoTable.LOCK_KEY) = ""
+        // csToshoRow[ABToshoTable.LOCK_KEY] = ""
 
 
-        // '住民コード(8桁)(.NET12桁)
-        // csToshoRow.Item(ABToshoTable.D_JUMIN_CD) = CType(csRow.Item(strPrefixB + ABSfskEntity.JUMINCD), String).Substring(4, 8)
+        // '住民コード(8桁)[.NET12桁]
+        // csToshoRow[ABToshoTable.D_JUMIN_CD] = CType(csRow.Item(strPrefixB + ABSfskEntity.JUMINCD), String).Substring(4, 8)
         // ' 業務コード(2桁)
-        // csToshoRow.Item(ABToshoTable.GYOMU_CD) = csRow.Item(strPrefixB + ABSfskEntity.GYOMUCD)
+        // csToshoRow[ABToshoTable.GYOMU_CD] = csRow.Item(strPrefixB + ABSfskEntity.GYOMUCD)
         // ' 開始年月日(6桁)
-        // csToshoRow.Item(ABToshoTable.ST_YM) = csRow.Item(strPrefixB + ABSfskEntity.STYM)
+        // csToshoRow[ABToshoTable.ST_YM] = csRow.Item(strPrefixB + ABSfskEntity.STYM)
         // ' 終了年月日(6桁)
-        // csToshoRow.Item(ABToshoTable.ED_YM) = csRow.Item(strPrefixB + ABSfskEntity.EDYM)
+        // csToshoRow[ABToshoTable.ED_YM] = csRow.Item(strPrefixB + ABSfskEntity.EDYM)
         // ' 代納区分(2桁)
-        // csToshoRow.Item(ABToshoTable.D_DAINO_KBN) = "40"
+        // csToshoRow[ABToshoTable.D_DAINO_KBN] = "40"
         // ' カナ名称１(60桁)
-        // csToshoRow.Item(ABToshoTable.D_KANAMEISHO1) = csRow.Item(strPrefixB + ABSfskEntity.SFSKKANAMEISHO)
+        // csToshoRow[ABToshoTable.D_KANAMEISHO1] = csRow.Item(strPrefixB + ABSfskEntity.SFSKKANAMEISHO)
         // ' 漢字名称１(80桁)
-        // csToshoRow.Item(ABToshoTable.D_MEISHO1) = csRow.Item(strPrefixB + ABSfskEntity.SFSKKANJIMEISHO)
+        // csToshoRow[ABToshoTable.D_MEISHO1] = csRow.Item(strPrefixB + ABSfskEntity.SFSKKANJIMEISHO)
         // '管内管外区分(1桁)
-        // csToshoRow.Item(ABToshoTable.D_NAIGAI_KBN) = csRow.Item(strPrefixB + ABSfskEntity.SFSKKANNAIKANGAIKB)
+        // csToshoRow[ABToshoTable.D_NAIGAI_KBN] = csRow.Item(strPrefixB + ABSfskEntity.SFSKKANNAIKANGAIKB)
         // ' 郵便番号(7桁)
-        // csToshoRow.Item(ABToshoTable.D_YUBIN_NO) = csRow.Item(strPrefixB + ABSfskEntity.SFSKYUBINNO)
+        // csToshoRow[ABToshoTable.D_YUBIN_NO] = csRow.Item(strPrefixB + ABSfskEntity.SFSKYUBINNO)
         // ' 住所コード(11桁)
-        // csToshoRow.Item(ABToshoTable.D_JUSHO_CD) = csRow.Item(strPrefixB + ABSfskEntity.SFSKZJUSHOCD)
+        // csToshoRow[ABToshoTable.D_JUSHO_CD] = csRow.Item(strPrefixB + ABSfskEntity.SFSKZJUSHOCD)
         // '住所(60桁)
-        // csToshoRow.Item(ABToshoTable.D_JUSHO) = csRow.Item(strPrefixB + ABSfskEntity.SFSKJUSHO)
+        // csToshoRow[ABToshoTable.D_JUSHO] = csRow.Item(strPrefixB + ABSfskEntity.SFSKJUSHO)
         // '番地(40桁)
-        // csToshoRow.Item(ABToshoTable.D_BANCHI) = csRow.Item(strPrefixB + ABSfskEntity.SFSKBANCHI)
+        // csToshoRow[ABToshoTable.D_BANCHI] = csRow.Item(strPrefixB + ABSfskEntity.SFSKBANCHI)
         // ' 方書(60桁)
-        // csToshoRow.Item(ABToshoTable.D_KATAGAKI) = csRow.Item(strPrefixB + ABSfskEntity.SFSKKATAGAKI)
+        // csToshoRow[ABToshoTable.D_KATAGAKI] = csRow.Item(strPrefixB + ABSfskEntity.SFSKKATAGAKI)
         // ' 連絡先1(14桁)
-        // csToshoRow.Item(ABToshoTable.D_RENRAKUSAKI1) = csRow.Item(strPrefixB + ABSfskEntity.SFSKRENRAKUSAKI1)
+        // csToshoRow[ABToshoTable.D_RENRAKUSAKI1] = csRow.Item(strPrefixB + ABSfskEntity.SFSKRENRAKUSAKI1)
         // ' 連絡先2(14桁)
-        // csToshoRow.Item(ABToshoTable.D_RENRAKUSAKI2) = csRow.Item(strPrefixB + ABSfskEntity.SFSKRENRAKUSAKI2)
-        // ' 行政区コード(7桁)(.NET9桁)
+        // csToshoRow[ABToshoTable.D_RENRAKUSAKI2] = csRow.Item(strPrefixB + ABSfskEntity.SFSKRENRAKUSAKI2)
+        // ' 行政区コード(7桁)[.NET9桁]
         // If csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD) Is String.Empty Or _
         // CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD), String).Length <= 7 Then
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU_CD) = csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD)
-        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU_CD) = "       "
+        // csToshoRow[ABToshoTable.D_GYOSEIKU_CD] = csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD)
+        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_GYOSEIKU_CD] = "       "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU_CD) = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD), String).Substring(2, 7)
+        // csToshoRow[ABToshoTable.D_GYOSEIKU_CD] = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUCD), String).Substring(2, 7)
         // End If
         // ' 行政区名(60桁)
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU) = csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUMEI)
-        // ' 地区コード１(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.D_GYOSEIKU] = csRow.Item(strPrefixB + ABSfskEntity.SFSKGYOSEIKUMEI)
+        // ' 地区コード１(6桁)[.NET8桁]
         // If csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1) Is String.Empty Or _
         // CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD1) = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1)
-        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD1) = "      "
+        // csToshoRow[ABToshoTable.D_CHIKU_CD1] = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1)
+        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_CHIKU_CD1] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD1) = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.D_CHIKU_CD1] = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区１(60桁)
-        // csToshoRow.Item(ABToshoTable.D_CHIKU1) = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUMEI1)
-        // ' 地区コード２(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.D_CHIKU1] = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUMEI1)
+        // ' 地区コード２(6桁)[.NET8桁]
         // If csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2) Is String.Empty Or _
         // CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD2) = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2)
-        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD2) = "      "
+        // csToshoRow[ABToshoTable.D_CHIKU_CD2] = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2)
+        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_CHIKU_CD2] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD2) = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.D_CHIKU_CD2] = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD2), String).Substring(2, 6)
         // End If
         // ' 地区２(60桁)
-        // csToshoRow.Item(ABToshoTable.D_CHIKU2) = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUMEI2)
-        // ' 地区コード３(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.D_CHIKU2] = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUMEI2)
+        // ' 地区コード３(6桁)[.NET8桁]
         // If csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3) Is String.Empty Or _
         // CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD3) = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3)
-        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD3) = "      "
+        // csToshoRow[ABToshoTable.D_CHIKU_CD3] = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3)
+        // ElseIf CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_CHIKU_CD3] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD3) = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.D_CHIKU_CD3] = CType(csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUCD3), String).Substring(2, 6)
         // End If
         // ' 地区３(60桁)
-        // csToshoRow.Item(ABToshoTable.D_CHIKU3) = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUMEI3)
+        // csToshoRow[ABToshoTable.D_CHIKU3] = csRow.Item(strPrefixB + ABSfskEntity.SFSKCHIKUMEI3)
 
         // ' デバッグログ出力
         // m_cfLog.DebugEndWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME)
@@ -1171,348 +1171,348 @@ namespace Densan.Reams.AB.AB000BB
         // m_cfLog.DebugStartWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME)
 
         // ' 市町村ｺｰﾄﾞ(6桁)
-        // csToshoRow.Item(ABToshoTable.SHICHOSONCD) = csRow.Item(strPrefixA + ABAtenaEntity.SHICHOSONCD)
+        // csToshoRow[ABToshoTable.SHICHOSONCD] = csRow.Item(strPrefixA + ABAtenaEntity.SHICHOSONCD)
         // ' 識別ID(4桁)
-        // csToshoRow.Item(ABToshoTable.SHIKIBETSUID) = "AB21"
+        // csToshoRow[ABToshoTable.SHIKIBETSUID] = "AB21"
         // ' 作成日時(14桁)
-        // csToshoRow.Item(ABToshoTable.SAKUSEIYMD) = m_strNen
+        // csToshoRow[ABToshoTable.SAKUSEIYMD] = m_strNen
         // ' 最終行区分(1桁)
-        // csToshoRow.Item(ABToshoTable.LASTRECKB) = ""
+        // csToshoRow[ABToshoTable.LASTRECKB] = ""
         // ' 連番(7桁)
-        // csToshoRow.Item(ABToshoTable.RENBAN) = CType(m_intRecCnt, String).PadLeft(7, "0"c)
-        // ' 住民コード(8桁)(.NET12桁)
-        // csToshoRow.Item(ABToshoTable.JUMIN_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.JUMINCD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.RENBAN] = CType(m_intRecCnt, String).PadLeft(7, "0"c)
+        // ' 住民コード(8桁)[.NET12桁]
+        // csToshoRow[ABToshoTable.JUMIN_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.JUMINCD), String).Substring(4, 8)
         // ' 枝番(3桁)
-        // 'csToshoRow.Item(ABToshoTable.EDABAN) = ""
-        // ' 世帯コード(8桁)(.NET12桁)
+        // 'csToshoRow[ABToshoTable.EDABAN] = ""
+        // ' 世帯コード(8桁)[.NET12桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String) = String.Empty Then
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = "        "
+        // csToshoRow[ABToshoTable.SETAI_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.SETAI_CD] = "        "
         // Else
-        // csToshoRow.Item(ABToshoTable.SETAI_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.SETAI_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.STAICD), String).Substring(4, 8)
         // End If
         // ' データ区分(2桁)
-        // csToshoRow.Item(ABToshoTable.DATA_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATAKB)
-        // Dim strDataKB As String = CType(csToshoRow.Item(ABToshoTable.DATA_KBN), String)
+        // csToshoRow[ABToshoTable.DATA_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATAKB)
+        // Dim strDataKB As String = CType(csToshoRow[ABToshoTable.DATA_KBN], String)
         // ' 住民基本台帳番号(14桁)
-        // csToshoRow.Item(ABToshoTable.DAICHO_NO) = ""
+        // csToshoRow[ABToshoTable.DAICHO_NO] = ""
         // ' データ種別(2桁)
-        // csToshoRow.Item(ABToshoTable.DATA_SHU) = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATASHU)
-        // Dim strDataSB As String = CType(csToshoRow.Item(ABToshoTable.DATA_SHU), String)
+        // csToshoRow[ABToshoTable.DATA_SHU] = csRow.Item(strPrefixA + ABAtenaEntity.ATENADATASHU)
+        // Dim strDataSB As String = CType(csToshoRow[ABToshoTable.DATA_SHU], String)
         // ' 検索用カナ（姓）(24桁)
-        // csToshoRow.Item(ABToshoTable.KANASEI) = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANASEI)
+        // csToshoRow[ABToshoTable.KANASEI] = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANASEI)
         // ' 検索用カナ（名）(16桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEI) = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANAMEI)
+        // csToshoRow[ABToshoTable.KANAMEI] = csRow.Item(strPrefixA + ABAtenaEntity.SEARCHKANAMEI)
         // ' カナ名称１(60桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEISHO1) = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO1)
+        // csToshoRow[ABToshoTable.KANAMEISHO1] = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO1)
         // ' 漢字名称１(80桁)
-        // csToshoRow.Item(ABToshoTable.MEISHO1) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO1)
+        // csToshoRow[ABToshoTable.MEISHO1] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO1)
         // ' カナ名称２(60桁)
-        // csToshoRow.Item(ABToshoTable.KANAMEISHO2) = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO2)
+        // csToshoRow[ABToshoTable.KANAMEISHO2] = csRow.Item(strPrefixA + ABAtenaEntity.KANAMEISHO2)
         // ' 漢字名称２(80桁)
-        // csToshoRow.Item(ABToshoTable.MEISHO2) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO2)
+        // csToshoRow[ABToshoTable.MEISHO2] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIMEISHO2)
         // '生年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.UMARE_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.UMAREYMD)
+        // csToshoRow[ABToshoTable.UMARE_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.UMAREYMD)
         // ' 生和暦年月日(7桁)
-        // csToshoRow.Item(ABToshoTable.UMARE_WYMD) = csRow.Item(strPrefixA + ABAtenaEntity.UMAREWMD)
+        // csToshoRow[ABToshoTable.UMARE_WYMD] = csRow.Item(strPrefixA + ABAtenaEntity.UMAREWMD)
         // '性別コード(1桁)
-        // csToshoRow.Item(ABToshoTable.SEIBETSU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSUCD)
+        // csToshoRow[ABToshoTable.SEIBETSU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSUCD)
         // ' 性別(2桁)
-        // csToshoRow.Item(ABToshoTable.SEIBETSU) = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSU)
+        // csToshoRow[ABToshoTable.SEIBETSU] = csRow.Item(strPrefixA + ABAtenaEntity.SEIBETSU)
         // ' 続柄コード(8桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA_CD) = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARACD)
+        // csToshoRow[ABToshoTable.ZOKUGARA_CD] = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARACD)
         // ' 続柄(30桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA) = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARA)
+        // csToshoRow[ABToshoTable.ZOKUGARA] = csRow.Item(strPrefixA + ABAtenaEntity.ZOKUGARA)
         // ' 第２続柄コード(8桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARACD)
+        // csToshoRow[ABToshoTable.ZOKUGARA_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARACD)
         // ' 第２続柄(30桁)
-        // csToshoRow.Item(ABToshoTable.ZOKUGARA2) = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARA)
+        // csToshoRow[ABToshoTable.ZOKUGARA2] = csRow.Item(strPrefixA + ABAtenaEntity.DAI2ZOKUGARA)
         // ' 共有代表者住民コード(8桁)
-        // csToshoRow.Item(ABToshoTable.K_DAIHYOJUMIN_CD) = ""
+        // csToshoRow[ABToshoTable.K_DAIHYOJUMIN_CD] = ""
         // ' 法人代表者名（漢字）(60桁)
-        // csToshoRow.Item(ABToshoTable.H_DAIHYOMEI) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI)
+        // csToshoRow[ABToshoTable.H_DAIHYOMEI] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNDAIHYOSHSHIMEI)
         // ' 産業分類コード(4桁)
-        // csToshoRow.Item(ABToshoTable.SANGYO_CD) = ""
+        // csToshoRow[ABToshoTable.SANGYO_CD] = ""
         // '*履歴番号 000002 2004/04/058 修正開始
-        // If CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Trim = String.Empty Then
+        // If CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Trim() = String.Empty Then
         // ' 本店コード(8桁)
-        // csToshoRow.Item(ABToshoTable.HONTEN_CD) = ""
+        // csToshoRow[ABToshoTable.HONTEN_CD] = ""
         // Else
         // ' 本店コード(8桁)
-        // csToshoRow.Item(ABToshoTable.HONTEN_CD) = CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.HONTEN_CD] = CType(csRow.Item(strPrefixE + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
         // End If
-        // 'csToshoRow.Item(ABToshoTable.HONTEN_CD) = ""
+        // 'csToshoRow[ABToshoTable.HONTEN_CD] = ""
         // '*履歴番号 000002 2004/04/058 修正終了
         // ' 汎用区分１(1桁)
         // '(データ区分が"11""12"の時、カナ名称２がある時の判定)
         // If (strDataKB = "11" Or strDataKB = "12") Then
-        // If Not (csToshoRow.Item(ABToshoTable.KANAMEISHO2) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = "T"
+        // If Not (csToshoRow[ABToshoTable.KANAMEISHO2] Is String.Empty) Then
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = "T"
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = "S"
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = "S"
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN1) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB1)
+        // csToshoRow[ABToshoTable.HANYO_KBN1] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB1)
         // End If
         // ' 法人形態(20桁)
-        // csToshoRow.Item(ABToshoTable.HOJINKEITAI) = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNKEITAI)
+        // csToshoRow[ABToshoTable.HOJINKEITAI] = csRow.Item(strPrefixA + ABAtenaEntity.KANJIHJNKEITAI)
         // ' 個人法人区分(1桁)
-        // csToshoRow.Item(ABToshoTable.KOJINHOJIN_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.KJNHJNKB)
+        // csToshoRow[ABToshoTable.KOJINHOJIN_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.KJNHJNKB)
         // ' 他人数(4桁)
-        // csToshoRow.Item(ABToshoTable.HOKA_NINZU) = ""
+        // csToshoRow[ABToshoTable.HOKA_NINZU] = ""
         // ' 汎用区分２(1桁)
         // '(データ区分が"18""28"の時、転出確定住所・転出予定住所がある時の判定)
         // If strDataSB = "18" Or strDataSB = "28" Then
         // If Not (csRow.Item(strPrefixA + ABAtenaEntity.TENSHUTSUKKTIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = "K"
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = "K"
         // ElseIf Not (csRow.Item(strPrefixA + ABAtenaEntity.TENSHUTSUYOTEIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = "Y"
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = "Y"
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.HANYO_KBN2) = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.HANYO_KBN2] = csRow.Item(strPrefixA + ABAtenaEntity.HANYOKB2)
         // End If
         // ' 管内管外区分(1桁)
-        // csToshoRow.Item(ABToshoTable.NAIGAI_KBN) = csRow.Item(strPrefixA + ABAtenaEntity.KANNAIKANGAIKB)
+        // csToshoRow[ABToshoTable.NAIGAI_KBN] = csRow.Item(strPrefixA + ABAtenaEntity.KANNAIKANGAIKB)
         // ' 郵便番号(7桁)
-        // csToshoRow.Item(ABToshoTable.YUBIN_NO) = csRow.Item(strPrefixA + ABAtenaEntity.YUBINNO)
+        // csToshoRow[ABToshoTable.YUBIN_NO] = csRow.Item(strPrefixA + ABAtenaEntity.YUBINNO)
         // ' 住所コード(11桁)
-        // csToshoRow.Item(ABToshoTable.JUSHO_CD) = csRow.Item(strPrefixA + ABAtenaEntity.JUSHOCD)
+        // csToshoRow[ABToshoTable.JUSHO_CD] = csRow.Item(strPrefixA + ABAtenaEntity.JUSHOCD)
         // ' 住所名(60桁)
-        // csToshoRow.Item(ABToshoTable.JUSHO) = csRow.Item(strPrefixA + ABAtenaEntity.JUSHO)
+        // csToshoRow[ABToshoTable.JUSHO] = csRow.Item(strPrefixA + ABAtenaEntity.JUSHO)
         // ' 番地コード１(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD1) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD1)
+        // csToshoRow[ABToshoTable.BANCHI_CD1] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD1)
         // ' 番地コード２(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD2)
+        // csToshoRow[ABToshoTable.BANCHI_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD2)
         // ' 番地コード３(5桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI_CD3) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD3)
+        // csToshoRow[ABToshoTable.BANCHI_CD3] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHICD3)
         // ' 番地(40桁)
-        // csToshoRow.Item(ABToshoTable.BANCHI) = csRow.Item(strPrefixA + ABAtenaEntity.BANCHI)
+        // csToshoRow[ABToshoTable.BANCHI] = csRow.Item(strPrefixA + ABAtenaEntity.BANCHI)
         // ' 方書フラグ(1桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI_FLG) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKIFG)
+        // csToshoRow[ABToshoTable.KATAGAKI_FLG] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKIFG)
         // ' 方書コード(4桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI_CD) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKICD)
+        // csToshoRow[ABToshoTable.KATAGAKI_CD] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKICD)
         // ' 方書(60桁)
-        // csToshoRow.Item(ABToshoTable.KATAGAKI) = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKI)
+        // csToshoRow[ABToshoTable.KATAGAKI] = csRow.Item(strPrefixA + ABAtenaEntity.KATAGAKI)
         // ' 連絡先１(14桁)
-        // csToshoRow.Item(ABToshoTable.RENRAKUSAKI1) = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI1)
+        // csToshoRow[ABToshoTable.RENRAKUSAKI1] = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI1)
         // ' 連絡先２(14桁)
-        // csToshoRow.Item(ABToshoTable.RENRAKUSAKI2) = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI2)
-        // ' 行政区コード(7桁)(.NET9桁)
+        // csToshoRow[ABToshoTable.RENRAKUSAKI2] = csRow.Item(strPrefixA + ABAtenaEntity.RENRAKUSAKI2)
+        // ' 行政区コード(7桁)[.NET9桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Length <= 7 Then
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = "       "
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = "       "
         // Else
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU_CD) = CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
+        // csToshoRow[ABToshoTable.GYOSEIKU_CD] = CType(csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
         // End If
         // ' 行政区名(60桁)
-        // csToshoRow.Item(ABToshoTable.GYOSEIKU) = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUMEI)
-        // ' 地区コード１(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.GYOSEIKU] = csRow.Item(strPrefixA + ABAtenaEntity.GYOSEIKUMEI)
+        // ' 地区コード１(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD1) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD1] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区名１(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU1) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI1)
-        // ' 地区コード２(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.CHIKU1] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI1)
+        // ' 地区コード２(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD2) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD2] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD2), String).Substring(2, 6)
         // End If
         // ' 地区名２(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU2) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI2)
-        // ' 地区コード３(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.CHIKU2] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI2)
+        // ' 地区コード３(6桁)[.NET8桁]
         // If csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3) Is String.Empty Or _
         // CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3)
-        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = "      "
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3)
+        // ElseIf CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.CHIKU_CD3) = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.CHIKU_CD3] = CType(csRow.Item(strPrefixA + ABAtenaEntity.CHIKUCD3), String).Substring(2, 6)
         // End If
         // ' 地区名３(60桁)
-        // csToshoRow.Item(ABToshoTable.CHIKU3) = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI3)
+        // csToshoRow[ABToshoTable.CHIKU3] = csRow.Item(strPrefixA + ABAtenaEntity.CHIKUMEI3)
         // ' 登録異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.TRK_IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUIDOYMD)
+        // csToshoRow[ABToshoTable.TRK_IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUIDOYMD)
         // ' 登録事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.TRK_JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUJIYUCD)
+        // csToshoRow[ABToshoTable.TRK_JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.TOROKUJIYUCD)
         // ' 削除異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.SJO_IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOIDOYMD)
+        // csToshoRow[ABToshoTable.SJO_IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOIDOYMD)
         // ' 削除事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.SJO_JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOJIYUCD)
+        // csToshoRow[ABToshoTable.SJO_JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.SHOJOJIYUCD)
         // ' 最終履歴番号(4桁)
-        // csToshoRow.Item(ABToshoTable.LAST_RIREKI_NO) = ""
+        // csToshoRow[ABToshoTable.LAST_RIREKI_NO] = ""
         // ' 異動年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.IDO_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINIDOYMD)
+        // csToshoRow[ABToshoTable.IDO_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINIDOYMD)
         // ' 異動事由コード(2桁)
-        // csToshoRow.Item(ABToshoTable.JIYU_CD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINJIYUCD)
+        // csToshoRow[ABToshoTable.JIYU_CD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINJIYUCD)
         // ' 登録年月日(8桁)
-        // csToshoRow.Item(ABToshoTable.TRK_YMD) = csRow.Item(strPrefixA + ABAtenaEntity.CKINTDKDYMD)
+        // csToshoRow[ABToshoTable.TRK_YMD] = csRow.Item(strPrefixA + ABAtenaEntity.CKINTDKDYMD)
         // ' 更新区分(1桁)
-        // csToshoRow.Item(ABToshoTable.UPDATE_KBN) = strUpDateKB
-        // ' ユーザID(8桁)(.NET32桁)
+        // csToshoRow[ABToshoTable.UPDATE_KBN] = strUpDateKB
+        // ' ユーザID(8桁)[.NET32桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Length >= 8 Then
-        // csToshoRow.Item(ABToshoTable.USER_ID) = CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Substring(0, 8)
+        // csToshoRow[ABToshoTable.USER_ID] = CType(csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER), String).Substring(0, 8)
         // Else
-        // csToshoRow.Item(ABToshoTable.USER_ID) = csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER)
+        // csToshoRow[ABToshoTable.USER_ID] = csRow.Item(strPrefixA + ABAtenaEntity.SAKUSEIUSER)
         // End If
-        // ' 端末ID(8桁)(.NET32桁)
+        // ' 端末ID(8桁)[.NET32桁]
         // If CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Length >= 8 Then
-        // csToshoRow.Item(ABToshoTable.WS_ID) = CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Substring(0, 8)
+        // csToshoRow[ABToshoTable.WS_ID] = CType(csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID), String).Substring(0, 8)
         // Else
-        // csToshoRow.Item(ABToshoTable.WS_ID) = csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID)
+        // csToshoRow[ABToshoTable.WS_ID] = csRow.Item(strPrefixA + ABAtenaEntity.TANMATSUID)
         // End If
         // ' タイムスタンプ(14桁)
-        // csToshoRow.Item(ABToshoTable.UP_DATE) = ""
+        // csToshoRow[ABToshoTable.UP_DATE] = ""
         // ' 論理ロックキー(6桁)
-        // csToshoRow.Item(ABToshoTable.LOCK_KEY) = ""
+        // csToshoRow[ABToshoTable.LOCK_KEY] = ""
 
-        // ' 代納住民コード(8桁)(.NET12桁)
-        // csToshoRow.Item(ABToshoTable.D_JUMIN_CD) = CType(csRow.Item(strPrefixD + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
+        // ' 代納住民コード(8桁)[.NET12桁]
+        // csToshoRow[ABToshoTable.D_JUMIN_CD] = CType(csRow.Item(strPrefixD + ABDainoEntity.DAINOJUMINCD), String).Substring(4, 8)
         // ' 業務コード(2桁)
-        // csToshoRow.Item(ABToshoTable.GYOMU_CD) = csRow.Item(strPrefixD + ABDainoEntity.GYOMUCD)
+        // csToshoRow[ABToshoTable.GYOMU_CD] = csRow.Item(strPrefixD + ABDainoEntity.GYOMUCD)
         // ' 開始年月日(6桁)
-        // csToshoRow.Item(ABToshoTable.ST_YM) = csRow.Item(strPrefixD + ABDainoEntity.STYM)
+        // csToshoRow[ABToshoTable.ST_YM] = csRow.Item(strPrefixD + ABDainoEntity.STYM)
         // ' 終了年月日(6桁)
-        // csToshoRow.Item(ABToshoTable.ED_YM) = csRow.Item(strPrefixD + ABDainoEntity.EDYM)
+        // csToshoRow[ABToshoTable.ED_YM] = csRow.Item(strPrefixD + ABDainoEntity.EDYM)
         // ' 代納区分(2桁)
-        // csToshoRow.Item(ABToshoTable.D_DAINO_KBN) = csRow.Item(strPrefixD + ABDainoEntity.DAINOKB)
-        // ' 世帯コード(8桁)(.NET12桁)
+        // csToshoRow[ABToshoTable.D_DAINO_KBN] = csRow.Item(strPrefixD + ABDainoEntity.DAINOKB)
+        // ' 世帯コード(8桁)[.NET12桁]
         // If CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String) = String.Empty Then
-        // csToshoRow.Item(ABToshoTable.D_SETAI_CD) = CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String)
-        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_SETAI_CD) = "        "
+        // csToshoRow[ABToshoTable.D_SETAI_CD] = CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String)
+        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_SETAI_CD] = "        "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_SETAI_CD) = CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String).Substring(4, 8)
+        // csToshoRow[ABToshoTable.D_SETAI_CD] = CType(csRow.Item(strPrefixC + ABAtenaEntity.STAICD), String).Substring(4, 8)
         // End If
         // 'データ区分(2桁)
-        // csToshoRow.Item(ABToshoTable.D_DATA_KBN) = csRow.Item(strPrefixC + ABAtenaEntity.ATENADATAKB)
-        // Dim strDataDKB As String = CStr(csToshoRow.Item(ABToshoTable.D_DATA_KBN))
+        // csToshoRow[ABToshoTable.D_DATA_KBN] = csRow.Item(strPrefixC + ABAtenaEntity.ATENADATAKB)
+        // Dim strDataDKB As String = CStr(csToshoRow[ABToshoTable.D_DATA_KBN])
         // '住民基本台帳番号(14桁)
-        // csToshoRow.Item(ABToshoTable.D_DAICHO_NO) = ""
+        // csToshoRow[ABToshoTable.D_DAICHO_NO] = ""
         // '個人法人区分(1桁)
-        // csToshoRow.Item(ABToshoTable.D_KOJINHOJIN_KBN) = csRow.Item(strPrefixC + ABAtenaEntity.KJNHJNKB)
+        // csToshoRow[ABToshoTable.D_KOJINHOJIN_KBN] = csRow.Item(strPrefixC + ABAtenaEntity.KJNHJNKB)
         // ' データ種別(2桁)
-        // csToshoRow.Item(ABToshoTable.D_DATA_SHU) = csRow.Item(strPrefixC + ABAtenaEntity.ATENADATASHU)
-        // Dim strDataDSB As String = CStr(csToshoRow.Item(ABToshoTable.D_DATA_SHU))
+        // csToshoRow[ABToshoTable.D_DATA_SHU] = csRow.Item(strPrefixC + ABAtenaEntity.ATENADATASHU)
+        // Dim strDataDSB As String = CStr(csToshoRow[ABToshoTable.D_DATA_SHU])
         // ' カナ名称１(60桁)
-        // csToshoRow.Item(ABToshoTable.D_KANAMEISHO1) = csRow.Item(strPrefixC + ABAtenaEntity.KANAMEISHO1)
+        // csToshoRow[ABToshoTable.D_KANAMEISHO1] = csRow.Item(strPrefixC + ABAtenaEntity.KANAMEISHO1)
         // ' 漢字名称１(80桁)
-        // csToshoRow.Item(ABToshoTable.D_MEISHO1) = csRow.Item(strPrefixC + ABAtenaEntity.KANJIMEISHO1)
+        // csToshoRow[ABToshoTable.D_MEISHO1] = csRow.Item(strPrefixC + ABAtenaEntity.KANJIMEISHO1)
         // ' カナ名称２(60桁)
-        // csToshoRow.Item(ABToshoTable.D_KANAMEISHO2) = csRow.Item(strPrefixC + ABAtenaEntity.KANAMEISHO2)
+        // csToshoRow[ABToshoTable.D_KANAMEISHO2] = csRow.Item(strPrefixC + ABAtenaEntity.KANAMEISHO2)
         // ' 漢字名称２(80桁)
-        // csToshoRow.Item(ABToshoTable.D_MEISHO2) = csRow.Item(strPrefixC + ABAtenaEntity.KANJIMEISHO2)
+        // csToshoRow[ABToshoTable.D_MEISHO2] = csRow.Item(strPrefixC + ABAtenaEntity.KANJIMEISHO2)
         // ' 汎用区分１(1桁)
         // '(データ区分が"11""12"の時、カナ名称２がある時の判定)
         // If (strDataKB = "11" Or strDataKB = "12") Then
-        // If Not (csToshoRow.Item(ABToshoTable.D_KANAMEISHO2) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN1) = "T"
+        // If Not (csToshoRow[ABToshoTable.D_KANAMEISHO2] Is String.Empty) Then
+        // csToshoRow[ABToshoTable.D_HANYO_KBN1] = "T"
         // Else
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN1) = "S"
+        // csToshoRow[ABToshoTable.D_HANYO_KBN1] = "S"
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN1) = csRow.Item(strPrefixC + ABAtenaEntity.HANYOKB1)
+        // csToshoRow[ABToshoTable.D_HANYO_KBN1] = csRow.Item(strPrefixC + ABAtenaEntity.HANYOKB1)
         // End If
         // ' 法人形態(20桁)
-        // csToshoRow.Item(ABToshoTable.D_HOJINKEITAI) = csRow.Item(strPrefixC + ABAtenaEntity.KANJIHJNKEITAI)
+        // csToshoRow[ABToshoTable.D_HOJINKEITAI] = csRow.Item(strPrefixC + ABAtenaEntity.KANJIHJNKEITAI)
         // ' 汎用区分２(1桁)
         // '(データ区分が"18""28"の時、転出確定住所・転出予定住所がある時の判定)
         // If strDataSB = "18" Or strDataSB = "28" Then
         // If Not (csRow.Item(strPrefixC + ABAtenaEntity.TENSHUTSUKKTIJUSHO) Is String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN2) = "K"
+        // csToshoRow[ABToshoTable.D_HANYO_KBN2] = "K"
         // ElseIf Not (CType(csRow.Item(strPrefixC + ABAtenaEntity.TENSHUTSUYOTEIJUSHO), String) = String.Empty) Then
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN2) = "Y"
+        // csToshoRow[ABToshoTable.D_HANYO_KBN2] = "Y"
         // Else
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN2) = csRow.Item(strPrefixC + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.D_HANYO_KBN2] = csRow.Item(strPrefixC + ABAtenaEntity.HANYOKB2)
         // End If
         // Else
-        // csToshoRow.Item(ABToshoTable.D_HANYO_KBN2) = csRow.Item(strPrefixC + ABAtenaEntity.HANYOKB2)
+        // csToshoRow[ABToshoTable.D_HANYO_KBN2] = csRow.Item(strPrefixC + ABAtenaEntity.HANYOKB2)
         // End If
         // '管内管外区分(1桁)
-        // csToshoRow.Item(ABToshoTable.D_NAIGAI_KBN) = csRow.Item(strPrefixC + ABAtenaEntity.KANNAIKANGAIKB)
+        // csToshoRow[ABToshoTable.D_NAIGAI_KBN] = csRow.Item(strPrefixC + ABAtenaEntity.KANNAIKANGAIKB)
         // ' 郵便番号(7桁)
-        // csToshoRow.Item(ABToshoTable.D_YUBIN_NO) = csRow.Item(strPrefixC + ABAtenaEntity.YUBINNO)
+        // csToshoRow[ABToshoTable.D_YUBIN_NO] = csRow.Item(strPrefixC + ABAtenaEntity.YUBINNO)
         // ' 住所コード(11桁)
-        // csToshoRow.Item(ABToshoTable.D_JUSHO_CD) = csRow.Item(strPrefixC + ABAtenaEntity.JUSHOCD)
+        // csToshoRow[ABToshoTable.D_JUSHO_CD] = csRow.Item(strPrefixC + ABAtenaEntity.JUSHOCD)
         // '住所(60桁)
-        // csToshoRow.Item(ABToshoTable.D_JUSHO) = csRow.Item(strPrefixC + ABAtenaEntity.JUSHO)
+        // csToshoRow[ABToshoTable.D_JUSHO] = csRow.Item(strPrefixC + ABAtenaEntity.JUSHO)
         // '番地コード１(5桁)
-        // csToshoRow.Item(ABToshoTable.D_BANCHI_CD1) = csRow.Item(strPrefixC + ABAtenaEntity.BANCHICD1)
+        // csToshoRow[ABToshoTable.D_BANCHI_CD1] = csRow.Item(strPrefixC + ABAtenaEntity.BANCHICD1)
         // '番地コード２(5桁)
-        // csToshoRow.Item(ABToshoTable.D_BANCHI_CD2) = csRow.Item(strPrefixC + ABAtenaEntity.BANCHICD2)
+        // csToshoRow[ABToshoTable.D_BANCHI_CD2] = csRow.Item(strPrefixC + ABAtenaEntity.BANCHICD2)
         // '番地コード３(5桁)
-        // csToshoRow.Item(ABToshoTable.D_BANCHI_CD3) = csRow.Item(strPrefixC + ABAtenaEntity.BANCHICD3)
+        // csToshoRow[ABToshoTable.D_BANCHI_CD3] = csRow.Item(strPrefixC + ABAtenaEntity.BANCHICD3)
         // '番地(40桁)
-        // csToshoRow.Item(ABToshoTable.D_BANCHI) = csRow.Item(strPrefixC + ABAtenaEntity.BANCHI)
+        // csToshoRow[ABToshoTable.D_BANCHI] = csRow.Item(strPrefixC + ABAtenaEntity.BANCHI)
         // ' 方書フラグ(1桁)
-        // csToshoRow.Item(ABToshoTable.D_KATAGAKI_FLG) = csRow.Item(strPrefixC + ABAtenaEntity.KATAGAKIFG)
+        // csToshoRow[ABToshoTable.D_KATAGAKI_FLG] = csRow.Item(strPrefixC + ABAtenaEntity.KATAGAKIFG)
         // ' 方書コード(4桁)
-        // csToshoRow.Item(ABToshoTable.D_KATAGAKI_CD) = csRow.Item(strPrefixC + ABAtenaEntity.KATAGAKICD)
+        // csToshoRow[ABToshoTable.D_KATAGAKI_CD] = csRow.Item(strPrefixC + ABAtenaEntity.KATAGAKICD)
         // ' 方書(60桁)
-        // csToshoRow.Item(ABToshoTable.D_KATAGAKI) = csRow.Item(strPrefixC + ABAtenaEntity.KATAGAKI)
+        // csToshoRow[ABToshoTable.D_KATAGAKI] = csRow.Item(strPrefixC + ABAtenaEntity.KATAGAKI)
         // ' 連絡先1(14桁)
-        // csToshoRow.Item(ABToshoTable.D_RENRAKUSAKI1) = csRow.Item(strPrefixC + ABAtenaEntity.RENRAKUSAKI1)
+        // csToshoRow[ABToshoTable.D_RENRAKUSAKI1] = csRow.Item(strPrefixC + ABAtenaEntity.RENRAKUSAKI1)
         // ' 連絡先2(14桁)
-        // csToshoRow.Item(ABToshoTable.D_RENRAKUSAKI2) = csRow.Item(strPrefixC + ABAtenaEntity.RENRAKUSAKI2)
-        // ' 行政区コード(7桁)(.NET9桁)
+        // csToshoRow[ABToshoTable.D_RENRAKUSAKI2] = csRow.Item(strPrefixC + ABAtenaEntity.RENRAKUSAKI2)
+        // ' 行政区コード(7桁)[.NET9桁]
         // If csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD) Is String.Empty Or _
         // CType(csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD), String).Length <= 7 Then
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU_CD) = csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD)
-        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU_CD) = "       "
+        // csToshoRow[ABToshoTable.D_GYOSEIKU_CD] = csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD)
+        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_GYOSEIKU_CD] = "       "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU_CD) = CType(csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
+        // csToshoRow[ABToshoTable.D_GYOSEIKU_CD] = CType(csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUCD), String).Substring(2, 7)
         // End If
         // ' 行政区名(60桁)
-        // csToshoRow.Item(ABToshoTable.D_GYOSEIKU) = csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUMEI)
-        // ' 地区コード１(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.D_GYOSEIKU] = csRow.Item(strPrefixC + ABAtenaEntity.GYOSEIKUMEI)
+        // ' 地区コード１(6桁)[.NET8桁]
         // If csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1) Is String.Empty Or _
         // CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD1) = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1)
-        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD1) = "      "
+        // csToshoRow[ABToshoTable.D_CHIKU_CD1] = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1)
+        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_CHIKU_CD1] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD1) = CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.D_CHIKU_CD1] = CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区名１(60桁)
-        // csToshoRow.Item(ABToshoTable.D_CHIKU1) = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUMEI1)
-        // ' 地区コード２(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.D_CHIKU1] = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUMEI1)
+        // ' 地区コード２(6桁)[.NET8桁]
         // If csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD2) Is String.Empty Or _
         // CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD2), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD2) = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD2)
-        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD2), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD2) = "      "
+        // csToshoRow[ABToshoTable.D_CHIKU_CD2] = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD2)
+        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD2), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_CHIKU_CD2] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD2) = CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.D_CHIKU_CD2] = CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区名２(60桁)
-        // csToshoRow.Item(ABToshoTable.D_CHIKU2) = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUMEI2)
-        // ' 地区コード３(6桁)(.NET8桁)
+        // csToshoRow[ABToshoTable.D_CHIKU2] = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUMEI2)
+        // ' 地区コード３(6桁)[.NET8桁]
         // If csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD3) Is String.Empty Or _
         // CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD3), String).Length <= 6 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD3) = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD3)
-        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD3), String).Trim.Length = 0 Then
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD3) = "      "
+        // csToshoRow[ABToshoTable.D_CHIKU_CD3] = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD3)
+        // ElseIf CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD3), String).Trim().Length = 0 Then
+        // csToshoRow[ABToshoTable.D_CHIKU_CD3] = "      "
         // Else
-        // csToshoRow.Item(ABToshoTable.D_CHIKU_CD3) = CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
+        // csToshoRow[ABToshoTable.D_CHIKU_CD3] = CType(csRow.Item(strPrefixC + ABAtenaEntity.CHIKUCD1), String).Substring(2, 6)
         // End If
         // ' 地区３(60桁)
-        // csToshoRow.Item(ABToshoTable.D_CHIKU3) = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUMEI3)
+        // csToshoRow[ABToshoTable.D_CHIKU3] = csRow.Item(strPrefixC + ABAtenaEntity.CHIKUMEI3)
         // ' 別宛名数(3桁)
-        // csToshoRow.Item(ABToshoTable.D_BETSUATENA) = "000"
+        // csToshoRow[ABToshoTable.D_BETSUATENA] = "000"
 
 
         // ' デバッグログ出力
@@ -1570,19 +1570,19 @@ namespace Densan.Reams.AB.AB000BB
         // ''''市町村情報の取得
         // '''cuCityInfo.GetCityInfo(m_cfControlData)
         // ''''市町村ｺｰﾄﾞの取得
-        // '''strCityCD = cuCityInfo.p_strShichosonCD(0)
+        // '''strCityCD = cuCityInfo.p_strShichosonCD[0]
         // ' 市町村ｺｰﾄﾞ(6桁)
-        // ''''csToshoRow.Item(ABToshoTable.SHICHOSONCD) = strCityCD
-        // csToshoRow.Item(ABToshoTable.SHICHOSONCD) = m_strCityCD
+        // ''''csToshoRow[ABToshoTable.SHICHOSONCD] = strCityCD
+        // csToshoRow[ABToshoTable.SHICHOSONCD] = m_strCityCD
         // '*履歴番号 000003 2004/11/05 修正終了
         // ' 識別ID(4桁)
-        // csToshoRow.Item(ABToshoTable.SHIKIBETSUID) = "AB21"
+        // csToshoRow[ABToshoTable.SHIKIBETSUID] = "AB21"
         // ' 作成日時(14桁)
-        // csToshoRow.Item(ABToshoTable.SAKUSEIYMD) = m_strNen
+        // csToshoRow[ABToshoTable.SAKUSEIYMD] = m_strNen
         // ' 最終行区分(1桁)
-        // csToshoRow.Item(ABToshoTable.LASTRECKB) = "E"
+        // csToshoRow[ABToshoTable.LASTRECKB] = "E"
         // ' 連番(7桁)
-        // csToshoRow.Item(ABToshoTable.RENBAN) = CType(m_intRecCnt, String).PadLeft(7, "0"c)
+        // csToshoRow[ABToshoTable.RENBAN] = CType(m_intRecCnt, String).PadLeft(7, "0"c)
 
         // ' デバッグログ出力
         // m_cfLog.DebugEndWrite(m_cfControlData, THIS_CLASS_NAME, THIS_METHOD_NAME)
@@ -2466,9 +2466,9 @@ namespace Densan.Reams.AB.AB000BB
                     case ATENA:
                         {
                             // *履歴番号 000004 2005/02/28 修正開始
-                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables(ABToshoPrmEntity.TABLE_NAME);
+                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables[ABToshoPrmEntity.TABLE_NAME];
                             cwSerialGroupId[0] = new UWSerialGroupId();
-                            cwSerialGroupId[0].p_strValue = (string)csToshoEntity.Tables(ABToshoPrmEntity.TABLE_NAME).Rows(0).Item(ABToshoPrmEntity.STAICD);
+                            cwSerialGroupId[0].p_strValue = (string)csToshoEntity.Tables[ABToshoPrmEntity.TABLE_NAME].Rows[0][ABToshoPrmEntity.STAICD];
                             cwMessage.p_arySerialGroupId = cwSerialGroupId;
                             // ワークフロー出力設定_２
                             cwStartDataInfo[0] = new UWStartDataInfo();
@@ -2493,26 +2493,26 @@ namespace Densan.Reams.AB.AB000BB
                     // '''''cwStartDataInfoForDataSet(1).p_strEncryptionType = UWStartDataInfo.ENCRYPTIONTYPE_NONE
                     // '''''cwStartDataInfoForDataSet(1).p_strCharCode = UWStartDataInfo.CHARCODE_SJIS + UWStartDataInfo.CHAR_RENKETSU + UWStartDataInfo.GAIJI_DENSANUSER
                     // '''''cwStartDataInfoForDataSet(1).p_strDataType = UWStartDataInfo.DATATYPE_TXT
-                    // '''''cwStartDataInfoForDataSet(1).p_csData = csToshoEntity.Tables(ABToshoPrmEntity.TABLE_NAME)
+                    // '''''cwStartDataInfoForDataSet(1).p_csData = csToshoEntity.Tables[ABToshoPrmEntity.TABLE_NAME]
                     // -------------------------------------
-                    // '''''cwStartDataInfoForDataSet(0).p_csData = csToshoEntity.Tables(ABToshoTable.TABLE_NAME)
+                    // '''''cwStartDataInfoForDataSet(0).p_csData = csToshoEntity.Tables[ABToshoTable.TABLE_NAME]
                     // *履歴番号 000004 2005/02/28 修正終了
                     case KOKUHO:
                         {
-                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables(ABKobetsuKokuhoEntity.TABLE_NAME);
+                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables[ABKobetsuKokuhoEntity.TABLE_NAME];
                             break;
                         }
                     // *履歴番号 000005 2005/10/17 追加開始
                     case JITE:
                         {
-                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables(ABKobetsuJiteEntity.TABLE_NAME);
+                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables[ABKobetsuJiteEntity.TABLE_NAME];
                             break;
                         }
                     // *履歴番号 000005 2005/10/17 追加終了
                     // *履歴番号 000006 2008/05/14 追加開始
                     case KAIGO:
                         {
-                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables(ABKobetsuKaigoEntity.TABLE_NAME);
+                            cwStartDataInfoForDataSet[0].p_csData = csToshoEntity.Tables[ABKobetsuKaigoEntity.TABLE_NAME];
                             break;
                         }
                         // *履歴番号 000006 2008/05/14 追加終了

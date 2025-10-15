@@ -23,7 +23,7 @@ using ndensan.reams.ab.publicmodule.library.businesscommon.ab001x;
 
 #region 参照名前空間
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
     #endregion
 
@@ -102,7 +102,7 @@ namespace Densan.Reams.AB.AB000BB
 
                 csSQL.AppendFormat("SELECT * FROM {0}", ABKojinSeigyoKanriMstEntity.TABLE_NAME);
                 csSQL.Append(" WHERE");
-                if (strGyomuCD.Trim().RLength > 0)
+                if (strGyomuCD.Trim().RLength() > 0)
                 {
                     csSQL.AppendFormat(" {0} = {1} AND", ABKojinSeigyoKanriMstEntity.GYOMUCD, ABKojinSeigyoKanriMstEntity.KEY_GYOMUCD);
                     cfParameterCollection.Add(ABKojinSeigyoKanriMstEntity.KEY_GYOMUCD, strGyomuCD);
@@ -121,7 +121,7 @@ namespace Densan.Reams.AB.AB000BB
                         cfParameterCollection.Add(string.Format("{0}_{1}", ABKojinSeigyoKanriMstEntity.KEY_GROUPID, intIdx.ToString()), a_strGroupID[intIdx]);
                     }
                     // 最後のカンマを取る
-                    csSQL.RRemove(csSQL.RLength - 1, 1);
+                    csSQL.RRemove(csSQL.RLength() - 1, 1);
                     csSQL.Append(" ) AND");
                 }
                 else
@@ -130,7 +130,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
                 // 機能分類は指定なしには出来ないので必ず付ける
                 csSQL.AppendFormat(" {0} = {1} AND", ABKojinSeigyoKanriMstEntity.KINOBUNRUI, ABKojinSeigyoKanriMstEntity.KEY_KINOBUNRUI);
-                cfParameterCollection.Add(ABKojinSeigyoKanriMstEntity.KEY_KINOBUNRUI, Convert.ToInt32(enKinoBunrui).ToString);
+                cfParameterCollection.Add(ABKojinSeigyoKanriMstEntity.KEY_KINOBUNRUI, Convert.ToInt32(enKinoBunrui).ToString());
 
                 csSQL.AppendFormat(" {0} <> '1'", ABKojinSeigyoKanriMstEntity.SAKUJOFG);
 

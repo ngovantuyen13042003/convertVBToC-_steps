@@ -22,7 +22,7 @@ using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABAkibanShutokuBClass
@@ -104,7 +104,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -151,7 +151,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -198,7 +198,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -245,7 +245,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -292,7 +292,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -340,7 +340,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -387,7 +387,7 @@ namespace Densan.Reams.AB.AB000BB
                 // cuGetNum.GetNum(m_cfUFControlData)
 
                 // '取得番号をプロパティにセット
-                // m_strBango = cuGetNum.p_strBango(0)
+                // m_strBango = cuGetNum.p_strBango[0]
                 // *履歴番号 000003 2007/04/02 修正終了
 
                 // デバッグ終了ログ出力
@@ -472,16 +472,16 @@ namespace Densan.Reams.AB.AB000BB
                         if (strChkCD == "0")
                         {
                             // 住民コードの場合
-                            cfParamCollection.Add(ABAtenaEntity.PARAM_JUMINCD, cuGetNum.p_strBango(0));
+                            cfParamCollection.Add(ABAtenaEntity.PARAM_JUMINCD, cuGetNum.p_strBango[0]);
                         }
                         else
                         {
                             // 世帯コードの場合
-                            cfParamCollection.Add(ABAtenaEntity.PARAM_STAICD, cuGetNum.p_strBango(0));
+                            cfParamCollection.Add(ABAtenaEntity.PARAM_STAICD, cuGetNum.p_strBango[0]);
                         }
 
                         cfDataReder = cfRdb.GetDataReader(csSB.ToString(), cfParamCollection);
-                        if (cfDataReder.Read == false)
+                        if (cfDataReder.Read() == false)
                         {
                             // コードが存在しない場合
                             // チェックフラグをFalseにする
@@ -507,7 +507,7 @@ namespace Densan.Reams.AB.AB000BB
                 }
 
                 // 取得番号をプロパティにセット
-                m_strBango = cuGetNum.p_strBango(0);
+                m_strBango = cuGetNum.p_strBango[0];
 
                 // デバッグ終了ログ出力
                 m_cfUFLogClass.DebugEndWrite(m_cfUFControlData, THIS_CLASS_NAME, THIS_METHOD_NAME);
@@ -553,7 +553,7 @@ namespace Densan.Reams.AB.AB000BB
                 cuGetNum.GetNum(m_cfUFControlData);
 
                 // 取得番号をプロパティにセット
-                m_strBango = cuGetNum.p_strBango(0);
+                m_strBango = cuGetNum.p_strBango[0];
 
                 // デバッグ終了ログ出力
                 m_cfUFLogClass.DebugEndWrite(m_cfUFControlData, THIS_CLASS_NAME, THIS_METHOD_NAME);

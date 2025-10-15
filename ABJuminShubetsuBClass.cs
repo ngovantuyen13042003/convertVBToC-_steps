@@ -17,7 +17,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABJuminShubetsuBClass
@@ -374,91 +374,91 @@ namespace Densan.Reams.AB.AB000BB
                 // 各フィールドにデータを格納する
                 // 宛名データ種別 = 10
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "10";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "日本人・住民";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "10";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "日本人・住民";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 13
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "13";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "日本人（住登外）";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "住登外";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "13";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "日本人（住登外）";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "住登外";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 14
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "14";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "その他個人";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "その他";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "14";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "その他個人";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "その他";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 17
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "17";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "日本人・消除者";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "消　除";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "17";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "日本人・消除者";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "消　除";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 18
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "18";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "日本人・転出者";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "転　出";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "18";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "日本人・転出者";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "転　出";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 19
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "19";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "日本人・死亡者";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "死　亡";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "19";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "日本人・死亡者";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "死　亡";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 20
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "20";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "外国人：住民";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "外国人";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "20";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "外国人：住民";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "外国人";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 23
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "23";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "外国人（住登外）";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "住登外";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "23";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "外国人（住登外）";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "住登外";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 27
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "27";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "外国人：消除者";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "消　除";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "27";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "外国人：消除者";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "消　除";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 28
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "28";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "外国人：転出者";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "転　出";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "28";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "外国人：転出者";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "転　出";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // 宛名データ種別 = 29
                 csShubetsuDataRow = csShubetsuDataTbl.NewRow();
-                csShubetsuDataRow.Item(ABShubetsuData.ATENADATASHU) = "29";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSU) = "外国人：死亡者";
-                csShubetsuDataRow.Item(ABShubetsuData.HENSHUSHUBETSURYAKU) = "死　亡";
+                csShubetsuDataRow[ABShubetsuData.ATENADATASHU] = "29";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSU] = "外国人：死亡者";
+                csShubetsuDataRow[ABShubetsuData.HENSHUSHUBETSURYAKU] = "死　亡";
                 // データの追加
-                csShubetsuData.Tables(ABShubetsuData.TABLE_NAME).Rows.Add(csShubetsuDataRow);
+                csShubetsuData.Tables[ABShubetsuData.TABLE_NAME].Rows.Add(csShubetsuDataRow);
 
                 // デバッグ終了ログ出力
                 m_cfUFLogClass.DebugEndWrite(m_cfUFControlData, THIS_CLASS_NAME, "GetJuminshubetsu");

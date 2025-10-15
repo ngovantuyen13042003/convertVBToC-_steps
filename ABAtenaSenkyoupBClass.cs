@@ -23,7 +23,7 @@ using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 using ndensan.framework.us.publicmodule.library.businesscommon.uscommon;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABAtenaSenkyoupBClass
@@ -158,22 +158,22 @@ namespace Densan.Reams.AB.AB000BB
                     csABAtenaSenkyoEntity = cABAtenaSenkyoBClass.GetAtenaSenkyo(cABKobetsuProperty[intcnt].p_strJUMINCD);
 
                     // 追加・更新の判定
-                    if (csABAtenaSenkyoEntity.Tables(ABAtenaSenkyoEntity.TABLE_NAME).Rows.Count == 0)
+                    if (csABAtenaSenkyoEntity.Tables[ABAtenaSenkyoEntity.TABLE_NAME].Rows.Count == 0)
                     {
 
-                        cDatRow = csABAtenaSenkyoEntity.Tables(ABAtenaSenkyoEntity.TABLE_NAME).NewRow();
+                        cDatRow = csABAtenaSenkyoEntity.Tables[ABAtenaSenkyoEntity.TABLE_NAME].NewRow();
                         // 各項目をプロパティから取得
-                        cDatRow.Item(ABAtenaSenkyoEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cDatRow.Item(ABAtenaSenkyoEntity.SENKYOSHIKAKUKB) = cABKobetsuProperty[intcnt].p_strSenkyoShikakuKB;
-                        cDatRow.Item(ABAtenaSenkyoEntity.TOROKUJOTAIKBN) = string.Empty;
+                        cDatRow[ABAtenaSenkyoEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                        cDatRow[ABAtenaSenkyoEntity.SENKYOSHIKAKUKB] = cABKobetsuProperty[intcnt].p_strSenkyoShikakuKB;
+                        cDatRow[ABAtenaSenkyoEntity.TOROKUJOTAIKBN] = string.Empty;
 
                         // 市町村コード
-                        cDatRow.Item(ABAtenaSenkyoEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaSenkyoEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                         // 旧市町村コード
-                        cDatRow.Item(ABAtenaSenkyoEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaSenkyoEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                         // データの追加
-                        // csABAtenaSenkyoEntity.Tables(ABAtenaSenkyoEntity.TABLE_NAME).Rows.Add(cDatRow)
+                        // csABAtenaSenkyoEntity.Tables[ABAtenaSenkyoEntity.TABLE_NAME].Rows.Add(cDatRow)
 
                         // 宛名選挙マスタ追加メソッド呼び出し
                         intUpdCnt = cABAtenaSenkyoBClass.InsertAtenaSenkyo(cDatRow);
@@ -182,15 +182,15 @@ namespace Densan.Reams.AB.AB000BB
                     else
                     {
 
-                        cDatRow = csABAtenaSenkyoEntity.Tables(ABAtenaSenkyoEntity.TABLE_NAME).Rows(0);
+                        cDatRow = csABAtenaSenkyoEntity.Tables[ABAtenaSenkyoEntity.TABLE_NAME].Rows[0];
                         // 各項目をプロパティから取得
-                        cDatRow.Item(ABAtenaSenkyoEntity.JUMINCD) = cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cDatRow.Item(ABAtenaSenkyoEntity.SENKYOSHIKAKUKB) = cABKobetsuProperty[intcnt].p_strSenkyoShikakuKB;
+                        cDatRow[ABAtenaSenkyoEntity.JUMINCD] = cABKobetsuProperty[intcnt].p_strJUMINCD;
+                        cDatRow[ABAtenaSenkyoEntity.SENKYOSHIKAKUKB] = cABKobetsuProperty[intcnt].p_strSenkyoShikakuKB;
 
                         // 市町村コード
-                        cDatRow.Item(ABAtenaSenkyoEntity.SHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaSenkyoEntity.SHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
                         // 旧市町村コード
-                        cDatRow.Item(ABAtenaSenkyoEntity.KYUSHICHOSONCD) = cUSSCItyInfo.p_strShichosonCD(0);
+                        cDatRow[ABAtenaSenkyoEntity.KYUSHICHOSONCD] = cUSSCItyInfo.p_strShichosonCD[0];
 
                         // 宛名選挙マスタ更新メソッド呼び出し
                         intUpdCnt = cABAtenaSenkyoBClass.UpdateAtenaSenkyo(cDatRow);
@@ -215,7 +215,7 @@ namespace Densan.Reams.AB.AB000BB
                     csABAtenaEntity = cABAtenaBClass.GetAtenaBHoshu(1, cSearchKey);
 
                     // 追加・更新の判定
-                    if (csABAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows.Count == 0)
+                    if (csABAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows.Count == 0)
                     {
                         intUpdCnt = 0;
                     }
@@ -223,21 +223,21 @@ namespace Densan.Reams.AB.AB000BB
                     {
                         // *履歴番号 000002 2005/02/17 修正開始　000003 2006/03/17 修正開始
                         // Rowを取得
-                        cDatRowt = csABAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows(0);
+                        cDatRowt = csABAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows[0];
 
                         // 宛名マスタの投票区コードと個別プロパティの投票区コードが同じだったら更新しない
-                        if (!((string)cDatRowt.Item(ABAtenaEntity.TOHYOKUCD) == cABKobetsuProperty[intcnt].p_strTohyokuCD))
+                        if (!(Convert.ToString(cDatRowt[ABAtenaEntity.TOHYOKUCD]) == cABKobetsuProperty[intcnt].p_strTohyokuCD))
                         {
                             // 投票区CDをプロパティから取得
-                            cDatRowt.Item(ABAtenaEntity.TOHYOKUCD) = cABKobetsuProperty[intcnt].p_strTohyokuCD;
+                            cDatRowt[ABAtenaEntity.TOHYOKUCD] = cABKobetsuProperty[intcnt].p_strTohyokuCD;
 
                             // 宛名マスタ追加メソッド呼び出し
                             intUpdCnt = cABAtenaBClass.UpdateAtenaB(cDatRowt);
                         }
 
-                        // cDatRowt = csABAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows(0)
+                        // cDatRowt = csABAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows[0]
                         // '投票区CDをプロパティから取得
-                        // cDatRowt.Item(ABAtenaEntity.TOHYOKUCD) = cABKobetsuProperty(intcnt).p_strTohyokuCD
+                        // cDatRowt[ABAtenaEntity.TOHYOKUCD] = cABKobetsuProperty(intcnt).p_strTohyokuCD
 
                         // '宛名マスタ追加メソッド呼び出し
                         // intUpdCnt = cABAtenaBClass.UpdateAtenaB(cDatRowt)
@@ -265,7 +265,7 @@ namespace Densan.Reams.AB.AB000BB
                 csAtenaKanriEntity = cAtenaKanriJohoB.GetKanriJohoHoshu("04", "15");
 
                 // 管理情報の住基更新レコードが存在しない、または、パラメータが"0"の時だけ住基更新処理を行う
-                if (csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows.Count == 0 || (string)csAtenaKanriEntity.Tables(ABAtenaKanriJohoEntity.TABLE_NAME).Rows(0).Item(ABAtenaKanriJohoEntity.PARAMETER) == "0")
+                if (csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows.Count == 0 || (string)csAtenaKanriEntity.Tables[ABAtenaKanriJohoEntity.TABLE_NAME].Rows[0][ABAtenaKanriJohoEntity.PARAMETER] == "0")
                 {
 
                     // WebserviceのURLをWebConfigから取得して設定する
@@ -283,9 +283,9 @@ namespace Densan.Reams.AB.AB000BB
                         cAAKOBETSUSENKYOParamClass[intcnt] = new localhost.AAKOBETSUSENKYOParamClass();
 
                         // 更新・追加した項目を取得
-                        cAAKOBETSUSENKYOParamClass[intcnt].m_strJuminCD = (string)cABKobetsuProperty[intcnt].p_strJUMINCD;
-                        cAAKOBETSUSENKYOParamClass[intcnt].m_strSenkyoShikakuKB = (string)cABKobetsuProperty[intcnt].p_strSenkyoShikakuKB;
-                        cAAKOBETSUSENKYOParamClass[intcnt].m_strTohyokuCD = (string)cABKobetsuProperty[intcnt].p_strTohyokuCD;
+                        cAAKOBETSUSENKYOParamClass[intcnt].m_strJuminCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strJUMINCD;
+                        cAAKOBETSUSENKYOParamClass[intcnt].m_strSenkyoShikakuKB = Convert.ToString(cABKobetsuProperty[intcnt]).p_strSenkyoShikakuKB;
+                        cAAKOBETSUSENKYOParamClass[intcnt].m_strTohyokuCD = Convert.ToString(cABKobetsuProperty[intcnt]).p_strTohyokuCD;
 
                     }
 

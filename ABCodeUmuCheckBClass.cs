@@ -19,7 +19,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABCodeUmuCheckBClass
@@ -131,7 +131,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 宛名ＤＡクラスの宛名取得メゾットを実行
                     csAtenaEntity = cAtenaB.GetAtenaBHoshu(1, cAtenaSearchKey, true);
 
-                    intDataCount = csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows.Count();
+                    intDataCount = csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows.Count();
 
                     // データが０件のときは
                     if (intDataCount == 0)
@@ -241,7 +241,7 @@ namespace Densan.Reams.AB.AB000BB
                     // 宛名ＤＡクラスの宛名取得メゾットを実行
                     csAtenaEntity = cAtenaB.GetAtenaBHoshu(1, cAtenaSearchKey, true);
 
-                    intDataCount = csAtenaEntity.Tables(ABAtenaEntity.TABLE_NAME).Rows.Count();
+                    intDataCount = csAtenaEntity.Tables[ABAtenaEntity.TABLE_NAME].Rows.Count();
 
                     // データが０件のときは
                     if (intDataCount == 0)

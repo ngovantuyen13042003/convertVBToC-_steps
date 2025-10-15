@@ -19,7 +19,7 @@ using System.Data;
 using ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon;
 using ndensan.framework.uf.publicmodule.library.businesscommon.uftools;
 
-namespace Densan.Reams.AB.AB000BB
+namespace ndensan.reams.ab.publicmodule.library.business.ab000b
 {
 
     public class ABHojinMeishoBClass
@@ -260,7 +260,7 @@ namespace Densan.Reams.AB.AB000BB
 
 
                 // 支店名が存在する場合に、全角空白＋支店名を連結する。
-                if (strShitenmei.RLength > 0)
+                if (strShitenmei.RLength() > 0)
                 {
                     csHojinmei.Append("　");
                     csHojinmei.Append(strShitenmei);
