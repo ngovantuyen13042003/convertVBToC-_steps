@@ -1,141 +1,49 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <SccProjectName></SccProjectName>
-    <SccLocalPath></SccLocalPath>
-    <SccAuxPath></SccAuxPath>
-    <SccProvider></SccProvider>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
-    <AssemblyName>Densan.Reams.AB.AB000BB</AssemblyName>
-    <AssemblyOriginatorKeyFile>AB000.snk</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>Densan.Reams.AB.AB000BB</RootNamespace>
-    <StartupObject>Densan.Reams.AB.AB000BB.%28なし%29</StartupObject>
     <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
     <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
-    <MyType>Windows</MyType>
-    <PublishUrl>http://localhost/Densan.Reams.AB.AB000BB/</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SignAssembly>true</SignAssembly>
     <TargetFramework>net8.0</TargetFramework>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
     <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <NoWarn>CS1591,CA2100,CA2350,CA2351,CA2352,CA2353,CA2354,CA2355,CA2356,CA2361,CA2362</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>bin\Densan.Reams.AB.AB000BB.xml</DocumentationFile>
-    <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile></ConfigurationOverrideFile>
     <DefineConstants></DefineConstants>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <NoWarn>42016,42017,42018,42019,42025,42030,42032,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>bin\Densan.Reams.AB.AB000BB.xml</DocumentationFile>
-    <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile></ConfigurationOverrideFile>
     <DefineConstants></DefineConstants>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <NoWarn>42016,42017,42018,42019,42025,42030,42032,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
     <DebugType>none</DebugType>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Densan.Common.USCommon">
-      <Name>Densan.Common.USCommon</Name>
-      <HintPath>..\..\..\Common\Bin\Densan.Common.USCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.Common.USLAccessLogKojinBango, Version=6.0.0.0, Culture=neutral, PublicKeyToken=20fda5ad3053e0d3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Common\Bin\Densan.Common.USLAccessLogKojinBango.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.Common.USLCommon, Version=6.0.0.0, Culture=neutral, PublicKeyToken=20fda5ad3053e0d3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Common\Bin\Densan.Common.USLCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.Framework.UFCommon">
-      <Name>Densan.Framework.UFCommon</Name>
-      <HintPath>..\..\..\FrameWork\Bin\Densan.Framework.UFCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.FrameWork.UFTools">
-      <Name>Densan.FrameWork.UFTools</Name>
-      <HintPath>..\..\..\FrameWork\Bin\Densan.FrameWork.UFTools.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.Reams.BA.BAOPNBB">
-      <Name>Densan.Reams.BA.BAOPNBB</Name>
-      <HintPath>..\..\BA\BAOPNBB\bin\Densan.Reams.BA.BAOPNBB.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Densan.Reams.UR.UR001BB">
-      <Name>Densan.Reams.UR.UR001BB</Name>
-      <HintPath>..\..\UR\UR001BB\bin\Densan.Reams.UR.UR001BB.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.Reams.UR.UR001BX">
-      <Name>Densan.Reams.UR.UR001BX</Name>
-      <HintPath>..\..\UR\UR001BX\bin\Densan.Reams.UR.UR001BX.dll</HintPath>
-    </Reference>
-    <Reference Include="Densan.Reams.UR.UR002BB, Version=6.0.0.0, Culture=neutral, PublicKeyToken=642157ef58849fb6, processorArchitecture=MSIL" />
-    <Reference Include="Densan.Reams.UR.UR002BX, Version=6.0.0.0, Culture=neutral, PublicKeyToken=642157ef58849fb6, processorArchitecture=MSIL" />
-    <Reference Include="Densan.Reams.UR.UR010BB, Version=6.0.0.0, Culture=neutral, PublicKeyToken=df951d900390363e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Densan.Reams.UR.UR010BB\v4.0_6.0.0.0__df951d900390363e\Densan.Reams.UR.UR010BB.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Densan.Reams.UR.UR010BX, Version=6.0.0.0, Culture=neutral, PublicKeyToken=df951d900390363e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Densan.Reams.UR.UR010BX\v4.0_6.0.0.0__df951d900390363e\Densan.Reams.UR.UR010BX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Densan.WorkFlow.UWCommon">
-      <Name>Densan.WorkFlow.UWCommon</Name>
-      <HintPath>..\..\..\Common\Bin\Densan.WorkFlow.UWCommon.dll</HintPath>
-    </Reference>
-    <Reference Update="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Update="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Update="System.Data">
-      <Name>System.Data</Name>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Update="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
     <ProjectReference Include="..\AB001BX\AB001BX.vbproj" />
+    <PackageReference Include="ndensan.framework.uf.publicmodule.library.businesscommon.ufvbapi" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.framework.us.publicmodule.library.businesscommon.uscommon" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.framework.us.publicmodule.library.businesscommon.uslaccessLog" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.framework.us.publicmodule.library.businesscommon.uslcommon" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.framework.uf.publicmodule.library.businesscommon.ufcommon" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.framework.uf.publicmodule.library.businesscommon.uftools" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.reams.ur.publicmodule.library.business.ur001b" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.reams.ur.publicmodule.library.businesscommon.ur001x" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.reams.ur.publicmodule.library.business.ur002b" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.reams.ur.publicmodule.library.businesscommon.ur002x" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.reams.ur.publicmodule.library.business.ur010b" Version="25.1.1-pre.*" />
+    <PackageReference Include="ndensan.reams.ur.publicmodule.library.businesscommon.ur010x" Version="25.1.1-pre.*" />
   </ItemGroup>
   <ItemGroup>
-    <Import Include="Densan.Reams.AB.AB001BX" />
-    <Import Include="Densan.Reams.BA.BAOPNBB" />
-    <Import Include="Densan.Reams.UR.UR001BB" />
-    <Import Include="Densan.Reams.UR.UR001BX" />
+    <Using Include="ndensan.reams.ab.publicmodule.library.businesscommon.ab001x" />
+    <Using Include="ndensan.reams.ur.publicmodule.library.business.ur001b" />
+    <Using Include="ndensan.reams.ur.publicmodule.library.businesscommon.ur001x" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\localhost\Reference.map">
@@ -148,23 +56,7 @@
     </WebReferenceUrl>
     <WebReferences Include="Web References\" />
   </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Folder Include="My Project\" />
   </ItemGroup>
